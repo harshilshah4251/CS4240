@@ -9,4 +9,4 @@
 		- or By using attributes
 		=> The html link from piazza
 	
-**Or We can use both of them**
+**- or We can use both of them**
