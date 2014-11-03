@@ -1,5 +1,6 @@
 ###To run the code
   * It has 2 .tig code we can test
+  * This is just the given grammar and tests
 
 
 **$java TigerMain < filename**
