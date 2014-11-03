@@ -8,3 +8,5 @@
 		- By passing parameters and/or returning values
 		- or By using attributes
 		=> The html link from piazza
+	
+**Or We can use both of them**
