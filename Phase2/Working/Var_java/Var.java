@@ -1,11 +1,15 @@
 public class Var {
-	void error(String s) {throw new Errors(s); }
+	public String error(String s) {
+		return s;
+	
+	}
+	
 	static int labels = 0;
 	public static int newlabel() {return ++labels;}
 	public static void emitlabel(int i) {
 		System.out.println("L" + i + ";");
 	}
-	public static void emi(String s) {
+	public static void emit(String s) {
 		System.out.println("\t" + s);
 	}
 }
