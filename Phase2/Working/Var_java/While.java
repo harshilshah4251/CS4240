@@ -9,4 +9,4 @@ public class While extends Stat {
 	}
 		// public void gen();
 }
-	
+
