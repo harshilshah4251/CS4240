@@ -19,12 +19,10 @@ public class Type {
 		Int = new Type("int", 4), 
 		Float = new Type("float", 8), //fixedptlit
 		Char = new Type("char", 1), 
-<<<<<<< HEAD
 		Void = new Type("void", 0),
-		Bool = new Type("bool", 0);
-=======
+
 		Bool = new Type("bool", 1);
->>>>>>> 0b97a00ffeaf593ee8f538ef7cee8a4018e69399
+
 	
 	public static boolean numeric (Type p){
 		return  (p == Type.Char) || (p == Type.Int) || (p == Type.Float);

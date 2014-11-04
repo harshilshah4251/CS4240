@@ -5,7 +5,7 @@ public class SetElem extends Stat {
 	public Id array;
 	public Expr index;
 	public Expr expr;	
-	public SetElem(Access x, Expr y) {
+	public SetElem(IndexExpression x, Expr y) {
 		array = x.array;
 		index = x.index;
 		expr = y;

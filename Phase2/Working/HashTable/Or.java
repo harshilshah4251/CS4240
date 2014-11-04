@@ -1,3 +1,10 @@
+//
+//  Or.java
+//  4240
+//
+//  Created by Sung Hye Jeon on 11/3/14.
+//  Copyright (c) 2014 Sung Hye Jeon. All rights reserved.
+//
 
 public class Or extends Logical {
 	public Or(Expr x1, Expr x2) { 
