@@ -18,9 +18,11 @@ public class Type {
 	public static final Type	
 		Int = new Type("int", 4), 
 		Float = new Type("float", 8), //fixedptlit
-		Char = new Type("char", 1); 
+		Char = new Type("char", 1), 
+		Void = new Type("void", 0),
+		Bool = new Type("bool", 0);
 	
-	public static boolean numberic (Type p){
+	public static boolean numeric (Type p){
 		return  (p == Type.Char) || (p == Type.Int) || (p == Type.Float);
 	}
 	
