@@ -5,4 +5,4 @@ Compiler project
 
 
 Phase2 Consideration : 
-Our grammar Tiger.g might not be perfect
+~~Our grammar Tiger.g might not be perfect~~
