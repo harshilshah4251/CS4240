@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g 2014-11-03 03:15:15
+// $ANTLR 3.5.2 Tiger.g 2014-11-03 05:40:15
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -120,7 +120,7 @@ public class TigerParser extends Parser {
 		return adaptor;
 	}
 	@Override public String[] getTokenNames() { return TigerParser.tokenNames; }
-	@Override public String getGrammarFileName() { return "/home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g"; }
+	@Override public String getGrammarFileName() { return "Tiger.g"; }
 
 
 
@@ -146,7 +146,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "tiger_program"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:136:1: tiger_program : type_declaration_list funct_declaration_list_then_main EOF -> ^( PROGRAM type_declaration_list funct_declaration_list_then_main ) ;
+	// Tiger.g:136:1: tiger_program : type_declaration_list funct_declaration_list_then_main EOF -> ^( PROGRAM type_declaration_list funct_declaration_list_then_main ) ;
 	public final TigerParser.tiger_program_return tiger_program() throws RecognitionException {
 		TigerParser.tiger_program_return retval = new TigerParser.tiger_program_return();
 		retval.start = input.LT(1);
@@ -163,8 +163,8 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_funct_declaration_list_then_main=new RewriteRuleSubtreeStream(adaptor,"rule funct_declaration_list_then_main");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:136:15: ( type_declaration_list funct_declaration_list_then_main EOF -> ^( PROGRAM type_declaration_list funct_declaration_list_then_main ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:136:17: type_declaration_list funct_declaration_list_then_main EOF
+			// Tiger.g:136:15: ( type_declaration_list funct_declaration_list_then_main EOF -> ^( PROGRAM type_declaration_list funct_declaration_list_then_main ) )
+			// Tiger.g:136:17: type_declaration_list funct_declaration_list_then_main EOF
 			{
 			pushFollow(FOLLOW_type_declaration_list_in_tiger_program1015);
 			type_declaration_list1=type_declaration_list();
@@ -190,9 +190,9 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 136:76: -> ^( PROGRAM type_declaration_list funct_declaration_list_then_main )
+			// 137:3: -> ^( PROGRAM type_declaration_list funct_declaration_list_then_main )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:136:79: ^( PROGRAM type_declaration_list funct_declaration_list_then_main )
+				// Tiger.g:137:6: ^( PROGRAM type_declaration_list funct_declaration_list_then_main )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PROGRAM, "PROGRAM"), root_1);
@@ -235,7 +235,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "funct_declaration_list_then_main"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:138:1: funct_declaration_list_then_main : (myRet= VOID ! ( funct_declaration_tail[$myRet] funct_declaration_list_then_main | main_function_tail ) | (myRet= ID |myRet= INT |myRet= FIXEDPT ) funct_declaration_tail[$myRet] funct_declaration_list_then_main );
+	// Tiger.g:139:1: funct_declaration_list_then_main : (myRet= VOID ! ( funct_declaration_tail[$myRet] funct_declaration_list_then_main | main_function_tail ) | (myRet= ID |myRet= INT |myRet= FIXEDPT ) funct_declaration_tail[$myRet] funct_declaration_list_then_main );
 	public final TigerParser.funct_declaration_list_then_main_return funct_declaration_list_then_main() throws RecognitionException {
 		TigerParser.funct_declaration_list_then_main_return retval = new TigerParser.funct_declaration_list_then_main_return();
 		retval.start = input.LT(1);
@@ -252,7 +252,7 @@ public class TigerParser extends Parser {
 		Object myRet_tree=null;
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:139:5: (myRet= VOID ! ( funct_declaration_tail[$myRet] funct_declaration_list_then_main | main_function_tail ) | (myRet= ID |myRet= INT |myRet= FIXEDPT ) funct_declaration_tail[$myRet] funct_declaration_list_then_main )
+			// Tiger.g:140:5: (myRet= VOID ! ( funct_declaration_tail[$myRet] funct_declaration_list_then_main | main_function_tail ) | (myRet= ID |myRet= INT |myRet= FIXEDPT ) funct_declaration_tail[$myRet] funct_declaration_list_then_main )
 			int alt3=2;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0==VOID) ) {
@@ -270,13 +270,13 @@ public class TigerParser extends Parser {
 
 			switch (alt3) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:139:7: myRet= VOID ! ( funct_declaration_tail[$myRet] funct_declaration_list_then_main | main_function_tail )
+					// Tiger.g:140:7: myRet= VOID ! ( funct_declaration_tail[$myRet] funct_declaration_list_then_main | main_function_tail )
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					myRet=(Token)match(input,VOID,FOLLOW_VOID_in_funct_declaration_list_then_main1043); 
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:139:19: ( funct_declaration_tail[$myRet] funct_declaration_list_then_main | main_function_tail )
+					myRet=(Token)match(input,VOID,FOLLOW_VOID_in_funct_declaration_list_then_main1046); 
+					// Tiger.g:140:19: ( funct_declaration_tail[$myRet] funct_declaration_list_then_main | main_function_tail )
 					int alt1=2;
 					int LA1_0 = input.LA(1);
 					if ( (LA1_0==FUNCTION) ) {
@@ -294,15 +294,15 @@ public class TigerParser extends Parser {
 
 					switch (alt1) {
 						case 1 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:139:20: funct_declaration_tail[$myRet] funct_declaration_list_then_main
+							// Tiger.g:140:20: funct_declaration_tail[$myRet] funct_declaration_list_then_main
 							{
-							pushFollow(FOLLOW_funct_declaration_tail_in_funct_declaration_list_then_main1047);
+							pushFollow(FOLLOW_funct_declaration_tail_in_funct_declaration_list_then_main1050);
 							funct_declaration_tail4=funct_declaration_tail(myRet);
 							state._fsp--;
 
 							adaptor.addChild(root_0, funct_declaration_tail4.getTree());
 
-							pushFollow(FOLLOW_funct_declaration_list_then_main_in_funct_declaration_list_then_main1050);
+							pushFollow(FOLLOW_funct_declaration_list_then_main_in_funct_declaration_list_then_main1053);
 							funct_declaration_list_then_main5=funct_declaration_list_then_main();
 							state._fsp--;
 
@@ -311,9 +311,9 @@ public class TigerParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:139:86: main_function_tail
+							// Tiger.g:140:86: main_function_tail
 							{
-							pushFollow(FOLLOW_main_function_tail_in_funct_declaration_list_then_main1054);
+							pushFollow(FOLLOW_main_function_tail_in_funct_declaration_list_then_main1057);
 							main_function_tail6=main_function_tail();
 							state._fsp--;
 
@@ -327,12 +327,12 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:140:7: (myRet= ID |myRet= INT |myRet= FIXEDPT ) funct_declaration_tail[$myRet] funct_declaration_list_then_main
+					// Tiger.g:141:7: (myRet= ID |myRet= INT |myRet= FIXEDPT ) funct_declaration_tail[$myRet] funct_declaration_list_then_main
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:140:7: (myRet= ID |myRet= INT |myRet= FIXEDPT )
+					// Tiger.g:141:7: (myRet= ID |myRet= INT |myRet= FIXEDPT )
 					int alt2=3;
 					switch ( input.LA(1) ) {
 					case ID:
@@ -357,27 +357,27 @@ public class TigerParser extends Parser {
 					}
 					switch (alt2) {
 						case 1 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:140:8: myRet= ID
+							// Tiger.g:141:8: myRet= ID
 							{
-							myRet=(Token)match(input,ID,FOLLOW_ID_in_funct_declaration_list_then_main1066); 
+							myRet=(Token)match(input,ID,FOLLOW_ID_in_funct_declaration_list_then_main1069); 
 							myRet_tree = (Object)adaptor.create(myRet);
 							adaptor.addChild(root_0, myRet_tree);
 
 							}
 							break;
 						case 2 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:140:17: myRet= INT
+							// Tiger.g:141:17: myRet= INT
 							{
-							myRet=(Token)match(input,INT,FOLLOW_INT_in_funct_declaration_list_then_main1070); 
+							myRet=(Token)match(input,INT,FOLLOW_INT_in_funct_declaration_list_then_main1073); 
 							myRet_tree = (Object)adaptor.create(myRet);
 							adaptor.addChild(root_0, myRet_tree);
 
 							}
 							break;
 						case 3 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:140:27: myRet= FIXEDPT
+							// Tiger.g:141:27: myRet= FIXEDPT
 							{
-							myRet=(Token)match(input,FIXEDPT,FOLLOW_FIXEDPT_in_funct_declaration_list_then_main1074); 
+							myRet=(Token)match(input,FIXEDPT,FOLLOW_FIXEDPT_in_funct_declaration_list_then_main1077); 
 							myRet_tree = (Object)adaptor.create(myRet);
 							adaptor.addChild(root_0, myRet_tree);
 
@@ -386,13 +386,13 @@ public class TigerParser extends Parser {
 
 					}
 
-					pushFollow(FOLLOW_funct_declaration_tail_in_funct_declaration_list_then_main1077);
+					pushFollow(FOLLOW_funct_declaration_tail_in_funct_declaration_list_then_main1080);
 					funct_declaration_tail7=funct_declaration_tail(myRet);
 					state._fsp--;
 
 					adaptor.addChild(root_0, funct_declaration_tail7.getTree());
 
-					pushFollow(FOLLOW_funct_declaration_list_then_main_in_funct_declaration_list_then_main1080);
+					pushFollow(FOLLOW_funct_declaration_list_then_main_in_funct_declaration_list_then_main1083);
 					funct_declaration_list_then_main8=funct_declaration_list_then_main();
 					state._fsp--;
 
@@ -429,7 +429,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "funct_declaration_tail"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:143:1: funct_declaration_tail[Token retType] : FUNCTION ID '(' param_list ')' BEGIN block_list END ';' -> ^( FUNCTION ID param_list block_list ) ;
+	// Tiger.g:144:1: funct_declaration_tail[Token retType] : FUNCTION ID '(' param_list ')' BEGIN block_list END ';' -> ^( FUNCTION ID param_list block_list ) ;
 	public final TigerParser.funct_declaration_tail_return funct_declaration_tail(Token retType) throws RecognitionException {
 		TigerParser.funct_declaration_tail_return retval = new TigerParser.funct_declaration_tail_return();
 		retval.start = input.LT(1);
@@ -464,42 +464,42 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_param_list=new RewriteRuleSubtreeStream(adaptor,"rule param_list");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:144:5: ( FUNCTION ID '(' param_list ')' BEGIN block_list END ';' -> ^( FUNCTION ID param_list block_list ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:144:7: FUNCTION ID '(' param_list ')' BEGIN block_list END ';'
+			// Tiger.g:145:5: ( FUNCTION ID '(' param_list ')' BEGIN block_list END ';' -> ^( FUNCTION ID param_list block_list ) )
+			// Tiger.g:145:7: FUNCTION ID '(' param_list ')' BEGIN block_list END ';'
 			{
-			FUNCTION9=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funct_declaration_tail1098);  
+			FUNCTION9=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funct_declaration_tail1101);  
 			stream_FUNCTION.add(FUNCTION9);
 
-			ID10=(Token)match(input,ID,FOLLOW_ID_in_funct_declaration_tail1100);  
+			ID10=(Token)match(input,ID,FOLLOW_ID_in_funct_declaration_tail1103);  
 			stream_ID.add(ID10);
 
-			char_literal11=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funct_declaration_tail1102);  
+			char_literal11=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funct_declaration_tail1105);  
 			stream_LPAREN.add(char_literal11);
 
-			pushFollow(FOLLOW_param_list_in_funct_declaration_tail1104);
+			pushFollow(FOLLOW_param_list_in_funct_declaration_tail1107);
 			param_list12=param_list();
 			state._fsp--;
 
 			stream_param_list.add(param_list12.getTree());
-			char_literal13=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funct_declaration_tail1106);  
+			char_literal13=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funct_declaration_tail1109);  
 			stream_RPAREN.add(char_literal13);
 
-			BEGIN14=(Token)match(input,BEGIN,FOLLOW_BEGIN_in_funct_declaration_tail1108);  
+			BEGIN14=(Token)match(input,BEGIN,FOLLOW_BEGIN_in_funct_declaration_tail1111);  
 			stream_BEGIN.add(BEGIN14);
 
-			pushFollow(FOLLOW_block_list_in_funct_declaration_tail1110);
+			pushFollow(FOLLOW_block_list_in_funct_declaration_tail1113);
 			block_list15=block_list();
 			state._fsp--;
 
 			stream_block_list.add(block_list15.getTree());
-			END16=(Token)match(input,END,FOLLOW_END_in_funct_declaration_tail1112);  
+			END16=(Token)match(input,END,FOLLOW_END_in_funct_declaration_tail1115);  
 			stream_END.add(END16);
 
-			char_literal17=(Token)match(input,SEMI,FOLLOW_SEMI_in_funct_declaration_tail1114);  
+			char_literal17=(Token)match(input,SEMI,FOLLOW_SEMI_in_funct_declaration_tail1117);  
 			stream_SEMI.add(char_literal17);
 
 			// AST REWRITE
-			// elements: block_list, ID, param_list, FUNCTION
+			// elements: FUNCTION, param_list, ID, block_list
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -509,9 +509,9 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 144:63: -> ^( FUNCTION ID param_list block_list )
+			// 146:2: -> ^( FUNCTION ID param_list block_list )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:144:66: ^( FUNCTION ID param_list block_list )
+				// Tiger.g:146:5: ^( FUNCTION ID param_list block_list )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot(stream_FUNCTION.nextNode(), root_1);
@@ -556,7 +556,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "main_function_tail"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:147:1: main_function_tail : MAIN '(' ')' BEGIN block_list END ';' -> ^( MAINSCOPE block_list ) ;
+	// Tiger.g:149:1: main_function_tail : MAIN '(' ')' BEGIN block_list END ';' -> ^( MAINSCOPE block_list ) ;
 	public final TigerParser.main_function_tail_return main_function_tail() throws RecognitionException {
 		TigerParser.main_function_tail_return retval = new TigerParser.main_function_tail_return();
 		retval.start = input.LT(1);
@@ -586,30 +586,30 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_block_list=new RewriteRuleSubtreeStream(adaptor,"rule block_list");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:147:20: ( MAIN '(' ')' BEGIN block_list END ';' -> ^( MAINSCOPE block_list ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:147:22: MAIN '(' ')' BEGIN block_list END ';'
+			// Tiger.g:149:20: ( MAIN '(' ')' BEGIN block_list END ';' -> ^( MAINSCOPE block_list ) )
+			// Tiger.g:149:22: MAIN '(' ')' BEGIN block_list END ';'
 			{
-			MAIN18=(Token)match(input,MAIN,FOLLOW_MAIN_in_main_function_tail1141);  
+			MAIN18=(Token)match(input,MAIN,FOLLOW_MAIN_in_main_function_tail1146);  
 			stream_MAIN.add(MAIN18);
 
-			char_literal19=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_main_function_tail1143);  
+			char_literal19=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_main_function_tail1148);  
 			stream_LPAREN.add(char_literal19);
 
-			char_literal20=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_main_function_tail1145);  
+			char_literal20=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_main_function_tail1150);  
 			stream_RPAREN.add(char_literal20);
 
-			BEGIN21=(Token)match(input,BEGIN,FOLLOW_BEGIN_in_main_function_tail1147);  
+			BEGIN21=(Token)match(input,BEGIN,FOLLOW_BEGIN_in_main_function_tail1152);  
 			stream_BEGIN.add(BEGIN21);
 
-			pushFollow(FOLLOW_block_list_in_main_function_tail1149);
+			pushFollow(FOLLOW_block_list_in_main_function_tail1154);
 			block_list22=block_list();
 			state._fsp--;
 
 			stream_block_list.add(block_list22.getTree());
-			END23=(Token)match(input,END,FOLLOW_END_in_main_function_tail1151);  
+			END23=(Token)match(input,END,FOLLOW_END_in_main_function_tail1156);  
 			stream_END.add(END23);
 
-			char_literal24=(Token)match(input,SEMI,FOLLOW_SEMI_in_main_function_tail1153);  
+			char_literal24=(Token)match(input,SEMI,FOLLOW_SEMI_in_main_function_tail1158);  
 			stream_SEMI.add(char_literal24);
 
 			// AST REWRITE
@@ -623,9 +623,9 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 147:60: -> ^( MAINSCOPE block_list )
+			// 150:2: -> ^( MAINSCOPE block_list )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:147:63: ^( MAINSCOPE block_list )
+				// Tiger.g:150:5: ^( MAINSCOPE block_list )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(MAINSCOPE, "MAINSCOPE"), root_1);
@@ -667,7 +667,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "param_list"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:149:1: param_list : ( param ( ',' param )* )? -> ^( PARAMLIST ( param )* ) ;
+	// Tiger.g:152:1: param_list : ( param ( ',' param )* )? -> ^( PARAMLIST ( param )* ) ;
 	public final TigerParser.param_list_return param_list() throws RecognitionException {
 		TigerParser.param_list_return retval = new TigerParser.param_list_return();
 		retval.start = input.LT(1);
@@ -683,10 +683,10 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_param=new RewriteRuleSubtreeStream(adaptor,"rule param");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:150:5: ( ( param ( ',' param )* )? -> ^( PARAMLIST ( param )* ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:150:7: ( param ( ',' param )* )?
+			// Tiger.g:153:5: ( ( param ( ',' param )* )? -> ^( PARAMLIST ( param )* ) )
+			// Tiger.g:153:7: ( param ( ',' param )* )?
 			{
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:150:7: ( param ( ',' param )* )?
+			// Tiger.g:153:7: ( param ( ',' param )* )?
 			int alt5=2;
 			int LA5_0 = input.LA(1);
 			if ( (LA5_0==ID) ) {
@@ -694,14 +694,14 @@ public class TigerParser extends Parser {
 			}
 			switch (alt5) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:150:8: param ( ',' param )*
+					// Tiger.g:153:8: param ( ',' param )*
 					{
-					pushFollow(FOLLOW_param_in_param_list1174);
+					pushFollow(FOLLOW_param_in_param_list1181);
 					param25=param();
 					state._fsp--;
 
 					stream_param.add(param25.getTree());
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:150:14: ( ',' param )*
+					// Tiger.g:153:14: ( ',' param )*
 					loop4:
 					while (true) {
 						int alt4=2;
@@ -712,12 +712,12 @@ public class TigerParser extends Parser {
 
 						switch (alt4) {
 						case 1 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:150:16: ',' param
+							// Tiger.g:153:16: ',' param
 							{
-							char_literal26=(Token)match(input,COMMA,FOLLOW_COMMA_in_param_list1178);  
+							char_literal26=(Token)match(input,COMMA,FOLLOW_COMMA_in_param_list1185);  
 							stream_COMMA.add(char_literal26);
 
-							pushFollow(FOLLOW_param_in_param_list1180);
+							pushFollow(FOLLOW_param_in_param_list1187);
 							param27=param();
 							state._fsp--;
 
@@ -746,13 +746,13 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 150:31: -> ^( PARAMLIST ( param )* )
+			// 154:2: -> ^( PARAMLIST ( param )* )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:150:34: ^( PARAMLIST ( param )* )
+				// Tiger.g:154:5: ^( PARAMLIST ( param )* )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PARAMLIST, "PARAMLIST"), root_1);
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:150:46: ( param )*
+				// Tiger.g:154:17: ( param )*
 				while ( stream_param.hasNext() ) {
 					adaptor.addChild(root_1, stream_param.nextTree());
 				}
@@ -795,7 +795,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "param"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:153:1: param : ID ':' type_id ;
+	// Tiger.g:157:1: param : ID ':' type_id ;
 	public final TigerParser.param_return param() throws RecognitionException {
 		TigerParser.param_return retval = new TigerParser.param_return();
 		retval.start = input.LT(1);
@@ -810,21 +810,21 @@ public class TigerParser extends Parser {
 		Object char_literal29_tree=null;
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:153:7: ( ID ':' type_id )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:153:9: ID ':' type_id
+			// Tiger.g:157:7: ( ID ':' type_id )
+			// Tiger.g:157:9: ID ':' type_id
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			ID28=(Token)match(input,ID,FOLLOW_ID_in_param1207); 
+			ID28=(Token)match(input,ID,FOLLOW_ID_in_param1216); 
 			ID28_tree = (Object)adaptor.create(ID28);
 			adaptor.addChild(root_0, ID28_tree);
 
-			char_literal29=(Token)match(input,COLON,FOLLOW_COLON_in_param1209); 
+			char_literal29=(Token)match(input,COLON,FOLLOW_COLON_in_param1218); 
 			char_literal29_tree = (Object)adaptor.create(char_literal29);
 			adaptor.addChild(root_0, char_literal29_tree);
 
-			pushFollow(FOLLOW_type_id_in_param1211);
+			pushFollow(FOLLOW_type_id_in_param1220);
 			type_id30=type_id();
 			state._fsp--;
 
@@ -859,7 +859,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "block_list"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:155:1: block_list : ( block )+ -> ^( BLOCKLIST ( block )+ ) ;
+	// Tiger.g:159:1: block_list : ( block )+ -> ^( BLOCKLIST ( block )+ ) ;
 	public final TigerParser.block_list_return block_list() throws RecognitionException {
 		TigerParser.block_list_return retval = new TigerParser.block_list_return();
 		retval.start = input.LT(1);
@@ -871,10 +871,10 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:155:12: ( ( block )+ -> ^( BLOCKLIST ( block )+ ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:155:14: ( block )+
+			// Tiger.g:159:12: ( ( block )+ -> ^( BLOCKLIST ( block )+ ) )
+			// Tiger.g:159:14: ( block )+
 			{
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:155:14: ( block )+
+			// Tiger.g:159:14: ( block )+
 			int cnt6=0;
 			loop6:
 			while (true) {
@@ -886,9 +886,9 @@ public class TigerParser extends Parser {
 
 				switch (alt6) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:155:14: block
+					// Tiger.g:159:14: block
 					{
-					pushFollow(FOLLOW_block_in_block_list1219);
+					pushFollow(FOLLOW_block_in_block_list1228);
 					block31=block();
 					state._fsp--;
 
@@ -915,9 +915,9 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 155:21: -> ^( BLOCKLIST ( block )+ )
+			// 159:21: -> ^( BLOCKLIST ( block )+ )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:155:24: ^( BLOCKLIST ( block )+ )
+				// Tiger.g:159:24: ^( BLOCKLIST ( block )+ )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(BLOCKLIST, "BLOCKLIST"), root_1);
@@ -966,7 +966,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "block"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:157:1: block : BEGIN declaration_segment stat_seq END ';' -> ^( BLOCKSCOPE declaration_segment stat_seq ) ;
+	// Tiger.g:161:1: block : BEGIN declaration_segment stat_seq END ';' -> ^( BLOCKSCOPE declaration_segment stat_seq ) ;
 	public final TigerParser.block_return block() throws RecognitionException {
 		TigerParser.block_return retval = new TigerParser.block_return();
 		retval.start = input.LT(1);
@@ -989,30 +989,30 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_stat_seq=new RewriteRuleSubtreeStream(adaptor,"rule stat_seq");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:157:7: ( BEGIN declaration_segment stat_seq END ';' -> ^( BLOCKSCOPE declaration_segment stat_seq ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:157:9: BEGIN declaration_segment stat_seq END ';'
+			// Tiger.g:161:7: ( BEGIN declaration_segment stat_seq END ';' -> ^( BLOCKSCOPE declaration_segment stat_seq ) )
+			// Tiger.g:161:9: BEGIN declaration_segment stat_seq END ';'
 			{
-			BEGIN32=(Token)match(input,BEGIN,FOLLOW_BEGIN_in_block1237);  
+			BEGIN32=(Token)match(input,BEGIN,FOLLOW_BEGIN_in_block1246);  
 			stream_BEGIN.add(BEGIN32);
 
-			pushFollow(FOLLOW_declaration_segment_in_block1239);
+			pushFollow(FOLLOW_declaration_segment_in_block1248);
 			declaration_segment33=declaration_segment();
 			state._fsp--;
 
 			stream_declaration_segment.add(declaration_segment33.getTree());
-			pushFollow(FOLLOW_stat_seq_in_block1241);
+			pushFollow(FOLLOW_stat_seq_in_block1250);
 			stat_seq34=stat_seq();
 			state._fsp--;
 
 			stream_stat_seq.add(stat_seq34.getTree());
-			END35=(Token)match(input,END,FOLLOW_END_in_block1243);  
+			END35=(Token)match(input,END,FOLLOW_END_in_block1252);  
 			stream_END.add(END35);
 
-			char_literal36=(Token)match(input,SEMI,FOLLOW_SEMI_in_block1245);  
+			char_literal36=(Token)match(input,SEMI,FOLLOW_SEMI_in_block1254);  
 			stream_SEMI.add(char_literal36);
 
 			// AST REWRITE
-			// elements: stat_seq, declaration_segment
+			// elements: declaration_segment, stat_seq
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1022,9 +1022,9 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 157:52: -> ^( BLOCKSCOPE declaration_segment stat_seq )
+			// 161:52: -> ^( BLOCKSCOPE declaration_segment stat_seq )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:157:55: ^( BLOCKSCOPE declaration_segment stat_seq )
+				// Tiger.g:161:55: ^( BLOCKSCOPE declaration_segment stat_seq )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(BLOCKSCOPE, "BLOCKSCOPE"), root_1);
@@ -1067,7 +1067,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "declaration_segment"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:159:1: declaration_segment : type_declaration_list var_declaration_list ;
+	// Tiger.g:163:1: declaration_segment : type_declaration_list var_declaration_list ;
 	public final TigerParser.declaration_segment_return declaration_segment() throws RecognitionException {
 		TigerParser.declaration_segment_return retval = new TigerParser.declaration_segment_return();
 		retval.start = input.LT(1);
@@ -1079,19 +1079,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:159:21: ( type_declaration_list var_declaration_list )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:159:23: type_declaration_list var_declaration_list
+			// Tiger.g:163:21: ( type_declaration_list var_declaration_list )
+			// Tiger.g:163:23: type_declaration_list var_declaration_list
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_type_declaration_list_in_declaration_segment1263);
+			pushFollow(FOLLOW_type_declaration_list_in_declaration_segment1272);
 			type_declaration_list37=type_declaration_list();
 			state._fsp--;
 
 			adaptor.addChild(root_0, type_declaration_list37.getTree());
 
-			pushFollow(FOLLOW_var_declaration_list_in_declaration_segment1265);
+			pushFollow(FOLLOW_var_declaration_list_in_declaration_segment1274);
 			var_declaration_list38=var_declaration_list();
 			state._fsp--;
 
@@ -1126,7 +1126,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "type_declaration_list"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:161:1: type_declaration_list : ( type_declaration )* -> ^( TYPEDECLLIST ( type_declaration )* ) ;
+	// Tiger.g:165:1: type_declaration_list : ( type_declaration )* -> ^( TYPEDECLLIST ( type_declaration )* ) ;
 	public final TigerParser.type_declaration_list_return type_declaration_list() throws RecognitionException {
 		TigerParser.type_declaration_list_return retval = new TigerParser.type_declaration_list_return();
 		retval.start = input.LT(1);
@@ -1138,10 +1138,10 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_type_declaration=new RewriteRuleSubtreeStream(adaptor,"rule type_declaration");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:162:5: ( ( type_declaration )* -> ^( TYPEDECLLIST ( type_declaration )* ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:162:7: ( type_declaration )*
+			// Tiger.g:166:5: ( ( type_declaration )* -> ^( TYPEDECLLIST ( type_declaration )* ) )
+			// Tiger.g:166:7: ( type_declaration )*
 			{
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:162:7: ( type_declaration )*
+			// Tiger.g:166:7: ( type_declaration )*
 			loop7:
 			while (true) {
 				int alt7=2;
@@ -1152,9 +1152,9 @@ public class TigerParser extends Parser {
 
 				switch (alt7) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:162:7: type_declaration
+					// Tiger.g:166:7: type_declaration
 					{
-					pushFollow(FOLLOW_type_declaration_in_type_declaration_list1278);
+					pushFollow(FOLLOW_type_declaration_in_type_declaration_list1287);
 					type_declaration39=type_declaration();
 					state._fsp--;
 
@@ -1178,13 +1178,13 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 162:25: -> ^( TYPEDECLLIST ( type_declaration )* )
+			// 166:25: -> ^( TYPEDECLLIST ( type_declaration )* )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:162:28: ^( TYPEDECLLIST ( type_declaration )* )
+				// Tiger.g:166:28: ^( TYPEDECLLIST ( type_declaration )* )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TYPEDECLLIST, "TYPEDECLLIST"), root_1);
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:162:43: ( type_declaration )*
+				// Tiger.g:166:43: ( type_declaration )*
 				while ( stream_type_declaration.hasNext() ) {
 					adaptor.addChild(root_1, stream_type_declaration.nextTree());
 				}
@@ -1227,7 +1227,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "var_declaration_list"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:165:1: var_declaration_list : ( var_declaration )* -> ^( VARDECLLIST ( var_declaration )* ) ;
+	// Tiger.g:169:1: var_declaration_list : ( var_declaration )* -> ^( VARDECLLIST ( var_declaration )* ) ;
 	public final TigerParser.var_declaration_list_return var_declaration_list() throws RecognitionException {
 		TigerParser.var_declaration_list_return retval = new TigerParser.var_declaration_list_return();
 		retval.start = input.LT(1);
@@ -1239,10 +1239,10 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_var_declaration=new RewriteRuleSubtreeStream(adaptor,"rule var_declaration");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:166:5: ( ( var_declaration )* -> ^( VARDECLLIST ( var_declaration )* ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:166:7: ( var_declaration )*
+			// Tiger.g:170:5: ( ( var_declaration )* -> ^( VARDECLLIST ( var_declaration )* ) )
+			// Tiger.g:170:7: ( var_declaration )*
 			{
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:166:7: ( var_declaration )*
+			// Tiger.g:170:7: ( var_declaration )*
 			loop8:
 			while (true) {
 				int alt8=2;
@@ -1253,9 +1253,9 @@ public class TigerParser extends Parser {
 
 				switch (alt8) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:166:7: var_declaration
+					// Tiger.g:170:7: var_declaration
 					{
-					pushFollow(FOLLOW_var_declaration_in_var_declaration_list1309);
+					pushFollow(FOLLOW_var_declaration_in_var_declaration_list1318);
 					var_declaration40=var_declaration();
 					state._fsp--;
 
@@ -1279,13 +1279,13 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 166:24: -> ^( VARDECLLIST ( var_declaration )* )
+			// 170:24: -> ^( VARDECLLIST ( var_declaration )* )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:166:27: ^( VARDECLLIST ( var_declaration )* )
+				// Tiger.g:170:27: ^( VARDECLLIST ( var_declaration )* )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(VARDECLLIST, "VARDECLLIST"), root_1);
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:166:41: ( var_declaration )*
+				// Tiger.g:170:41: ( var_declaration )*
 				while ( stream_var_declaration.hasNext() ) {
 					adaptor.addChild(root_1, stream_var_declaration.nextTree());
 				}
@@ -1328,7 +1328,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "type_declaration"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:169:1: type_declaration : TYPE ID '=' type ';' -> ^( TYPEDECL ID type ) ;
+	// Tiger.g:173:1: type_declaration : TYPE ID '=' type ';' -> ^( TYPEDECL ID type ) ;
 	public final TigerParser.type_declaration_return type_declaration() throws RecognitionException {
 		TigerParser.type_declaration_return retval = new TigerParser.type_declaration_return();
 		retval.start = input.LT(1);
@@ -1352,24 +1352,24 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:169:18: ( TYPE ID '=' type ';' -> ^( TYPEDECL ID type ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:169:20: TYPE ID '=' type ';'
+			// Tiger.g:173:18: ( TYPE ID '=' type ';' -> ^( TYPEDECL ID type ) )
+			// Tiger.g:173:20: TYPE ID '=' type ';'
 			{
-			TYPE41=(Token)match(input,TYPE,FOLLOW_TYPE_in_type_declaration1332);  
+			TYPE41=(Token)match(input,TYPE,FOLLOW_TYPE_in_type_declaration1341);  
 			stream_TYPE.add(TYPE41);
 
-			ID42=(Token)match(input,ID,FOLLOW_ID_in_type_declaration1334);  
+			ID42=(Token)match(input,ID,FOLLOW_ID_in_type_declaration1343);  
 			stream_ID.add(ID42);
 
-			char_literal43=(Token)match(input,EQ,FOLLOW_EQ_in_type_declaration1336);  
+			char_literal43=(Token)match(input,EQ,FOLLOW_EQ_in_type_declaration1345);  
 			stream_EQ.add(char_literal43);
 
-			pushFollow(FOLLOW_type_in_type_declaration1338);
+			pushFollow(FOLLOW_type_in_type_declaration1347);
 			type44=type();
 			state._fsp--;
 
 			stream_type.add(type44.getTree());
-			char_literal45=(Token)match(input,SEMI,FOLLOW_SEMI_in_type_declaration1340);  
+			char_literal45=(Token)match(input,SEMI,FOLLOW_SEMI_in_type_declaration1349);  
 			stream_SEMI.add(char_literal45);
 
 			// AST REWRITE
@@ -1383,9 +1383,9 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 169:41: -> ^( TYPEDECL ID type )
+			// 173:41: -> ^( TYPEDECL ID type )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:169:44: ^( TYPEDECL ID type )
+				// Tiger.g:173:44: ^( TYPEDECL ID type )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TYPEDECL, "TYPEDECL"), root_1);
@@ -1428,7 +1428,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "type"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:171:1: type : ( base_type | ARRAY '[' INTLIT ']' ( '[' INTLIT ']' )? OF base_type -> ^( ARRAY base_type ( INTLIT )+ ) );
+	// Tiger.g:175:1: type : ( base_type | ARRAY '[' INTLIT ']' ( '[' INTLIT ']' )? OF base_type -> ^( ARRAY base_type ( INTLIT )+ ) );
 	public final TigerParser.type_return type() throws RecognitionException {
 		TigerParser.type_return retval = new TigerParser.type_return();
 		retval.start = input.LT(1);
@@ -1462,7 +1462,7 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_base_type=new RewriteRuleSubtreeStream(adaptor,"rule base_type");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:172:5: ( base_type | ARRAY '[' INTLIT ']' ( '[' INTLIT ']' )? OF base_type -> ^( ARRAY base_type ( INTLIT )+ ) )
+			// Tiger.g:176:5: ( base_type | ARRAY '[' INTLIT ']' ( '[' INTLIT ']' )? OF base_type -> ^( ARRAY base_type ( INTLIT )+ ) )
 			int alt10=2;
 			int LA10_0 = input.LA(1);
 			if ( (LA10_0==FIXEDPT||LA10_0==INT) ) {
@@ -1480,12 +1480,12 @@ public class TigerParser extends Parser {
 
 			switch (alt10) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:172:7: base_type
+					// Tiger.g:176:7: base_type
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_base_type_in_type1362);
+					pushFollow(FOLLOW_base_type_in_type1371);
 					base_type46=base_type();
 					state._fsp--;
 
@@ -1494,21 +1494,21 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:173:7: ARRAY '[' INTLIT ']' ( '[' INTLIT ']' )? OF base_type
+					// Tiger.g:177:7: ARRAY '[' INTLIT ']' ( '[' INTLIT ']' )? OF base_type
 					{
-					ARRAY47=(Token)match(input,ARRAY,FOLLOW_ARRAY_in_type1370);  
+					ARRAY47=(Token)match(input,ARRAY,FOLLOW_ARRAY_in_type1379);  
 					stream_ARRAY.add(ARRAY47);
 
-					char_literal48=(Token)match(input,LBRACK,FOLLOW_LBRACK_in_type1372);  
+					char_literal48=(Token)match(input,LBRACK,FOLLOW_LBRACK_in_type1381);  
 					stream_LBRACK.add(char_literal48);
 
-					INTLIT49=(Token)match(input,INTLIT,FOLLOW_INTLIT_in_type1374);  
+					INTLIT49=(Token)match(input,INTLIT,FOLLOW_INTLIT_in_type1383);  
 					stream_INTLIT.add(INTLIT49);
 
-					char_literal50=(Token)match(input,RBRACK,FOLLOW_RBRACK_in_type1376);  
+					char_literal50=(Token)match(input,RBRACK,FOLLOW_RBRACK_in_type1385);  
 					stream_RBRACK.add(char_literal50);
 
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:173:28: ( '[' INTLIT ']' )?
+					// Tiger.g:177:28: ( '[' INTLIT ']' )?
 					int alt9=2;
 					int LA9_0 = input.LA(1);
 					if ( (LA9_0==LBRACK) ) {
@@ -1516,15 +1516,15 @@ public class TigerParser extends Parser {
 					}
 					switch (alt9) {
 						case 1 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:173:29: '[' INTLIT ']'
+							// Tiger.g:177:29: '[' INTLIT ']'
 							{
-							char_literal51=(Token)match(input,LBRACK,FOLLOW_LBRACK_in_type1379);  
+							char_literal51=(Token)match(input,LBRACK,FOLLOW_LBRACK_in_type1388);  
 							stream_LBRACK.add(char_literal51);
 
-							INTLIT52=(Token)match(input,INTLIT,FOLLOW_INTLIT_in_type1381);  
+							INTLIT52=(Token)match(input,INTLIT,FOLLOW_INTLIT_in_type1390);  
 							stream_INTLIT.add(INTLIT52);
 
-							char_literal53=(Token)match(input,RBRACK,FOLLOW_RBRACK_in_type1383);  
+							char_literal53=(Token)match(input,RBRACK,FOLLOW_RBRACK_in_type1392);  
 							stream_RBRACK.add(char_literal53);
 
 							}
@@ -1532,16 +1532,16 @@ public class TigerParser extends Parser {
 
 					}
 
-					OF54=(Token)match(input,OF,FOLLOW_OF_in_type1387);  
+					OF54=(Token)match(input,OF,FOLLOW_OF_in_type1396);  
 					stream_OF.add(OF54);
 
-					pushFollow(FOLLOW_base_type_in_type1389);
+					pushFollow(FOLLOW_base_type_in_type1398);
 					base_type55=base_type();
 					state._fsp--;
 
 					stream_base_type.add(base_type55.getTree());
 					// AST REWRITE
-					// elements: INTLIT, base_type, ARRAY
+					// elements: ARRAY, base_type, INTLIT
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1551,9 +1551,9 @@ public class TigerParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 173:59: -> ^( ARRAY base_type ( INTLIT )+ )
+					// 177:59: -> ^( ARRAY base_type ( INTLIT )+ )
 					{
-						// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:173:62: ^( ARRAY base_type ( INTLIT )+ )
+						// Tiger.g:177:62: ^( ARRAY base_type ( INTLIT )+ )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot(stream_ARRAY.nextNode(), root_1);
@@ -1605,7 +1605,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "type_id"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:176:1: type_id : ( base_type | ID );
+	// Tiger.g:180:1: type_id : ( base_type | ID );
 	public final TigerParser.type_id_return type_id() throws RecognitionException {
 		TigerParser.type_id_return retval = new TigerParser.type_id_return();
 		retval.start = input.LT(1);
@@ -1618,7 +1618,7 @@ public class TigerParser extends Parser {
 		Object ID57_tree=null;
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:177:5: ( base_type | ID )
+			// Tiger.g:181:5: ( base_type | ID )
 			int alt11=2;
 			int LA11_0 = input.LA(1);
 			if ( (LA11_0==FIXEDPT||LA11_0==INT) ) {
@@ -1636,12 +1636,12 @@ public class TigerParser extends Parser {
 
 			switch (alt11) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:177:7: base_type
+					// Tiger.g:181:7: base_type
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_base_type_in_type_id1417);
+					pushFollow(FOLLOW_base_type_in_type_id1426);
 					base_type56=base_type();
 					state._fsp--;
 
@@ -1650,12 +1650,12 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:178:7: ID
+					// Tiger.g:182:7: ID
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					ID57=(Token)match(input,ID,FOLLOW_ID_in_type_id1425); 
+					ID57=(Token)match(input,ID,FOLLOW_ID_in_type_id1434); 
 					ID57_tree = (Object)adaptor.create(ID57);
 					adaptor.addChild(root_0, ID57_tree);
 
@@ -1690,7 +1690,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "base_type"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:181:1: base_type : ( INT | FIXEDPT );
+	// Tiger.g:185:1: base_type : ( INT | FIXEDPT );
 	public final TigerParser.base_type_return base_type() throws RecognitionException {
 		TigerParser.base_type_return retval = new TigerParser.base_type_return();
 		retval.start = input.LT(1);
@@ -1702,8 +1702,8 @@ public class TigerParser extends Parser {
 		Object set58_tree=null;
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:182:5: ( INT | FIXEDPT )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:
+			// Tiger.g:186:5: ( INT | FIXEDPT )
+			// Tiger.g:
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -1747,7 +1747,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "var_declaration"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:186:1: var_declaration : VAR id_list ':' type_id optional_init ';' -> ^( VAR type_id id_list ( optional_init )? ) ;
+	// Tiger.g:190:1: var_declaration : VAR id_list ':' type_id optional_init ';' -> ^( VAR type_id id_list ( optional_init )? ) ;
 	public final TigerParser.var_declaration_return var_declaration() throws RecognitionException {
 		TigerParser.var_declaration_return retval = new TigerParser.var_declaration_return();
 		retval.start = input.LT(1);
@@ -1772,35 +1772,35 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_id_list=new RewriteRuleSubtreeStream(adaptor,"rule id_list");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:186:17: ( VAR id_list ':' type_id optional_init ';' -> ^( VAR type_id id_list ( optional_init )? ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:186:19: VAR id_list ':' type_id optional_init ';'
+			// Tiger.g:190:17: ( VAR id_list ':' type_id optional_init ';' -> ^( VAR type_id id_list ( optional_init )? ) )
+			// Tiger.g:190:19: VAR id_list ':' type_id optional_init ';'
 			{
-			VAR59=(Token)match(input,VAR,FOLLOW_VAR_in_var_declaration1463);  
+			VAR59=(Token)match(input,VAR,FOLLOW_VAR_in_var_declaration1472);  
 			stream_VAR.add(VAR59);
 
-			pushFollow(FOLLOW_id_list_in_var_declaration1465);
+			pushFollow(FOLLOW_id_list_in_var_declaration1474);
 			id_list60=id_list();
 			state._fsp--;
 
 			stream_id_list.add(id_list60.getTree());
-			char_literal61=(Token)match(input,COLON,FOLLOW_COLON_in_var_declaration1467);  
+			char_literal61=(Token)match(input,COLON,FOLLOW_COLON_in_var_declaration1476);  
 			stream_COLON.add(char_literal61);
 
-			pushFollow(FOLLOW_type_id_in_var_declaration1469);
+			pushFollow(FOLLOW_type_id_in_var_declaration1478);
 			type_id62=type_id();
 			state._fsp--;
 
 			stream_type_id.add(type_id62.getTree());
-			pushFollow(FOLLOW_optional_init_in_var_declaration1471);
+			pushFollow(FOLLOW_optional_init_in_var_declaration1480);
 			optional_init63=optional_init();
 			state._fsp--;
 
 			stream_optional_init.add(optional_init63.getTree());
-			char_literal64=(Token)match(input,SEMI,FOLLOW_SEMI_in_var_declaration1473);  
+			char_literal64=(Token)match(input,SEMI,FOLLOW_SEMI_in_var_declaration1482);  
 			stream_SEMI.add(char_literal64);
 
 			// AST REWRITE
-			// elements: type_id, id_list, optional_init, VAR
+			// elements: optional_init, type_id, VAR, id_list
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1810,15 +1810,15 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 186:61: -> ^( VAR type_id id_list ( optional_init )? )
+			// 190:61: -> ^( VAR type_id id_list ( optional_init )? )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:186:64: ^( VAR type_id id_list ( optional_init )? )
+				// Tiger.g:190:64: ^( VAR type_id id_list ( optional_init )? )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot(stream_VAR.nextNode(), root_1);
 				adaptor.addChild(root_1, stream_type_id.nextTree());
 				adaptor.addChild(root_1, stream_id_list.nextTree());
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:186:86: ( optional_init )?
+				// Tiger.g:190:86: ( optional_init )?
 				if ( stream_optional_init.hasNext() ) {
 					adaptor.addChild(root_1, stream_optional_init.nextTree());
 				}
@@ -1861,7 +1861,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "id_list"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:188:1: id_list : ID ( ',' ID )* -> ^( IDLIST ( ID )+ ) ;
+	// Tiger.g:192:1: id_list : ID ( ',' ID )* -> ^( IDLIST ( ID )+ ) ;
 	public final TigerParser.id_list_return id_list() throws RecognitionException {
 		TigerParser.id_list_return retval = new TigerParser.id_list_return();
 		retval.start = input.LT(1);
@@ -1879,13 +1879,13 @@ public class TigerParser extends Parser {
 		RewriteRuleTokenStream stream_COMMA=new RewriteRuleTokenStream(adaptor,"token COMMA");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:189:5: ( ID ( ',' ID )* -> ^( IDLIST ( ID )+ ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:189:7: ID ( ',' ID )*
+			// Tiger.g:193:5: ( ID ( ',' ID )* -> ^( IDLIST ( ID )+ ) )
+			// Tiger.g:193:7: ID ( ',' ID )*
 			{
-			ID65=(Token)match(input,ID,FOLLOW_ID_in_id_list1498);  
+			ID65=(Token)match(input,ID,FOLLOW_ID_in_id_list1507);  
 			stream_ID.add(ID65);
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:189:10: ( ',' ID )*
+			// Tiger.g:193:10: ( ',' ID )*
 			loop12:
 			while (true) {
 				int alt12=2;
@@ -1896,12 +1896,12 @@ public class TigerParser extends Parser {
 
 				switch (alt12) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:189:12: ',' ID
+					// Tiger.g:193:12: ',' ID
 					{
-					char_literal66=(Token)match(input,COMMA,FOLLOW_COMMA_in_id_list1502);  
+					char_literal66=(Token)match(input,COMMA,FOLLOW_COMMA_in_id_list1511);  
 					stream_COMMA.add(char_literal66);
 
-					ID67=(Token)match(input,ID,FOLLOW_ID_in_id_list1504);  
+					ID67=(Token)match(input,ID,FOLLOW_ID_in_id_list1513);  
 					stream_ID.add(ID67);
 
 					}
@@ -1923,9 +1923,9 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 189:22: -> ^( IDLIST ( ID )+ )
+			// 193:22: -> ^( IDLIST ( ID )+ )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:189:25: ^( IDLIST ( ID )+ )
+				// Tiger.g:193:25: ^( IDLIST ( ID )+ )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(IDLIST, "IDLIST"), root_1);
@@ -1974,7 +1974,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "optional_init"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:192:1: optional_init : ( ':=' literal |);
+	// Tiger.g:196:1: optional_init : ( ':=' literal |);
 	public final TigerParser.optional_init_return optional_init() throws RecognitionException {
 		TigerParser.optional_init_return retval = new TigerParser.optional_init_return();
 		retval.start = input.LT(1);
@@ -1987,7 +1987,7 @@ public class TigerParser extends Parser {
 		Object string_literal68_tree=null;
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:193:5: ( ':=' literal |)
+			// Tiger.g:197:5: ( ':=' literal |)
 			int alt13=2;
 			int LA13_0 = input.LA(1);
 			if ( (LA13_0==ASSIGN) ) {
@@ -2005,16 +2005,16 @@ public class TigerParser extends Parser {
 
 			switch (alt13) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:193:7: ':=' literal
+					// Tiger.g:197:7: ':=' literal
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					string_literal68=(Token)match(input,ASSIGN,FOLLOW_ASSIGN_in_optional_init1533); 
+					string_literal68=(Token)match(input,ASSIGN,FOLLOW_ASSIGN_in_optional_init1542); 
 					string_literal68_tree = (Object)adaptor.create(string_literal68);
 					adaptor.addChild(root_0, string_literal68_tree);
 
-					pushFollow(FOLLOW_literal_in_optional_init1535);
+					pushFollow(FOLLOW_literal_in_optional_init1544);
 					literal69=literal();
 					state._fsp--;
 
@@ -2023,7 +2023,7 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:195:5: 
+					// Tiger.g:199:5: 
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2059,7 +2059,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "stat_seq"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:197:1: stat_seq : ( stat )+ ;
+	// Tiger.g:201:1: stat_seq : ( stat )+ ;
 	public final TigerParser.stat_seq_return stat_seq() throws RecognitionException {
 		TigerParser.stat_seq_return retval = new TigerParser.stat_seq_return();
 		retval.start = input.LT(1);
@@ -2070,13 +2070,13 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:198:5: ( ( stat )+ )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:198:7: ( stat )+
+			// Tiger.g:202:5: ( ( stat )+ )
+			// Tiger.g:202:7: ( stat )+
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:198:7: ( stat )+
+			// Tiger.g:202:7: ( stat )+
 			int cnt14=0;
 			loop14:
 			while (true) {
@@ -2088,9 +2088,9 @@ public class TigerParser extends Parser {
 
 				switch (alt14) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:198:7: stat
+					// Tiger.g:202:7: stat
 					{
-					pushFollow(FOLLOW_stat_in_stat_seq1558);
+					pushFollow(FOLLOW_stat_in_stat_seq1567);
 					stat70=stat();
 					state._fsp--;
 
@@ -2136,7 +2136,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "stat"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:201:1: stat : ( function_call_or_assignment | IF expr THEN seq1= stat_seq ( ELSE seq2= stat_seq ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ^( ELSE_STATS $seq2) ) | ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ) ) ';' | WHILE expr DO stat_seq ENDDO ';' -> ^( WHILE expr stat_seq ) | FOR ID ':=' index_expr TO index_expr DO stat_seq ENDDO ';' -> ^( FOR ID index_expr index_expr stat_seq ) | BREAK ';' !| RETURN expr ';' -> ^( RETURN expr ) | block );
+	// Tiger.g:205:1: stat : ( function_call_or_assignment | IF expr THEN seq1= stat_seq ( ELSE seq2= stat_seq ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ^( ELSE_STATS $seq2) ) | ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ) ) ';' | WHILE expr DO stat_seq ENDDO ';' -> ^( WHILE expr stat_seq ) | FOR ID ':=' index_expr TO index_expr DO stat_seq ENDDO ';' -> ^( FOR ID index_expr index_expr stat_seq ) | BREAK ';' !| RETURN expr ';' -> ^( RETURN expr ) | block );
 	public final TigerParser.stat_return stat() throws RecognitionException {
 		TigerParser.stat_return retval = new TigerParser.stat_return();
 		retval.start = input.LT(1);
@@ -2215,7 +2215,7 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_stat_seq=new RewriteRuleSubtreeStream(adaptor,"rule stat_seq");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:202:5: ( function_call_or_assignment | IF expr THEN seq1= stat_seq ( ELSE seq2= stat_seq ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ^( ELSE_STATS $seq2) ) | ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ) ) ';' | WHILE expr DO stat_seq ENDDO ';' -> ^( WHILE expr stat_seq ) | FOR ID ':=' index_expr TO index_expr DO stat_seq ENDDO ';' -> ^( FOR ID index_expr index_expr stat_seq ) | BREAK ';' !| RETURN expr ';' -> ^( RETURN expr ) | block )
+			// Tiger.g:206:5: ( function_call_or_assignment | IF expr THEN seq1= stat_seq ( ELSE seq2= stat_seq ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ^( ELSE_STATS $seq2) ) | ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ) ) ';' | WHILE expr DO stat_seq ENDDO ';' -> ^( WHILE expr stat_seq ) | FOR ID ':=' index_expr TO index_expr DO stat_seq ENDDO ';' -> ^( FOR ID index_expr index_expr stat_seq ) | BREAK ';' !| RETURN expr ';' -> ^( RETURN expr ) | block )
 			int alt16=7;
 			switch ( input.LA(1) ) {
 			case ID:
@@ -2260,12 +2260,12 @@ public class TigerParser extends Parser {
 			}
 			switch (alt16) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:202:7: function_call_or_assignment
+					// Tiger.g:206:7: function_call_or_assignment
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_function_call_or_assignment_in_stat1576);
+					pushFollow(FOLLOW_function_call_or_assignment_in_stat1585);
 					function_call_or_assignment71=function_call_or_assignment();
 					state._fsp--;
 
@@ -2274,25 +2274,25 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:203:7: IF expr THEN seq1= stat_seq ( ELSE seq2= stat_seq ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ^( ELSE_STATS $seq2) ) | ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ) ) ';'
+					// Tiger.g:207:7: IF expr THEN seq1= stat_seq ( ELSE seq2= stat_seq ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ^( ELSE_STATS $seq2) ) | ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ) ) ';'
 					{
-					IF72=(Token)match(input,IF,FOLLOW_IF_in_stat1584);  
+					IF72=(Token)match(input,IF,FOLLOW_IF_in_stat1593);  
 					stream_IF.add(IF72);
 
-					pushFollow(FOLLOW_expr_in_stat1586);
+					pushFollow(FOLLOW_expr_in_stat1595);
 					expr73=expr();
 					state._fsp--;
 
 					stream_expr.add(expr73.getTree());
-					THEN74=(Token)match(input,THEN,FOLLOW_THEN_in_stat1588);  
+					THEN74=(Token)match(input,THEN,FOLLOW_THEN_in_stat1597);  
 					stream_THEN.add(THEN74);
 
-					pushFollow(FOLLOW_stat_seq_in_stat1592);
+					pushFollow(FOLLOW_stat_seq_in_stat1601);
 					seq1=stat_seq();
 					state._fsp--;
 
 					stream_stat_seq.add(seq1.getTree());
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:204:9: ( ELSE seq2= stat_seq ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ^( ELSE_STATS $seq2) ) | ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ) )
+					// Tiger.g:208:9: ( ELSE seq2= stat_seq ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ^( ELSE_STATS $seq2) ) | ENDIF -> ^( IF expr ^( THEN_STATS $seq1) ) )
 					int alt15=2;
 					int LA15_0 = input.LA(1);
 					if ( (LA15_0==ELSE) ) {
@@ -2310,21 +2310,21 @@ public class TigerParser extends Parser {
 
 					switch (alt15) {
 						case 1 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:204:11: ELSE seq2= stat_seq ENDIF
+							// Tiger.g:208:11: ELSE seq2= stat_seq ENDIF
 							{
-							ELSE75=(Token)match(input,ELSE,FOLLOW_ELSE_in_stat1605);  
+							ELSE75=(Token)match(input,ELSE,FOLLOW_ELSE_in_stat1614);  
 							stream_ELSE.add(ELSE75);
 
-							pushFollow(FOLLOW_stat_seq_in_stat1609);
+							pushFollow(FOLLOW_stat_seq_in_stat1618);
 							seq2=stat_seq();
 							state._fsp--;
 
 							stream_stat_seq.add(seq2.getTree());
-							ENDIF76=(Token)match(input,ENDIF,FOLLOW_ENDIF_in_stat1611);  
+							ENDIF76=(Token)match(input,ENDIF,FOLLOW_ENDIF_in_stat1620);  
 							stream_ENDIF.add(ENDIF76);
 
 							// AST REWRITE
-							// elements: IF, expr, seq1, seq2
+							// elements: IF, expr, seq2, seq1
 							// token labels: 
 							// rule labels: retval, seq1, seq2
 							// token list labels: 
@@ -2336,14 +2336,14 @@ public class TigerParser extends Parser {
 							RewriteRuleSubtreeStream stream_seq2=new RewriteRuleSubtreeStream(adaptor,"rule seq2",seq2!=null?seq2.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 205:13: -> ^( IF expr ^( THEN_STATS $seq1) ^( ELSE_STATS $seq2) )
+							// 209:13: -> ^( IF expr ^( THEN_STATS $seq1) ^( ELSE_STATS $seq2) )
 							{
-								// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:205:16: ^( IF expr ^( THEN_STATS $seq1) ^( ELSE_STATS $seq2) )
+								// Tiger.g:209:16: ^( IF expr ^( THEN_STATS $seq1) ^( ELSE_STATS $seq2) )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot(stream_IF.nextNode(), root_1);
 								adaptor.addChild(root_1, stream_expr.nextTree());
-								// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:205:26: ^( THEN_STATS $seq1)
+								// Tiger.g:209:26: ^( THEN_STATS $seq1)
 								{
 								Object root_2 = (Object)adaptor.nil();
 								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(THEN_STATS, "THEN_STATS"), root_2);
@@ -2351,7 +2351,7 @@ public class TigerParser extends Parser {
 								adaptor.addChild(root_1, root_2);
 								}
 
-								// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:205:46: ^( ELSE_STATS $seq2)
+								// Tiger.g:209:46: ^( ELSE_STATS $seq2)
 								{
 								Object root_2 = (Object)adaptor.nil();
 								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(ELSE_STATS, "ELSE_STATS"), root_2);
@@ -2370,13 +2370,13 @@ public class TigerParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:206:11: ENDIF
+							// Tiger.g:210:11: ENDIF
 							{
-							ENDIF77=(Token)match(input,ENDIF,FOLLOW_ENDIF_in_stat1657);  
+							ENDIF77=(Token)match(input,ENDIF,FOLLOW_ENDIF_in_stat1666);  
 							stream_ENDIF.add(ENDIF77);
 
 							// AST REWRITE
-							// elements: seq1, expr, IF
+							// elements: expr, seq1, IF
 							// token labels: 
 							// rule labels: retval, seq1
 							// token list labels: 
@@ -2387,14 +2387,14 @@ public class TigerParser extends Parser {
 							RewriteRuleSubtreeStream stream_seq1=new RewriteRuleSubtreeStream(adaptor,"rule seq1",seq1!=null?seq1.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 207:13: -> ^( IF expr ^( THEN_STATS $seq1) )
+							// 211:13: -> ^( IF expr ^( THEN_STATS $seq1) )
 							{
-								// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:207:16: ^( IF expr ^( THEN_STATS $seq1) )
+								// Tiger.g:211:16: ^( IF expr ^( THEN_STATS $seq1) )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot(stream_IF.nextNode(), root_1);
 								adaptor.addChild(root_1, stream_expr.nextTree());
-								// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:207:26: ^( THEN_STATS $seq1)
+								// Tiger.g:211:26: ^( THEN_STATS $seq1)
 								{
 								Object root_2 = (Object)adaptor.nil();
 								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(THEN_STATS, "THEN_STATS"), root_2);
@@ -2415,38 +2415,38 @@ public class TigerParser extends Parser {
 
 					}
 
-					char_literal78=(Token)match(input,SEMI,FOLLOW_SEMI_in_stat1696);  
+					char_literal78=(Token)match(input,SEMI,FOLLOW_SEMI_in_stat1705);  
 					stream_SEMI.add(char_literal78);
 
 					}
 					break;
 				case 3 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:209:7: WHILE expr DO stat_seq ENDDO ';'
+					// Tiger.g:213:7: WHILE expr DO stat_seq ENDDO ';'
 					{
-					WHILE79=(Token)match(input,WHILE,FOLLOW_WHILE_in_stat1704);  
+					WHILE79=(Token)match(input,WHILE,FOLLOW_WHILE_in_stat1713);  
 					stream_WHILE.add(WHILE79);
 
-					pushFollow(FOLLOW_expr_in_stat1706);
+					pushFollow(FOLLOW_expr_in_stat1715);
 					expr80=expr();
 					state._fsp--;
 
 					stream_expr.add(expr80.getTree());
-					DO81=(Token)match(input,DO,FOLLOW_DO_in_stat1708);  
+					DO81=(Token)match(input,DO,FOLLOW_DO_in_stat1717);  
 					stream_DO.add(DO81);
 
-					pushFollow(FOLLOW_stat_seq_in_stat1710);
+					pushFollow(FOLLOW_stat_seq_in_stat1719);
 					stat_seq82=stat_seq();
 					state._fsp--;
 
 					stream_stat_seq.add(stat_seq82.getTree());
-					ENDDO83=(Token)match(input,ENDDO,FOLLOW_ENDDO_in_stat1712);  
+					ENDDO83=(Token)match(input,ENDDO,FOLLOW_ENDDO_in_stat1721);  
 					stream_ENDDO.add(ENDDO83);
 
-					char_literal84=(Token)match(input,SEMI,FOLLOW_SEMI_in_stat1714);  
+					char_literal84=(Token)match(input,SEMI,FOLLOW_SEMI_in_stat1723);  
 					stream_SEMI.add(char_literal84);
 
 					// AST REWRITE
-					// elements: stat_seq, expr, WHILE
+					// elements: WHILE, stat_seq, expr
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2456,9 +2456,9 @@ public class TigerParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 210:9: -> ^( WHILE expr stat_seq )
+					// 214:9: -> ^( WHILE expr stat_seq )
 					{
-						// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:210:12: ^( WHILE expr stat_seq )
+						// Tiger.g:214:12: ^( WHILE expr stat_seq )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot(stream_WHILE.nextNode(), root_1);
@@ -2475,46 +2475,46 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:211:7: FOR ID ':=' index_expr TO index_expr DO stat_seq ENDDO ';'
+					// Tiger.g:215:7: FOR ID ':=' index_expr TO index_expr DO stat_seq ENDDO ';'
 					{
-					FOR85=(Token)match(input,FOR,FOLLOW_FOR_in_stat1740);  
+					FOR85=(Token)match(input,FOR,FOLLOW_FOR_in_stat1749);  
 					stream_FOR.add(FOR85);
 
-					ID86=(Token)match(input,ID,FOLLOW_ID_in_stat1742);  
+					ID86=(Token)match(input,ID,FOLLOW_ID_in_stat1751);  
 					stream_ID.add(ID86);
 
-					string_literal87=(Token)match(input,ASSIGN,FOLLOW_ASSIGN_in_stat1744);  
+					string_literal87=(Token)match(input,ASSIGN,FOLLOW_ASSIGN_in_stat1753);  
 					stream_ASSIGN.add(string_literal87);
 
-					pushFollow(FOLLOW_index_expr_in_stat1746);
+					pushFollow(FOLLOW_index_expr_in_stat1755);
 					index_expr88=index_expr();
 					state._fsp--;
 
 					stream_index_expr.add(index_expr88.getTree());
-					TO89=(Token)match(input,TO,FOLLOW_TO_in_stat1748);  
+					TO89=(Token)match(input,TO,FOLLOW_TO_in_stat1757);  
 					stream_TO.add(TO89);
 
-					pushFollow(FOLLOW_index_expr_in_stat1750);
+					pushFollow(FOLLOW_index_expr_in_stat1759);
 					index_expr90=index_expr();
 					state._fsp--;
 
 					stream_index_expr.add(index_expr90.getTree());
-					DO91=(Token)match(input,DO,FOLLOW_DO_in_stat1752);  
+					DO91=(Token)match(input,DO,FOLLOW_DO_in_stat1761);  
 					stream_DO.add(DO91);
 
-					pushFollow(FOLLOW_stat_seq_in_stat1754);
+					pushFollow(FOLLOW_stat_seq_in_stat1763);
 					stat_seq92=stat_seq();
 					state._fsp--;
 
 					stream_stat_seq.add(stat_seq92.getTree());
-					ENDDO93=(Token)match(input,ENDDO,FOLLOW_ENDDO_in_stat1756);  
+					ENDDO93=(Token)match(input,ENDDO,FOLLOW_ENDDO_in_stat1765);  
 					stream_ENDDO.add(ENDDO93);
 
-					char_literal94=(Token)match(input,SEMI,FOLLOW_SEMI_in_stat1758);  
+					char_literal94=(Token)match(input,SEMI,FOLLOW_SEMI_in_stat1767);  
 					stream_SEMI.add(char_literal94);
 
 					// AST REWRITE
-					// elements: FOR, index_expr, stat_seq, index_expr, ID
+					// elements: ID, FOR, index_expr, index_expr, stat_seq
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2524,9 +2524,9 @@ public class TigerParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 212:9: -> ^( FOR ID index_expr index_expr stat_seq )
+					// 216:9: -> ^( FOR ID index_expr index_expr stat_seq )
 					{
-						// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:212:12: ^( FOR ID index_expr index_expr stat_seq )
+						// Tiger.g:216:12: ^( FOR ID index_expr index_expr stat_seq )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot(stream_FOR.nextNode(), root_1);
@@ -2545,30 +2545,30 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 5 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:213:7: BREAK ';' !
+					// Tiger.g:217:7: BREAK ';' !
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					BREAK95=(Token)match(input,BREAK,FOLLOW_BREAK_in_stat1788); 
+					BREAK95=(Token)match(input,BREAK,FOLLOW_BREAK_in_stat1797); 
 					BREAK95_tree = (Object)adaptor.create(BREAK95);
 					adaptor.addChild(root_0, BREAK95_tree);
 
-					char_literal96=(Token)match(input,SEMI,FOLLOW_SEMI_in_stat1790); 
+					char_literal96=(Token)match(input,SEMI,FOLLOW_SEMI_in_stat1799); 
 					}
 					break;
 				case 6 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:214:7: RETURN expr ';'
+					// Tiger.g:218:7: RETURN expr ';'
 					{
-					RETURN97=(Token)match(input,RETURN,FOLLOW_RETURN_in_stat1799);  
+					RETURN97=(Token)match(input,RETURN,FOLLOW_RETURN_in_stat1808);  
 					stream_RETURN.add(RETURN97);
 
-					pushFollow(FOLLOW_expr_in_stat1801);
+					pushFollow(FOLLOW_expr_in_stat1810);
 					expr98=expr();
 					state._fsp--;
 
 					stream_expr.add(expr98.getTree());
-					char_literal99=(Token)match(input,SEMI,FOLLOW_SEMI_in_stat1803);  
+					char_literal99=(Token)match(input,SEMI,FOLLOW_SEMI_in_stat1812);  
 					stream_SEMI.add(char_literal99);
 
 					// AST REWRITE
@@ -2582,9 +2582,9 @@ public class TigerParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 215:9: -> ^( RETURN expr )
+					// 219:9: -> ^( RETURN expr )
 					{
-						// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:215:12: ^( RETURN expr )
+						// Tiger.g:219:12: ^( RETURN expr )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot(stream_RETURN.nextNode(), root_1);
@@ -2600,12 +2600,12 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 7 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:216:7: block
+					// Tiger.g:220:7: block
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_block_in_stat1827);
+					pushFollow(FOLLOW_block_in_stat1836);
 					block100=block();
 					state._fsp--;
 
@@ -2642,7 +2642,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "function_args"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:219:1: function_args : '(' expr_list ')' -> ( expr_list )? ;
+	// Tiger.g:223:1: function_args : '(' expr_list ')' -> ( expr_list )? ;
 	public final TigerParser.function_args_return function_args() throws RecognitionException {
 		TigerParser.function_args_return retval = new TigerParser.function_args_return();
 		retval.start = input.LT(1);
@@ -2660,18 +2660,18 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:220:5: ( '(' expr_list ')' -> ( expr_list )? )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:220:7: '(' expr_list ')'
+			// Tiger.g:224:5: ( '(' expr_list ')' -> ( expr_list )? )
+			// Tiger.g:224:7: '(' expr_list ')'
 			{
-			char_literal101=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_function_args1844);  
+			char_literal101=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_function_args1853);  
 			stream_LPAREN.add(char_literal101);
 
-			pushFollow(FOLLOW_expr_list_in_function_args1846);
+			pushFollow(FOLLOW_expr_list_in_function_args1855);
 			expr_list102=expr_list();
 			state._fsp--;
 
 			stream_expr_list.add(expr_list102.getTree());
-			char_literal103=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_function_args1848);  
+			char_literal103=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_function_args1857);  
 			stream_RPAREN.add(char_literal103);
 
 			// AST REWRITE
@@ -2685,9 +2685,9 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 221:9: -> ( expr_list )?
+			// 225:9: -> ( expr_list )?
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:221:12: ( expr_list )?
+				// Tiger.g:225:12: ( expr_list )?
 				if ( stream_expr_list.hasNext() ) {
 					adaptor.addChild(root_0, stream_expr_list.nextTree());
 				}
@@ -2727,7 +2727,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "function_call_or_assignment"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:224:1: function_call_or_assignment : ID ( function_args -> ^( FUNCTION_CALL ID ( function_args )? ) | value_tail ':=' expr_or_function_call -> ^( ':=' ^( ID ( value_tail )? ) expr_or_function_call ) ) ';' ;
+	// Tiger.g:228:1: function_call_or_assignment : ID ( function_args -> ^( FUNCTION_CALL ID ( function_args )? ) | value_tail ':=' expr_or_function_call -> ^( ':=' ^( ID ( value_tail )? ) expr_or_function_call ) ) ';' ;
 	public final TigerParser.function_call_or_assignment_return function_call_or_assignment() throws RecognitionException {
 		TigerParser.function_call_or_assignment_return retval = new TigerParser.function_call_or_assignment_return();
 		retval.start = input.LT(1);
@@ -2752,13 +2752,13 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_value_tail=new RewriteRuleSubtreeStream(adaptor,"rule value_tail");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:225:5: ( ID ( function_args -> ^( FUNCTION_CALL ID ( function_args )? ) | value_tail ':=' expr_or_function_call -> ^( ':=' ^( ID ( value_tail )? ) expr_or_function_call ) ) ';' )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:225:7: ID ( function_args -> ^( FUNCTION_CALL ID ( function_args )? ) | value_tail ':=' expr_or_function_call -> ^( ':=' ^( ID ( value_tail )? ) expr_or_function_call ) ) ';'
+			// Tiger.g:229:5: ( ID ( function_args -> ^( FUNCTION_CALL ID ( function_args )? ) | value_tail ':=' expr_or_function_call -> ^( ':=' ^( ID ( value_tail )? ) expr_or_function_call ) ) ';' )
+			// Tiger.g:229:7: ID ( function_args -> ^( FUNCTION_CALL ID ( function_args )? ) | value_tail ':=' expr_or_function_call -> ^( ':=' ^( ID ( value_tail )? ) expr_or_function_call ) ) ';'
 			{
-			ID104=(Token)match(input,ID,FOLLOW_ID_in_function_call_or_assignment1878);  
+			ID104=(Token)match(input,ID,FOLLOW_ID_in_function_call_or_assignment1887);  
 			stream_ID.add(ID104);
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:226:9: ( function_args -> ^( FUNCTION_CALL ID ( function_args )? ) | value_tail ':=' expr_or_function_call -> ^( ':=' ^( ID ( value_tail )? ) expr_or_function_call ) )
+			// Tiger.g:230:9: ( function_args -> ^( FUNCTION_CALL ID ( function_args )? ) | value_tail ':=' expr_or_function_call -> ^( ':=' ^( ID ( value_tail )? ) expr_or_function_call ) )
 			int alt17=2;
 			int LA17_0 = input.LA(1);
 			if ( (LA17_0==LPAREN) ) {
@@ -2776,15 +2776,15 @@ public class TigerParser extends Parser {
 
 			switch (alt17) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:226:10: function_args
+					// Tiger.g:230:10: function_args
 					{
-					pushFollow(FOLLOW_function_args_in_function_call_or_assignment1890);
+					pushFollow(FOLLOW_function_args_in_function_call_or_assignment1899);
 					function_args105=function_args();
 					state._fsp--;
 
 					stream_function_args.add(function_args105.getTree());
 					// AST REWRITE
-					// elements: ID, function_args
+					// elements: function_args, ID
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2794,14 +2794,14 @@ public class TigerParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 227:13: -> ^( FUNCTION_CALL ID ( function_args )? )
+					// 231:13: -> ^( FUNCTION_CALL ID ( function_args )? )
 					{
-						// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:227:16: ^( FUNCTION_CALL ID ( function_args )? )
+						// Tiger.g:231:16: ^( FUNCTION_CALL ID ( function_args )? )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FUNCTION_CALL, "FUNCTION_CALL"), root_1);
 						adaptor.addChild(root_1, stream_ID.nextNode());
-						// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:227:35: ( function_args )?
+						// Tiger.g:231:35: ( function_args )?
 						if ( stream_function_args.hasNext() ) {
 							adaptor.addChild(root_1, stream_function_args.nextTree());
 						}
@@ -2818,23 +2818,23 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:228:11: value_tail ':=' expr_or_function_call
+					// Tiger.g:232:11: value_tail ':=' expr_or_function_call
 					{
-					pushFollow(FOLLOW_value_tail_in_function_call_or_assignment1925);
+					pushFollow(FOLLOW_value_tail_in_function_call_or_assignment1934);
 					value_tail106=value_tail();
 					state._fsp--;
 
 					stream_value_tail.add(value_tail106.getTree());
-					string_literal107=(Token)match(input,ASSIGN,FOLLOW_ASSIGN_in_function_call_or_assignment1927);  
+					string_literal107=(Token)match(input,ASSIGN,FOLLOW_ASSIGN_in_function_call_or_assignment1936);  
 					stream_ASSIGN.add(string_literal107);
 
-					pushFollow(FOLLOW_expr_or_function_call_in_function_call_or_assignment1929);
+					pushFollow(FOLLOW_expr_or_function_call_in_function_call_or_assignment1938);
 					expr_or_function_call108=expr_or_function_call();
 					state._fsp--;
 
 					stream_expr_or_function_call.add(expr_or_function_call108.getTree());
 					// AST REWRITE
-					// elements: expr_or_function_call, value_tail, ID, ASSIGN
+					// elements: ID, value_tail, ASSIGN, expr_or_function_call
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2844,17 +2844,17 @@ public class TigerParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 229:13: -> ^( ':=' ^( ID ( value_tail )? ) expr_or_function_call )
+					// 233:13: -> ^( ':=' ^( ID ( value_tail )? ) expr_or_function_call )
 					{
-						// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:229:16: ^( ':=' ^( ID ( value_tail )? ) expr_or_function_call )
+						// Tiger.g:233:16: ^( ':=' ^( ID ( value_tail )? ) expr_or_function_call )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot(stream_ASSIGN.nextNode(), root_1);
-						// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:229:23: ^( ID ( value_tail )? )
+						// Tiger.g:233:23: ^( ID ( value_tail )? )
 						{
 						Object root_2 = (Object)adaptor.nil();
 						root_2 = (Object)adaptor.becomeRoot(stream_ID.nextNode(), root_2);
-						// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:229:28: ( value_tail )?
+						// Tiger.g:233:28: ( value_tail )?
 						if ( stream_value_tail.hasNext() ) {
 							adaptor.addChild(root_2, stream_value_tail.nextTree());
 						}
@@ -2877,7 +2877,7 @@ public class TigerParser extends Parser {
 
 			}
 
-			char_literal109=(Token)match(input,SEMI,FOLLOW_SEMI_in_function_call_or_assignment1968);  
+			char_literal109=(Token)match(input,SEMI,FOLLOW_SEMI_in_function_call_or_assignment1977);  
 			stream_SEMI.add(char_literal109);
 
 			}
@@ -2909,7 +2909,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "expr_or_function_call"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:233:1: expr_or_function_call : ( ID ( expr_with_start_id[$ID] -> ^( EXPR_WITH_START_ID ( expr_with_start_id )? ) | function_args -> ^( FUNCTION_CALL ID ( function_args )? ) ) | expr_no_start_id );
+	// Tiger.g:237:1: expr_or_function_call : ( ID ( expr_with_start_id[$ID] -> ^( EXPR_WITH_START_ID ( expr_with_start_id )? ) | function_args -> ^( FUNCTION_CALL ID ( function_args )? ) ) | expr_no_start_id );
 	public final TigerParser.expr_or_function_call_return expr_or_function_call() throws RecognitionException {
 		TigerParser.expr_or_function_call_return retval = new TigerParser.expr_or_function_call_return();
 		retval.start = input.LT(1);
@@ -2927,7 +2927,7 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_expr_with_start_id=new RewriteRuleSubtreeStream(adaptor,"rule expr_with_start_id");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:234:5: ( ID ( expr_with_start_id[$ID] -> ^( EXPR_WITH_START_ID ( expr_with_start_id )? ) | function_args -> ^( FUNCTION_CALL ID ( function_args )? ) ) | expr_no_start_id )
+			// Tiger.g:238:5: ( ID ( expr_with_start_id[$ID] -> ^( EXPR_WITH_START_ID ( expr_with_start_id )? ) | function_args -> ^( FUNCTION_CALL ID ( function_args )? ) ) | expr_no_start_id )
 			int alt19=2;
 			int LA19_0 = input.LA(1);
 			if ( (LA19_0==ID) ) {
@@ -2945,12 +2945,12 @@ public class TigerParser extends Parser {
 
 			switch (alt19) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:234:7: ID ( expr_with_start_id[$ID] -> ^( EXPR_WITH_START_ID ( expr_with_start_id )? ) | function_args -> ^( FUNCTION_CALL ID ( function_args )? ) )
+					// Tiger.g:238:7: ID ( expr_with_start_id[$ID] -> ^( EXPR_WITH_START_ID ( expr_with_start_id )? ) | function_args -> ^( FUNCTION_CALL ID ( function_args )? ) )
 					{
-					ID110=(Token)match(input,ID,FOLLOW_ID_in_expr_or_function_call1985);  
+					ID110=(Token)match(input,ID,FOLLOW_ID_in_expr_or_function_call1994);  
 					stream_ID.add(ID110);
 
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:235:9: ( expr_with_start_id[$ID] -> ^( EXPR_WITH_START_ID ( expr_with_start_id )? ) | function_args -> ^( FUNCTION_CALL ID ( function_args )? ) )
+					// Tiger.g:239:9: ( expr_with_start_id[$ID] -> ^( EXPR_WITH_START_ID ( expr_with_start_id )? ) | function_args -> ^( FUNCTION_CALL ID ( function_args )? ) )
 					int alt18=2;
 					int LA18_0 = input.LA(1);
 					if ( (LA18_0==AND||LA18_0==ASSIGN||LA18_0==COMMA||(LA18_0 >= DIV && LA18_0 <= DO)||LA18_0==EQ||(LA18_0 >= GREATER && LA18_0 <= GREATEREQ)||(LA18_0 >= LBRACK && LA18_0 <= LESSEREQ)||(LA18_0 >= MINUS && LA18_0 <= NEQ)||LA18_0==OR||LA18_0==PLUS||(LA18_0 >= RPAREN && LA18_0 <= THEN)) ) {
@@ -2968,9 +2968,9 @@ public class TigerParser extends Parser {
 
 					switch (alt18) {
 						case 1 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:235:10: expr_with_start_id[$ID]
+							// Tiger.g:239:10: expr_with_start_id[$ID]
 							{
-							pushFollow(FOLLOW_expr_with_start_id_in_expr_or_function_call1997);
+							pushFollow(FOLLOW_expr_with_start_id_in_expr_or_function_call2006);
 							expr_with_start_id111=expr_with_start_id(ID110);
 							state._fsp--;
 
@@ -2986,13 +2986,13 @@ public class TigerParser extends Parser {
 							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 235:34: -> ^( EXPR_WITH_START_ID ( expr_with_start_id )? )
+							// 239:34: -> ^( EXPR_WITH_START_ID ( expr_with_start_id )? )
 							{
-								// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:235:37: ^( EXPR_WITH_START_ID ( expr_with_start_id )? )
+								// Tiger.g:239:37: ^( EXPR_WITH_START_ID ( expr_with_start_id )? )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EXPR_WITH_START_ID, "EXPR_WITH_START_ID"), root_1);
-								// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:235:58: ( expr_with_start_id )?
+								// Tiger.g:239:58: ( expr_with_start_id )?
 								if ( stream_expr_with_start_id.hasNext() ) {
 									adaptor.addChild(root_1, stream_expr_with_start_id.nextTree());
 								}
@@ -3009,9 +3009,9 @@ public class TigerParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:236:11: function_args
+							// Tiger.g:240:11: function_args
 							{
-							pushFollow(FOLLOW_function_args_in_expr_or_function_call2019);
+							pushFollow(FOLLOW_function_args_in_expr_or_function_call2028);
 							function_args112=function_args();
 							state._fsp--;
 
@@ -3027,14 +3027,14 @@ public class TigerParser extends Parser {
 							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 237:13: -> ^( FUNCTION_CALL ID ( function_args )? )
+							// 241:13: -> ^( FUNCTION_CALL ID ( function_args )? )
 							{
-								// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:237:16: ^( FUNCTION_CALL ID ( function_args )? )
+								// Tiger.g:241:16: ^( FUNCTION_CALL ID ( function_args )? )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FUNCTION_CALL, "FUNCTION_CALL"), root_1);
 								adaptor.addChild(root_1, stream_ID.nextNode());
-								// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:237:35: ( function_args )?
+								// Tiger.g:241:35: ( function_args )?
 								if ( stream_function_args.hasNext() ) {
 									adaptor.addChild(root_1, stream_function_args.nextTree());
 								}
@@ -3056,12 +3056,12 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:239:7: expr_no_start_id
+					// Tiger.g:243:7: expr_no_start_id
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_expr_no_start_id_in_expr_or_function_call2060);
+					pushFollow(FOLLOW_expr_no_start_id_in_expr_or_function_call2069);
 					expr_no_start_id113=expr_no_start_id();
 					state._fsp--;
 
@@ -3098,7 +3098,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "expr"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:243:1: expr : term4 ( and_operator ^ term4 )* ;
+	// Tiger.g:247:1: expr : term4 ( and_operator ^ term4 )* ;
 	public final TigerParser.expr_return expr() throws RecognitionException {
 		TigerParser.expr_return retval = new TigerParser.expr_return();
 		retval.start = input.LT(1);
@@ -3111,19 +3111,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:243:6: ( term4 ( and_operator ^ term4 )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:243:8: term4 ( and_operator ^ term4 )*
+			// Tiger.g:247:6: ( term4 ( and_operator ^ term4 )* )
+			// Tiger.g:247:8: term4 ( and_operator ^ term4 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_term4_in_expr2075);
+			pushFollow(FOLLOW_term4_in_expr2084);
 			term4114=term4();
 			state._fsp--;
 
 			adaptor.addChild(root_0, term4114.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:243:14: ( and_operator ^ term4 )*
+			// Tiger.g:247:14: ( and_operator ^ term4 )*
 			loop20:
 			while (true) {
 				int alt20=2;
@@ -3134,14 +3134,14 @@ public class TigerParser extends Parser {
 
 				switch (alt20) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:243:15: and_operator ^ term4
+					// Tiger.g:247:15: and_operator ^ term4
 					{
-					pushFollow(FOLLOW_and_operator_in_expr2078);
+					pushFollow(FOLLOW_and_operator_in_expr2087);
 					and_operator115=and_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(and_operator115.getTree(), root_0);
-					pushFollow(FOLLOW_term4_in_expr2081);
+					pushFollow(FOLLOW_term4_in_expr2090);
 					term4116=term4();
 					state._fsp--;
 
@@ -3184,7 +3184,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "term4"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:244:1: term4 : term3 ( compare_operator ^ term3 )* ;
+	// Tiger.g:248:1: term4 : term3 ( compare_operator ^ term3 )* ;
 	public final TigerParser.term4_return term4() throws RecognitionException {
 		TigerParser.term4_return retval = new TigerParser.term4_return();
 		retval.start = input.LT(1);
@@ -3197,19 +3197,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:244:7: ( term3 ( compare_operator ^ term3 )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:244:9: term3 ( compare_operator ^ term3 )*
+			// Tiger.g:248:7: ( term3 ( compare_operator ^ term3 )* )
+			// Tiger.g:248:9: term3 ( compare_operator ^ term3 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_term3_in_term42091);
+			pushFollow(FOLLOW_term3_in_term42100);
 			term3117=term3();
 			state._fsp--;
 
 			adaptor.addChild(root_0, term3117.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:244:15: ( compare_operator ^ term3 )*
+			// Tiger.g:248:15: ( compare_operator ^ term3 )*
 			loop21:
 			while (true) {
 				int alt21=2;
@@ -3220,14 +3220,14 @@ public class TigerParser extends Parser {
 
 				switch (alt21) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:244:16: compare_operator ^ term3
+					// Tiger.g:248:16: compare_operator ^ term3
 					{
-					pushFollow(FOLLOW_compare_operator_in_term42094);
+					pushFollow(FOLLOW_compare_operator_in_term42103);
 					compare_operator118=compare_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(compare_operator118.getTree(), root_0);
-					pushFollow(FOLLOW_term3_in_term42097);
+					pushFollow(FOLLOW_term3_in_term42106);
 					term3119=term3();
 					state._fsp--;
 
@@ -3270,7 +3270,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "term3"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:245:1: term3 : term2 ( add_operator ^ term2 )* ;
+	// Tiger.g:249:1: term3 : term2 ( add_operator ^ term2 )* ;
 	public final TigerParser.term3_return term3() throws RecognitionException {
 		TigerParser.term3_return retval = new TigerParser.term3_return();
 		retval.start = input.LT(1);
@@ -3283,19 +3283,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:245:7: ( term2 ( add_operator ^ term2 )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:245:9: term2 ( add_operator ^ term2 )*
+			// Tiger.g:249:7: ( term2 ( add_operator ^ term2 )* )
+			// Tiger.g:249:9: term2 ( add_operator ^ term2 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_term2_in_term32107);
+			pushFollow(FOLLOW_term2_in_term32116);
 			term2120=term2();
 			state._fsp--;
 
 			adaptor.addChild(root_0, term2120.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:245:15: ( add_operator ^ term2 )*
+			// Tiger.g:249:15: ( add_operator ^ term2 )*
 			loop22:
 			while (true) {
 				int alt22=2;
@@ -3306,14 +3306,14 @@ public class TigerParser extends Parser {
 
 				switch (alt22) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:245:16: add_operator ^ term2
+					// Tiger.g:249:16: add_operator ^ term2
 					{
-					pushFollow(FOLLOW_add_operator_in_term32110);
+					pushFollow(FOLLOW_add_operator_in_term32119);
 					add_operator121=add_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(add_operator121.getTree(), root_0);
-					pushFollow(FOLLOW_term2_in_term32113);
+					pushFollow(FOLLOW_term2_in_term32122);
 					term2122=term2();
 					state._fsp--;
 
@@ -3356,7 +3356,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "term2"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:246:1: term2 : term1 ( mult_operator ^ term1 )* ;
+	// Tiger.g:250:1: term2 : term1 ( mult_operator ^ term1 )* ;
 	public final TigerParser.term2_return term2() throws RecognitionException {
 		TigerParser.term2_return retval = new TigerParser.term2_return();
 		retval.start = input.LT(1);
@@ -3369,19 +3369,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:246:7: ( term1 ( mult_operator ^ term1 )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:246:9: term1 ( mult_operator ^ term1 )*
+			// Tiger.g:250:7: ( term1 ( mult_operator ^ term1 )* )
+			// Tiger.g:250:9: term1 ( mult_operator ^ term1 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_term1_in_term22123);
+			pushFollow(FOLLOW_term1_in_term22132);
 			term1123=term1();
 			state._fsp--;
 
 			adaptor.addChild(root_0, term1123.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:246:15: ( mult_operator ^ term1 )*
+			// Tiger.g:250:15: ( mult_operator ^ term1 )*
 			loop23:
 			while (true) {
 				int alt23=2;
@@ -3392,14 +3392,14 @@ public class TigerParser extends Parser {
 
 				switch (alt23) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:246:16: mult_operator ^ term1
+					// Tiger.g:250:16: mult_operator ^ term1
 					{
-					pushFollow(FOLLOW_mult_operator_in_term22126);
+					pushFollow(FOLLOW_mult_operator_in_term22135);
 					mult_operator124=mult_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(mult_operator124.getTree(), root_0);
-					pushFollow(FOLLOW_term1_in_term22129);
+					pushFollow(FOLLOW_term1_in_term22138);
 					term1125=term1();
 					state._fsp--;
 
@@ -3442,7 +3442,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "term1"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:247:1: term1 : ( literal | value | '(' expr ')' -> expr );
+	// Tiger.g:251:1: term1 : ( literal | value | '(' expr ')' -> expr );
 	public final TigerParser.term1_return term1() throws RecognitionException {
 		TigerParser.term1_return retval = new TigerParser.term1_return();
 		retval.start = input.LT(1);
@@ -3462,7 +3462,7 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:248:5: ( literal | value | '(' expr ')' -> expr )
+			// Tiger.g:252:5: ( literal | value | '(' expr ')' -> expr )
 			int alt24=3;
 			switch ( input.LA(1) ) {
 			case FIXEDPTLIT:
@@ -3488,12 +3488,12 @@ public class TigerParser extends Parser {
 			}
 			switch (alt24) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:248:7: literal
+					// Tiger.g:252:7: literal
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_literal_in_term12143);
+					pushFollow(FOLLOW_literal_in_term12152);
 					literal126=literal();
 					state._fsp--;
 
@@ -3502,12 +3502,12 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:249:7: value
+					// Tiger.g:253:7: value
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_value_in_term12151);
+					pushFollow(FOLLOW_value_in_term12160);
 					value127=value();
 					state._fsp--;
 
@@ -3516,17 +3516,17 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:250:7: '(' expr ')'
+					// Tiger.g:254:7: '(' expr ')'
 					{
-					char_literal128=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_term12159);  
+					char_literal128=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_term12168);  
 					stream_LPAREN.add(char_literal128);
 
-					pushFollow(FOLLOW_expr_in_term12161);
+					pushFollow(FOLLOW_expr_in_term12170);
 					expr129=expr();
 					state._fsp--;
 
 					stream_expr.add(expr129.getTree());
-					char_literal130=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_term12163);  
+					char_literal130=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_term12172);  
 					stream_RPAREN.add(char_literal130);
 
 					// AST REWRITE
@@ -3540,7 +3540,7 @@ public class TigerParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 251:9: -> expr
+					// 255:9: -> expr
 					{
 						adaptor.addChild(root_0, stream_expr.nextTree());
 					}
@@ -3579,7 +3579,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "expr_no_start_id"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:254:1: expr_no_start_id : term4_no_start_id ( and_operator ^ term4 )* ;
+	// Tiger.g:258:1: expr_no_start_id : term4_no_start_id ( and_operator ^ term4 )* ;
 	public final TigerParser.expr_no_start_id_return expr_no_start_id() throws RecognitionException {
 		TigerParser.expr_no_start_id_return retval = new TigerParser.expr_no_start_id_return();
 		retval.start = input.LT(1);
@@ -3592,19 +3592,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:254:18: ( term4_no_start_id ( and_operator ^ term4 )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:254:20: term4_no_start_id ( and_operator ^ term4 )*
+			// Tiger.g:258:18: ( term4_no_start_id ( and_operator ^ term4 )* )
+			// Tiger.g:258:20: term4_no_start_id ( and_operator ^ term4 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_term4_no_start_id_in_expr_no_start_id2188);
+			pushFollow(FOLLOW_term4_no_start_id_in_expr_no_start_id2197);
 			term4_no_start_id131=term4_no_start_id();
 			state._fsp--;
 
 			adaptor.addChild(root_0, term4_no_start_id131.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:254:38: ( and_operator ^ term4 )*
+			// Tiger.g:258:38: ( and_operator ^ term4 )*
 			loop25:
 			while (true) {
 				int alt25=2;
@@ -3615,14 +3615,14 @@ public class TigerParser extends Parser {
 
 				switch (alt25) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:254:39: and_operator ^ term4
+					// Tiger.g:258:39: and_operator ^ term4
 					{
-					pushFollow(FOLLOW_and_operator_in_expr_no_start_id2191);
+					pushFollow(FOLLOW_and_operator_in_expr_no_start_id2200);
 					and_operator132=and_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(and_operator132.getTree(), root_0);
-					pushFollow(FOLLOW_term4_in_expr_no_start_id2194);
+					pushFollow(FOLLOW_term4_in_expr_no_start_id2203);
 					term4133=term4();
 					state._fsp--;
 
@@ -3665,7 +3665,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "term4_no_start_id"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:255:1: term4_no_start_id : term3_no_start_id ( compare_operator ^ term3 )* ;
+	// Tiger.g:259:1: term4_no_start_id : term3_no_start_id ( compare_operator ^ term3 )* ;
 	public final TigerParser.term4_no_start_id_return term4_no_start_id() throws RecognitionException {
 		TigerParser.term4_no_start_id_return retval = new TigerParser.term4_no_start_id_return();
 		retval.start = input.LT(1);
@@ -3678,19 +3678,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:255:19: ( term3_no_start_id ( compare_operator ^ term3 )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:255:21: term3_no_start_id ( compare_operator ^ term3 )*
+			// Tiger.g:259:19: ( term3_no_start_id ( compare_operator ^ term3 )* )
+			// Tiger.g:259:21: term3_no_start_id ( compare_operator ^ term3 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_term3_no_start_id_in_term4_no_start_id2204);
+			pushFollow(FOLLOW_term3_no_start_id_in_term4_no_start_id2213);
 			term3_no_start_id134=term3_no_start_id();
 			state._fsp--;
 
 			adaptor.addChild(root_0, term3_no_start_id134.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:255:39: ( compare_operator ^ term3 )*
+			// Tiger.g:259:39: ( compare_operator ^ term3 )*
 			loop26:
 			while (true) {
 				int alt26=2;
@@ -3701,14 +3701,14 @@ public class TigerParser extends Parser {
 
 				switch (alt26) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:255:40: compare_operator ^ term3
+					// Tiger.g:259:40: compare_operator ^ term3
 					{
-					pushFollow(FOLLOW_compare_operator_in_term4_no_start_id2207);
+					pushFollow(FOLLOW_compare_operator_in_term4_no_start_id2216);
 					compare_operator135=compare_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(compare_operator135.getTree(), root_0);
-					pushFollow(FOLLOW_term3_in_term4_no_start_id2210);
+					pushFollow(FOLLOW_term3_in_term4_no_start_id2219);
 					term3136=term3();
 					state._fsp--;
 
@@ -3751,7 +3751,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "term3_no_start_id"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:256:1: term3_no_start_id : term2_no_start_id ( add_operator ^ term2 )* ;
+	// Tiger.g:260:1: term3_no_start_id : term2_no_start_id ( add_operator ^ term2 )* ;
 	public final TigerParser.term3_no_start_id_return term3_no_start_id() throws RecognitionException {
 		TigerParser.term3_no_start_id_return retval = new TigerParser.term3_no_start_id_return();
 		retval.start = input.LT(1);
@@ -3764,19 +3764,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:256:19: ( term2_no_start_id ( add_operator ^ term2 )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:256:21: term2_no_start_id ( add_operator ^ term2 )*
+			// Tiger.g:260:19: ( term2_no_start_id ( add_operator ^ term2 )* )
+			// Tiger.g:260:21: term2_no_start_id ( add_operator ^ term2 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_term2_no_start_id_in_term3_no_start_id2220);
+			pushFollow(FOLLOW_term2_no_start_id_in_term3_no_start_id2229);
 			term2_no_start_id137=term2_no_start_id();
 			state._fsp--;
 
 			adaptor.addChild(root_0, term2_no_start_id137.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:256:39: ( add_operator ^ term2 )*
+			// Tiger.g:260:39: ( add_operator ^ term2 )*
 			loop27:
 			while (true) {
 				int alt27=2;
@@ -3787,14 +3787,14 @@ public class TigerParser extends Parser {
 
 				switch (alt27) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:256:40: add_operator ^ term2
+					// Tiger.g:260:40: add_operator ^ term2
 					{
-					pushFollow(FOLLOW_add_operator_in_term3_no_start_id2223);
+					pushFollow(FOLLOW_add_operator_in_term3_no_start_id2232);
 					add_operator138=add_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(add_operator138.getTree(), root_0);
-					pushFollow(FOLLOW_term2_in_term3_no_start_id2226);
+					pushFollow(FOLLOW_term2_in_term3_no_start_id2235);
 					term2139=term2();
 					state._fsp--;
 
@@ -3837,7 +3837,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "term2_no_start_id"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:257:1: term2_no_start_id : term1_no_start_id ( mult_operator ^ term1 )* ;
+	// Tiger.g:261:1: term2_no_start_id : term1_no_start_id ( mult_operator ^ term1 )* ;
 	public final TigerParser.term2_no_start_id_return term2_no_start_id() throws RecognitionException {
 		TigerParser.term2_no_start_id_return retval = new TigerParser.term2_no_start_id_return();
 		retval.start = input.LT(1);
@@ -3850,19 +3850,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:257:19: ( term1_no_start_id ( mult_operator ^ term1 )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:257:21: term1_no_start_id ( mult_operator ^ term1 )*
+			// Tiger.g:261:19: ( term1_no_start_id ( mult_operator ^ term1 )* )
+			// Tiger.g:261:21: term1_no_start_id ( mult_operator ^ term1 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_term1_no_start_id_in_term2_no_start_id2236);
+			pushFollow(FOLLOW_term1_no_start_id_in_term2_no_start_id2245);
 			term1_no_start_id140=term1_no_start_id();
 			state._fsp--;
 
 			adaptor.addChild(root_0, term1_no_start_id140.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:257:39: ( mult_operator ^ term1 )*
+			// Tiger.g:261:39: ( mult_operator ^ term1 )*
 			loop28:
 			while (true) {
 				int alt28=2;
@@ -3873,14 +3873,14 @@ public class TigerParser extends Parser {
 
 				switch (alt28) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:257:40: mult_operator ^ term1
+					// Tiger.g:261:40: mult_operator ^ term1
 					{
-					pushFollow(FOLLOW_mult_operator_in_term2_no_start_id2239);
+					pushFollow(FOLLOW_mult_operator_in_term2_no_start_id2248);
 					mult_operator141=mult_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(mult_operator141.getTree(), root_0);
-					pushFollow(FOLLOW_term1_in_term2_no_start_id2242);
+					pushFollow(FOLLOW_term1_in_term2_no_start_id2251);
 					term1142=term1();
 					state._fsp--;
 
@@ -3923,7 +3923,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "term1_no_start_id"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:258:1: term1_no_start_id : ( literal | '(' expr ')' -> expr );
+	// Tiger.g:262:1: term1_no_start_id : ( literal | '(' expr ')' -> expr );
 	public final TigerParser.term1_no_start_id_return term1_no_start_id() throws RecognitionException {
 		TigerParser.term1_no_start_id_return retval = new TigerParser.term1_no_start_id_return();
 		retval.start = input.LT(1);
@@ -3942,7 +3942,7 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:259:5: ( literal | '(' expr ')' -> expr )
+			// Tiger.g:263:5: ( literal | '(' expr ')' -> expr )
 			int alt29=2;
 			int LA29_0 = input.LA(1);
 			if ( (LA29_0==FIXEDPTLIT||LA29_0==INTLIT) ) {
@@ -3960,12 +3960,12 @@ public class TigerParser extends Parser {
 
 			switch (alt29) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:259:7: literal
+					// Tiger.g:263:7: literal
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_literal_in_term1_no_start_id2256);
+					pushFollow(FOLLOW_literal_in_term1_no_start_id2265);
 					literal143=literal();
 					state._fsp--;
 
@@ -3974,17 +3974,17 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:260:7: '(' expr ')'
+					// Tiger.g:264:7: '(' expr ')'
 					{
-					char_literal144=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_term1_no_start_id2264);  
+					char_literal144=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_term1_no_start_id2273);  
 					stream_LPAREN.add(char_literal144);
 
-					pushFollow(FOLLOW_expr_in_term1_no_start_id2266);
+					pushFollow(FOLLOW_expr_in_term1_no_start_id2275);
 					expr145=expr();
 					state._fsp--;
 
 					stream_expr.add(expr145.getTree());
-					char_literal146=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_term1_no_start_id2268);  
+					char_literal146=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_term1_no_start_id2277);  
 					stream_RPAREN.add(char_literal146);
 
 					// AST REWRITE
@@ -3998,7 +3998,7 @@ public class TigerParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 261:9: -> expr
+					// 265:9: -> expr
 					{
 						adaptor.addChild(root_0, stream_expr.nextTree());
 					}
@@ -4037,7 +4037,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "expr_with_start_id"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:264:1: expr_with_start_id[Token startId] : term4_with_start_id[$startId] ( and_operator ^ term4 )* ;
+	// Tiger.g:268:1: expr_with_start_id[Token startId] : term4_with_start_id[$startId] ( and_operator ^ term4 )* ;
 	public final TigerParser.expr_with_start_id_return expr_with_start_id(Token startId) throws RecognitionException {
 		TigerParser.expr_with_start_id_return retval = new TigerParser.expr_with_start_id_return();
 		retval.start = input.LT(1);
@@ -4050,19 +4050,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:264:35: ( term4_with_start_id[$startId] ( and_operator ^ term4 )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:264:37: term4_with_start_id[$startId] ( and_operator ^ term4 )*
+			// Tiger.g:268:35: ( term4_with_start_id[$startId] ( and_operator ^ term4 )* )
+			// Tiger.g:268:37: term4_with_start_id[$startId] ( and_operator ^ term4 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_term4_with_start_id_in_expr_with_start_id2294);
+			pushFollow(FOLLOW_term4_with_start_id_in_expr_with_start_id2303);
 			term4_with_start_id147=term4_with_start_id(startId);
 			state._fsp--;
 
 			adaptor.addChild(root_0, term4_with_start_id147.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:264:67: ( and_operator ^ term4 )*
+			// Tiger.g:268:67: ( and_operator ^ term4 )*
 			loop30:
 			while (true) {
 				int alt30=2;
@@ -4073,14 +4073,14 @@ public class TigerParser extends Parser {
 
 				switch (alt30) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:264:68: and_operator ^ term4
+					// Tiger.g:268:68: and_operator ^ term4
 					{
-					pushFollow(FOLLOW_and_operator_in_expr_with_start_id2298);
+					pushFollow(FOLLOW_and_operator_in_expr_with_start_id2307);
 					and_operator148=and_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(and_operator148.getTree(), root_0);
-					pushFollow(FOLLOW_term4_in_expr_with_start_id2301);
+					pushFollow(FOLLOW_term4_in_expr_with_start_id2310);
 					term4149=term4();
 					state._fsp--;
 
@@ -4123,7 +4123,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "term4_with_start_id"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:265:1: term4_with_start_id[Token startId] : term3_with_start_id[$startId] ( compare_operator ^ term3 )* ;
+	// Tiger.g:269:1: term4_with_start_id[Token startId] : term3_with_start_id[$startId] ( compare_operator ^ term3 )* ;
 	public final TigerParser.term4_with_start_id_return term4_with_start_id(Token startId) throws RecognitionException {
 		TigerParser.term4_with_start_id_return retval = new TigerParser.term4_with_start_id_return();
 		retval.start = input.LT(1);
@@ -4136,19 +4136,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:265:36: ( term3_with_start_id[$startId] ( compare_operator ^ term3 )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:265:38: term3_with_start_id[$startId] ( compare_operator ^ term3 )*
+			// Tiger.g:269:36: ( term3_with_start_id[$startId] ( compare_operator ^ term3 )* )
+			// Tiger.g:269:38: term3_with_start_id[$startId] ( compare_operator ^ term3 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_term3_with_start_id_in_term4_with_start_id2312);
+			pushFollow(FOLLOW_term3_with_start_id_in_term4_with_start_id2321);
 			term3_with_start_id150=term3_with_start_id(startId);
 			state._fsp--;
 
 			adaptor.addChild(root_0, term3_with_start_id150.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:265:68: ( compare_operator ^ term3 )*
+			// Tiger.g:269:68: ( compare_operator ^ term3 )*
 			loop31:
 			while (true) {
 				int alt31=2;
@@ -4159,14 +4159,14 @@ public class TigerParser extends Parser {
 
 				switch (alt31) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:265:69: compare_operator ^ term3
+					// Tiger.g:269:69: compare_operator ^ term3
 					{
-					pushFollow(FOLLOW_compare_operator_in_term4_with_start_id2316);
+					pushFollow(FOLLOW_compare_operator_in_term4_with_start_id2325);
 					compare_operator151=compare_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(compare_operator151.getTree(), root_0);
-					pushFollow(FOLLOW_term3_in_term4_with_start_id2319);
+					pushFollow(FOLLOW_term3_in_term4_with_start_id2328);
 					term3152=term3();
 					state._fsp--;
 
@@ -4209,7 +4209,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "term3_with_start_id"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:266:1: term3_with_start_id[Token startId] : term2_with_start_id[$startId] ( add_operator ^ term2 )* ;
+	// Tiger.g:270:1: term3_with_start_id[Token startId] : term2_with_start_id[$startId] ( add_operator ^ term2 )* ;
 	public final TigerParser.term3_with_start_id_return term3_with_start_id(Token startId) throws RecognitionException {
 		TigerParser.term3_with_start_id_return retval = new TigerParser.term3_with_start_id_return();
 		retval.start = input.LT(1);
@@ -4222,19 +4222,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:266:36: ( term2_with_start_id[$startId] ( add_operator ^ term2 )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:266:38: term2_with_start_id[$startId] ( add_operator ^ term2 )*
+			// Tiger.g:270:36: ( term2_with_start_id[$startId] ( add_operator ^ term2 )* )
+			// Tiger.g:270:38: term2_with_start_id[$startId] ( add_operator ^ term2 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_term2_with_start_id_in_term3_with_start_id2330);
+			pushFollow(FOLLOW_term2_with_start_id_in_term3_with_start_id2339);
 			term2_with_start_id153=term2_with_start_id(startId);
 			state._fsp--;
 
 			adaptor.addChild(root_0, term2_with_start_id153.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:266:68: ( add_operator ^ term2 )*
+			// Tiger.g:270:68: ( add_operator ^ term2 )*
 			loop32:
 			while (true) {
 				int alt32=2;
@@ -4245,14 +4245,14 @@ public class TigerParser extends Parser {
 
 				switch (alt32) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:266:69: add_operator ^ term2
+					// Tiger.g:270:69: add_operator ^ term2
 					{
-					pushFollow(FOLLOW_add_operator_in_term3_with_start_id2334);
+					pushFollow(FOLLOW_add_operator_in_term3_with_start_id2343);
 					add_operator154=add_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(add_operator154.getTree(), root_0);
-					pushFollow(FOLLOW_term2_in_term3_with_start_id2337);
+					pushFollow(FOLLOW_term2_in_term3_with_start_id2346);
 					term2155=term2();
 					state._fsp--;
 
@@ -4295,7 +4295,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "term2_with_start_id"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:267:1: term2_with_start_id[Token startId] : term1_with_start_id[$startId] ( mult_operator ^ term1 )* ;
+	// Tiger.g:271:1: term2_with_start_id[Token startId] : term1_with_start_id[$startId] ( mult_operator ^ term1 )* ;
 	public final TigerParser.term2_with_start_id_return term2_with_start_id(Token startId) throws RecognitionException {
 		TigerParser.term2_with_start_id_return retval = new TigerParser.term2_with_start_id_return();
 		retval.start = input.LT(1);
@@ -4308,19 +4308,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:267:36: ( term1_with_start_id[$startId] ( mult_operator ^ term1 )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:267:38: term1_with_start_id[$startId] ( mult_operator ^ term1 )*
+			// Tiger.g:271:36: ( term1_with_start_id[$startId] ( mult_operator ^ term1 )* )
+			// Tiger.g:271:38: term1_with_start_id[$startId] ( mult_operator ^ term1 )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_term1_with_start_id_in_term2_with_start_id2348);
+			pushFollow(FOLLOW_term1_with_start_id_in_term2_with_start_id2357);
 			term1_with_start_id156=term1_with_start_id(startId);
 			state._fsp--;
 
 			adaptor.addChild(root_0, term1_with_start_id156.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:267:68: ( mult_operator ^ term1 )*
+			// Tiger.g:271:68: ( mult_operator ^ term1 )*
 			loop33:
 			while (true) {
 				int alt33=2;
@@ -4331,14 +4331,14 @@ public class TigerParser extends Parser {
 
 				switch (alt33) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:267:69: mult_operator ^ term1
+					// Tiger.g:271:69: mult_operator ^ term1
 					{
-					pushFollow(FOLLOW_mult_operator_in_term2_with_start_id2352);
+					pushFollow(FOLLOW_mult_operator_in_term2_with_start_id2361);
 					mult_operator157=mult_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(mult_operator157.getTree(), root_0);
-					pushFollow(FOLLOW_term1_in_term2_with_start_id2355);
+					pushFollow(FOLLOW_term1_in_term2_with_start_id2364);
 					term1158=term1();
 					state._fsp--;
 
@@ -4381,7 +4381,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "term1_with_start_id"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:268:1: term1_with_start_id[Token startId] : value_tail -> ^( ( value_tail )? ) ;
+	// Tiger.g:272:1: term1_with_start_id[Token startId] : value_tail -> ^( ( value_tail )? ) ;
 	public final TigerParser.term1_with_start_id_return term1_with_start_id(Token startId) throws RecognitionException {
 		TigerParser.term1_with_start_id_return retval = new TigerParser.term1_with_start_id_return();
 		retval.start = input.LT(1);
@@ -4393,10 +4393,10 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_value_tail=new RewriteRuleSubtreeStream(adaptor,"rule value_tail");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:269:5: ( value_tail -> ^( ( value_tail )? ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:269:7: value_tail
+			// Tiger.g:273:5: ( value_tail -> ^( ( value_tail )? ) )
+			// Tiger.g:273:7: value_tail
 			{
-			pushFollow(FOLLOW_value_tail_in_term1_with_start_id2370);
+			pushFollow(FOLLOW_value_tail_in_term1_with_start_id2379);
 			value_tail159=value_tail();
 			state._fsp--;
 
@@ -4412,13 +4412,13 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 269:18: -> ^( ( value_tail )? )
+			// 273:18: -> ^( ( value_tail )? )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:269:21: ^( ( value_tail )? )
+				// Tiger.g:273:21: ^( ( value_tail )? )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot(new CommonTree(startId), root_1);
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:269:50: ( value_tail )?
+				// Tiger.g:273:50: ( value_tail )?
 				if ( stream_value_tail.hasNext() ) {
 					adaptor.addChild(root_1, stream_value_tail.nextTree());
 				}
@@ -4461,7 +4461,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "expr_list"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:272:1: expr_list : ( expr ( ',' expr )* -> ^( EXPRLIST ( expr )+ ) |);
+	// Tiger.g:276:1: expr_list : ( expr ( ',' expr )* -> ^( EXPRLIST ( expr )+ ) |);
 	public final TigerParser.expr_list_return expr_list() throws RecognitionException {
 		TigerParser.expr_list_return retval = new TigerParser.expr_list_return();
 		retval.start = input.LT(1);
@@ -4477,7 +4477,7 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:273:5: ( expr ( ',' expr )* -> ^( EXPRLIST ( expr )+ ) |)
+			// Tiger.g:277:5: ( expr ( ',' expr )* -> ^( EXPRLIST ( expr )+ ) |)
 			int alt35=2;
 			int LA35_0 = input.LA(1);
 			if ( (LA35_0==FIXEDPTLIT||LA35_0==ID||LA35_0==INTLIT||LA35_0==LPAREN) ) {
@@ -4495,14 +4495,14 @@ public class TigerParser extends Parser {
 
 			switch (alt35) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:273:7: expr ( ',' expr )*
+					// Tiger.g:277:7: expr ( ',' expr )*
 					{
-					pushFollow(FOLLOW_expr_in_expr_list2396);
+					pushFollow(FOLLOW_expr_in_expr_list2405);
 					expr160=expr();
 					state._fsp--;
 
 					stream_expr.add(expr160.getTree());
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:273:12: ( ',' expr )*
+					// Tiger.g:277:12: ( ',' expr )*
 					loop34:
 					while (true) {
 						int alt34=2;
@@ -4513,12 +4513,12 @@ public class TigerParser extends Parser {
 
 						switch (alt34) {
 						case 1 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:273:14: ',' expr
+							// Tiger.g:277:14: ',' expr
 							{
-							char_literal161=(Token)match(input,COMMA,FOLLOW_COMMA_in_expr_list2400);  
+							char_literal161=(Token)match(input,COMMA,FOLLOW_COMMA_in_expr_list2409);  
 							stream_COMMA.add(char_literal161);
 
-							pushFollow(FOLLOW_expr_in_expr_list2402);
+							pushFollow(FOLLOW_expr_in_expr_list2411);
 							expr162=expr();
 							state._fsp--;
 
@@ -4542,9 +4542,9 @@ public class TigerParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 273:26: -> ^( EXPRLIST ( expr )+ )
+					// 277:26: -> ^( EXPRLIST ( expr )+ )
 					{
-						// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:273:29: ^( EXPRLIST ( expr )+ )
+						// Tiger.g:277:29: ^( EXPRLIST ( expr )+ )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EXPRLIST, "EXPRLIST"), root_1);
@@ -4567,7 +4567,7 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:275:5: 
+					// Tiger.g:279:5: 
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -4603,7 +4603,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "mult_operator"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:283:1: mult_operator : ( '*' | '/' );
+	// Tiger.g:287:1: mult_operator : ( '*' | '/' );
 	public final TigerParser.mult_operator_return mult_operator() throws RecognitionException {
 		TigerParser.mult_operator_return retval = new TigerParser.mult_operator_return();
 		retval.start = input.LT(1);
@@ -4615,8 +4615,8 @@ public class TigerParser extends Parser {
 		Object set163_tree=null;
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:283:15: ( '*' | '/' )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:
+			// Tiger.g:287:15: ( '*' | '/' )
+			// Tiger.g:
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -4660,7 +4660,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "add_operator"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:285:1: add_operator : ( '+' | '-' );
+	// Tiger.g:289:1: add_operator : ( '+' | '-' );
 	public final TigerParser.add_operator_return add_operator() throws RecognitionException {
 		TigerParser.add_operator_return retval = new TigerParser.add_operator_return();
 		retval.start = input.LT(1);
@@ -4672,8 +4672,8 @@ public class TigerParser extends Parser {
 		Object set164_tree=null;
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:285:14: ( '+' | '-' )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:
+			// Tiger.g:289:14: ( '+' | '-' )
+			// Tiger.g:
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -4717,7 +4717,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "compare_operator"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:287:1: compare_operator : ( '=' | '<>' | '<' | '>' | '<=' | '>=' );
+	// Tiger.g:291:1: compare_operator : ( '=' | '<>' | '<' | '>' | '<=' | '>=' );
 	public final TigerParser.compare_operator_return compare_operator() throws RecognitionException {
 		TigerParser.compare_operator_return retval = new TigerParser.compare_operator_return();
 		retval.start = input.LT(1);
@@ -4729,8 +4729,8 @@ public class TigerParser extends Parser {
 		Object set165_tree=null;
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:287:18: ( '=' | '<>' | '<' | '>' | '<=' | '>=' )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:
+			// Tiger.g:291:18: ( '=' | '<>' | '<' | '>' | '<=' | '>=' )
+			// Tiger.g:
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -4774,7 +4774,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "and_operator"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:289:1: and_operator : ( '&' | '|' );
+	// Tiger.g:293:1: and_operator : ( '&' | '|' );
 	public final TigerParser.and_operator_return and_operator() throws RecognitionException {
 		TigerParser.and_operator_return retval = new TigerParser.and_operator_return();
 		retval.start = input.LT(1);
@@ -4786,8 +4786,8 @@ public class TigerParser extends Parser {
 		Object set166_tree=null;
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:289:14: ( '&' | '|' )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:
+			// Tiger.g:293:14: ( '&' | '|' )
+			// Tiger.g:
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -4831,7 +4831,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "value"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:291:1: value : ID value_tail -> ^( ID ( value_tail )? ) ;
+	// Tiger.g:295:1: value : ID value_tail -> ^( ID ( value_tail )? ) ;
 	public final TigerParser.value_return value() throws RecognitionException {
 		TigerParser.value_return retval = new TigerParser.value_return();
 		retval.start = input.LT(1);
@@ -4846,19 +4846,19 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_value_tail=new RewriteRuleSubtreeStream(adaptor,"rule value_tail");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:291:7: ( ID value_tail -> ^( ID ( value_tail )? ) )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:291:9: ID value_tail
+			// Tiger.g:295:7: ( ID value_tail -> ^( ID ( value_tail )? ) )
+			// Tiger.g:295:9: ID value_tail
 			{
-			ID167=(Token)match(input,ID,FOLLOW_ID_in_value2504);  
+			ID167=(Token)match(input,ID,FOLLOW_ID_in_value2513);  
 			stream_ID.add(ID167);
 
-			pushFollow(FOLLOW_value_tail_in_value2506);
+			pushFollow(FOLLOW_value_tail_in_value2515);
 			value_tail168=value_tail();
 			state._fsp--;
 
 			stream_value_tail.add(value_tail168.getTree());
 			// AST REWRITE
-			// elements: ID, value_tail
+			// elements: value_tail, ID
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -4868,13 +4868,13 @@ public class TigerParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 291:23: -> ^( ID ( value_tail )? )
+			// 295:23: -> ^( ID ( value_tail )? )
 			{
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:291:26: ^( ID ( value_tail )? )
+				// Tiger.g:295:26: ^( ID ( value_tail )? )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot(stream_ID.nextNode(), root_1);
-				// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:291:31: ( value_tail )?
+				// Tiger.g:295:31: ( value_tail )?
 				if ( stream_value_tail.hasNext() ) {
 					adaptor.addChild(root_1, stream_value_tail.nextTree());
 				}
@@ -4917,7 +4917,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "literal"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:293:1: literal : ( INTLIT | FIXEDPTLIT );
+	// Tiger.g:297:1: literal : ( INTLIT | FIXEDPTLIT );
 	public final TigerParser.literal_return literal() throws RecognitionException {
 		TigerParser.literal_return retval = new TigerParser.literal_return();
 		retval.start = input.LT(1);
@@ -4929,8 +4929,8 @@ public class TigerParser extends Parser {
 		Object set169_tree=null;
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:294:5: ( INTLIT | FIXEDPTLIT )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:
+			// Tiger.g:298:5: ( INTLIT | FIXEDPTLIT )
+			// Tiger.g:
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -4974,7 +4974,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "value_tail"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:298:1: value_tail : ( '[' index_expr ']' ( '[' index_expr ']' )? -> ( index_expr )+ |);
+	// Tiger.g:302:1: value_tail : ( '[' index_expr ']' ( '[' index_expr ']' )? -> ( index_expr )+ |);
 	public final TigerParser.value_tail_return value_tail() throws RecognitionException {
 		TigerParser.value_tail_return retval = new TigerParser.value_tail_return();
 		retval.start = input.LT(1);
@@ -4997,7 +4997,7 @@ public class TigerParser extends Parser {
 		RewriteRuleSubtreeStream stream_index_expr=new RewriteRuleSubtreeStream(adaptor,"rule index_expr");
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:299:5: ( '[' index_expr ']' ( '[' index_expr ']' )? -> ( index_expr )+ |)
+			// Tiger.g:303:5: ( '[' index_expr ']' ( '[' index_expr ']' )? -> ( index_expr )+ |)
 			int alt37=2;
 			int LA37_0 = input.LA(1);
 			if ( (LA37_0==LBRACK) ) {
@@ -5015,20 +5015,20 @@ public class TigerParser extends Parser {
 
 			switch (alt37) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:299:7: '[' index_expr ']' ( '[' index_expr ']' )?
+					// Tiger.g:303:7: '[' index_expr ']' ( '[' index_expr ']' )?
 					{
-					char_literal170=(Token)match(input,LBRACK,FOLLOW_LBRACK_in_value_tail2553);  
+					char_literal170=(Token)match(input,LBRACK,FOLLOW_LBRACK_in_value_tail2562);  
 					stream_LBRACK.add(char_literal170);
 
-					pushFollow(FOLLOW_index_expr_in_value_tail2555);
+					pushFollow(FOLLOW_index_expr_in_value_tail2564);
 					index_expr171=index_expr();
 					state._fsp--;
 
 					stream_index_expr.add(index_expr171.getTree());
-					char_literal172=(Token)match(input,RBRACK,FOLLOW_RBRACK_in_value_tail2557);  
+					char_literal172=(Token)match(input,RBRACK,FOLLOW_RBRACK_in_value_tail2566);  
 					stream_RBRACK.add(char_literal172);
 
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:299:26: ( '[' index_expr ']' )?
+					// Tiger.g:303:26: ( '[' index_expr ']' )?
 					int alt36=2;
 					int LA36_0 = input.LA(1);
 					if ( (LA36_0==LBRACK) ) {
@@ -5036,17 +5036,17 @@ public class TigerParser extends Parser {
 					}
 					switch (alt36) {
 						case 1 :
-							// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:299:27: '[' index_expr ']'
+							// Tiger.g:303:27: '[' index_expr ']'
 							{
-							char_literal173=(Token)match(input,LBRACK,FOLLOW_LBRACK_in_value_tail2560);  
+							char_literal173=(Token)match(input,LBRACK,FOLLOW_LBRACK_in_value_tail2569);  
 							stream_LBRACK.add(char_literal173);
 
-							pushFollow(FOLLOW_index_expr_in_value_tail2562);
+							pushFollow(FOLLOW_index_expr_in_value_tail2571);
 							index_expr174=index_expr();
 							state._fsp--;
 
 							stream_index_expr.add(index_expr174.getTree());
-							char_literal175=(Token)match(input,RBRACK,FOLLOW_RBRACK_in_value_tail2564);  
+							char_literal175=(Token)match(input,RBRACK,FOLLOW_RBRACK_in_value_tail2573);  
 							stream_RBRACK.add(char_literal175);
 
 							}
@@ -5065,7 +5065,7 @@ public class TigerParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 300:13: -> ( index_expr )+
+					// 304:13: -> ( index_expr )+
 					{
 						if ( !(stream_index_expr.hasNext()) ) {
 							throw new RewriteEarlyExitException();
@@ -5083,7 +5083,7 @@ public class TigerParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:302:5: 
+					// Tiger.g:306:5: 
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -5119,7 +5119,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "index_expr"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:304:1: index_expr : index_term ( add_operator ^ index_term )* ;
+	// Tiger.g:308:1: index_expr : index_term ( add_operator ^ index_term )* ;
 	public final TigerParser.index_expr_return index_expr() throws RecognitionException {
 		TigerParser.index_expr_return retval = new TigerParser.index_expr_return();
 		retval.start = input.LT(1);
@@ -5132,19 +5132,19 @@ public class TigerParser extends Parser {
 
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:304:12: ( index_term ( add_operator ^ index_term )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:304:14: index_term ( add_operator ^ index_term )*
+			// Tiger.g:308:12: ( index_term ( add_operator ^ index_term )* )
+			// Tiger.g:308:14: index_term ( add_operator ^ index_term )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_index_term_in_index_expr2605);
+			pushFollow(FOLLOW_index_term_in_index_expr2614);
 			index_term176=index_term();
 			state._fsp--;
 
 			adaptor.addChild(root_0, index_term176.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:304:25: ( add_operator ^ index_term )*
+			// Tiger.g:308:25: ( add_operator ^ index_term )*
 			loop38:
 			while (true) {
 				int alt38=2;
@@ -5155,14 +5155,14 @@ public class TigerParser extends Parser {
 
 				switch (alt38) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:304:26: add_operator ^ index_term
+					// Tiger.g:308:26: add_operator ^ index_term
 					{
-					pushFollow(FOLLOW_add_operator_in_index_expr2608);
+					pushFollow(FOLLOW_add_operator_in_index_expr2617);
 					add_operator177=add_operator();
 					state._fsp--;
 
 					root_0 = (Object)adaptor.becomeRoot(add_operator177.getTree(), root_0);
-					pushFollow(FOLLOW_index_term_in_index_expr2611);
+					pushFollow(FOLLOW_index_term_in_index_expr2620);
 					index_term178=index_term();
 					state._fsp--;
 
@@ -5205,7 +5205,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "index_term"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:306:1: index_term : index_factor ( '*' ^ index_factor )* ;
+	// Tiger.g:310:1: index_term : index_factor ( '*' ^ index_factor )* ;
 	public final TigerParser.index_term_return index_term() throws RecognitionException {
 		TigerParser.index_term_return retval = new TigerParser.index_term_return();
 		retval.start = input.LT(1);
@@ -5219,19 +5219,19 @@ public class TigerParser extends Parser {
 		Object char_literal180_tree=null;
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:306:12: ( index_factor ( '*' ^ index_factor )* )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:306:14: index_factor ( '*' ^ index_factor )*
+			// Tiger.g:310:12: ( index_factor ( '*' ^ index_factor )* )
+			// Tiger.g:310:14: index_factor ( '*' ^ index_factor )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_index_factor_in_index_term2622);
+			pushFollow(FOLLOW_index_factor_in_index_term2631);
 			index_factor179=index_factor();
 			state._fsp--;
 
 			adaptor.addChild(root_0, index_factor179.getTree());
 
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:306:27: ( '*' ^ index_factor )*
+			// Tiger.g:310:27: ( '*' ^ index_factor )*
 			loop39:
 			while (true) {
 				int alt39=2;
@@ -5242,13 +5242,13 @@ public class TigerParser extends Parser {
 
 				switch (alt39) {
 				case 1 :
-					// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:306:28: '*' ^ index_factor
+					// Tiger.g:310:28: '*' ^ index_factor
 					{
-					char_literal180=(Token)match(input,MULT,FOLLOW_MULT_in_index_term2625); 
+					char_literal180=(Token)match(input,MULT,FOLLOW_MULT_in_index_term2634); 
 					char_literal180_tree = (Object)adaptor.create(char_literal180);
 					root_0 = (Object)adaptor.becomeRoot(char_literal180_tree, root_0);
 
-					pushFollow(FOLLOW_index_factor_in_index_term2628);
+					pushFollow(FOLLOW_index_factor_in_index_term2637);
 					index_factor181=index_factor();
 					state._fsp--;
 
@@ -5291,7 +5291,7 @@ public class TigerParser extends Parser {
 
 
 	// $ANTLR start "index_factor"
-	// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:308:1: index_factor : ( INTLIT | ID );
+	// Tiger.g:312:1: index_factor : ( INTLIT | ID );
 	public final TigerParser.index_factor_return index_factor() throws RecognitionException {
 		TigerParser.index_factor_return retval = new TigerParser.index_factor_return();
 		retval.start = input.LT(1);
@@ -5303,8 +5303,8 @@ public class TigerParser extends Parser {
 		Object set182_tree=null;
 
 		try {
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:308:14: ( INTLIT | ID )
-			// /home/q/Desktop/CS4240/ANTLR/Git/Phase2/Working/Tiger.g:
+			// Tiger.g:312:14: ( INTLIT | ID )
+			// Tiger.g:
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -5346,182 +5346,182 @@ public class TigerParser extends Parser {
 	public static final BitSet FOLLOW_type_declaration_list_in_tiger_program1015 = new BitSet(new long[]{0x0000004202000000L,0x0000000000000100L});
 	public static final BitSet FOLLOW_funct_declaration_list_then_main_in_tiger_program1017 = new BitSet(new long[]{0x0000000000000000L});
 	public static final BitSet FOLLOW_EOF_in_tiger_program1019 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_VOID_in_funct_declaration_list_then_main1043 = new BitSet(new long[]{0x0001000020000000L});
-	public static final BitSet FOLLOW_funct_declaration_tail_in_funct_declaration_list_then_main1047 = new BitSet(new long[]{0x0000004202000000L,0x0000000000000100L});
-	public static final BitSet FOLLOW_funct_declaration_list_then_main_in_funct_declaration_list_then_main1050 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_main_function_tail_in_funct_declaration_list_then_main1054 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_funct_declaration_list_then_main1066 = new BitSet(new long[]{0x0000000020000000L});
-	public static final BitSet FOLLOW_INT_in_funct_declaration_list_then_main1070 = new BitSet(new long[]{0x0000000020000000L});
-	public static final BitSet FOLLOW_FIXEDPT_in_funct_declaration_list_then_main1074 = new BitSet(new long[]{0x0000000020000000L});
-	public static final BitSet FOLLOW_funct_declaration_tail_in_funct_declaration_list_then_main1077 = new BitSet(new long[]{0x0000004202000000L,0x0000000000000100L});
-	public static final BitSet FOLLOW_funct_declaration_list_then_main_in_funct_declaration_list_then_main1080 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FUNCTION_in_funct_declaration_tail1098 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_ID_in_funct_declaration_tail1100 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_LPAREN_in_funct_declaration_tail1102 = new BitSet(new long[]{0x1000000200000000L});
-	public static final BitSet FOLLOW_param_list_in_funct_declaration_tail1104 = new BitSet(new long[]{0x1000000000000000L});
-	public static final BitSet FOLLOW_RPAREN_in_funct_declaration_tail1106 = new BitSet(new long[]{0x0000000000000080L});
-	public static final BitSet FOLLOW_BEGIN_in_funct_declaration_tail1108 = new BitSet(new long[]{0x0000000000000080L});
-	public static final BitSet FOLLOW_block_list_in_funct_declaration_tail1110 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_END_in_funct_declaration_tail1112 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_SEMI_in_funct_declaration_tail1114 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_MAIN_in_main_function_tail1141 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_LPAREN_in_main_function_tail1143 = new BitSet(new long[]{0x1000000000000000L});
-	public static final BitSet FOLLOW_RPAREN_in_main_function_tail1145 = new BitSet(new long[]{0x0000000000000080L});
-	public static final BitSet FOLLOW_BEGIN_in_main_function_tail1147 = new BitSet(new long[]{0x0000000000000080L});
-	public static final BitSet FOLLOW_block_list_in_main_function_tail1149 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_END_in_main_function_tail1151 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_SEMI_in_main_function_tail1153 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_param_in_param_list1174 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_COMMA_in_param_list1178 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_param_in_param_list1180 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_ID_in_param1207 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_COLON_in_param1209 = new BitSet(new long[]{0x0000004202000000L});
-	public static final BitSet FOLLOW_type_id_in_param1211 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_block_in_block_list1219 = new BitSet(new long[]{0x0000000000000082L});
-	public static final BitSet FOLLOW_BEGIN_in_block1237 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000022L});
-	public static final BitSet FOLLOW_declaration_segment_in_block1239 = new BitSet(new long[]{0x0800000A08000480L,0x0000000000000200L});
-	public static final BitSet FOLLOW_stat_seq_in_block1241 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_END_in_block1243 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_SEMI_in_block1245 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_type_declaration_list_in_declaration_segment1263 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-	public static final BitSet FOLLOW_var_declaration_list_in_declaration_segment1265 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_type_declaration_in_type_declaration_list1278 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
-	public static final BitSet FOLLOW_var_declaration_in_var_declaration_list1309 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
-	public static final BitSet FOLLOW_TYPE_in_type_declaration1332 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_ID_in_type_declaration1334 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_EQ_in_type_declaration1336 = new BitSet(new long[]{0x0000004002000020L});
-	public static final BitSet FOLLOW_type_in_type_declaration1338 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_SEMI_in_type_declaration1340 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_base_type_in_type1362 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ARRAY_in_type1370 = new BitSet(new long[]{0x0000080000000000L});
-	public static final BitSet FOLLOW_LBRACK_in_type1372 = new BitSet(new long[]{0x0000008000000000L});
-	public static final BitSet FOLLOW_INTLIT_in_type1374 = new BitSet(new long[]{0x0400000000000000L});
-	public static final BitSet FOLLOW_RBRACK_in_type1376 = new BitSet(new long[]{0x0020080000000000L});
-	public static final BitSet FOLLOW_LBRACK_in_type1379 = new BitSet(new long[]{0x0000008000000000L});
-	public static final BitSet FOLLOW_INTLIT_in_type1381 = new BitSet(new long[]{0x0400000000000000L});
-	public static final BitSet FOLLOW_RBRACK_in_type1383 = new BitSet(new long[]{0x0020000000000000L});
-	public static final BitSet FOLLOW_OF_in_type1387 = new BitSet(new long[]{0x0000004002000000L});
-	public static final BitSet FOLLOW_base_type_in_type1389 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_base_type_in_type_id1417 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_type_id1425 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_VAR_in_var_declaration1463 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_id_list_in_var_declaration1465 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_COLON_in_var_declaration1467 = new BitSet(new long[]{0x0000004202000000L});
-	public static final BitSet FOLLOW_type_id_in_var_declaration1469 = new BitSet(new long[]{0x2000000000000040L});
-	public static final BitSet FOLLOW_optional_init_in_var_declaration1471 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_SEMI_in_var_declaration1473 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_id_list1498 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_COMMA_in_id_list1502 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_ID_in_id_list1504 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_ASSIGN_in_optional_init1533 = new BitSet(new long[]{0x0000008004000000L});
-	public static final BitSet FOLLOW_literal_in_optional_init1535 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_stat_in_stat_seq1558 = new BitSet(new long[]{0x0800000A08000482L,0x0000000000000200L});
-	public static final BitSet FOLLOW_function_call_or_assignment_in_stat1576 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IF_in_stat1584 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_expr_in_stat1586 = new BitSet(new long[]{0x4000000000000000L});
-	public static final BitSet FOLLOW_THEN_in_stat1588 = new BitSet(new long[]{0x0800000A08000480L,0x0000000000000200L});
-	public static final BitSet FOLLOW_stat_seq_in_stat1592 = new BitSet(new long[]{0x0000000000220000L});
-	public static final BitSet FOLLOW_ELSE_in_stat1605 = new BitSet(new long[]{0x0800000A08000480L,0x0000000000000200L});
-	public static final BitSet FOLLOW_stat_seq_in_stat1609 = new BitSet(new long[]{0x0000000000200000L});
-	public static final BitSet FOLLOW_ENDIF_in_stat1611 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_ENDIF_in_stat1657 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_SEMI_in_stat1696 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_WHILE_in_stat1704 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_expr_in_stat1706 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_DO_in_stat1708 = new BitSet(new long[]{0x0800000A08000480L,0x0000000000000200L});
-	public static final BitSet FOLLOW_stat_seq_in_stat1710 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_ENDDO_in_stat1712 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_SEMI_in_stat1714 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FOR_in_stat1740 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_ID_in_stat1742 = new BitSet(new long[]{0x0000000000000040L});
-	public static final BitSet FOLLOW_ASSIGN_in_stat1744 = new BitSet(new long[]{0x0000008200000000L});
-	public static final BitSet FOLLOW_index_expr_in_stat1746 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-	public static final BitSet FOLLOW_TO_in_stat1748 = new BitSet(new long[]{0x0000008200000000L});
-	public static final BitSet FOLLOW_index_expr_in_stat1750 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_DO_in_stat1752 = new BitSet(new long[]{0x0800000A08000480L,0x0000000000000200L});
-	public static final BitSet FOLLOW_stat_seq_in_stat1754 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_ENDDO_in_stat1756 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_SEMI_in_stat1758 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_BREAK_in_stat1788 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_SEMI_in_stat1790 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_RETURN_in_stat1799 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_expr_in_stat1801 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_SEMI_in_stat1803 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_block_in_stat1827 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAREN_in_function_args1844 = new BitSet(new long[]{0x1000808204000000L});
-	public static final BitSet FOLLOW_expr_list_in_function_args1846 = new BitSet(new long[]{0x1000000000000000L});
-	public static final BitSet FOLLOW_RPAREN_in_function_args1848 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_function_call_or_assignment1878 = new BitSet(new long[]{0x0000880000000040L});
-	public static final BitSet FOLLOW_function_args_in_function_call_or_assignment1890 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_value_tail_in_function_call_or_assignment1925 = new BitSet(new long[]{0x0000000000000040L});
-	public static final BitSet FOLLOW_ASSIGN_in_function_call_or_assignment1927 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_expr_or_function_call_in_function_call_or_assignment1929 = new BitSet(new long[]{0x2000000000000000L});
-	public static final BitSet FOLLOW_SEMI_in_function_call_or_assignment1968 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_expr_or_function_call1985 = new BitSet(new long[]{0x0000880000000000L});
-	public static final BitSet FOLLOW_expr_with_start_id_in_expr_or_function_call1997 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_function_args_in_expr_or_function_call2019 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_no_start_id_in_expr_or_function_call2060 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_term4_in_expr2075 = new BitSet(new long[]{0x0040000000000012L});
-	public static final BitSet FOLLOW_and_operator_in_expr2078 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_term4_in_expr2081 = new BitSet(new long[]{0x0040000000000012L});
-	public static final BitSet FOLLOW_term3_in_term42091 = new BitSet(new long[]{0x0010300180400002L});
-	public static final BitSet FOLLOW_compare_operator_in_term42094 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_term3_in_term42097 = new BitSet(new long[]{0x0010300180400002L});
-	public static final BitSet FOLLOW_term2_in_term32107 = new BitSet(new long[]{0x0104000000000002L});
-	public static final BitSet FOLLOW_add_operator_in_term32110 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_term2_in_term32113 = new BitSet(new long[]{0x0104000000000002L});
-	public static final BitSet FOLLOW_term1_in_term22123 = new BitSet(new long[]{0x0008000000008002L});
-	public static final BitSet FOLLOW_mult_operator_in_term22126 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_term1_in_term22129 = new BitSet(new long[]{0x0008000000008002L});
-	public static final BitSet FOLLOW_literal_in_term12143 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_value_in_term12151 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAREN_in_term12159 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_expr_in_term12161 = new BitSet(new long[]{0x1000000000000000L});
-	public static final BitSet FOLLOW_RPAREN_in_term12163 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_term4_no_start_id_in_expr_no_start_id2188 = new BitSet(new long[]{0x0040000000000012L});
-	public static final BitSet FOLLOW_and_operator_in_expr_no_start_id2191 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_term4_in_expr_no_start_id2194 = new BitSet(new long[]{0x0040000000000012L});
-	public static final BitSet FOLLOW_term3_no_start_id_in_term4_no_start_id2204 = new BitSet(new long[]{0x0010300180400002L});
-	public static final BitSet FOLLOW_compare_operator_in_term4_no_start_id2207 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_term3_in_term4_no_start_id2210 = new BitSet(new long[]{0x0010300180400002L});
-	public static final BitSet FOLLOW_term2_no_start_id_in_term3_no_start_id2220 = new BitSet(new long[]{0x0104000000000002L});
-	public static final BitSet FOLLOW_add_operator_in_term3_no_start_id2223 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_term2_in_term3_no_start_id2226 = new BitSet(new long[]{0x0104000000000002L});
-	public static final BitSet FOLLOW_term1_no_start_id_in_term2_no_start_id2236 = new BitSet(new long[]{0x0008000000008002L});
-	public static final BitSet FOLLOW_mult_operator_in_term2_no_start_id2239 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_term1_in_term2_no_start_id2242 = new BitSet(new long[]{0x0008000000008002L});
-	public static final BitSet FOLLOW_literal_in_term1_no_start_id2256 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAREN_in_term1_no_start_id2264 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_expr_in_term1_no_start_id2266 = new BitSet(new long[]{0x1000000000000000L});
-	public static final BitSet FOLLOW_RPAREN_in_term1_no_start_id2268 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_term4_with_start_id_in_expr_with_start_id2294 = new BitSet(new long[]{0x0040000000000012L});
-	public static final BitSet FOLLOW_and_operator_in_expr_with_start_id2298 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_term4_in_expr_with_start_id2301 = new BitSet(new long[]{0x0040000000000012L});
-	public static final BitSet FOLLOW_term3_with_start_id_in_term4_with_start_id2312 = new BitSet(new long[]{0x0010300180400002L});
-	public static final BitSet FOLLOW_compare_operator_in_term4_with_start_id2316 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_term3_in_term4_with_start_id2319 = new BitSet(new long[]{0x0010300180400002L});
-	public static final BitSet FOLLOW_term2_with_start_id_in_term3_with_start_id2330 = new BitSet(new long[]{0x0104000000000002L});
-	public static final BitSet FOLLOW_add_operator_in_term3_with_start_id2334 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_term2_in_term3_with_start_id2337 = new BitSet(new long[]{0x0104000000000002L});
-	public static final BitSet FOLLOW_term1_with_start_id_in_term2_with_start_id2348 = new BitSet(new long[]{0x0008000000008002L});
-	public static final BitSet FOLLOW_mult_operator_in_term2_with_start_id2352 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_term1_in_term2_with_start_id2355 = new BitSet(new long[]{0x0008000000008002L});
-	public static final BitSet FOLLOW_value_tail_in_term1_with_start_id2370 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_in_expr_list2396 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_COMMA_in_expr_list2400 = new BitSet(new long[]{0x0000808204000000L});
-	public static final BitSet FOLLOW_expr_in_expr_list2402 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_ID_in_value2504 = new BitSet(new long[]{0x0000080000000000L});
-	public static final BitSet FOLLOW_value_tail_in_value2506 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LBRACK_in_value_tail2553 = new BitSet(new long[]{0x0000008200000000L});
-	public static final BitSet FOLLOW_index_expr_in_value_tail2555 = new BitSet(new long[]{0x0400000000000000L});
-	public static final BitSet FOLLOW_RBRACK_in_value_tail2557 = new BitSet(new long[]{0x0000080000000002L});
-	public static final BitSet FOLLOW_LBRACK_in_value_tail2560 = new BitSet(new long[]{0x0000008200000000L});
-	public static final BitSet FOLLOW_index_expr_in_value_tail2562 = new BitSet(new long[]{0x0400000000000000L});
-	public static final BitSet FOLLOW_RBRACK_in_value_tail2564 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_index_term_in_index_expr2605 = new BitSet(new long[]{0x0104000000000002L});
-	public static final BitSet FOLLOW_add_operator_in_index_expr2608 = new BitSet(new long[]{0x0000008200000000L});
-	public static final BitSet FOLLOW_index_term_in_index_expr2611 = new BitSet(new long[]{0x0104000000000002L});
-	public static final BitSet FOLLOW_index_factor_in_index_term2622 = new BitSet(new long[]{0x0008000000000002L});
-	public static final BitSet FOLLOW_MULT_in_index_term2625 = new BitSet(new long[]{0x0000008200000000L});
-	public static final BitSet FOLLOW_index_factor_in_index_term2628 = new BitSet(new long[]{0x0008000000000002L});
+	public static final BitSet FOLLOW_VOID_in_funct_declaration_list_then_main1046 = new BitSet(new long[]{0x0001000020000000L});
+	public static final BitSet FOLLOW_funct_declaration_tail_in_funct_declaration_list_then_main1050 = new BitSet(new long[]{0x0000004202000000L,0x0000000000000100L});
+	public static final BitSet FOLLOW_funct_declaration_list_then_main_in_funct_declaration_list_then_main1053 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_main_function_tail_in_funct_declaration_list_then_main1057 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_funct_declaration_list_then_main1069 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_INT_in_funct_declaration_list_then_main1073 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_FIXEDPT_in_funct_declaration_list_then_main1077 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_funct_declaration_tail_in_funct_declaration_list_then_main1080 = new BitSet(new long[]{0x0000004202000000L,0x0000000000000100L});
+	public static final BitSet FOLLOW_funct_declaration_list_then_main_in_funct_declaration_list_then_main1083 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FUNCTION_in_funct_declaration_tail1101 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_ID_in_funct_declaration_tail1103 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_LPAREN_in_funct_declaration_tail1105 = new BitSet(new long[]{0x1000000200000000L});
+	public static final BitSet FOLLOW_param_list_in_funct_declaration_tail1107 = new BitSet(new long[]{0x1000000000000000L});
+	public static final BitSet FOLLOW_RPAREN_in_funct_declaration_tail1109 = new BitSet(new long[]{0x0000000000000080L});
+	public static final BitSet FOLLOW_BEGIN_in_funct_declaration_tail1111 = new BitSet(new long[]{0x0000000000000080L});
+	public static final BitSet FOLLOW_block_list_in_funct_declaration_tail1113 = new BitSet(new long[]{0x0000000000080000L});
+	public static final BitSet FOLLOW_END_in_funct_declaration_tail1115 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_SEMI_in_funct_declaration_tail1117 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_MAIN_in_main_function_tail1146 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_LPAREN_in_main_function_tail1148 = new BitSet(new long[]{0x1000000000000000L});
+	public static final BitSet FOLLOW_RPAREN_in_main_function_tail1150 = new BitSet(new long[]{0x0000000000000080L});
+	public static final BitSet FOLLOW_BEGIN_in_main_function_tail1152 = new BitSet(new long[]{0x0000000000000080L});
+	public static final BitSet FOLLOW_block_list_in_main_function_tail1154 = new BitSet(new long[]{0x0000000000080000L});
+	public static final BitSet FOLLOW_END_in_main_function_tail1156 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_SEMI_in_main_function_tail1158 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_param_in_param_list1181 = new BitSet(new long[]{0x0000000000001002L});
+	public static final BitSet FOLLOW_COMMA_in_param_list1185 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_param_in_param_list1187 = new BitSet(new long[]{0x0000000000001002L});
+	public static final BitSet FOLLOW_ID_in_param1216 = new BitSet(new long[]{0x0000000000000800L});
+	public static final BitSet FOLLOW_COLON_in_param1218 = new BitSet(new long[]{0x0000004202000000L});
+	public static final BitSet FOLLOW_type_id_in_param1220 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_block_in_block_list1228 = new BitSet(new long[]{0x0000000000000082L});
+	public static final BitSet FOLLOW_BEGIN_in_block1246 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000022L});
+	public static final BitSet FOLLOW_declaration_segment_in_block1248 = new BitSet(new long[]{0x0800000A08000480L,0x0000000000000200L});
+	public static final BitSet FOLLOW_stat_seq_in_block1250 = new BitSet(new long[]{0x0000000000080000L});
+	public static final BitSet FOLLOW_END_in_block1252 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_SEMI_in_block1254 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_type_declaration_list_in_declaration_segment1272 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+	public static final BitSet FOLLOW_var_declaration_list_in_declaration_segment1274 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_type_declaration_in_type_declaration_list1287 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
+	public static final BitSet FOLLOW_var_declaration_in_var_declaration_list1318 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
+	public static final BitSet FOLLOW_TYPE_in_type_declaration1341 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_ID_in_type_declaration1343 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_EQ_in_type_declaration1345 = new BitSet(new long[]{0x0000004002000020L});
+	public static final BitSet FOLLOW_type_in_type_declaration1347 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_SEMI_in_type_declaration1349 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_base_type_in_type1371 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ARRAY_in_type1379 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_LBRACK_in_type1381 = new BitSet(new long[]{0x0000008000000000L});
+	public static final BitSet FOLLOW_INTLIT_in_type1383 = new BitSet(new long[]{0x0400000000000000L});
+	public static final BitSet FOLLOW_RBRACK_in_type1385 = new BitSet(new long[]{0x0020080000000000L});
+	public static final BitSet FOLLOW_LBRACK_in_type1388 = new BitSet(new long[]{0x0000008000000000L});
+	public static final BitSet FOLLOW_INTLIT_in_type1390 = new BitSet(new long[]{0x0400000000000000L});
+	public static final BitSet FOLLOW_RBRACK_in_type1392 = new BitSet(new long[]{0x0020000000000000L});
+	public static final BitSet FOLLOW_OF_in_type1396 = new BitSet(new long[]{0x0000004002000000L});
+	public static final BitSet FOLLOW_base_type_in_type1398 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_base_type_in_type_id1426 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_type_id1434 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_VAR_in_var_declaration1472 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_id_list_in_var_declaration1474 = new BitSet(new long[]{0x0000000000000800L});
+	public static final BitSet FOLLOW_COLON_in_var_declaration1476 = new BitSet(new long[]{0x0000004202000000L});
+	public static final BitSet FOLLOW_type_id_in_var_declaration1478 = new BitSet(new long[]{0x2000000000000040L});
+	public static final BitSet FOLLOW_optional_init_in_var_declaration1480 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_SEMI_in_var_declaration1482 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_id_list1507 = new BitSet(new long[]{0x0000000000001002L});
+	public static final BitSet FOLLOW_COMMA_in_id_list1511 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_ID_in_id_list1513 = new BitSet(new long[]{0x0000000000001002L});
+	public static final BitSet FOLLOW_ASSIGN_in_optional_init1542 = new BitSet(new long[]{0x0000008004000000L});
+	public static final BitSet FOLLOW_literal_in_optional_init1544 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_stat_in_stat_seq1567 = new BitSet(new long[]{0x0800000A08000482L,0x0000000000000200L});
+	public static final BitSet FOLLOW_function_call_or_assignment_in_stat1585 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IF_in_stat1593 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_expr_in_stat1595 = new BitSet(new long[]{0x4000000000000000L});
+	public static final BitSet FOLLOW_THEN_in_stat1597 = new BitSet(new long[]{0x0800000A08000480L,0x0000000000000200L});
+	public static final BitSet FOLLOW_stat_seq_in_stat1601 = new BitSet(new long[]{0x0000000000220000L});
+	public static final BitSet FOLLOW_ELSE_in_stat1614 = new BitSet(new long[]{0x0800000A08000480L,0x0000000000000200L});
+	public static final BitSet FOLLOW_stat_seq_in_stat1618 = new BitSet(new long[]{0x0000000000200000L});
+	public static final BitSet FOLLOW_ENDIF_in_stat1620 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_ENDIF_in_stat1666 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_SEMI_in_stat1705 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_WHILE_in_stat1713 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_expr_in_stat1715 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_DO_in_stat1717 = new BitSet(new long[]{0x0800000A08000480L,0x0000000000000200L});
+	public static final BitSet FOLLOW_stat_seq_in_stat1719 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_ENDDO_in_stat1721 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_SEMI_in_stat1723 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FOR_in_stat1749 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_ID_in_stat1751 = new BitSet(new long[]{0x0000000000000040L});
+	public static final BitSet FOLLOW_ASSIGN_in_stat1753 = new BitSet(new long[]{0x0000008200000000L});
+	public static final BitSet FOLLOW_index_expr_in_stat1755 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+	public static final BitSet FOLLOW_TO_in_stat1757 = new BitSet(new long[]{0x0000008200000000L});
+	public static final BitSet FOLLOW_index_expr_in_stat1759 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_DO_in_stat1761 = new BitSet(new long[]{0x0800000A08000480L,0x0000000000000200L});
+	public static final BitSet FOLLOW_stat_seq_in_stat1763 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_ENDDO_in_stat1765 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_SEMI_in_stat1767 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_BREAK_in_stat1797 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_SEMI_in_stat1799 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_RETURN_in_stat1808 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_expr_in_stat1810 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_SEMI_in_stat1812 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_block_in_stat1836 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAREN_in_function_args1853 = new BitSet(new long[]{0x1000808204000000L});
+	public static final BitSet FOLLOW_expr_list_in_function_args1855 = new BitSet(new long[]{0x1000000000000000L});
+	public static final BitSet FOLLOW_RPAREN_in_function_args1857 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_function_call_or_assignment1887 = new BitSet(new long[]{0x0000880000000040L});
+	public static final BitSet FOLLOW_function_args_in_function_call_or_assignment1899 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_value_tail_in_function_call_or_assignment1934 = new BitSet(new long[]{0x0000000000000040L});
+	public static final BitSet FOLLOW_ASSIGN_in_function_call_or_assignment1936 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_expr_or_function_call_in_function_call_or_assignment1938 = new BitSet(new long[]{0x2000000000000000L});
+	public static final BitSet FOLLOW_SEMI_in_function_call_or_assignment1977 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_expr_or_function_call1994 = new BitSet(new long[]{0x0000880000000000L});
+	public static final BitSet FOLLOW_expr_with_start_id_in_expr_or_function_call2006 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_function_args_in_expr_or_function_call2028 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_no_start_id_in_expr_or_function_call2069 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_term4_in_expr2084 = new BitSet(new long[]{0x0040000000000012L});
+	public static final BitSet FOLLOW_and_operator_in_expr2087 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_term4_in_expr2090 = new BitSet(new long[]{0x0040000000000012L});
+	public static final BitSet FOLLOW_term3_in_term42100 = new BitSet(new long[]{0x0010300180400002L});
+	public static final BitSet FOLLOW_compare_operator_in_term42103 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_term3_in_term42106 = new BitSet(new long[]{0x0010300180400002L});
+	public static final BitSet FOLLOW_term2_in_term32116 = new BitSet(new long[]{0x0104000000000002L});
+	public static final BitSet FOLLOW_add_operator_in_term32119 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_term2_in_term32122 = new BitSet(new long[]{0x0104000000000002L});
+	public static final BitSet FOLLOW_term1_in_term22132 = new BitSet(new long[]{0x0008000000008002L});
+	public static final BitSet FOLLOW_mult_operator_in_term22135 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_term1_in_term22138 = new BitSet(new long[]{0x0008000000008002L});
+	public static final BitSet FOLLOW_literal_in_term12152 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_value_in_term12160 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAREN_in_term12168 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_expr_in_term12170 = new BitSet(new long[]{0x1000000000000000L});
+	public static final BitSet FOLLOW_RPAREN_in_term12172 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_term4_no_start_id_in_expr_no_start_id2197 = new BitSet(new long[]{0x0040000000000012L});
+	public static final BitSet FOLLOW_and_operator_in_expr_no_start_id2200 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_term4_in_expr_no_start_id2203 = new BitSet(new long[]{0x0040000000000012L});
+	public static final BitSet FOLLOW_term3_no_start_id_in_term4_no_start_id2213 = new BitSet(new long[]{0x0010300180400002L});
+	public static final BitSet FOLLOW_compare_operator_in_term4_no_start_id2216 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_term3_in_term4_no_start_id2219 = new BitSet(new long[]{0x0010300180400002L});
+	public static final BitSet FOLLOW_term2_no_start_id_in_term3_no_start_id2229 = new BitSet(new long[]{0x0104000000000002L});
+	public static final BitSet FOLLOW_add_operator_in_term3_no_start_id2232 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_term2_in_term3_no_start_id2235 = new BitSet(new long[]{0x0104000000000002L});
+	public static final BitSet FOLLOW_term1_no_start_id_in_term2_no_start_id2245 = new BitSet(new long[]{0x0008000000008002L});
+	public static final BitSet FOLLOW_mult_operator_in_term2_no_start_id2248 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_term1_in_term2_no_start_id2251 = new BitSet(new long[]{0x0008000000008002L});
+	public static final BitSet FOLLOW_literal_in_term1_no_start_id2265 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAREN_in_term1_no_start_id2273 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_expr_in_term1_no_start_id2275 = new BitSet(new long[]{0x1000000000000000L});
+	public static final BitSet FOLLOW_RPAREN_in_term1_no_start_id2277 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_term4_with_start_id_in_expr_with_start_id2303 = new BitSet(new long[]{0x0040000000000012L});
+	public static final BitSet FOLLOW_and_operator_in_expr_with_start_id2307 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_term4_in_expr_with_start_id2310 = new BitSet(new long[]{0x0040000000000012L});
+	public static final BitSet FOLLOW_term3_with_start_id_in_term4_with_start_id2321 = new BitSet(new long[]{0x0010300180400002L});
+	public static final BitSet FOLLOW_compare_operator_in_term4_with_start_id2325 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_term3_in_term4_with_start_id2328 = new BitSet(new long[]{0x0010300180400002L});
+	public static final BitSet FOLLOW_term2_with_start_id_in_term3_with_start_id2339 = new BitSet(new long[]{0x0104000000000002L});
+	public static final BitSet FOLLOW_add_operator_in_term3_with_start_id2343 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_term2_in_term3_with_start_id2346 = new BitSet(new long[]{0x0104000000000002L});
+	public static final BitSet FOLLOW_term1_with_start_id_in_term2_with_start_id2357 = new BitSet(new long[]{0x0008000000008002L});
+	public static final BitSet FOLLOW_mult_operator_in_term2_with_start_id2361 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_term1_in_term2_with_start_id2364 = new BitSet(new long[]{0x0008000000008002L});
+	public static final BitSet FOLLOW_value_tail_in_term1_with_start_id2379 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_in_expr_list2405 = new BitSet(new long[]{0x0000000000001002L});
+	public static final BitSet FOLLOW_COMMA_in_expr_list2409 = new BitSet(new long[]{0x0000808204000000L});
+	public static final BitSet FOLLOW_expr_in_expr_list2411 = new BitSet(new long[]{0x0000000000001002L});
+	public static final BitSet FOLLOW_ID_in_value2513 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_value_tail_in_value2515 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LBRACK_in_value_tail2562 = new BitSet(new long[]{0x0000008200000000L});
+	public static final BitSet FOLLOW_index_expr_in_value_tail2564 = new BitSet(new long[]{0x0400000000000000L});
+	public static final BitSet FOLLOW_RBRACK_in_value_tail2566 = new BitSet(new long[]{0x0000080000000002L});
+	public static final BitSet FOLLOW_LBRACK_in_value_tail2569 = new BitSet(new long[]{0x0000008200000000L});
+	public static final BitSet FOLLOW_index_expr_in_value_tail2571 = new BitSet(new long[]{0x0400000000000000L});
+	public static final BitSet FOLLOW_RBRACK_in_value_tail2573 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_index_term_in_index_expr2614 = new BitSet(new long[]{0x0104000000000002L});
+	public static final BitSet FOLLOW_add_operator_in_index_expr2617 = new BitSet(new long[]{0x0000008200000000L});
+	public static final BitSet FOLLOW_index_term_in_index_expr2620 = new BitSet(new long[]{0x0104000000000002L});
+	public static final BitSet FOLLOW_index_factor_in_index_term2631 = new BitSet(new long[]{0x0008000000000002L});
+	public static final BitSet FOLLOW_MULT_in_index_term2634 = new BitSet(new long[]{0x0000008200000000L});
+	public static final BitSet FOLLOW_index_factor_in_index_term2637 = new BitSet(new long[]{0x0008000000000002L});
 }
