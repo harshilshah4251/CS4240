@@ -13,7 +13,8 @@ public class TwoDArray extends Type{
 	public int row = 1;
 	public int column = 1;
 	
-	public TwoDArray(String s, int r, int c,  Type p) {	//s is name, w is size and p is type 
+//s is name, w is size and p is type 
+	public TwoDArray(String s, int r, int c,  Type p) {	
 		super(s, c*r*p.size);
 		size = r*c;
 		of = p;		

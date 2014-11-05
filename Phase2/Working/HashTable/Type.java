@@ -20,8 +20,11 @@ public class Type {
 		Float = new Type("float", 8), //fixedptlit
 		Char = new Type("char", 1), 
 		Void = new Type("void", 0),
-
 		Bool = new Type("bool", 1);
+
+		// Don't add String to Symbol table
+		// Just check if the assignment String := String is correct
+		String = new Type("string", 0);
 
 	
 	public static boolean numeric (Type p){
