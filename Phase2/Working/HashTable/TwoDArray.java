@@ -23,6 +23,6 @@ public class TwoDArray extends Type{
 	}
 
 	public String toString(){
-		return "[" + size + "] " + of.toString();
+		return "[" + row + "] " + "[" + column+"]" + of.toString();
 	}
 }
