@@ -130,7 +130,7 @@ tokens {
 
 	// When exiting a scpoe, remove the symbol table from the stack
 	public SymbolTable exitScope() {
-		SymbolTable temp = stack.removeLast();
+		SymbolTable temp = stack.removeFirst();
 		if(level > 0) level--;
 		return temp;
 	}
@@ -138,17 +138,22 @@ tokens {
 	// It will get the top SymbolTable of the stack
 	// which means get the SymbolTable of current scope
 	public SymbolTable getTopTable() {
-		return stack.getLast();
+		return stack.getFirst();
 	}
 
 	// TODO : Make a method that saves all the SymbolTables into a file
 	//		-> should include It's level too
 
 	public void printSymbol() {
-		for(int i = 0; i < stack.size(); i++) {
-			System.out.println("Symbol table : " + stack.get(i));
+		for(int i = 0; i < tableList.size(); i++) {
+			if(tableList.get(i) != null)
+			System.out.println("Symbol table " + i +": \n" + tableList.get(i) + "\n");
 			//stack.get(i).keySet();
 		}
+	}
+
+	public void addToList(SymbolTable s) {
+		tableList.add(s);
 	}
 
 }
@@ -200,8 +205,8 @@ fragment DIGIT: '0'..'9';
 tiger_program : 
 	{	
 		// This new SymbolTable will be the global SymbolTable
-		enterNewScope(new SymbolTable());
 		level = 0;
+		enterNewScope(new SymbolTable(level));
 	}
 	type_declaration_list funct_declaration_list_then_main {printSymbol();}EOF 
 	-> ^(PROGRAM type_declaration_list funct_declaration_list_then_main)
@@ -243,11 +248,13 @@ param returns[Id param]
 block_list
     : block+ -> ^(BLOCKLIST block+);
 
-block 
-    : BEGIN 
-//{enterNewScope(new SymbolTable()); level++;}
+block : 	BEGIN 
+
+{enterNewScope(new SymbolTable(level));} 
 		 declaration_segment stat_seq END ';'
-//		{exitScope(); level--;} 
+
+	{exitScope();} 
+
 	-> ^(BLOCKSCOPE declaration_segment stat_seq);
 
 declaration_segment 
@@ -266,11 +273,31 @@ var_declaration_list
 type_declaration 
     : TYPE ID '=' type ';'
 
+	{
+		if($type.w == 0) {
+			getTopTable().put($ID.text, new UserType($ID.text, new Type($ID.text)));
+		} else if ($type.h==0) {
+			getTopTable().put($ID.text, new UserType($ID.text, new Array($ID.text, $type.w, $type.e)));
+		} else {
+			getTopTable().put($ID.text, new UserType($ID.text, new TwoDArray($ID.text, $type.w, $type.h, $type.e)));
+		}
+	}
+
 	-> ^(TYPEDECL ID type);
 
-type returns [Type e]
+type returns [Type e, int w, int h]
     : base_type {$e = $base_type.e;}
-    | ARRAY '[' INTLIT ']' ('[' INTLIT ']')? OF base_type 
+    | {int i = 0;$w=0;$h=0;} ARRAY '[' init1=INTLIT ']' ('[' init2=INTLIT ']'{i++;})? OF base_type 
+	{if(i == 0) {
+		$w = Integer.parseInt($init1.text);
+		$h = 0;
+		$e = $base_type.e;
+	} else {
+		$w = Integer.parseInt($init1.text);
+		$h = Integer.parseInt($init2.text);
+		$e = $base_type.e;
+	}
+	}
 	-> ^(ARRAY base_type INTLIT+)
     ;
 
@@ -280,7 +307,7 @@ type_id returns [Type e]
 	// This is for user defined type
 	// Haven't checked if $id.text is working, but should ID's String
 
-    | id=ID {$e = new UserType($id.text);}
+    | id=ID {$e = new Type($id.text);}
     ;
 
 //@returns initialized Type object

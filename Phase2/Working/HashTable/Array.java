@@ -8,7 +8,7 @@
 
 public class Array extends Type {
 	public Type of;
-	public int size = 1; 
+	public int size = 0; 
 	
 	public Array(String s, int w, Type p) {	//s is name, w is size and p is type 
 		super(s, w* p.size);
