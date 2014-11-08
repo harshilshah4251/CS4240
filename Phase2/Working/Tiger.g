@@ -130,8 +130,9 @@ tokens {
 
 	// When exiting a scpoe, remove the symbol table from the stack
 	private SymbolTable exitScope() {
-		stack.removeLast();
+		SymbolTable temp = stack.removeLast();
 		if(level > 0) level--;
+		return temp;
 	}
 
 	// It will get the top SymbolTable of the stack
@@ -257,7 +258,7 @@ type_id returns [Type e]
 	// This is for user defined type
 	// Haven't checked if $id.text is working, but should ID's String
 
-    | id=ID {$e = $id.text;}
+    | id=ID {$e = new UserType($id.text);}
     ;
 
 //@returns initialized Type object
