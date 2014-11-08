@@ -21,6 +21,8 @@ public class UserType extends Type {
 	}
 
 	public String toString() {
+		if(of != null)
 		return "UserType / " + of.toString();
+		else return "null\n";
 	}
 }

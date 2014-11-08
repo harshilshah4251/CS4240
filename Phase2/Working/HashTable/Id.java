@@ -30,4 +30,8 @@ public class Id extends Expr {
 		init = true;
 	}
 
+	public String toString() {
+		return (" ID/name : " + s + ", " +  type + ", init: " + init+"\n");
+	}
+
 }

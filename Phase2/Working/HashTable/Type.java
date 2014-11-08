@@ -10,12 +10,12 @@ public class Type {
 	public int size =0;
 	public String name = "";
 	// true if initialized, false otherwise
-	public boolean init;
+	//public boolean init;
 	
 	public Type(String s, int w){
 		name = s;
 		size = w;
-		init = false;
+//		init = false;
 	}
 	
 	public static final Type	
@@ -43,7 +43,11 @@ public class Type {
 	
 	// Set the Variable is initialized
 	public static void initialize(Type p1) {
-		p1.init = true;
+//		p1.init = true;
+	}
+
+	public String toString() {
+		return "type : " + name + ", size : " + size;
 	}
 	
 }

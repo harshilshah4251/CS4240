@@ -22,6 +22,14 @@ public class SymbolTable {
 		table.put(token, new Id(token, t, b));
 	}
 
+	public void put(String token, Id i) {
+		table.put(token, i);
+	}
+
+	public void keySet() {
+		System.out.println(table.keySet());
+	}
+
 	// Search if given token with the name is in the symbol tables
 	// We might not use this since we are implementing stack in TigerTree.g
 	public Id get(String token) {
@@ -31,5 +39,9 @@ public class SymbolTable {
 		}
 
 		return null;
+	}
+
+	public String toString() {
+		return table.toString();
 	}
 }
