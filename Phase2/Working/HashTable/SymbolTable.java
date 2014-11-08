@@ -2,7 +2,7 @@
 import java.util.*;
 
 public class SymbolTable {
-	private Hashtable<String, Var> table();
+	private Hashtable<String, Var> table;
 
 	// Not sure what's this for
 	protected SymbolTable outer;

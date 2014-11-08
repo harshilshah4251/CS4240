@@ -4,7 +4,7 @@ public class UserType extends Type {
 	public Type of;
 
 	// Should check here agin
-	public int size 1;
+	public int size = 1;
 
 	public UserType(String s, int w, Type p) {
 	// check size again

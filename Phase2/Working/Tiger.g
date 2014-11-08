@@ -73,6 +73,16 @@ tokens {
     EXPR_WITH_START_ID;
 }
 
+@header {
+// Not sure if we need this
+	import java.util.Map;
+	import java.util.TreeMap;
+	import java.util.ArrayList;
+	import java.util.Stack;
+	import java.util.LinkedList;
+}
+
+
 
 @members {
 
@@ -88,7 +98,54 @@ tokens {
         System.out.print(errorPrefix);
         super.displayRecognitionError(tokenNames, e);
     }
+
+	private static void out(Object obj) {
+		System.out.print(obj);
+	}
+
+	private static void outln(Object obj) {
+		System.out.println(obj);
+	}
+
+
+/////////////////////////////////////////////////////////////////
+
+	// Use LinkedList that works like stack to implement scope
+	// Used LinkedList to make search easier
+	public LinkedList<SymbolTable> stack = new LinkedList();
+
+	// Use ArrayList to store all the Symbol table we have used
+	public ArrayList<SymbolTable> tableList = new ArrayList();
+
+	// Refers level of scope
+	// 0: global, 1: function 2: inside of another block etc.
+	private int level;
+
+	// When entering new scope, add the SymbolTable into the Stack and List
+	private void enterNewScope(SymbolTable table) {
+		stack.addFirst(table);
+		tableList.add(table);
+		level++;
+	}
+
+	// When exiting a scpoe, remove the symbol table from the stack
+	private SymbolTable exitScope() {
+		stack.removeLast();
+		if(level > 0) level--;
+	}
+
+	// It will get the top SymbolTable of the stack
+	// which means get the SymbolTable of current scope
+	private SymbolTable getTopTable() {
+		return stack.getLast();
+	}
+
+	// TODO : Make a method that saves all the SymbolTables into a file
+	//		-> should include It's level too
+
+
 }
+
 
 ID
     :   (LOWER|UPPER)(LOWER|UPPER|DIGIT|'_')*
@@ -133,11 +190,20 @@ fragment DIGIT: '0'..'9';
 
 /* PARSER RULES */
 
-tiger_program : type_declaration_list funct_declaration_list_then_main EOF 
-		-> ^(PROGRAM type_declaration_list funct_declaration_list_then_main);
+tiger_program : 
+	{	
+		// This new SymbolTable will be the global SymbolTable
+		enterNewScope(new SymbolTable());
+		level = 0;
+	}
+	type_declaration_list funct_declaration_list_then_main EOF 
+	-> ^(PROGRAM type_declaration_list funct_declaration_list_then_main)
+;
+
 
 funct_declaration_list_then_main
     : myRet=VOID! (funct_declaration_tail[$myRet] funct_declaration_list_then_main | main_function_tail)
+
     | (myRet=ID|myRet=INT|myRet=FIXEDPT) funct_declaration_tail[$myRet] funct_declaration_list_then_main
     ;
 
@@ -149,48 +215,65 @@ funct_declaration_tail[Token retType]
 main_function_tail : MAIN '(' ')' BEGIN block_list END ';' 
 	-> ^(MAINSCOPE block_list);
 
+
+// should return ArrayList?
 param_list
     : (param ( ',' param )*)? 
 	-> ^(PARAMLIST param*)
     ;
 
-param : ID ':' type_id;
+param 
+	: ID ':' type_id;
 
 block_list : block+ -> ^(BLOCKLIST block+);
 
-block : BEGIN declaration_segment stat_seq END ';' -> ^(BLOCKSCOPE declaration_segment stat_seq);
+block : BEGIN declaration_segment stat_seq END ';' 
+	-> ^(BLOCKSCOPE declaration_segment stat_seq);
 
 declaration_segment : type_declaration_list var_declaration_list ;
 
 type_declaration_list
-    : type_declaration* -> ^(TYPEDECLLIST type_declaration*)
+    : type_declaration* 
+	-> ^(TYPEDECLLIST type_declaration*)
     ;
     
 var_declaration_list
-    : var_declaration* -> ^(VARDECLLIST var_declaration*)
+    : var_declaration* 
+	-> ^(VARDECLLIST var_declaration*)
     ;
 
-type_declaration : TYPE ID '=' type ';' -> ^(TYPEDECL ID type);
+type_declaration : TYPE ID '=' type ';' 
+	-> ^(TYPEDECL ID type);
 
 type
     : base_type
-    | ARRAY '[' INTLIT ']' ('[' INTLIT ']')? OF base_type -> ^(ARRAY base_type INTLIT+)
+    | ARRAY '[' INTLIT ']' ('[' INTLIT ']')? OF base_type 
+	-> ^(ARRAY base_type INTLIT+)
     ;
 
-type_id
-    : base_type
-    | ID
+type_id returns [Type e]
+
+    :{Type t;} t=base_typex {e = $t;}
+	// This is for user defined type
+	// Haven't checked if $id.text is working, but should ID's String
+
+    | id=ID {$e = $id.text;}
     ;
 
-base_type
-    : INT
-    | FIXEDPT
+//@returns initialized Type object
+base_type returns [Type e;]
+    : INT {$e = Type.Int;} // check here again
+    | FIXEDPT {$e = Type.Float;} 
     ;
 
-var_declaration : VAR id_list ':' type_id optional_init ';' -> ^(VAR type_id id_list optional_init?);
+var_declaration : 
+{Type k;}
+	VAR id_list ':' k=type_id optional_init ';' 
+	-> ^(VAR type_id id_list optional_init?);
 
 id_list
-    : ID ( ',' ID )* -> ^(IDLIST ID+)
+    :{ArrayList<Id> list = new ArrayList();} 
+	ID ( ',' ID )* -> ^(IDLIST ID+)
     ;
 
 optional_init
@@ -236,7 +319,8 @@ function_call_or_assignment
 
 expr_or_function_call
     : ID 
-        (expr_with_start_id[$ID] -> ^(EXPR_WITH_START_ID expr_with_start_id?)
+        (expr_with_start_id[$ID] 
+		-> ^(EXPR_WITH_START_ID expr_with_start_id?)
         | function_args
             -> ^(FUNCTION_CALL ID function_args?)
         )
@@ -310,3 +394,6 @@ index_expr : index_term (add_operator^ index_term)* ;
 index_term : index_factor ('*'^ index_factor)* ;  /* no division allowed in index */
 
 index_factor : INTLIT | ID ;
+
+
+

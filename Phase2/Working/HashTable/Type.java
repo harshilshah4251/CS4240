@@ -9,10 +9,13 @@
 public class Type {
 	public int size =0;
 	public String name = "";
+	// true if initialized, false otherwise
+	public boolean init;
 	
 	public Type(String s, int w){
 		name = s;
 		size = w;
+		init = false;
 	}
 	
 	public static final Type	
@@ -20,11 +23,11 @@ public class Type {
 		Float = new Type("float", 8), //fixedptlit
 		Char = new Type("char", 1), 
 		Void = new Type("void", 0),
-		Bool = new Type("bool", 1);
+		Bool = new Type("bool", 1),
 
 		// Don't add String to Symbol table
 		// Just check if the assignment String := String is correct
-		String = new Type("string", 0);
+		string = new Type("string", 0);
 
 	
 	public static boolean numeric (Type p){
@@ -36,6 +39,11 @@ public class Type {
 		else if (p1 == Type.Float || p2 == Type.Float) return Type.Float;
 		else if (p1 == Type.Int || p2 == Type.Int) return Type.Int;
 		else return Type.Char;
+	}
+	
+	// Set the Variable is initialized
+	public static void initialize(Type p1) {
+		p1.init = true;
 	}
 	
 }

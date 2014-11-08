@@ -10,8 +10,20 @@
 public class Id extends Expr {
 
 	public int offset;
+	public boolean init;
+	// not sure what's offset is for
+
 	public Id(String id, Type p, int b) { 
 		super(id,p); offset = b; 
 		}
+
+	public Id(String id, Type p) {
+		super(id,p);
+		init = false;
+	}
+
+	public void initId() {
+		init = true;
+	}
 
 }
