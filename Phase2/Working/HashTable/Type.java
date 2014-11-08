@@ -17,6 +17,10 @@ public class Type {
 		size = w;
 //		init = false;
 	}
+
+    public Type(String name) {
+	this.name = name;
+    }
 	
 	public static final Type	
 		Int = new Type("int", 4), 

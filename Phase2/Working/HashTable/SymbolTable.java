@@ -22,7 +22,7 @@ public class SymbolTable {
 		table.put(token, new Id(token, t, b));
 	}
 
-	public void put(String token, Id i) {
+	public void put(String token, Var i) {
 		table.put(token, i);
 	}
 

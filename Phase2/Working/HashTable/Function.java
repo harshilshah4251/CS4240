@@ -1,27 +1,29 @@
-
 import java.util.ArrayList;
 
-public class Function {
-	public ArrayList paramList = new ArrayList<Type>();
-	public Type returnType;
-	public String funcName;
-	public int size;
+public class Function extends Var{
 
-	public Function(String s, Type t) {
-		funcName = s;
-		returnType = t;
-	}
+    private ArrayList<Id> paramList = new ArrayList<Id>();
+    private String funcName;
+    private Type returnType;
+    private int numParam;
 
-	public void addParam(Type t) {
-		paramList.add(t);
-		size = paramList.size();
-	}
+    public Function(String funcName, Type returnType, ArrayList<Id> paramList) {
+        this.funcName = funcName;
+        this.returnType = returnType;
+	this.paramList = paramList;
+	numParam = paramList.size();
+    }
 
-	public Type funcReturn() {
-		return returnType;
-	}
+    public void addParam(Id id) {
+        paramList.add(id);
+        numParam = paramList.size();
+    }
 
-	//public 
+    public Type funcReturn() {
+        return returnType;
+    }
+
+    //public 
 
 
 }

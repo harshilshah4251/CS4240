@@ -209,38 +209,49 @@ tiger_program :
 
 
 funct_declaration_list_then_main
-    : myRet=VOID! (funct_declaration_tail[$myRet] funct_declaration_list_then_main | main_function_tail)
+    : myRet=VOID! (funct_declaration_tail[$myRet, $myRet.text] funct_declaration_list_then_main | main_function_tail)
 
-    | (myRet=ID|myRet=INT|myRet=FIXEDPT) funct_declaration_tail[$myRet] funct_declaration_list_then_main
+    | (myRet=ID|myRet=INT|myRet=FIXEDPT) funct_declaration_tail[$myRet, $myRet.text] funct_declaration_list_then_main
     ;
 
-funct_declaration_tail[Token retType]
-    : FUNCTION ID '(' param_list ')' BEGIN block_list END ';' 
+funct_declaration_tail[Token retType, String returnType]
+    : {Type type = new Type($returnType);}
+        FUNCTION ID '(' param_list ')' BEGIN block_list END ';' 
+        {getTopTable().put($ID.text, new Function($FUNCTION.text, type, $param_list.paramList));}
 	-> ^(FUNCTION {new CommonTree($retType)} ID param_list block_list)
     ;
 
-main_function_tail : MAIN '(' ')' BEGIN block_list END ';' 
+main_function_tail 
+    : MAIN '(' ')' BEGIN block_list END ';' 
 	-> ^(MAINSCOPE block_list);
 
 
 // should return ArrayList?
-param_list
-    : (param ( ',' param )*)? 
+param_list returns[ArrayList<Id> paramList]
+    : {$paramList = new ArrayList<Id>();}
+    (par1=param {$paramList.add($par1.param);} ( ',' par2=param {$paramList.add($par2.param);})*)? 
+
 	-> ^(PARAMLIST param*)
     ;
 
-param 
-	: ID ':' type_id;
+param returns[Id param]
+	: ID ':' type_id
+        {$param = new Id($ID.text, $type_id.e);}
+    ;
 
-block_list : block+ -> ^(BLOCKLIST block+);
 
-block : BEGIN 
+block_list
+    : block+ -> ^(BLOCKLIST block+);
+
+block 
+    : BEGIN 
 //{enterNewScope(new SymbolTable()); level++;}
 		 declaration_segment stat_seq END ';'
 //		{exitScope(); level--;} 
 	-> ^(BLOCKSCOPE declaration_segment stat_seq);
 
-declaration_segment : type_declaration_list var_declaration_list ;
+declaration_segment 
+    : type_declaration_list var_declaration_list ;
 
 type_declaration_list
     : type_declaration* 
@@ -252,7 +263,8 @@ var_declaration_list
 	-> ^(VARDECLLIST var_declaration*)
     ;
 
-type_declaration : TYPE ID '=' type ';'
+type_declaration 
+    : TYPE ID '=' type ';'
 
 	-> ^(TYPEDECL ID type);
 
@@ -272,12 +284,13 @@ type_id returns [Type e]
     ;
 
 //@returns initialized Type object
-base_type returns [Type e;]
+base_type returns [Type e]
     : INT {$e = Type.Int;} // check here again
     | FIXEDPT {$e = Type.Float;} 
     ;
 
-var_declaration : 
+var_declaration 
+    : 
 // The place where we add variables into SymbolTable
 
 	VAR id_list ':' type_id optional_init ';' 
@@ -352,10 +365,14 @@ expr_or_function_call
     ;
 
 /* notation: termN corresponds to precedence level N */
-expr : term4 (and_operator^ term4)* ;
-term4 : term3 (compare_operator^ term3)* ;
-term3 : term2 (add_operator^ term2)* ;
-term2 : term1 (mult_operator^ term1)* ;
+expr 
+    : term4 (and_operator^ term4)* ;
+term4 
+    : term3 (compare_operator^ term3)* ;
+term3 
+    : term2 (add_operator^ term2)* ;
+term2 
+    : term1 (mult_operator^ term1)* ;
 term1
     : literal
     | value
@@ -363,20 +380,28 @@ term1
         -> expr
     ;
 
-expr_no_start_id : term4_no_start_id (and_operator^ term4)* ;
-term4_no_start_id : term3_no_start_id (compare_operator^ term3)* ;
-term3_no_start_id : term2_no_start_id (add_operator^ term2)* ;
-term2_no_start_id : term1_no_start_id (mult_operator^ term1)* ;
+expr_no_start_id 
+    : term4_no_start_id (and_operator^ term4)* ;
+term4_no_start_id 
+    : term3_no_start_id (compare_operator^ term3)* ;
+term3_no_start_id 
+    : term2_no_start_id (add_operator^ term2)* ;
+term2_no_start_id 
+    : term1_no_start_id (mult_operator^ term1)* ;
 term1_no_start_id
     : literal
     | '(' expr ')'
         -> expr
     ;
 
-expr_with_start_id[Token startId] : term4_with_start_id[$startId] (and_operator^ term4)* ;
-term4_with_start_id[Token startId] : term3_with_start_id[$startId] (compare_operator^ term3)* ;
-term3_with_start_id[Token startId] : term2_with_start_id[$startId] (add_operator^ term2)* ;
-term2_with_start_id[Token startId] : term1_with_start_id[$startId] (mult_operator^ term1)* ;
+expr_with_start_id[Token startId] 
+    : term4_with_start_id[$startId] (and_operator^ term4)* ;
+term4_with_start_id[Token startId] 
+    : term3_with_start_id[$startId] (compare_operator^ term3)* ;
+term3_with_start_id[Token startId] 
+    : term2_with_start_id[$startId] (add_operator^ term2)* ;
+term2_with_start_id[Token startId] 
+    : term1_with_start_id[$startId] (mult_operator^ term1)* ;
 term1_with_start_id[Token startId]
     : value_tail -> ^({new CommonTree($startId)} value_tail?)
     ;
@@ -392,15 +417,20 @@ expr_list
     |
     ;*/
 
-mult_operator : '*' | '/' ;
+mult_operator 
+    : '*' | '/' ;
 
-add_operator : '+' | '-' ;
+add_operator 
+    : '+' | '-' ;
 
-compare_operator : '=' | '<>' | '<' | '>' | '<=' | '>=' ;
+compare_operator 
+    : '=' | '<>' | '<' | '>' | '<=' | '>=' ;
 
-and_operator : '&' | '|' ;
+and_operator 
+    : '&' | '|' ;
 
-value : ID value_tail -> ^(ID value_tail?);
+value 
+    : ID value_tail -> ^(ID value_tail?);
 
 literal
     : INTLIT
@@ -413,11 +443,11 @@ value_tail
     |
     ;
 
-index_expr : index_term (add_operator^ index_term)* ;
+index_expr 
+    : index_term (add_operator^ index_term)* ;
 
-index_term : index_factor ('*'^ index_factor)* ;  /* no division allowed in index */
+index_term 
+    : index_factor ('*'^ index_factor)* ;  /* no division allowed in index */
 
-index_factor : INTLIT | ID ;
-
-
-
+index_factor 
+    : INTLIT | ID ;
