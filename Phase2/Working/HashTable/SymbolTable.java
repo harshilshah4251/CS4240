@@ -3,13 +3,15 @@ import java.util.*;
 
 public class SymbolTable {
 	private Hashtable<String, Var> table;
+	public int level;
 
 	// Not sure what's this for
 	protected SymbolTable outer;
 
-	public SymbolTable() {
+	public SymbolTable(int l) {
 		table = new Hashtable();
 		outer = null;
+		level = l;
 	}
 
 	// Not sure if we are going to sue this constructor
@@ -22,8 +24,9 @@ public class SymbolTable {
 		table.put(token, new Id(token, t, b));
 	}
 
-	public void put(String token, Id i) {
+	public void put(String token, Var i) {
 		table.put(token, i);
+		//level = l;
 	}
 
 	public void keySet() {
@@ -42,6 +45,6 @@ public class SymbolTable {
 	}
 
 	public String toString() {
-		return table.toString();
+		return "level : " + level + "\n" + table.toString();
 	}
 }

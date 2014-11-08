@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Sung Hye Jeon. All rights reserved.
 //
 
-public class Type {
+public class Type extends Var{
 	public int size =0;
 	public String name = "";
 	// true if initialized, false otherwise
@@ -16,6 +16,11 @@ public class Type {
 		name = s;
 		size = w;
 //		init = false;
+	}
+
+	public Type(String s) {
+		name = s;
+		size = 0;
 	}
 	
 	public static final Type	
@@ -47,7 +52,7 @@ public class Type {
 	}
 
 	public String toString() {
-		return "type : " + name + ", size : " + size;
+		return "type : " + name;
 	}
 	
 }

@@ -31,7 +31,7 @@ public class Id extends Expr {
 	}
 
 	public String toString() {
-		return (" ID/name : " + s + ", " +  type + ", init: " + init+"\n");
+		return (" ID/"+  type + ", init: " + init+"\n");
 	}
 
 }
