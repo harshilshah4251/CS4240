@@ -23,7 +23,9 @@ public class Function extends Var{
         return returnType;
     }
 
-    //public 
+    public String toString() {
+	return "Function name is: " + funcName + ", return type is: " + returnType + ", parameters are: " + paramList.toString() + ", and the number of parameters is: " + numParam + ".";
+    }
 
 
 }

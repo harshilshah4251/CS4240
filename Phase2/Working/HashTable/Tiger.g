@@ -221,8 +221,8 @@ funct_declaration_list_then_main
 
 funct_declaration_tail[Token retType, String returnType]
     : {Type type = new Type($returnType);}
-        FUNCTION ID '(' param_list ')' BEGIN block_list END ';' 
-        {getTopTable().put($ID.text, new Function($FUNCTION.text, type, $param_list.paramList));}
+        FUNCTION ID '(' param_list ')' {getTopTable().put($ID.text, new Function($ID.text, type, $param_list.paramList));} BEGIN block_list END ';' 
+
 	-> ^(FUNCTION {new CommonTree($retType)} ID param_list block_list)
     ;
 
