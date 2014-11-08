@@ -253,7 +253,7 @@ type
 
 type_id returns [Type e]
 
-    :{Type t;} t=base_typex {e = $t;}
+    : base_type {$e = $base_type.e;}
 	// This is for user defined type
 	// Haven't checked if $id.text is working, but should ID's String
 
@@ -267,8 +267,7 @@ base_type returns [Type e;]
     ;
 
 var_declaration : 
-{Type k;}
-	VAR id_list ':' k=type_id optional_init ';' 
+	VAR id_list ':' type_id optional_init ';' 
 	-> ^(VAR type_id id_list optional_init?);
 
 id_list
