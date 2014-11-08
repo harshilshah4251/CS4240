@@ -228,7 +228,13 @@ param
 
 block_list : block+ -> ^(BLOCKLIST block+);
 
-block : BEGIN declaration_segment stat_seq END ';' 
+block : BEGIN {enterNewScope(new SymbolTable());
+		level++
+		}
+		 declaration_segment stat_seq END ';'
+		{exitScope();
+			level--;
+		} 
 	-> ^(BLOCKSCOPE declaration_segment stat_seq);
 
 declaration_segment : type_declaration_list var_declaration_list ;
@@ -243,11 +249,12 @@ var_declaration_list
 	-> ^(VARDECLLIST var_declaration*)
     ;
 
-type_declaration : TYPE ID '=' type ';' 
+type_declaration : TYPE ID '=' type ';'
+
 	-> ^(TYPEDECL ID type);
 
-type
-    : base_type
+type returns [Type e]
+    : base_type {$e = $base_type.e;}
     | ARRAY '[' INTLIT ']' ('[' INTLIT ']')? OF base_type 
 	-> ^(ARRAY base_type INTLIT+)
     ;
@@ -268,17 +275,30 @@ base_type returns [Type e;]
     ;
 
 var_declaration : 
+// The place where we add variables into SymbolTable
+
 	VAR id_list ':' type_id optional_init ';' 
+		{
+			for($list : String s) {
+				stack.getTopTable().add(new Id($ID.text, $type_id.e, $optional_init.b)
+			}
+		}
+
 	-> ^(VAR type_id id_list optional_init?);
 
-id_list
-    :{ArrayList<Id> list = new ArrayList();} 
-	ID ( ',' ID )* -> ^(IDLIST ID+)
+
+
+id_list returns[ArrayList<String> list]
+    :{$list = new ArrayList();} 
+	ID {list.add($ID.text);}(',' ID {list.add($ID.text);})* 
+	
+		-> ^(IDLIST ID+)
     ;
 
-optional_init
-    : ':=' literal
-    |
+optional_init returns[boolean b]
+// literal is initialize value
+    : ':=' literal {$b = true;}
+    | {$b = false;}
     ;
 
 stat_seq
