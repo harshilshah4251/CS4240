@@ -17,6 +17,10 @@ public class Id extends Expr {
 		super(id,p); offset = b; 
 		}
 
+	public Id(String id, Type p, boolean i) {
+		super(id,p);
+		init = i;
+	}
 	public Id(String id, Type p) {
 		super(id,p);
 		init = false;
