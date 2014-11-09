@@ -155,6 +155,18 @@ tokens {
 		tableList.add(s);
 	}
 
+	public Var getValue(String name) {
+		boolean found = false;
+		for(int i = 0; i < stack.size(); i++) {
+			if(stack.get(i).containsKey(name)) {
+				System.out.println("Symbol Found : " + stack.get(i).get(name));
+				return stack.get(i).get(name);
+			}
+		}
+
+		System.out.println("Symbol not found in SymbolTable!\n");
+		return null;
+	}
 }
 
 
@@ -207,7 +219,10 @@ tiger_program :
 		level = 0;
 		enterNewScope(new SymbolTable(level));
 	}
-	type_declaration_list funct_declaration_list_then_main {printSymbol();}EOF 
+	type_declaration_list funct_declaration_list_then_main 
+		{printSymbol();}
+		{getValue("Mat33");getValue("x");}
+	EOF 
 	-> ^(PROGRAM type_declaration_list funct_declaration_list_then_main)
 ;
 
@@ -291,11 +306,11 @@ type_declaration
 
 	{
 		if($type.w == 0) {
-			getTopTable().put($ID.text, new UserType($ID.text, new Type($ID.text)));
+			getTopTable().put($ID.text, new UserType($ID.text, new Type($type.e.name)));
 		} else if ($type.h==0) {
-			getTopTable().put($ID.text, new UserType($ID.text, new Array($ID.text, $type.w, $type.e)));
+			getTopTable().put($ID.text, new UserType($ID.text, new Array($type.e.name, $type.w, $type.e)));
 		} else {
-			getTopTable().put($ID.text, new UserType($ID.text, new TwoDArray($ID.text, $type.w, $type.h, $type.e)));
+			getTopTable().put($ID.text, new UserType($ID.text, new TwoDArray($type.e.name, $type.w, $type.h, $type.e)));
 		}
 	}
 
