@@ -146,8 +146,8 @@ tokens {
 
 	public void printSymbol() {
 		for(int i = 0; i < tableList.size(); i++) {
-			if(tableList.get(i).size() != 0){
-				System.out.println("Symbol table " + i +": \n" + tableList.get(i) + "\n");}
+			if(tableList.size(i) != 0)
+			System.out.println("Symbol table " + i +": \n" + tableList.get(i) + "\n");
 		}
 	}
 
@@ -155,18 +155,6 @@ tokens {
 		tableList.add(s);
 	}
 
-	public Var getValue(String name) {
-		boolean found = false;
-		for(int i = 0; i < stack.size(); i++) {
-			if(stack.get(i).containsKey(name)) {
-				System.out.println("Symbol Found : " + stack.get(i).get(name));
-				return stack.get(i).get(name);
-			}
-		}
-
-		System.out.println("Symbol not found in SymbolTable!\n");
-		return null;
-	}
 }
 
 
@@ -213,17 +201,13 @@ fragment DIGIT: '0'..'9';
 
 /* PARSER RULES */
 
-tiger_program 
-    : 
+tiger_program : 
 	{	
 		// This new SymbolTable will be the global SymbolTable
 		level = 0;
 		enterNewScope(new SymbolTable(level));
 	}
-	type_declaration_list funct_declaration_list_then_main 
-		{printSymbol();}
-		{getValue("Mat33");getValue("x");}
-	EOF 
+	type_declaration_list funct_declaration_list_then_main {printSymbol();}EOF 
 	-> ^(PROGRAM type_declaration_list funct_declaration_list_then_main)
 ;
 
@@ -239,17 +223,12 @@ funct_declaration_tail[Token retType, String returnType]
         FUNCTION ID '(' param_list ')' 
 	{
 		getTopTable().put($ID.text, new Function($ID.text, type, $param_list.paramList));
-
-		enterNewScope(new SymbolTable(level));
-
-		for(int i = 0; i < $param_list.paramList.size(); i++) {
-
-			getTopTable().put($param_list.paramList.get(i).getName(), 
-					new Id($param_list.paramList.get(i).getName(), $param_list.paramList.get(i).getType(),true));
+		for(int i = 0; i < paramList.size(); i++) {
+			getTopTable().put($paramList.get(i).getName(), 
+					new Id($paramList.get(i).getName(), $paramList.get(i).getType()));
 		}
+	} 
 
-		exitScope();
-	}
 
 	BEGIN block_list END ';' 
 
@@ -280,12 +259,12 @@ param returns[Id param]
 block_list
     : block+ -> ^(BLOCKLIST block+);
 
-block 
-	: BEGIN 
-		{enterNewScope(new SymbolTable(level));} 
-	declaration_segment stat_seq END ';'
+block : 	BEGIN 
 
-		{exitScope();} 
+{enterNewScope(new SymbolTable(level));} 
+		 declaration_segment stat_seq END ';'
+
+	{exitScope();} 
 
 	-> ^(BLOCKSCOPE declaration_segment stat_seq);
 
@@ -307,11 +286,11 @@ type_declaration
 
 	{
 		if($type.w == 0) {
-			getTopTable().put($ID.text, new UserType($ID.text, new Type($type.e.name)));
+			getTopTable().put($ID.text, new UserType($ID.text, new Type($ID.text)));
 		} else if ($type.h==0) {
-			getTopTable().put($ID.text, new UserType($ID.text, new Array($type.e.name, $type.w, $type.e)));
+			getTopTable().put($ID.text, new UserType($ID.text, new Array($ID.text, $type.w, $type.e)));
 		} else {
-			getTopTable().put($ID.text, new UserType($ID.text, new TwoDArray($type.e.name, $type.w, $type.h, $type.e)));
+			getTopTable().put($ID.text, new UserType($ID.text, new TwoDArray($ID.text, $type.w, $type.h, $type.e)));
 		}
 	}
 

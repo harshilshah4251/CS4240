@@ -19,7 +19,15 @@ public class Type extends Var{
     }
 
     public Type(String name) {
-        this.name = name;
+	if(name.equals("int")) {
+		this.name = name;
+		size = 4;
+	} else if(name.equals("fixedpt")) {
+		size = 8;
+		this.name = "float";
+	} else {
+		this.name = name;
+	}
     }
     
     public static final Type    
@@ -50,7 +58,8 @@ public class Type extends Var{
 //        p1.init = true;
     }
 
-    public String toString() {
-        return "type : " + name;
-    }
+	public String toString() {
+		return   name + ", size: " + size;
+	}
+	
 }

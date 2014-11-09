@@ -29,9 +29,10 @@ public class Id extends Expr {
 	public void initId() {
 		init = true;
 	}
+		
 
 	public String toString() {
-		return (" ID/"+  type + ", init: " + init+"\n");
+		return (" ID/"+  type + ", init: " + init+ ", size: " + type.size +"\n");
 	}
 
 }

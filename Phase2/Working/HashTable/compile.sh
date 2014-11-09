@@ -4,4 +4,4 @@ java org.antlr.Tool Tiger.g
 
 javac *.java
 
-java TigerMain < testcase.tig
+java TigerMain < testcase01.tig

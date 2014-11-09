@@ -33,8 +33,20 @@ public class SymbolTable {
 		System.out.println(table.keySet());
 	}
 
+	public int size() {
+		return table.size();
+	}
+
+	public Var get(String name) {
+		return table.get(name);
+	}
+	public boolean containsKey(String name) {
+		return table.containsKey(name);
+	}
+
 	// Search if given token with the name is in the symbol tables
 	// We might not use this since we are implementing stack in TigerTree.g
+/*
 	public Id get(String token) {
 		for (SymbolTable tab = this; tab != null; tab = tab.outer) {
 			Id id = (Id)(tab.table.get(token));
@@ -43,6 +55,7 @@ public class SymbolTable {
 
 		return null;
 	}
+*/
 
 	public String toString() {
 		return "level : " + level + "\n" + table.toString();
