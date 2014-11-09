@@ -146,9 +146,8 @@ tokens {
 
 	public void printSymbol() {
 		for(int i = 0; i < tableList.size(); i++) {
-			if(tableList.get(i) != null)
-			System.out.println("Symbol table " + i +": \n" + tableList.get(i) + "\n");
-			//stack.get(i).keySet();
+			if(tableList.get(i).size() != 0){
+				System.out.println("Symbol table " + i +": \n" + tableList.get(i) + "\n");}
 		}
 	}
 
@@ -221,7 +220,22 @@ funct_declaration_list_then_main
 
 funct_declaration_tail[Token retType, String returnType]
     : {Type type = new Type($returnType);}
-        FUNCTION ID '(' param_list ')' {getTopTable().put($ID.text, new Function($ID.text, type, $param_list.paramList));} BEGIN block_list END ';' 
+        FUNCTION ID '(' param_list ')' 
+	{
+		getTopTable().put($ID.text, new Function($ID.text, type, $param_list.paramList));
+
+		enterNewScope(new SymbolTable(level));
+
+		for(int i = 0; i < $param_list.paramList.size(); i++) {
+
+			getTopTable().put($param_list.paramList.get(i).getName(), 
+					new Id($param_list.paramList.get(i).getName(), $param_list.paramList.get(i).getType(),true));
+		}
+
+		exitScope();
+	}
+
+	BEGIN block_list END ';' 
 
 	-> ^(FUNCTION {new CommonTree($retType)} ID param_list block_list)
     ;
@@ -236,6 +250,8 @@ param_list returns[ArrayList<Id> paramList]
     : {$paramList = new ArrayList<Id>();}
     (par1=param {$paramList.add($par1.param);} ( ',' par2=param {$paramList.add($par2.param);})*)? 
 
+
+
 	-> ^(PARAMLIST param*)
     ;
 
@@ -248,12 +264,12 @@ param returns[Id param]
 block_list
     : block+ -> ^(BLOCKLIST block+);
 
-block : 	BEGIN 
+block 
+	: BEGIN 
+		{enterNewScope(new SymbolTable(level));} 
+	declaration_segment stat_seq END ';'
 
-{enterNewScope(new SymbolTable(level));} 
-		 declaration_segment stat_seq END ';'
-
-	{exitScope();} 
+		{exitScope();} 
 
 	-> ^(BLOCKSCOPE declaration_segment stat_seq);
 

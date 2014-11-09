@@ -20,7 +20,15 @@ public class Expr extends Var {
 	
 	public Expr reduce() { 
 		return this; 
-		}
+	}
+
+	public String getName() {
+		return s;
+	}
+
+	public Type getType() {
+		return type;
+	}
 	
 	public void jumping(int t, int f) { 
 		emitjumps(toString(), t, f); 

@@ -33,6 +33,10 @@ public class SymbolTable {
 		System.out.println(table.keySet());
 	}
 
+	public int size() {
+		return table.size();
+	}
+
 	// Search if given token with the name is in the symbol tables
 	// We might not use this since we are implementing stack in TigerTree.g
 	public Id get(String token) {
