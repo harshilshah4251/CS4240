@@ -202,7 +202,8 @@ fragment DIGIT: '0'..'9';
 
 /* PARSER RULES */
 
-tiger_program : 
+tiger_program 
+    : 
 	{	
 		// This new SymbolTable will be the global SymbolTable
 		level = 0;
@@ -248,11 +249,11 @@ param returns[Id param]
 block_list
     : block+ -> ^(BLOCKLIST block+);
 
-block : 	BEGIN 
+block 
+    : 	BEGIN 
 
-{enterNewScope(new SymbolTable(level));} 
-		 declaration_segment stat_seq END ';'
-
+    {enterNewScope(new SymbolTable(level));} 
+    declaration_segment stat_seq END ';'
 	{exitScope();} 
 
 	-> ^(BLOCKSCOPE declaration_segment stat_seq);
