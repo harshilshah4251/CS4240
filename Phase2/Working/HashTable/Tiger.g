@@ -164,8 +164,35 @@ tokens {
 			}
 		}
 
-		System.out.println("Symbol not found in SymbolTable!\n");
+		System.out.println(name + ": Symbol not found in SymbolTable!\n");
 		return null;
+	}
+
+
+	// The function check if a function is used properly
+	// Properly means (same parameter number, parameter types and order)
+	// parameters should be initialized previously
+	public void checkFuncParam(String funcName, ArrayList<String> pList) {
+
+		Var func = getValue(funcName);
+		if(!(func instanceof Function)) {
+			System.out.println(funcName + " is supposed to be Function type!\n");
+		} else {
+
+			ArrayList<Id> fpList = ((Function)func).getParamList();
+			if(pList.size() != fpList.size()) { 
+				System.out.println(funcName + " has wrong number of parameter!\n");
+			} else {
+				for(int i = 0; i < pList.size(); i++) {
+					Var id = getValue(pList.get(i));
+					if(!(id instanceof Id)) {
+						System.out.println(funcName + " function has wrong parameter!\n");
+					} else if(!fpList.get(i).type.equals(((Id)id).type)) {
+						System.out.println(funcName + " function has wrong parameter type!\n");
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -260,13 +287,9 @@ main_function_tail
     : MAIN '(' ')' BEGIN block_list END ';' 
 	-> ^(MAINSCOPE block_list);
 
-
-// should return ArrayList?
 param_list returns[ArrayList<Id> paramList]
     : {$paramList = new ArrayList<Id>();}
     (par1=param {$paramList.add($par1.param);} ( ',' par2=param {$paramList.add($par2.param);})*)? 
-
-
 
 	-> ^(PARAMLIST param*)
     ;
@@ -399,22 +422,32 @@ stat
     | block
     ;
 
-function_args
+function_args returns[ArrayList<String> pList]
     : '(' expr_list ')'
+	{$pList = $expr_list.list;}
         -> expr_list?
     ;
 
 function_call_or_assignment
     : ID 
         (function_args
+		{
+			checkFuncParam($ID.text, $function_args.pList);
+		}
+		// should compare pList(String) and fpList(Id)
+		// check parameter list here
+		// This is the case when Function returnType is Void
             -> ^(FUNCTION_CALL ID function_args?)
+
         | value_tail ':=' expr_or_function_call
+		// check if the ID is array
+		// check type at the both side
             -> ^(':=' ^(ID value_tail?) expr_or_function_call)
         ) ';'
     ;
 
 expr_or_function_call
-    : ID 
+    : ID // ID : function name
         (expr_with_start_id[$ID] 
 		-> ^(EXPR_WITH_START_ID expr_with_start_id?)
         | function_args
@@ -430,6 +463,7 @@ term4
     : term3 (compare_operator^ term3)* ;
 term3 
     : term2 (add_operator^ term2)* ;
+<<<<<<< HEAD
 term2 returns[Type t] 
     : {int i = 0;}t1=term1 (mult_operator^ t2=term1
             {Arith a = new Arith($t1.t, $t2.t);
@@ -474,16 +508,10 @@ term1_with_start_id[Token startId]
     : value_tail -> ^({new CommonTree($startId)} value_tail?)
     ;
 
-expr_list
-    : expr ( ',' expr )* -> ^(EXPRLIST expr+)
+expr_list returns[ArrayList<String> list]
+    : {$list = new ArrayList();} e1=expr {$list.add($e1.text);} ( ',' e2=expr {$list.add($e2.text);})* -> ^(EXPRLIST expr+)
     |
     ;
-
-/*expr_list_tail
-    : ',' expr expr_list_tail
-        -> expr expr_list_tail?
-    |
-    ;*/
 
 mult_operator 
     : '*' | '/' ;
@@ -500,9 +528,9 @@ and_operator
 value 
     : ID value_tail -> ^(ID value_tail?);
 
-literal
-    : INTLIT
-    | FIXEDPTLIT
+literal returns[Type e]
+    : INTLIT {$e = Type.Int;}
+    | FIXEDPTLIT {$e = Type.Float;}
     ;
 
 value_tail 
@@ -519,3 +547,5 @@ index_term
 
 index_factor 
     : INTLIT | ID ;
+
+

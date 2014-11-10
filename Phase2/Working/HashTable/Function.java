@@ -14,6 +14,15 @@ public class Function extends Var{
 	numParam = paramList.size();
     }
 
+	public ArrayList<Id> getParamList() {
+		return paramList;
+	}
+				
+
+
+	public String getFunName() {
+		return funcName;
+	}
     public void addParam(Id id) {
         paramList.add(id);
         numParam = paramList.size();

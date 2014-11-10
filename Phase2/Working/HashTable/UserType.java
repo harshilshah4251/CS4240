@@ -32,7 +32,7 @@ public class UserType extends Type {
 
 	public String toString() {
 		if(of != null){
-		return "UserType/ Name: " + name + " Size : "+ size + 
+		return "UserType/ Name: " + name + " TotalSize : "+ size + 
 			" BaseType : " + of + "\n";
 		//", size: " + size +"\n";
 		}else {
