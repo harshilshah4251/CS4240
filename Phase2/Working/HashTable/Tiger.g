@@ -424,15 +424,24 @@ expr_or_function_call
     ;
 
 /* notation: termN corresponds to precedence level N */
-expr 
+expr returns[Type t]
     : term4 (and_operator^ term4)* ;
 term4 
     : term3 (compare_operator^ term3)* ;
 term3 
     : term2 (add_operator^ term2)* ;
-term2 
-    : term1 (mult_operator^ term1)* ;
-term1
+term2 returns[Type t] 
+    : {int i = 0;}t1=term1 (mult_operator^ t2=term1
+            {Arith a = new Arith($t1.t, $t2.t);
+            $t = a.getFinaltype();
+            i++})* 
+        {
+            if(i == 0) {
+                $t = $t1.t;
+            }
+        }
+;
+term1 returns[Type t]
     : literal
     | value
     | '(' expr ')'

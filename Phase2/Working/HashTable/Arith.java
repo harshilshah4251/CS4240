@@ -30,8 +30,8 @@ public class Arith extends Op {
 	    isLegal = true;
 	}
 
-	else if (t1 instanceof UserType && t2 instanceof UserType) {
-	    if(t1.userTypeName().equals(t2.userTypeName())) {
+	else if ((t1 instanceof UserType) && (t2 instanceof UserType)) {
+	    if(((UserType)t1).userTypeName.equals(((UserType)t2).userTypeName)) {
 		isLegal = true;
 	    }
 	}
