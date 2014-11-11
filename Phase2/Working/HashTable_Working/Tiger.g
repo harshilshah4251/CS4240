@@ -520,9 +520,33 @@ expr_or_function_call
 
 /* notation: termN corresponds to precedence level N */
 expr returns[Expr e]
-    : term4 (and_operator^ term4)* ;
-term4 
-    : term3 (compare_operator^ term3)* ;
+    : {int i = 0;}t1=term4 (and_operator^ t2=term4
+            {
+                if (Logical.typeCheckPassed()) {
+                    $e = new Expr("bool", Type.Bool);
+                }
+                i++;
+            })*
+      {
+          if (i == 0) {
+              $e = $t1.e; // if there is no second operand, term1's type should be returned
+      }
+    }
+    ;
+term4 returns[Expr e]
+    : {int i = 0;}t1=term3 (compare_operator^ t2=term3
+            {
+                if (Arith.typeCheckPassed($t1.e, $t2.e) {
+                     $e = new Expr("bool", Type.Bool);   // if both terms' types are correct, a boolean value should be returned 
+                    }
+                    i++;
+            })* 
+    {
+		if(i == 0) {
+			$e = $t1.e; // if there is no second operand, term1's type should be returned
+		}
+	}
+    ;
 term3 returns[Expr e]
     : {int i = 0;}t1=term2 (add_operator^ t2=term2
 	{
