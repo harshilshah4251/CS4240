@@ -15,12 +15,11 @@ public class Logical extends BinaryOp {
 	this.expr1 = expr1; 
 	this.expr2 = expr2;
 
-	if (!typeCheckPassed(expr1, expr2) {
+	if (!typeCheckPassed(expr1, expr2)) {
 		error("Type error with: " + expr1.type.name + " | " + expr2.type.name + "\n");
 	    }
 	}
-    }
-
+    
     public static boolean typeCheckPassed(Expr e1, Expr e2) {
 	boolean isLegal = false;
 

@@ -522,7 +522,7 @@ expr_or_function_call
 expr returns[Expr e]
     : {int i = 0;}t1=term4 (and_operator^ t2=term4
             {
-                if (Logical.typeCheckPassed()) {
+                if (Logical.typeCheckPassed($t1.e, $t2.e)) {
                     $e = new Expr("bool", Type.Bool);
                 }
                 i++;
@@ -536,7 +536,7 @@ expr returns[Expr e]
 term4 returns[Expr e]
     : {int i = 0;}t1=term3 (compare_operator^ t2=term3
             {
-                if (Arith.typeCheckPassed($t1.e, $t2.e) {
+                if (Arith.typeCheckPassed($t1.e, $t2.e)) {
                      $e = new Expr("bool", Type.Bool);   // if both terms' types are correct, a boolean value should be returned 
                     }
                     i++;
