@@ -9,6 +9,7 @@
 public class Arith extends Op {
 
     public Expr expr1, expr2;
+    private Type finalType; 
 
     public Arith(String op, Expr expr1, Expr expr2) {
         super(op, null); 
@@ -19,24 +20,29 @@ public class Arith extends Op {
         if (type == null) 
         error("type error");
 	*/
-	if (!typeCheckPassed(expr1.type, expr2.type))
-	    error("type error");
+	finalType = finalTypetypeCheckPassed(expr1.type, expr2.type);
+	if (finalType == null)
+	    error("type error");	
     }
     
-    public boolean typeCheckPassed(Type t1, Type t2) {
-	boolean isLegal = false;
+    public Type typeCheckPassed(Type t1, Type t2) {
+	Type finalType = null; 
 
 	if (Type.numeric(t1) && Type.numeric(t2)) {
-	    isLegal = true;
+	    finalType = Type.max(t1, t2);
 	}
 
 	else if ((t1 instanceof UserType) && (t2 instanceof UserType)) {
 	    if(((UserType)t1).userTypeName.equals(((UserType)t2).userTypeName)) {
-		isLegal = true;
+		finalType = t1;
 	    }
 	}
 
-	return isLegal;
+	return finalType;
+    }
+
+    public Type getFinalType() {
+	return finalType;
     }
     
     public Expr gen() { 

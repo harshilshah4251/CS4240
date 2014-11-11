@@ -447,7 +447,7 @@ function_call_or_assignment
     ;
 
 expr_or_function_call
-    : ID // ID : function name
+    : ID // ID : name of a function or an array
         (expr_with_start_id[$ID] 
 		-> ^(EXPR_WITH_START_ID expr_with_start_id?)
         | function_args
@@ -457,25 +457,61 @@ expr_or_function_call
     ;
 
 /* notation: termN corresponds to precedence level N */
-expr returns[Type t]
-    : term4 (and_operator^ term4)* ;
-term4 
-    : term3 (compare_operator^ term3)* ;
-term3 
-    : term2 (add_operator^ term2)* ;
-<<<<<<< HEAD
-term2 returns[Type t] 
-    : {int i = 0;}t1=term1 (mult_operator^ t2=term1
-            {Arith a = new Arith($t1.t, $t2.t);
-            $t = a.getFinaltype();
+expr returns[Expr e]
+    : {int i = 0;}
+        t1=term4 (and_operator^ t2=term4
+        {
+             Logical logicalOperator = new Logical($t1.e, $t2.e);
+             $e = t1.getType().Bool;
+             i++;
+        })* 
+        {
+            if(i == 0) {
+                $t = $t1.e;
+            }
+        }
+    ;
+
+term4 returns[Expr e] 
+    : {int i = 0;}
+        t1=term3 (compare_operator^ t2=term3 
+        { // if code enters this point, we know term4 should return boolean
+            Arith comparisonOperator = new Arith($t1.e, $t2.e);
+            $t = t1.getType().Bool;
+            i++;
+        })*
+        {
+            if(i == 0) {
+                $t = $t1.e;
+            }
+        }
+    ;
+
+term3 returns[Expr e] 
+    : {int i = 0;}
+        t1=term2 (add_operator^ t2=term2
+            {Arith arithmeticOperator = new Arith($t1.e, $t2.e);
+            $t = arithmeticOperator.getFinalType();
             i++})* 
         {
             if(i == 0) {
-                $t = $t1.t;
+                $t = $t1.e;
             }
         }
-;
-term1 returns[Type t]
+    ;
+term2 returns[Expr e] 
+    : {int i = 0;} // counter to check whether mult_operator and the following term are used or not
+    t1=term1 (mult_operator^ t2=term1
+            {Arith arithmeticOperator = new Arith($t1.e, $t2.e); // type checking done in the constructor
+            $t = arithmeticOperator.getFinaltype();
+            i++})* 
+        { // if mult_operator is not followed, term2 returns type of term1
+            if(i == 0) {
+                $t = $t1.e;
+            }
+        }
+    ;
+term1 returns[Expr e]
     : literal
     | value
     | '(' expr ')'
@@ -522,15 +558,17 @@ add_operator
 compare_operator 
     : '=' | '<>' | '<' | '>' | '<=' | '>=' ;
 
-and_operator 
-    : '&' | '|' ;
+and_operator returns[Expr e] 
+    : '&' 
+    | '|' 
+    ;
 
 value 
     : ID value_tail -> ^(ID value_tail?);
 
-literal returns[Type e]
-    : INTLIT {$e = Type.Int;}
-    | FIXEDPTLIT {$e = Type.Float;}
+literal returns[Expr e]
+    : INTLIT {$e = new Constant($INTLIT.text, Type.Int);}
+    | FIXEDPTLIT {$e = new Constant($FIXEDPTLIT.text, Type.Float);}
     ;
 
 value_tail 
