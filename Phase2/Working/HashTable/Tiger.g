@@ -159,13 +159,62 @@ tokens {
 		boolean found = false;
 		for(int i = 0; i < stack.size(); i++) {
 			if(stack.get(i).containsKey(name)) {
-				System.out.println("Symbol Found : " + stack.get(i).get(name));
+//				System.out.println("Symbol Found : "+ name + " "+ stack.get(i).get(name));
 				return stack.get(i).get(name);
 			}
 		}
 
 		System.out.println(name + ": Symbol not found in SymbolTable!\n");
+		//return new Var();
 		return null;
+	}
+
+	public void addSTL() {
+		SymbolTable top = getTopTable();
+		ArrayList<Id> paramList = new ArrayList();
+		paramList.add(new Id("s", Type.String));
+		top.put("print", new Function("print", Type.Void, paramList));
+
+		paramList = new ArrayList();
+		paramList.add(new Id("i", Type.Int));
+		top.put("printi", new Function("printi", Type.Void, paramList));
+
+		paramList = new ArrayList();
+		top.put("flush", new Function("flush", Type.Void, paramList));
+
+		paramList = new ArrayList();
+		top.put("getchar", new Function("getchar", Type.String, paramList));
+
+		paramList = new ArrayList();
+		paramList.add(new Id("s", Type.String));
+		top.put("ord", new Function("ord", Type.Int, paramList));
+		
+		paramList = new ArrayList();
+		paramList.add(new Id("i", Type.Int));
+		top.put("chr", new Function("chr", Type.String, paramList));
+
+		paramList = new ArrayList();
+		paramList.add(new Id("s", Type.String));
+		top.put("size", new Function("size", Type.Int, paramList));
+		
+		paramList = new ArrayList();
+		paramList.add(new Id("s", Type.String));
+		paramList.add(new Id("f", Type.Int));
+		paramList.add(new Id("n", Type.Int));
+		top.put("substring", new Function("substring", Type.String, paramList));
+	
+		paramList = new ArrayList();
+		paramList.add(new Id("s1", Type.String));
+		paramList.add(new Id("s2", Type.String));
+		top.put("concat", new Function("concat", Type.String, paramList));
+	
+		paramList = new ArrayList();
+		paramList.add(new Id("i", Type.Int));
+		top.put("not", new Function("not", Type.Int, paramList));
+
+		paramList = new ArrayList();
+		paramList.add(new Id("i", Type.Int));
+		top.put("exit", new Function("exit", Type.Void, paramList));
 	}
 
 
@@ -174,12 +223,20 @@ tokens {
 	// parameters should be initialized previously
 	public void checkFuncParam(String funcName, ArrayList<String> pList) {
 
+System.out.println("looking for : " + funcName);
 		Var func = getValue(funcName);
-		if(!(func instanceof Function)) {
+		if (func == null) {
+			System.out.println(funcName + " function not found!");
+		} else if(!(func instanceof Function)) {
 			System.out.println(funcName + " is supposed to be Function type!\n");
 		} else {
 
 			ArrayList<Id> fpList = ((Function)func).getParamList();
+System.out.println(funcName + "/The parameters from symbol table are : " + fpList);
+System.out.println(funcName + "/The used parameters are : " + pList);
+			// checking if the function doesn't have paramter
+			// it's wrong even when either one is null
+			if(fpList != null && pList != null) {
 			if(pList.size() != fpList.size()) { 
 				System.out.println(funcName + " has wrong number of parameter!\n");
 			} else {
@@ -189,8 +246,11 @@ tokens {
 						System.out.println(funcName + " function has wrong parameter!\n");
 					} else if(!fpList.get(i).type.equals(((Id)id).type)) {
 						System.out.println(funcName + " function has wrong parameter type!\n");
+					} else if(((Id)id).init) {
+						System.out.println(funcName + " a parameter is not initialized before use!\n");
 					}
 				}
+			}
 			}
 		}
 	}
@@ -246,10 +306,12 @@ tiger_program
 		// This new SymbolTable will be the global SymbolTable
 		level = 0;
 		enterNewScope(new SymbolTable(level));
+		// Add Standard Library Functions into Global Symbol Table
+		addSTL();
 	}
 	type_declaration_list funct_declaration_list_then_main 
-		{printSymbol();}
-		{getValue("Mat33");getValue("x");}
+//		{printSymbol();}
+//		{getValue("Mat33");getValue("x");}
 	EOF 
 	-> ^(PROGRAM type_declaration_list funct_declaration_list_then_main)
 ;
@@ -289,7 +351,8 @@ main_function_tail
 
 param_list returns[ArrayList<Id> paramList]
     : {$paramList = new ArrayList<Id>();}
-    (par1=param {$paramList.add($par1.param);} ( ',' par2=param {$paramList.add($par2.param);})*)? 
+    (par1=param {$paramList.add($par1.param);} 
+	( ',' par2=param {$paramList.add($par2.param);})*)? 
 
 	-> ^(PARAMLIST param*)
     ;
@@ -422,6 +485,7 @@ stat
     | block
     ;
 
+// This returns parameter list
 function_args returns[ArrayList<String> pList]
     : '(' expr_list ')'
 	{$pList = $expr_list.list;}
@@ -440,112 +504,268 @@ function_call_or_assignment
             -> ^(FUNCTION_CALL ID function_args?)
 
         | value_tail ':=' expr_or_function_call
+		{
+			Var v = getValue($ID.text);
+			Type t = $expr_or_function_call.t;
+			if(v == null || t == null) {
+				System.out.println($ID.text + " function_call_or_assignment NULL!");
+			} else if(!((Id)v).type.name.equals(t.name)) {
+				System.out.println($ID.text + "=> Assignment Type doesn't match!" + " " + ((Id)v).type.name + "/ "+ t.name);
+			} else {
+				((Id)v).initId();
+			}
+		}
+		// compare type of ID and expr_or_function_call
 		// check if the ID is array
 		// check type at the both side
             -> ^(':=' ^(ID value_tail?) expr_or_function_call)
         ) ';'
     ;
 
-expr_or_function_call
-    : ID // ID : name of a function or an array
-        (expr_with_start_id[$ID] 
+// Check if the return has to be Type or Expr
+// Input should be Expr
+expr_or_function_call returns[Type t]
+    : ID // ID : function name
+        (expr_with_start_id[$ID, $ID.text] 
+
+
 		-> ^(EXPR_WITH_START_ID expr_with_start_id?)
-        | function_args
-            -> ^(FUNCTION_CALL ID function_args?)
+        | ((function_args 
+		{
+			checkFuncParam($ID.text, $function_args.pList);
+			Var fun = getValue($ID.text);
+			if (fun == null) {
+				System.out.println($ID.text + " Function not found in Symbol Table!");
+			} else {
+				$t = ((Function)fun).funcReturn();
+			}
+		})
+            -> ^(FUNCTION_CALL ID function_args?))
         )
-    | expr_no_start_id
+    | (expr_no_start_id
+	//{
+//		$t = $expr_no_start_id.e.type;
+//commented out because returned value $e is null
+	//}
+)
     ;
 
 /* notation: termN corresponds to precedence level N */
 expr returns[Expr e]
-    : {int i = 0;}
-        t1=term4 (and_operator^ t2=term4
-        {
-             Logical logicalOperator = new Logical($t1.e, $t2.e);
-             $e = t1.getType().Bool;
-             i++;
-        })* 
-        {
-            if(i == 0) {
-                $t = $t1.e;
-            }
-        }
-    ;
+    : {int i = 0;}t1=term4 (and_operator^ t2=term4
+            {
+                if (Logical.typeCheckPassed($t1.e, $t2.e)) {
+                    $e = new Expr("bool", Type.Bool);
+                }
+                i++;
+            })*
+      {
+          if (i == 0) {
+              $e = $t1.e; // if there is no second operand, term1's type should be returned
+      }
+    };
 
-term4 returns[Expr e] 
-    : {int i = 0;}
-        t1=term3 (compare_operator^ t2=term3 
-        { // if code enters this point, we know term4 should return boolean
-            Arith comparisonOperator = new Arith($t1.e, $t2.e);
-            $t = t1.getType().Bool;
-            i++;
-        })*
-        {
-            if(i == 0) {
-                $t = $t1.e;
-            }
-        }
-    ;
 
-term3 returns[Expr e] 
-    : {int i = 0;}
-        t1=term2 (add_operator^ t2=term2
-            {Arith arithmeticOperator = new Arith($t1.e, $t2.e);
-            $t = arithmeticOperator.getFinalType();
-            i++})* 
-        {
-            if(i == 0) {
-                $t = $t1.e;
-            }
-        }
+term4 returns[Expr e]
+    : {int i = 0;}t1=term3 (compare_operator^ t2=term3
+            {
+                if (Arith.typeCheckPassed($t1.e, $t2.e)) {
+                     $e = new Expr("bool", Type.Bool);   
+	// if both terms' types are correct, a boolean value should be returned 
+                    }
+                    i++;
+            })* 
+    {
+		if(i == 0) {
+			$e = $t1.e; // if there is no second operand, term1's type should be returned
+		}
+	}
     ;
+term3 returns[Expr e]
+    : {int i = 0;}t1=term2 (add_operator^ t2=term2
+	{
+		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
+			$e = Arith.getFinalType($t1.e, $t2.e);
+		}
+		i++;
+	})* 
+	{
+		if(i==0) {
+			$e = $t1.e;
+		}
+	};
+
 term2 returns[Expr e] 
-    : {int i = 0;} // counter to check whether mult_operator and the following term are used or not
-    t1=term1 (mult_operator^ t2=term1
-            {Arith arithmeticOperator = new Arith($t1.e, $t2.e); // type checking done in the constructor
-            $t = arithmeticOperator.getFinaltype();
-            i++})* 
-        { // if mult_operator is not followed, term2 returns type of term1
+    : {int i = 0;}t1=term1 (mult_operator^ t2=term1
+	{
+		if(Arith.typeCheckPassed($t1.e, $t2.e)) {
+			$e = Arith.getFinalType($t1.e, $t2.e);
+		}
+            	i++;
+
+	})*
+	{
             if(i == 0) {
-                $t = $t1.e;
+                $e = $t1.e;
             }
-        }
-    ;
+        };
+
 term1 returns[Expr e]
-    : literal
-    | value
-    | '(' expr ')'
+    : literal {$e = $literal.e;}
+    | value {$e = $value.e;}
+    | '(' expr ')' {$e = $expr.e;}
         -> expr
     ;
 
-expr_no_start_id 
-    : term4_no_start_id (and_operator^ term4)* ;
-term4_no_start_id 
-    : term3_no_start_id (compare_operator^ term3)* ;
-term3_no_start_id 
-    : term2_no_start_id (add_operator^ term2)* ;
-term2_no_start_id 
-    : term1_no_start_id (mult_operator^ term1)* ;
-term1_no_start_id
-    : literal
-    | '(' expr ')'
+expr_no_start_id returns[Expr e]
+    : {int i = 0;}t1=term4_no_start_id (and_operator^ t2=term4
+            {
+                if (Logical.typeCheckPassed($t1.e, $t2.e)) {
+                    $e = new Expr("bool", Type.Bool);
+                }
+                i++;
+            })*
+      {
+          if (i == 0) {
+              $e = $t1.e; // if there is no second operand, term1's type should be returned
+      }
+    };
+
+
+term4_no_start_id returns[Expr e]
+    : {int i = 0;}t1=term3_no_start_id (compare_operator^ t2=term3
+            {
+                if (Arith.typeCheckPassed($t1.e, $t2.e)) {
+                     $e = new Expr("bool", Type.Bool);   
+	// if both terms' types are correct, a boolean value should be returned 
+                    }
+                    i++;
+            })* 
+    	{
+		if(i == 0) {
+			$e = $t1.e; // if there is no second operand, term1's type should be returned
+		}
+	};
+
+
+term3_no_start_id returns[Expr e]
+    : {int i = 0;}t1=term2_no_start_id (add_operator^ t2=term2
+	{
+		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
+			$e = Arith.getFinalType($t1.e, $t2.e);
+		}
+		i++;
+	})* 
+	{
+		if(i==0) {
+			$e = $t1.e;
+		}
+	};
+
+term2_no_start_id returns[Expr e]
+    : {int i = 0;}t1=term1_no_start_id (mult_operator^ t2=term1
+	{
+		if(Arith.typeCheckPassed($t1.e, $t2.e)) {
+			$e = Arith.getFinalType($t1.e, $t2.e);
+		}
+            	i++;
+
+	})*
+	{
+            if(i == 0) {
+                $e = $t1.e;
+            }
+        };
+
+
+term1_no_start_id returns[Expr e]
+    : literal {$e = $literal.e;}
+    | '(' expr ')' {$e = $expr.e;}
         -> expr
     ;
 
-expr_with_start_id[Token startId] 
-    : term4_with_start_id[$startId] (and_operator^ term4)* ;
-term4_with_start_id[Token startId] 
-    : term3_with_start_id[$startId] (compare_operator^ term3)* ;
-term3_with_start_id[Token startId] 
-    : term2_with_start_id[$startId] (add_operator^ term2)* ;
-term2_with_start_id[Token startId] 
-    : term1_with_start_id[$startId] (mult_operator^ term1)* ;
-term1_with_start_id[Token startId]
-    : value_tail -> ^({new CommonTree($startId)} value_tail?)
+expr_with_start_id[Token startId, String s]  returns [Expr e]
+    : {int i = 0;} t1=term4_with_start_id[$startId, $s] (and_operator^ t2=term4
+	{
+                if (Logical.typeCheckPassed($t1.e, $t2.e)) {
+                    $e = new Expr("bool", Type.Bool);
+                }
+                i++;
+            })*
+      {
+          if (i == 0) {
+              $e = $t1.e; // if there is no second operand, term1's type should be returned
+      }
+    };
+
+
+term4_with_start_id[Token startId, String s] returns [Expr e]
+    : {int i = 0;} t1=term3_with_start_id[$startId, $s] (compare_operator^ t2=term3
+            {
+                if (Arith.typeCheckPassed($t1.e, $t2.e)) {
+                     $e = new Expr("bool", Type.Bool);   
+	// if both terms' types are correct, a boolean value should be returned 
+                    }
+                    i++;
+            })* 
+    	{
+		if(i == 0) {
+			$e = $t1.e; // if there is no second operand, term1's type should be returned
+		}
+	};
+
+
+term3_with_start_id[Token startId, String s] returns [Expr e]
+    : {int i = 0;} t1=term2_with_start_id[$startId, $s] (add_operator^ t2=term2
+	{
+		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
+			$e = Arith.getFinalType($t1.e, $t2.e);
+		}
+		i++;
+	})* 
+	{
+		if(i==0) {
+			$e = $t1.e;
+		}
+	};
+
+
+term2_with_start_id[Token startId, String s] returns [Expr e]
+    : {int i = 0;} t1=term1_with_start_id[$startId, $s] (mult_operator^ t2=term1
+	{
+		if(Arith.typeCheckPassed($t1.e, $t2.e)) {
+			$e = Arith.getFinalType($t1.e, $t2.e);
+		}
+            	i++;
+
+	})*
+	{
+            if(i == 0) {
+                $e = $t1.e;
+            }
+        };
+
+
+
+term1_with_start_id[Token startId, String s] returns[Expr e]
+    : value_tail {
+		Var v = getValue(s);
+		if(v == null) {
+			System.out.println(s + " Symbol not found! / term1_with_start_id");
+		} else if(!(v instanceof Id)) {
+			System.out.println(s + " is not Id! / term1_with_start_id");
+		} else {
+			$e = ((Expr)v);
+		}
+	}
+
+	-> ^({new CommonTree($startId)} value_tail?)
+
     ;
 
 expr_list returns[ArrayList<String> list]
-    : {$list = new ArrayList();} e1=expr {$list.add($e1.text);} ( ',' e2=expr {$list.add($e2.text);})* -> ^(EXPRLIST expr+)
+    : {$list = new ArrayList();} e1=expr {$list.add($e1.text);} 
+	( ',' e2=expr {$list.add($e2.text);})* -> ^(EXPRLIST expr+)
     |
     ;
 
@@ -558,13 +778,23 @@ add_operator
 compare_operator 
     : '=' | '<>' | '<' | '>' | '<=' | '>=' ;
 
-and_operator returns[Expr e] 
-    : '&' 
-    | '|' 
-    ;
+and_operator 
+    : '&' | '|' ;
 
-value 
-    : ID value_tail -> ^(ID value_tail?);
+value returns[Expr e]
+    : ID value_tail 
+	{
+		Var v = getValue($ID.text);
+		if (!(v instanceof Id)) {
+			System.out.println($ID.text + " is not Id value Type!");
+		} else if(!((Id)v).init) {
+			System.out.println($ID.text + " is not initialized before use!");
+		} else {
+			$e = ((Id)v);
+		}
+	}
+
+-> ^(ID value_tail?);
 
 literal returns[Expr e]
     : INTLIT {$e = new Constant($INTLIT.text, Type.Int);}
@@ -577,6 +807,7 @@ value_tail
     |
     ;
 
+// Below this line are for array index
 index_expr 
     : index_term (add_operator^ index_term)* ;
 

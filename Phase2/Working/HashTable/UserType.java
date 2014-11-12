@@ -6,9 +6,6 @@ public class UserType extends Type {
 	// Should check here agin
 	public UserType(String s) {
 		super(s);
-		/*if(s.equals("int")) {
-			size = 4;
-		}*/
 	}
 	
 	public UserType(String n, Type p) {

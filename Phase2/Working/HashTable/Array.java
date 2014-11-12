@@ -9,11 +9,11 @@
 public class Array extends Type {
 
     private Type of;
-    private  int size = 0; 
+    private  int arraySize = 0; 
 
     public Array(String s, int w, Type p) {    //s is name, w is size and p is type 
         super(s, w * p.size);
-        size = w;
+        arraySize = w;
         of = p;        
     }
 

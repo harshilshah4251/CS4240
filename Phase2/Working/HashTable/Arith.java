@@ -9,7 +9,6 @@
 public class Arith extends Op {
 
     public Expr expr1, expr2;
-    private Type finalType; 
 
     public Arith(String op, Expr expr1, Expr expr2) {
         super(op, null); 
@@ -20,29 +19,45 @@ public class Arith extends Op {
         if (type == null) 
         error("type error");
 	*/
-	finalType = finalTypetypeCheckPassed(expr1.type, expr2.type);
-	if (finalType == null)
-	    error("type error");	
+	if (!typeCheckPassed(expr1, expr2))
+	    error("type error with : " + expr1.type.name + " | "+ expr2.type.name+"\n");
     }
-    
-    public Type typeCheckPassed(Type t1, Type t2) {
-	Type finalType = null; 
 
-	if (Type.numeric(t1) && Type.numeric(t2)) {
-	    finalType = Type.max(t1, t2);
+	//public Arith(String op, 
+
+	public static Expr getFinalType(Expr e1, Expr e2) {
+		if(e1.type instanceof UserType) {
+			return new Expr("UserType", new UserType(e1.type.name, e1.type));
+		} else if(e1.type.name.equals("int")
+			&& e2.type.name.equals("int")) {
+				return new Expr("int", Type.Int);
+		} else {
+			return new Expr("float", Type.Float);
+		}
+		//This should not happen
+		//System.out.println("Wrong Final Type!\n");
+		//return null;
+	}
+    
+    public static boolean typeCheckPassed(Expr e1, Expr e2) {
+
+	boolean isLegal = false;
+	if(e1 == null || e2 == null) {
+		System.out.println("null input in typeCheckPassed!");
+	} else {
+
+	if (Type.numeric(e1.type) && Type.numeric(e2.type)) {
+	    isLegal = true;
 	}
 
-	else if ((t1 instanceof UserType) && (t2 instanceof UserType)) {
-	    if(((UserType)t1).userTypeName.equals(((UserType)t2).userTypeName)) {
-		finalType = t1;
+	else if ((e1.type instanceof UserType) || (e2.type instanceof UserType)) {
+	    if(((UserType)e1.type).userTypeName.equals(((UserType)e2.type).userTypeName)) {
+		isLegal = true;
 	    }
 	}
+	}
 
-	return finalType;
-    }
-
-    public Type getFinalType() {
-	return finalType;
+	return isLegal;
     }
     
     public Expr gen() { 

@@ -10,11 +10,32 @@
 public class Logical extends BinaryOp {
     public Expr expr1, expr2;
     
-    Logical(String tok, Expr x1, Expr x2) {
-        super(tok, null); expr1 = x1; expr2 = x2;
-        type = check(expr1.type, expr2.type);
-        if (type == null) error("type error");
+    public Logical(String tok, Expr expr1, Expr expr2) {
+        super(tok, null); 
+	this.expr1 = expr1; 
+	this.expr2 = expr2;
+
+	if (!typeCheckPassed(expr1, expr2)) {
+		error("Type error with: " + expr1.type.name + " | " + expr2.type.name + "\n");
+	    }
+	}
+    
+    public static boolean typeCheckPassed(Expr e1, Expr e2) {
+	boolean isLegal = false;
+
+	if(e1 == null || e2 == null) {
+	    System.out.println("ILLEGAL: Can't have null input in typeCheckPassed!");
+	} 
+	else {
+	    // should only pass if both operands are boolean
+	    if (e1.type == Type.Bool && e2.type == Type.Bool) {
+		isLegal = true;
+	    }
+	}
+
+	return isLegal;
     }
+
     
     public Type check(Type p1, Type p2) {
         if ( p1 == Type.Bool && p2 == Type.Bool ) return Type.Bool;

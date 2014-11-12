@@ -15,7 +15,6 @@ public class Type extends Var{
     public Type(String s, int w){
         name = s;
         size = w;
-//        init = false;
     }
 
     public Type(String name) {
@@ -39,7 +38,7 @@ public class Type extends Var{
 
         // Don't add String to Symbol table
         // Just check if the assignment String := String is correct
-        string = new Type("string", 0);
+        String = new Type("string", 0);
 
     
     public static boolean numeric (Type p){

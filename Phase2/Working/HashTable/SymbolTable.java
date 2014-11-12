@@ -26,7 +26,6 @@ public class SymbolTable {
 
 	public void put(String token, Var i) {
 		table.put(token, i);
-		//level = l;
 	}
 
 	public void keySet() {
