@@ -257,7 +257,7 @@ out.close();
 	// The function check if a function is used properly
 	// Properly means (same parameter number, parameter types and order)
 	// parameters should be initialized previously
-	public void checkFuncParam(String funcName, ArrayList<String> pList) {
+	public void checkFuncParam(String funcName, ArrayList<Expr> pList) {
 
 System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"looking for : " + funcName);
 		Var func = getValue(funcName);
@@ -274,15 +274,14 @@ System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + "/The u
 			// it's wrong even when either one is null
 			if(fpList != null && pList != null) {
 			if(pList.size() != fpList.size()) { 
-				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " has wrong number of parameter!\n");
+				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " has wrong number of parameters!\n");
 			} else {
 				for(int i = 0; i < pList.size(); i++) {
-					Var id = getValue(pList.get(i));
-					if(!(id instanceof Id)) {
-						System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " function has wrong parameter!\n");
-					} else if(!fpList.get(i).type.equals(((Id)id).type)) {
+					if(pList.get(i) == null) {
+						System.out.println("ERROR in \"" + currFunc.funcName + "\" " + funcName + "Wrong kind of parameter is given!\n");
+					} else if(!fpList.get(i).type.equals(pList.get(i).type.name)) {
 						System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " function has wrong parameter type!\n");
-					} else if(((Id)id).init) {
+					} else if((pList.get(i) instanceof Id) && ((Id)pList.get(i)).init) {
 						System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " a parameter is not initialized before use!\n");
 					}
 				}
@@ -389,7 +388,12 @@ funct_declaration_tail[Token retType, String returnType]
     ;
 
 main_function_tail 
-    : MAIN '(' ')' BEGIN block_list END ';' 
+    : MAIN '(' ')' {
+	currFunc = new Function("Main Function", Type.Void, new ArrayList());
+	}
+	BEGIN block_list END ';' 
+	{currFunc = new Function("Global level", Type.Int, new ArrayList());
+	}
 	-> ^(MAINSCOPE block_list);
 
 param_list returns[ArrayList<Id> paramList]
@@ -512,15 +516,25 @@ stat_seq
 
 stat
     : function_call_or_assignment
-    | IF expr {if (!$expr.e.type.name.equals("boolean")) 
-            System.out.println("ERROR in \"" + currFunc.funcName + "\" " + " expr after IF statement has to be boolean!!!");} THEN seq1=stat_seq 
+    | IF expr { 
+	if($expr.e == null || $expr.e.type.name == null) {
+		System.out.println("ERROR in \"" + currFunc.funcName + "\" " + " IF NULL pointer ERROR!");
+	} else if(!$expr.e.type.name.equals("boolean")) {
+            System.out.println("ERROR in \"" + currFunc.funcName + "\" " + " expr after IF statement has to be boolean!!!");}
+	} THEN seq1=stat_seq 
         ( ELSE seq2=stat_seq ENDIF
             -> ^(IF expr ^(THEN_STATS $seq1) ^(ELSE_STATS $seq2))
         | ENDIF
             -> ^(IF expr ^(THEN_STATS $seq1))
         ) ';'
-    | WHILE expr {if (!$expr.e.type.name.equals("boolean"))
-        System.out.println("ERROR in \"" + currFunc.funcName + "\" " + " expr after WHILE statement has to be boolean!!!");} DO stat_seq ENDDO ';'
+    | WHILE expr {
+	if($expr.e == null || $expr.e.type.name == null) {
+		System.out.println("ERROR in \"" + currFunc.funcName + "\" " + " WHILE NULL pointer ERROR!");
+	}
+	else if (!$expr.e.type.name.equals("boolean")) {
+        System.out.println("ERROR in \"" + currFunc.funcName + "\" " + " expr after WHILE statement has to be boolean!!!");}
+	} DO stat_seq ENDDO ';'
+
         -> ^(WHILE expr stat_seq)
     | FOR ID ':=' index_expr TO index_expr DO stat_seq ENDDO ';'
         -> ^(FOR ID index_expr index_expr stat_seq)
@@ -531,7 +545,9 @@ stat
     ;
 
 // This returns parameter list
-function_args returns[ArrayList<String> pList]
+
+// This returns parameter list
+function_args returns[ArrayList<Expr> pList]
     : '(' expr_list ')'
 	{$pList = $expr_list.list;}
         -> expr_list?
@@ -554,9 +570,9 @@ function_call_or_assignment
 			Type t = $expr_or_function_call.t;
 //            System.out.println(t);
 			if(v == null || t == null) {
-				System.out.println("ERROR in \"" + currFunc.funcName + "\": " + $ID.text + " function_call_or_assignment NULL!");
+				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " function_call_or_assignment NULL!"  + v + " " + t);
 			} else if(!((Id)v).type.name.equals(t.name)) {
-				System.out.println("ERROR in \"" + currFunc.funcName + "\": " +$ID.text + "=> Assignment Type doesn't match!" + " " + ((Id)v).type.name + "/ "+ t.name);
+				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + "=> Assignment Type doesn't match!" + " " + ((Id)v).type.name + "/ "+ t.name);
 			} else {
 				((Id)v).initId();
 			}
@@ -821,9 +837,9 @@ term1_with_start_id[Token startId, String s] returns[Expr e]
 
     ;
 
-expr_list returns[ArrayList<String> list]
-    : {$list = new ArrayList();} e1=expr {$list.add($e1.text);} 
-	( ',' e2=expr {$list.add($e2.text);})* -> ^(EXPRLIST expr+)
+expr_list returns[ArrayList<Expr> list]
+    : {$list = new ArrayList();} e1=expr {$list.add($e1.e);} 
+	( ',' e2=expr {$list.add($e2.e);})* -> ^(EXPRLIST expr+)
     |
     ;
 
@@ -898,10 +914,17 @@ index_term returns[Expr e]
 
 index_factor returns[Expr e]
     : INTLIT {$e = new Constant($INTLIT.text, Type.Int);}
-    | ID {$e = (Id)getValue($ID.text);
+    | ID { 
+		Var e = getValue($ID.text);
           // ID's type has to be int
-            if (!$e.type.name.equals("int")) {
-                System.out.println("ID cannot be types other than int");
+		if(e == null) {
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " Not found in SymbolTable! Wrong index Type");
+		$e = new Expr("Index Error!", Type.Int);
+            } else if (e instanceof Id) {
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " Wrong index Type! Should be Int type");
+		}else if (!$e.type.name.equals("int")) {
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " Wrong index Type! Should be Int type");
+		$e = (Id)e;
             }
         }
     ;
