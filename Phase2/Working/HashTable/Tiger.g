@@ -159,15 +159,14 @@ tokens {
 
 			for(int i = 0; i < tableList.size(); i++) {
 				if(tableList.get(i).size() != 0){
-					//System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"Symbol table " + i +": \n" + tableList.get(i) + "\n");
-String content = "Symbol table " + i +": \n" + tableList.get(i) + "\n\n";
-byte[] contentInBytes = content.getBytes();
+					String content = "Symbol table " + i +": \n" + tableList.get(i) + "\n\n";
+						byte[] contentInBytes = content.getBytes();
 			out.write(contentInBytes);
 			out.flush();
-		}
-
 			}
-out.close();
+
+		}
+		out.close();
  
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -191,17 +190,11 @@ out.close();
 		boolean found = false;
 		for(int i = 0; i < stack.size(); i++) {
 			if(stack.get(i).containsKey(name)) {
-//				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"Symbol Found : "+ name + " "+ stack.get(i).get(name));
 				return stack.get(i).get(name);
 			}
 		}
 
-//		if (currFunc == null) {
-//			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"In Global level, " + name + ": Symbol not found in SymbolTable!\n");
-//		} else {
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"In Function " + currFunc.funcName + " " + name + ": Symbol not found in SymbolTable!\n");
-//		}
-		//return new Var();
 		return null;
 	}
 
@@ -568,11 +561,14 @@ function_call_or_assignment
 		{
 			Var v = getValue($ID.text);
 			Type t = $expr_or_function_call.t;
-//            System.out.println(t);
 			if(v == null || t == null) {
 				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " function_call_or_assignment NULL!"  + v + " " + t);
+			} else if(((Id)v).type instanceof UserType) {
+				if(!((UserType)v).userTypeName.equals(t.name)) {
+					System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + "=> Assignment Type doesn't match!" + " " + ((UserType)v).userTypeName + "/ "+ t.name);
+				}
 			} else if(!((Id)v).type.name.equals(t.name)) {
-				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + "=> Assignment Type doesn't match!" + " " + ((Id)v).type.name + "/ "+ t.name);
+				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + "=> Assignment Type doesn't match!" + " " + ((Id)v).type.name + "/ "+ t.name);// + ";;" + ((UserType)(((Id)v).type).)userTypeName);
 			} else {
 				((Id)v).initId();
 			}
@@ -589,7 +585,12 @@ function_call_or_assignment
 expr_or_function_call returns[Type t]
     : ID // ID : function name or variable name
         (expr_with_start_id[$ID, $ID.text] 
-            {$t = new Type($expr_with_start_id.e.type.name);
+            {
+		if($expr_with_start_id.e == null) {
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " Has wrong type!");
+		} else { 
+			$t = new Type($expr_with_start_id.e.type.name);
+		}
 //    System.out.println("Type returned in expr_or_function_call is: " + $t);
             }
 
@@ -600,6 +601,8 @@ expr_or_function_call returns[Type t]
 			Var fun = getValue($ID.text);
 			if (fun == null) {
 				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " Function not found in Symbol Table!");
+			} else if(!(fun instanceof Function)) {
+				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " is Not Function!");
 			} else {
 				$t = ((Function)fun).funcReturn();
 			}
@@ -611,7 +614,13 @@ expr_or_function_call returns[Type t]
 //		$t = $expr_no_start_id.e.type;
 //commented out because returned value $e is null
 	//}
-{$t = new Type($expr_no_start_id.e.type.name);
+{
+		if($expr_no_start_id.e == null) {
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " + " an Expression has wrong type!");
+		} else { 
+			$t = new Type($expr_no_start_id.e.type.name);
+		}
+
 //    System.out.println("Type returned in expr_or_function_call is: " + $t);
 }
 )

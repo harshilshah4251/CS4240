@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 Tiger.g 2014-11-12 10:38:38
+// $ANTLR 3.5.2 Tiger.g 2014-11-12 12:09:02
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -966,8 +966,8 @@ public class TigerLexer extends Lexer {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Tiger.g:296:5: ( ( LOWER | UPPER ) ( LOWER | UPPER | DIGIT | '_' )* )
-			// Tiger.g:296:9: ( LOWER | UPPER ) ( LOWER | UPPER | DIGIT | '_' )*
+			// Tiger.g:289:5: ( ( LOWER | UPPER ) ( LOWER | UPPER | DIGIT | '_' )* )
+			// Tiger.g:289:9: ( LOWER | UPPER ) ( LOWER | UPPER | DIGIT | '_' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -977,7 +977,7 @@ public class TigerLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// Tiger.g:296:22: ( LOWER | UPPER | DIGIT | '_' )*
+			// Tiger.g:289:22: ( LOWER | UPPER | DIGIT | '_' )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -1022,10 +1022,10 @@ public class TigerLexer extends Lexer {
 		try {
 			int _type = WHITESPACE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Tiger.g:300:5: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
-			// Tiger.g:300:9: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+			// Tiger.g:293:5: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
+			// Tiger.g:293:9: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
 			{
-			// Tiger.g:300:9: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+			// Tiger.g:293:9: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -1075,12 +1075,12 @@ public class TigerLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Tiger.g:304:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-			// Tiger.g:304:9: '/*' ( options {greedy=false; } : . )* '*/'
+			// Tiger.g:297:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+			// Tiger.g:297:9: '/*' ( options {greedy=false; } : . )* '*/'
 			{
 			match("/*"); 
 
-			// Tiger.g:304:14: ( options {greedy=false; } : . )*
+			// Tiger.g:297:14: ( options {greedy=false; } : . )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -1101,7 +1101,7 @@ public class TigerLexer extends Lexer {
 
 				switch (alt3) {
 				case 1 :
-					// Tiger.g:304:42: .
+					// Tiger.g:297:42: .
 					{
 					matchAny(); 
 					}
@@ -1131,7 +1131,7 @@ public class TigerLexer extends Lexer {
 		try {
 			int _type = INTLIT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Tiger.g:308:5: ( '0' | '1' .. '9' ( DIGIT )* )
+			// Tiger.g:301:5: ( '0' | '1' .. '9' ( DIGIT )* )
 			int alt5=2;
 			int LA5_0 = input.LA(1);
 			if ( (LA5_0=='0') ) {
@@ -1149,16 +1149,16 @@ public class TigerLexer extends Lexer {
 
 			switch (alt5) {
 				case 1 :
-					// Tiger.g:308:9: '0'
+					// Tiger.g:301:9: '0'
 					{
 					match('0'); 
 					}
 					break;
 				case 2 :
-					// Tiger.g:309:9: '1' .. '9' ( DIGIT )*
+					// Tiger.g:302:9: '1' .. '9' ( DIGIT )*
 					{
 					matchRange('1','9'); 
-					// Tiger.g:309:18: ( DIGIT )*
+					// Tiger.g:302:18: ( DIGIT )*
 					loop4:
 					while (true) {
 						int alt4=2;
@@ -1205,13 +1205,13 @@ public class TigerLexer extends Lexer {
 		try {
 			int _type = FIXEDPTLIT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Tiger.g:313:5: ( INTLIT '.' ( DIGIT | DIGIT DIGIT | DIGIT DIGIT DIGIT ) )
-			// Tiger.g:313:9: INTLIT '.' ( DIGIT | DIGIT DIGIT | DIGIT DIGIT DIGIT )
+			// Tiger.g:306:5: ( INTLIT '.' ( DIGIT | DIGIT DIGIT | DIGIT DIGIT DIGIT ) )
+			// Tiger.g:306:9: INTLIT '.' ( DIGIT | DIGIT DIGIT | DIGIT DIGIT DIGIT )
 			{
 			mINTLIT(); 
 
 			match('.'); 
-			// Tiger.g:313:20: ( DIGIT | DIGIT DIGIT | DIGIT DIGIT DIGIT )
+			// Tiger.g:306:20: ( DIGIT | DIGIT DIGIT | DIGIT DIGIT DIGIT )
 			int alt6=3;
 			int LA6_0 = input.LA(1);
 			if ( ((LA6_0 >= '0' && LA6_0 <= '9')) ) {
@@ -1242,14 +1242,14 @@ public class TigerLexer extends Lexer {
 
 			switch (alt6) {
 				case 1 :
-					// Tiger.g:313:21: DIGIT
+					// Tiger.g:306:21: DIGIT
 					{
 					mDIGIT(); 
 
 					}
 					break;
 				case 2 :
-					// Tiger.g:313:29: DIGIT DIGIT
+					// Tiger.g:306:29: DIGIT DIGIT
 					{
 					mDIGIT(); 
 
@@ -1258,7 +1258,7 @@ public class TigerLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// Tiger.g:313:43: DIGIT DIGIT DIGIT
+					// Tiger.g:306:43: DIGIT DIGIT DIGIT
 					{
 					mDIGIT(); 
 
@@ -1287,11 +1287,11 @@ public class TigerLexer extends Lexer {
 		try {
 			int _type = INVALID_INTLIT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Tiger.g:317:5: ( '0' ( DIGIT )+ )
-			// Tiger.g:317:9: '0' ( DIGIT )+
+			// Tiger.g:310:5: ( '0' ( DIGIT )+ )
+			// Tiger.g:310:9: '0' ( DIGIT )+
 			{
 			match('0'); 
-			// Tiger.g:317:13: ( DIGIT )+
+			// Tiger.g:310:13: ( DIGIT )+
 			int cnt7=0;
 			loop7:
 			while (true) {
@@ -1341,7 +1341,7 @@ public class TigerLexer extends Lexer {
 		try {
 			int _type = INVALID_FIXEDPTLIT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Tiger.g:321:5: ( INVALID_INTLIT '.' ( DIGIT | DIGIT DIGIT | DIGIT DIGIT DIGIT )? | INTLIT '.' ( DIGIT DIGIT DIGIT ( DIGIT )+ )? )
+			// Tiger.g:314:5: ( INVALID_INTLIT '.' ( DIGIT | DIGIT DIGIT | DIGIT DIGIT DIGIT )? | INTLIT '.' ( DIGIT DIGIT DIGIT ( DIGIT )+ )? )
 			int alt11=2;
 			int LA11_0 = input.LA(1);
 			if ( (LA11_0=='0') ) {
@@ -1378,12 +1378,12 @@ public class TigerLexer extends Lexer {
 
 			switch (alt11) {
 				case 1 :
-					// Tiger.g:321:9: INVALID_INTLIT '.' ( DIGIT | DIGIT DIGIT | DIGIT DIGIT DIGIT )?
+					// Tiger.g:314:9: INVALID_INTLIT '.' ( DIGIT | DIGIT DIGIT | DIGIT DIGIT DIGIT )?
 					{
 					mINVALID_INTLIT(); 
 
 					match('.'); 
-					// Tiger.g:321:28: ( DIGIT | DIGIT DIGIT | DIGIT DIGIT DIGIT )?
+					// Tiger.g:314:28: ( DIGIT | DIGIT DIGIT | DIGIT DIGIT DIGIT )?
 					int alt8=4;
 					int LA8_0 = input.LA(1);
 					if ( ((LA8_0 >= '0' && LA8_0 <= '9')) ) {
@@ -1397,14 +1397,14 @@ public class TigerLexer extends Lexer {
 					}
 					switch (alt8) {
 						case 1 :
-							// Tiger.g:321:29: DIGIT
+							// Tiger.g:314:29: DIGIT
 							{
 							mDIGIT(); 
 
 							}
 							break;
 						case 2 :
-							// Tiger.g:321:37: DIGIT DIGIT
+							// Tiger.g:314:37: DIGIT DIGIT
 							{
 							mDIGIT(); 
 
@@ -1413,7 +1413,7 @@ public class TigerLexer extends Lexer {
 							}
 							break;
 						case 3 :
-							// Tiger.g:321:51: DIGIT DIGIT DIGIT
+							// Tiger.g:314:51: DIGIT DIGIT DIGIT
 							{
 							mDIGIT(); 
 
@@ -1430,12 +1430,12 @@ public class TigerLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// Tiger.g:322:9: INTLIT '.' ( DIGIT DIGIT DIGIT ( DIGIT )+ )?
+					// Tiger.g:315:9: INTLIT '.' ( DIGIT DIGIT DIGIT ( DIGIT )+ )?
 					{
 					mINTLIT(); 
 
 					match('.'); 
-					// Tiger.g:322:20: ( DIGIT DIGIT DIGIT ( DIGIT )+ )?
+					// Tiger.g:315:20: ( DIGIT DIGIT DIGIT ( DIGIT )+ )?
 					int alt10=2;
 					int LA10_0 = input.LA(1);
 					if ( ((LA10_0 >= '0' && LA10_0 <= '9')) ) {
@@ -1443,7 +1443,7 @@ public class TigerLexer extends Lexer {
 					}
 					switch (alt10) {
 						case 1 :
-							// Tiger.g:322:21: DIGIT DIGIT DIGIT ( DIGIT )+
+							// Tiger.g:315:21: DIGIT DIGIT DIGIT ( DIGIT )+
 							{
 							mDIGIT(); 
 
@@ -1451,7 +1451,7 @@ public class TigerLexer extends Lexer {
 
 							mDIGIT(); 
 
-							// Tiger.g:322:39: ( DIGIT )+
+							// Tiger.g:315:39: ( DIGIT )+
 							int cnt9=0;
 							loop9:
 							while (true) {
@@ -1508,8 +1508,8 @@ public class TigerLexer extends Lexer {
 		try {
 			int _type = INVALID_CHAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Tiger.g:329:5: ( . )
-			// Tiger.g:329:9: .
+			// Tiger.g:322:5: ( . )
+			// Tiger.g:322:9: .
 			{
 			matchAny(); 
 			_type=Token.INVALID_TOKEN_TYPE;
@@ -1527,7 +1527,7 @@ public class TigerLexer extends Lexer {
 	// $ANTLR start "LOWER"
 	public final void mLOWER() throws RecognitionException {
 		try {
-			// Tiger.g:332:15: ( 'a' .. 'z' )
+			// Tiger.g:325:15: ( 'a' .. 'z' )
 			// Tiger.g:
 			{
 			if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -1550,7 +1550,7 @@ public class TigerLexer extends Lexer {
 	// $ANTLR start "UPPER"
 	public final void mUPPER() throws RecognitionException {
 		try {
-			// Tiger.g:333:15: ( 'A' .. 'Z' )
+			// Tiger.g:326:15: ( 'A' .. 'Z' )
 			// Tiger.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
@@ -1573,7 +1573,7 @@ public class TigerLexer extends Lexer {
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
-			// Tiger.g:334:15: ( '0' .. '9' )
+			// Tiger.g:327:15: ( '0' .. '9' )
 			// Tiger.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {

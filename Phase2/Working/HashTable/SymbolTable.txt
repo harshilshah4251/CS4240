@@ -86,7 +86,7 @@ level : 1
 
 Symbol table 15: 
 level : 3
-{out= ID/float, size: 8, init: false, size: 8
+{out= ID/float, size: 8, init: true, size: 8
 }
 
 Symbol table 16: 
@@ -110,7 +110,7 @@ level : 2
 , a= ID/float, size: 8, init: false, size: 8
 , out= ID/float, size: 8, init: true, size: 8
 , nlength= ID/int, size: 4, init: true, size: 4
-, n= ID/int, size: 4, init: false, size: 4
+, n= ID/int, size: 4, init: true, size: 4
 }
 
 Symbol table 20: 
@@ -135,11 +135,11 @@ level : 1
 
 Symbol table 25: 
 level : 2
-{x= ID/float, size: 8, init: false, size: 8
+{x= ID/float, size: 8, init: true, size: 8
 , counter= ID/int, size: 4, init: true, size: 4
 , abs_result= ID/float, size: 8, init: true, size: 8
 , pow_result= ID/float, size: 8, init: true, size: 8
-, e= ID/float, size: 8, init: false, size: 8
+, e= ID/float, size: 8, init: true, size: 8
 , guess= ID/float, size: 8, init: true, size: 8
 }
 
@@ -163,8 +163,8 @@ level : 1
 , check_size_result= ID/int, size: 4, init: true, size: 4
 , Bwidth= ID/int, size: 4, init: true, size: 4
 , Aheight= ID/int, size: 4, init: true, size: 4
-, Cheight= ID/int, size: 4, init: false, size: 4
-, Cwidth= ID/int, size: 4, init: false, size: 4
+, Cheight= ID/int, size: 4, init: true, size: 4
+, Cwidth= ID/int, size: 4, init: true, size: 4
 , Bheight= ID/int, size: 4, init: true, size: 4
 , Awidth= ID/int, size: 4, init: true, size: 4
 }
