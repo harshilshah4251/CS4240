@@ -510,13 +510,13 @@ stat_seq
 
 stat
     : function_call_or_assignment
-    | IF expr THEN seq1=stat_seq 
+    | IF expr {if (!$expr.e.type.name.equals("boolean"))} THEN seq1=stat_seq 
         ( ELSE seq2=stat_seq ENDIF
             -> ^(IF expr ^(THEN_STATS $seq1) ^(ELSE_STATS $seq2))
         | ENDIF
             -> ^(IF expr ^(THEN_STATS $seq1))
         ) ';'
-    | WHILE expr DO stat_seq ENDDO ';'
+    | WHILE expr {if (!$expr.e.type.name.equals("boolean"))} DO stat_seq ENDDO ';'
         -> ^(WHILE expr stat_seq)
     | FOR ID ':=' index_expr TO index_expr DO stat_seq ENDDO ';'
         -> ^(FOR ID index_expr index_expr stat_seq)
@@ -845,17 +845,46 @@ literal returns[Expr e]
 value_tail 
     : '[' index_expr ']' ('[' index_expr ']')?
             -> index_expr+  /* antlr will auto-group two index_expr's */
-    |
+    | /* null */
     ;
 
 // Below this line are for array index
-index_expr 
-    : index_term (add_operator^ index_term)* ;
+index_expr returns[Expr e]
+    : {int i = 0;} t1=index_term (add_operator^ t2=index_term
+    {
+     if(Arith.typeCheckPassed($t1.e, $t2.e)) {
+			$e = Arith.getFinalType($t1.e, $t2.e);
+		}
+           	i++;
+    })* 
+	{
+        if(i == 0) {
+            $e = $t1.e;
+        }
+    }
+    ;
 
-index_term 
-    : index_factor ('*'^ index_factor)* ;  /* no division allowed in index */
+index_term returns[Expr e]
+    : {int i = 0;} t1=index_factor ('*'^ t2=index_factor
+	{
+		if(Arith.typeCheckPassed($t1.e, $t2.e)) {
+			$e = Arith.getFinalType($t1.e, $t2.e);
+		}
+           	i++;
+    })*
+	{
+        if(i == 0) {
+            $e = $t1.e;
+        }
+    }
+    ;  /* no division allowed in index */
 
-index_factor 
-    : INTLIT | ID ;
-
-
+index_factor returns[Expr e]
+    : INTLIT {$e = new Constant($INTLIT.text, Type.Int);}
+    | ID {$e = (Id)getValue($ID.text);
+          // ID's type has to be int
+            if (!$e.type.name.equals("int")) {
+                System.out.println("ID cannot be types other than int");
+            }
+        }
+    ;
