@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Function extends Var{
 
     private ArrayList<Id> paramList = new ArrayList<Id>();
-    private String funcName;
+    public String funcName;
     private Type returnType;
     private int numParam;
 
@@ -31,6 +31,10 @@ public class Function extends Var{
     public Type funcReturn() {
         return returnType;
     }
+
+	public String getFuncName() {
+		return funcName;
+	}
 
     public String toString() {
 	return "Function/" + " return: " + returnType + ", parameter list:" + paramList.toString() + ", number of parameters: " + numParam + "\n";

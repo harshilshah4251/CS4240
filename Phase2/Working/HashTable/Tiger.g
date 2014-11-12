@@ -122,6 +122,8 @@ tokens {
 	// 0: global, 1: function 2: inside of another block etc.
 	public int level;
 
+	public Function currFunc;
+
 	// When entering new scope, add the SymbolTable into the Stack and List
 	public void enterNewScope(SymbolTable table) {
 		stack.addFirst(table);
@@ -194,7 +196,11 @@ out.close();
 			}
 		}
 
-		System.out.println(name + ": Symbol not found in SymbolTable!\n");
+		if (currFunc == null) {
+			System.out.println("In Global level, " + name + ": Symbol not found in SymbolTable!\n");
+		} else {
+			System.out.println("In Function " + currFunc.funcName + " " + name + ": Symbol not found in SymbolTable!\n");
+		}
 		//return new Var();
 		return null;
 	}
@@ -357,7 +363,9 @@ funct_declaration_tail[Token retType, String returnType]
     : {Type type = new Type($returnType);}
         FUNCTION ID '(' param_list ')' 
 	{
+		Function newFunc = new Function($ID.text, type, $param_list.paramList);
 		getTopTable().put($ID.text, new Function($ID.text, type, $param_list.paramList));
+		currFunc = newFunc;
 
 		enterNewScope(new SymbolTable(level));
 
@@ -367,10 +375,13 @@ funct_declaration_tail[Token retType, String returnType]
 					new Id($param_list.paramList.get(i).getName(), $param_list.paramList.get(i).getType(),true));
 		}
 
-		exitScope();
 	}
 
 	BEGIN block_list END ';' 
+	{
+		exitScope();
+		currFunc = null;
+	}
 
 	-> ^(FUNCTION {new CommonTree($retType)} ID param_list block_list)
     ;

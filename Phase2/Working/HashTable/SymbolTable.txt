@@ -47,24 +47,24 @@ level : 0
 }
 
 Symbol table 3: 
-level : 1
+level : 2
 {Integer=UserType/ Name: int TotalSize : 4 BaseType : int, size: 4
 }
 
 Symbol table 4: 
-level : 2
+level : 3
 {x= ID/Integer, size: 0, init: true, size: 0
 , z= ID/Integer, size: 0, init: true, size: 0
 , y= ID/Integer, size: 0, init: true, size: 0
 }
 
 Symbol table 5: 
-level : 2
+level : 3
 {Integer=UserType/ Name: int TotalSize : 4 BaseType : int, size: 4
 }
 
 Symbol table 8: 
-level : 2
+level : 3
 {index= ID/int, size: 4, init: true, size: 4
 , arr_1D= ID/IntArray, size: 0, init: true, size: 0
 , arr_2D__= ID/Int2DArray, size: 0, init: true, size: 0
@@ -85,7 +85,7 @@ level : 1
 }
 
 Symbol table 15: 
-level : 2
+level : 3
 {out= ID/float, size: 8, init: false, size: 8
 }
 
@@ -95,7 +95,7 @@ level : 1
 }
 
 Symbol table 17: 
-level : 1
+level : 2
 {out= ID/int, size: 4, init: true, size: 4
 }
 
@@ -105,7 +105,7 @@ level : 1
 }
 
 Symbol table 19: 
-level : 1
+level : 2
 {tenfactor= ID/int, size: 4, init: false, size: 4
 , a= ID/float, size: 8, init: false, size: 8
 , out= ID/float, size: 8, init: true, size: 8
@@ -114,12 +114,12 @@ level : 1
 }
 
 Symbol table 20: 
-level : 2
+level : 3
 {pow_result= ID/float, size: 8, init: true, size: 8
 }
 
 Symbol table 21: 
-level : 2
+level : 3
 {pow_result= ID/float, size: 8, init: true, size: 8
 }
 
@@ -134,7 +134,7 @@ level : 1
 }
 
 Symbol table 25: 
-level : 1
+level : 2
 {x= ID/float, size: 8, init: false, size: 8
 , counter= ID/int, size: 4, init: true, size: 4
 , abs_result= ID/float, size: 8, init: true, size: 8
@@ -149,7 +149,7 @@ level : 1
 }
 
 Symbol table 27: 
-level : 1
+level : 2
 {b= ID/float, size: 8, init: true, size: 8
 , a= ID/int, size: 4, init: true, size: 4
 , c= ID/float, size: 8, init: false, size: 8
