@@ -159,7 +159,7 @@ tokens {
 
 			for(int i = 0; i < tableList.size(); i++) {
 				if(tableList.get(i).size() != 0){
-					//System.out.println("Symbol table " + i +": \n" + tableList.get(i) + "\n");
+					//System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"Symbol table " + i +": \n" + tableList.get(i) + "\n");
 String content = "Symbol table " + i +": \n" + tableList.get(i) + "\n\n";
 byte[] contentInBytes = content.getBytes();
 			out.write(contentInBytes);
@@ -191,16 +191,16 @@ out.close();
 		boolean found = false;
 		for(int i = 0; i < stack.size(); i++) {
 			if(stack.get(i).containsKey(name)) {
-//				System.out.println("Symbol Found : "+ name + " "+ stack.get(i).get(name));
+//				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"Symbol Found : "+ name + " "+ stack.get(i).get(name));
 				return stack.get(i).get(name);
 			}
 		}
 
-		if (currFunc == null) {
-			System.out.println("In Global level, " + name + ": Symbol not found in SymbolTable!\n");
-		} else {
-			System.out.println("In Function " + currFunc.funcName + " " + name + ": Symbol not found in SymbolTable!\n");
-		}
+//		if (currFunc == null) {
+//			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"In Global level, " + name + ": Symbol not found in SymbolTable!\n");
+//		} else {
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"In Function " + currFunc.funcName + " " + name + ": Symbol not found in SymbolTable!\n");
+//		}
 		//return new Var();
 		return null;
 	}
@@ -259,31 +259,31 @@ out.close();
 	// parameters should be initialized previously
 	public void checkFuncParam(String funcName, ArrayList<String> pList) {
 
-System.out.println("looking for : " + funcName);
+System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"looking for : " + funcName);
 		Var func = getValue(funcName);
 		if (func == null) {
-			System.out.println(funcName + " function not found!");
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " function not found!");
 		} else if(!(func instanceof Function)) {
-			System.out.println(funcName + " is supposed to be Function type!\n");
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " is supposed to be Function type!\n");
 		} else {
 
 			ArrayList<Id> fpList = ((Function)func).getParamList();
-System.out.println(funcName + "/The parameters from symbol table are : " + fpList);
-System.out.println(funcName + "/The used parameters are : " + pList);
+System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + "/The parameters from symbol table are : " + fpList);
+System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + "/The used parameters are : " + pList);
 			// checking if the function doesn't have paramter
 			// it's wrong even when either one is null
 			if(fpList != null && pList != null) {
 			if(pList.size() != fpList.size()) { 
-				System.out.println(funcName + " has wrong number of parameter!\n");
+				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " has wrong number of parameter!\n");
 			} else {
 				for(int i = 0; i < pList.size(); i++) {
 					Var id = getValue(pList.get(i));
 					if(!(id instanceof Id)) {
-						System.out.println(funcName + " function has wrong parameter!\n");
+						System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " function has wrong parameter!\n");
 					} else if(!fpList.get(i).type.equals(((Id)id).type)) {
-						System.out.println(funcName + " function has wrong parameter type!\n");
+						System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " function has wrong parameter type!\n");
 					} else if(((Id)id).init) {
-						System.out.println(funcName + " a parameter is not initialized before use!\n");
+						System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " a parameter is not initialized before use!\n");
 					}
 				}
 			}
@@ -364,7 +364,9 @@ funct_declaration_tail[Token retType, String returnType]
         FUNCTION ID '(' param_list ')' 
 	{
 		Function newFunc = new Function($ID.text, type, $param_list.paramList);
-		getTopTable().put($ID.text, new Function($ID.text, type, $param_list.paramList));
+		getTopTable().put($ID.text, newFunc);
+
+//new Function($ID.text, type, $param_list.paramList));
 		currFunc = newFunc;
 
 		enterNewScope(new SymbolTable(level));
@@ -380,7 +382,7 @@ funct_declaration_tail[Token retType, String returnType]
 	BEGIN block_list END ';' 
 	{
 		exitScope();
-		currFunc = null;
+		currFunc = new Function("Global level", Type.Int, new ArrayList());
 	}
 
 	-> ^(FUNCTION {new CommonTree($retType)} ID param_list block_list)
@@ -549,9 +551,9 @@ function_call_or_assignment
 			Var v = getValue($ID.text);
 			Type t = $expr_or_function_call.t;
 			if(v == null || t == null) {
-				System.out.println($ID.text + " function_call_or_assignment NULL!");
+				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " function_call_or_assignment NULL!");
 			} else if(!((Id)v).type.name.equals(t.name)) {
-				System.out.println($ID.text + "=> Assignment Type doesn't match!" + " " + ((Id)v).type.name + "/ "+ t.name);
+				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + "=> Assignment Type doesn't match!" + " " + ((Id)v).type.name + "/ "+ t.name);
 			} else {
 				((Id)v).initId();
 			}
@@ -576,7 +578,7 @@ expr_or_function_call returns[Type t]
 			checkFuncParam($ID.text, $function_args.pList);
 			Var fun = getValue($ID.text);
 			if (fun == null) {
-				System.out.println($ID.text + " Function not found in Symbol Table!");
+				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " Function not found in Symbol Table!");
 			} else {
 				$t = ((Function)fun).funcReturn();
 			}
@@ -792,9 +794,9 @@ term1_with_start_id[Token startId, String s] returns[Expr e]
     : value_tail {
 		Var v = getValue(s);
 		if(v == null) {
-			System.out.println(s + " Symbol not found! / term1_with_start_id");
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +s + " Symbol not found! / term1_with_start_id");
 		} else if(!(v instanceof Id)) {
-			System.out.println(s + " is not Id! / term1_with_start_id");
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +s + " is not Id! / term1_with_start_id");
 		} else {
 			$e = ((Expr)v);
 		}
@@ -827,9 +829,9 @@ value returns[Expr e]
 	{
 		Var v = getValue($ID.text);
 		if (!(v instanceof Id)) {
-			System.out.println($ID.text + " is not Id value Type!");
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " is not Id value Type!");
 		} else if(!((Id)v).init) {
-			System.out.println($ID.text + " is not initialized before use!");
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " is not initialized before use!");
 		} else {
 			$e = ((Id)v);
 		}
