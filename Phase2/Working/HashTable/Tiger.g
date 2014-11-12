@@ -552,6 +552,7 @@ function_call_or_assignment
 		{
 			Var v = getValue($ID.text);
 			Type t = $expr_or_function_call.t;
+//            System.out.println(t);
 			if(v == null || t == null) {
 				System.out.println("ERROR in \"" + currFunc.funcName + "\": " + $ID.text + " function_call_or_assignment NULL!");
 			} else if(!((Id)v).type.name.equals(t.name)) {
@@ -570,9 +571,11 @@ function_call_or_assignment
 // Check if the return has to be Type or Expr
 // Input should be Expr
 expr_or_function_call returns[Type t]
-    : ID // ID : function name
+    : ID // ID : function name or variable name
         (expr_with_start_id[$ID, $ID.text] 
-
+            {$t = new Type($expr_with_start_id.e.type.name);
+//    System.out.println("Type returned in expr_or_function_call is: " + $t);
+            }
 
 		-> ^(EXPR_WITH_START_ID expr_with_start_id?)
         | ((function_args 
@@ -592,6 +595,9 @@ expr_or_function_call returns[Type t]
 //		$t = $expr_no_start_id.e.type;
 //commented out because returned value $e is null
 	//}
+{$t = new Type($expr_no_start_id.e.type.name);
+//    System.out.println("Type returned in expr_or_function_call is: " + $t);
+}
 )
     ;
 
@@ -673,6 +679,7 @@ expr_no_start_id returns[Expr e]
       {
           if (i == 0) {
               $e = $t1.e; // if there is no second operand, term1's type should be returned
+//              System.out.println("Type returned is: " + $e.type);
       }
     };
 
@@ -698,6 +705,7 @@ term3_no_start_id returns[Expr e]
 	{
 		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
 			$e = Arith.getFinalType($t1.e, $t2.e);
+//            System.out.println("Type returned is: " + $e.type);
 		}
 		i++;
 	})* 
@@ -725,6 +733,7 @@ term2_no_start_id returns[Expr e]
 
 term1_no_start_id returns[Expr e]
     : literal {$e = $literal.e;}
+//        {System.out.println("Type returned is: " + $e.type);}
     | '(' expr ')' {$e = $expr.e;}
         -> expr
     ;
@@ -740,6 +749,7 @@ expr_with_start_id[Token startId, String s]  returns [Expr e]
       {
           if (i == 0) {
               $e = $t1.e; // if there is no second operand, term1's type should be returned
+//              System.out.println("Type returned from term4_with_start_id is: " + $e);
       }
     };
 
@@ -756,6 +766,7 @@ term4_with_start_id[Token startId, String s] returns [Expr e]
     	{
 		if(i == 0) {
 			$e = $t1.e; // if there is no second operand, term1's type should be returned
+//            System.out.println("Type returned from term4_with_start_id is: " + $e);
 		}
 	};
 
@@ -765,6 +776,7 @@ term3_with_start_id[Token startId, String s] returns [Expr e]
 	{
 		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
 			$e = Arith.getFinalType($t1.e, $t2.e);
+//            System.out.println("Type returned from term3_with_start_id is: " + $e);
 		}
 		i++;
 	})* 
@@ -802,6 +814,7 @@ term1_with_start_id[Token startId, String s] returns[Expr e]
 		} else {
 			$e = ((Expr)v);
 		}
+//        System.out.println("Type returned from term1_with_start_id is : " + $e);
 	}
 
 	-> ^({new CommonTree($startId)} value_tail?)
