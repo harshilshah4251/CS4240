@@ -80,6 +80,7 @@ tokens {
 	import java.util.ArrayList;
 	import java.util.Stack;
 	import java.util.LinkedList;
+	import java.io.*;
 }
 
 
@@ -145,10 +146,39 @@ tokens {
 	//		-> should include It's level too
 
 	public void printSymbol() {
-		for(int i = 0; i < tableList.size(); i++) {
-			if(tableList.get(i).size() != 0){
-				System.out.println("Symbol table " + i +": \n" + tableList.get(i) + "\n");}
+		FileOutputStream out = null;
+		File file;
+		try {
+			file = new File("SymbolTable.txt");
+			out = new FileOutputStream(file);
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+
+			for(int i = 0; i < tableList.size(); i++) {
+				if(tableList.get(i).size() != 0){
+					//System.out.println("Symbol table " + i +": \n" + tableList.get(i) + "\n");
+String content = "Symbol table " + i +": \n" + tableList.get(i) + "\n\n";
+byte[] contentInBytes = content.getBytes();
+			out.write(contentInBytes);
+			out.flush();
 		}
+
+			}
+out.close();
+ 
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (out != null) {
+					out.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	public void addToList(SymbolTable s) {
@@ -310,7 +340,7 @@ tiger_program
 		addSTL();
 	}
 	type_declaration_list funct_declaration_list_then_main 
-//		{printSymbol();}
+		{printSymbol();}
 //		{getValue("Mat33");getValue("x");}
 	EOF 
 	-> ^(PROGRAM type_declaration_list funct_declaration_list_then_main)

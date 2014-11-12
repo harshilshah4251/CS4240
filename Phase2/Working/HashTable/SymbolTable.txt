@@ -1,0 +1,171 @@
+Symbol table 0: 
+level : 0
+{ord=Function/ return: int, size: 4, parameter list:[ ID/string, size: 0, init: false, size: 0
+], number of parameters: 1
+, decimal=UserType/ Name: float TotalSize : 0 BaseType : float, size: 0
+, print=Function/ return: void, size: 0, parameter list:[ ID/string, size: 0, init: false, size: 0
+], number of parameters: 1
+, getchar=Function/ return: string, size: 0, parameter list:[], number of parameters: 0
+, not=Function/ return: int, size: 4, parameter list:[ ID/int, size: 4, init: false, size: 4
+], number of parameters: 1
+, generate_sqrt_guess=Function/ return: float, size: 8, parameter list:[ ID/float, size: 8, init: false, size: 8
+], number of parameters: 1
+, num_length=Function/ return: int, size: 4, parameter list:[ ID/float, size: 8, init: false, size: 8
+], number of parameters: 1
+, concat=Function/ return: string, size: 0, parameter list:[ ID/string, size: 0, init: false, size: 0
+,  ID/string, size: 0, init: false, size: 0
+], number of parameters: 2
+, consecutive_void_functions=Function/ return: void, size: 0, parameter list:[], number of parameters: 0
+, random_function=Function/ return: float, size: 8, parameter list:[ ID/float, size: 8, init: false, size: 8
+], number of parameters: 1
+, check_size=Function/ return: int, size: 4, parameter list:[ ID/int, size: 4, init: false, size: 4
+,  ID/int, size: 4, init: false, size: 4
+], number of parameters: 2
+, Mat33=UserType/ Name: float TotalSize : 72 BaseType : [3] [3]float, size: 8
+, consecutive_blocks_function_returns_id_type=Function/ return: decimal, size: 0, parameter list:[], number of parameters: 0
+, size=Function/ return: int, size: 4, parameter list:[ ID/string, size: 0, init: false, size: 0
+], number of parameters: 1
+, m_pow=Function/ return: float, size: 8, parameter list:[ ID/float, size: 8, init: false, size: 8
+,  ID/int, size: 4, init: false, size: 4
+], number of parameters: 2
+, flush=Function/ return: void, size: 0, parameter list:[], number of parameters: 0
+, exit=Function/ return: void, size: 0, parameter list:[ ID/int, size: 4, init: false, size: 4
+], number of parameters: 1
+, chr=Function/ return: string, size: 0, parameter list:[ ID/int, size: 4, init: false, size: 4
+], number of parameters: 1
+, array_expressions=Function/ return: void, size: 0, parameter list:[], number of parameters: 0
+, printi=Function/ return: void, size: 0, parameter list:[ ID/int, size: 4, init: false, size: 4
+], number of parameters: 1
+, substring=Function/ return: string, size: 0, parameter list:[ ID/string, size: 0, init: false, size: 0
+,  ID/int, size: 4, init: false, size: 4
+,  ID/int, size: 4, init: false, size: 4
+], number of parameters: 3
+, m_sqrt=Function/ return: float, size: 8, parameter list:[ ID/float, size: 8, init: false, size: 8
+], number of parameters: 1
+, m_abs=Function/ return: float, size: 8, parameter list:[ ID/float, size: 8, init: false, size: 8
+], number of parameters: 1
+}
+
+Symbol table 3: 
+level : 1
+{Integer=UserType/ Name: int TotalSize : 4 BaseType : int, size: 4
+}
+
+Symbol table 4: 
+level : 2
+{x= ID/Integer, size: 0, init: true, size: 0
+, z= ID/Integer, size: 0, init: true, size: 0
+, y= ID/Integer, size: 0, init: true, size: 0
+}
+
+Symbol table 5: 
+level : 2
+{Integer=UserType/ Name: int TotalSize : 4 BaseType : int, size: 4
+}
+
+Symbol table 8: 
+level : 2
+{index= ID/int, size: 4, init: true, size: 4
+, arr_1D= ID/IntArray, size: 0, init: true, size: 0
+, arr_2D__= ID/Int2DArray, size: 0, init: true, size: 0
+, Int2DArray=UserType/ Name: int TotalSize : 400 BaseType : [10] [10]int, size: 4
+, IntArray=UserType/ Name: int TotalSize : 40 BaseType : [40] int, size: 4
+}
+
+Symbol table 11: 
+level : 1
+{Bwidth= ID/int, size: 4, init: true, size: 4
+, Awidth= ID/int, size: 4, init: true, size: 4
+}
+
+Symbol table 13: 
+level : 1
+{num= ID/float, size: 8, init: true, size: 8
+, power= ID/int, size: 4, init: true, size: 4
+}
+
+Symbol table 15: 
+level : 2
+{out= ID/float, size: 8, init: false, size: 8
+}
+
+Symbol table 16: 
+level : 1
+{num= ID/float, size: 8, init: true, size: 8
+}
+
+Symbol table 17: 
+level : 1
+{out= ID/int, size: 4, init: true, size: 4
+}
+
+Symbol table 18: 
+level : 1
+{num= ID/float, size: 8, init: true, size: 8
+}
+
+Symbol table 19: 
+level : 1
+{tenfactor= ID/int, size: 4, init: false, size: 4
+, a= ID/float, size: 8, init: false, size: 8
+, out= ID/float, size: 8, init: true, size: 8
+, nlength= ID/int, size: 4, init: true, size: 4
+, n= ID/int, size: 4, init: false, size: 4
+}
+
+Symbol table 20: 
+level : 2
+{pow_result= ID/float, size: 8, init: true, size: 8
+}
+
+Symbol table 21: 
+level : 2
+{pow_result= ID/float, size: 8, init: true, size: 8
+}
+
+Symbol table 22: 
+level : 1
+{num= ID/float, size: 8, init: true, size: 8
+}
+
+Symbol table 24: 
+level : 1
+{num= ID/float, size: 8, init: true, size: 8
+}
+
+Symbol table 25: 
+level : 1
+{x= ID/float, size: 8, init: false, size: 8
+, counter= ID/int, size: 4, init: true, size: 4
+, abs_result= ID/float, size: 8, init: true, size: 8
+, pow_result= ID/float, size: 8, init: true, size: 8
+, e= ID/float, size: 8, init: false, size: 8
+, guess= ID/float, size: 8, init: true, size: 8
+}
+
+Symbol table 26: 
+level : 1
+{num= ID/float, size: 8, init: true, size: 8
+}
+
+Symbol table 27: 
+level : 1
+{b= ID/float, size: 8, init: true, size: 8
+, a= ID/int, size: 4, init: true, size: 4
+, c= ID/float, size: 8, init: false, size: 8
+}
+
+Symbol table 28: 
+level : 1
+{C= ID/Mat33, size: 0, init: true, size: 0
+, B= ID/Mat33, size: 0, init: false, size: 0
+, A= ID/Mat33, size: 0, init: false, size: 0
+, check_size_result= ID/int, size: 4, init: true, size: 4
+, Bwidth= ID/int, size: 4, init: true, size: 4
+, Aheight= ID/int, size: 4, init: true, size: 4
+, Cheight= ID/int, size: 4, init: false, size: 4
+, Cwidth= ID/int, size: 4, init: false, size: 4
+, Bheight= ID/int, size: 4, init: true, size: 4
+, Awidth= ID/int, size: 4, init: true, size: 4
+}
+
