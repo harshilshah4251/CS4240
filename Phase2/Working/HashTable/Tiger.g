@@ -512,13 +512,15 @@ stat_seq
 
 stat
     : function_call_or_assignment
-    | IF expr {if (!$expr.e.type.name.equals("boolean"))} THEN seq1=stat_seq 
+    | IF expr {if (!$expr.e.type.name.equals("boolean")) 
+            System.out.println("ERROR in \"" + currFunc.funcName + "\" " + " expr after IF statement has to be boolean!!!");} THEN seq1=stat_seq 
         ( ELSE seq2=stat_seq ENDIF
             -> ^(IF expr ^(THEN_STATS $seq1) ^(ELSE_STATS $seq2))
         | ENDIF
             -> ^(IF expr ^(THEN_STATS $seq1))
         ) ';'
-    | WHILE expr {if (!$expr.e.type.name.equals("boolean"))} DO stat_seq ENDDO ';'
+    | WHILE expr {if (!$expr.e.type.name.equals("boolean"))
+        System.out.println("ERROR in \"" + currFunc.funcName + "\" " + " expr after WHILE statement has to be boolean!!!");} DO stat_seq ENDDO ';'
         -> ^(WHILE expr stat_seq)
     | FOR ID ':=' index_expr TO index_expr DO stat_seq ENDDO ';'
         -> ^(FOR ID index_expr index_expr stat_seq)
@@ -551,9 +553,9 @@ function_call_or_assignment
 			Var v = getValue($ID.text);
 			Type t = $expr_or_function_call.t;
 			if(v == null || t == null) {
-				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " function_call_or_assignment NULL!");
+				System.out.println("ERROR in \"" + currFunc.funcName + "\": " + $ID.text + " function_call_or_assignment NULL!");
 			} else if(!((Id)v).type.name.equals(t.name)) {
-				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + "=> Assignment Type doesn't match!" + " " + ((Id)v).type.name + "/ "+ t.name);
+				System.out.println("ERROR in \"" + currFunc.funcName + "\": " +$ID.text + "=> Assignment Type doesn't match!" + " " + ((Id)v).type.name + "/ "+ t.name);
 			} else {
 				((Id)v).initId();
 			}
