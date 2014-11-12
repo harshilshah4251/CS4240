@@ -26,7 +26,7 @@ public class Arith extends Op {
 	//public Arith(String op, 
 
 	public static Expr getFinalType(Expr e1, Expr e2) {
-		if(e1.type instanceof UserType) {
+	    if(isUserType(e1.type)) {
 			return new Expr("UserType", new UserType(e1.type.name, e1.type));
 		} else if(e1.type.name.equals("int")
 			&& e2.type.name.equals("int")) {
@@ -40,24 +40,42 @@ public class Arith extends Op {
 	}
     
     public static boolean typeCheckPassed(Expr e1, Expr e2) {
-
+	System.out.println("entered typeCheckPassed");
 	boolean isLegal = false;
 	if(e1 == null || e2 == null) {
 		System.out.println("null input in typeCheckPassed!");
 	} else {
-
+	    System.out.println("Else?");
 	if (Type.numeric(e1.type) && Type.numeric(e2.type)) {
 	    isLegal = true;
+	    System.out.println("both are numeric");
 	}
-
+	/*
 	else if ((e1.type instanceof UserType) || (e2.type instanceof UserType)) {
+	    System.out.println("both types are user types");
 	    if(((UserType)e1.type).userTypeName.equals(((UserType)e2.type).userTypeName)) {
 		isLegal = true;
 	    }
 	}
+	*/
+	else if (isUserType(e1.type) && isUserType(e2.type)) {
+	    System.out.println("both types are user types");
+	    if(e1.type.name.equals(e2.type.name)) {
+		isLegal = true;
+	    }
 	}
 
+	}
+	
 	return isLegal;
+    }
+
+    public static boolean isUserType(Type t) {
+	boolean isUserType = false;
+	if (!t.name.equals("int") && !t.name.equals("fixedpt")) {
+	    isUserType = true;
+	}
+	return isUserType;
     }
     
     public Expr gen() { 

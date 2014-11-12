@@ -589,8 +589,10 @@ function_call_or_assignment
 expr_or_function_call returns[Type t]
     : ID // ID : function name or variable name
         (expr_with_start_id[$ID, $ID.text] 
-            {$t = new Type($expr_with_start_id.e.type.name);
-//    System.out.println("Type returned in expr_or_function_call is: " + $t);
+            {    
+$t = new Type($expr_with_start_id.e.type.name);
+System.out.println("Type returned in expr_or_function_call is: " + $t);
+
             }
 
 		-> ^(EXPR_WITH_START_ID expr_with_start_id?)
@@ -765,7 +767,7 @@ expr_with_start_id[Token startId, String s]  returns [Expr e]
       {
           if (i == 0) {
               $e = $t1.e; // if there is no second operand, term1's type should be returned
-//              System.out.println("Type returned from term4_with_start_id is: " + $e);
+              System.out.println("Type returned from term4_with_start_id is: " + $e);
       }
     };
 
@@ -789,10 +791,13 @@ term4_with_start_id[Token startId, String s] returns [Expr e]
 
 term3_with_start_id[Token startId, String s] returns [Expr e]
     : {int i = 0;} t1=term2_with_start_id[$startId, $s] (add_operator^ t2=term2
-	{
+	{ System.out.println("Entered term3_with_start_id!!");
+      System.out.println("first term type is: " + $t1.e.type);
+      System.out.println("second term type is: " + $t2.e.type);
 		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
+            System.out.println("type check passed!!");
 			$e = Arith.getFinalType($t1.e, $t2.e);
-//            System.out.println("Type returned from term3_with_start_id is: " + $e);
+            System.out.println("Type returned from term3_with_start_id is: " + $e);
 		}
 		i++;
 	})* 
@@ -830,7 +835,7 @@ term1_with_start_id[Token startId, String s] returns[Expr e]
 		} else {
 			$e = ((Expr)v);
 		}
-//        System.out.println("Type returned from term1_with_start_id is : " + $e);
+        System.out.println("Type returned from term1_with_start_id is : " + $e);
 	}
 
 	-> ^({new CommonTree($startId)} value_tail?)
