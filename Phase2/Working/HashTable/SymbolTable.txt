@@ -18,6 +18,9 @@ level : 0
 ,  ID/f, Type: int, size: 4, init: false, size: 4
 ,  ID/n, Type: int, size: 4, init: false, size: 4
 ], number of parameters: 3
+, fillup_myownarr=Function/ return: int, size: 4, parameter list:[ ID/a, Type: int, size: 4, init: false, size: 4
+,  ID/b, Type: int, size: 4, init: false, size: 4
+], number of parameters: 2
 , getchar=Function/ return: string, size: 0, parameter list:[], number of parameters: 0
 , concat=Function/ return: string, size: 0, parameter list:[ ID/s1, Type: string, size: 0, init: false, size: 0
 ,  ID/s2, Type: string, size: 0, init: false, size: 0
@@ -28,6 +31,20 @@ level : 0
 }
 
 Symbol table 1: 
+level : 1
+{b= ID/b, Type: int, size: 4, init: true, size: 4
+, a= ID/a, Type: int, size: 4, init: true, size: 4
+}
+
+Symbol table 2: 
+level : 2
+{x= ID/x, Type: UserType/ Name: int TotalSize : 4 BaseType : int, size: 4
+, init: false, size: 4
+, arr= ID/arr, Type: UserType/ Name: int TotalSize : 8 BaseType : [8] int, size: 4
+, init: false, size: 8
+}
+
+Symbol table 3: 
 level : 1
 {b= ID/b, Type: int, size: 4, init: true, size: 4
 , e= ID/e, Type: UserType/ Name: int TotalSize : 8 BaseType : [8] int, size: 4

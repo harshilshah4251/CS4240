@@ -293,7 +293,7 @@ tokens {
 		Type tempType = ((UserType)((Id)v).type).of;
 		Expr e = new Expr("temp", Type.Int);
 			//Constructor without parameters shouldn't be used
-		if(a == 0 && !(tempType instanceof Array)) {
+		if(a == 0 && (!(tempType instanceof Array) || !(tempType instanceof TwoDArray))) {
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " + ((Id)v).s + " Whole Array cannot be used like this!\n");
 		}else if(a == 1 && (tempType instanceof Array)){ 
 			System.out.println("TYPE1: " + ((UserType)((Id)v).type));
@@ -301,7 +301,7 @@ tokens {
 		}else if(a ==2 && (tempType instanceof TwoDArray)) {
 			System.out.println("TYPE2: " + ((UserType)((Id)v).type));
 			e = new Expr("UserTypeExpr", ((TwoDArray)tempType).of);
-		} else {
+		} else if(a == 1 || a == 2){
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " + ((Id)v).s + " Wrong way to use Array!\n");
 		}
 		return e;
@@ -603,14 +603,13 @@ function_call_or_assignment
 
         | value_tail ':=' expr_or_function_call
 		{
-//System.out.println("CHECKING  : " + $ID.text);
 			Var v = getValue($ID.text);
 			Type t = $expr_or_function_call.t;
 			if(v == null || t == null) {
 				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " function_call_or_assignment NULL!"  + v + " " + t);
 			} else if(((Id)v).type instanceof UserType) {
 				if(!((UserType)(((Id)v).type)).userTypeName.equals(t.name)) {
-					System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + "=> Assignment Type doesn't match!" + " " + ((UserType)v).userTypeName + "/ "+ t.name);
+					System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + "=> Assignment Type doesn't match!" + " " + ((UserType)((Id)v).type).userTypeName + "/ "+ t.name);
 				}
 			} else if(!((Id)v).type.name.equals(t.name)) {
 				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + "=> Assignment Type doesn't match!" + " " + ((Id)v).type.name + "/ "+ t.name);// + ";;" + ((UserType)(((Id)v).type).)userTypeName);

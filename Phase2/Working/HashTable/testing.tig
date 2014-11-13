@@ -1,0 +1,11 @@
+type myownint = int; type myownarr = array[2] of int;
+
+int function fillup_myownarr(a: int, b: int) begin begin var arr: myownarr; var x: myownint; x := 4; /* arr[0] := a; arr[1] := b; */
+
+return 5; end; end;
+
+/* int function testing() begin begin var a: int; a := addTwoNumbers(2, 3); return a; end; end; */
+
+void main() begin begin var b: int; var c: fixedpt; var d: fixedpt; var e: myownarr := 3;
+
+b := 4+e[1]; c := 3.5; d := b + c; end; end;
