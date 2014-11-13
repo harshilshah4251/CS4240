@@ -274,7 +274,7 @@ expr    returns [String val]
          }})*
     ;
     
-//branch operation ; need to be implemented later
+//need to implemented : branch op
 term4 : term3 (compare_operator^ term3)* ;
 
 term3   returns [String val]
@@ -327,7 +327,7 @@ expr_no_start_id   returns [String val]
          }})*
     ;
                                    
-// Branch: (op, y, z, label)
+//need to implemented : branch op
 term4_no_start_id   returns [String val]
     : term3_no_start_id
     (compare_operator^ term3)*
@@ -368,18 +368,72 @@ term1_no_start_id   returns [String val]
     
 
 //a[1][2]
-expr_with_start_id[Token startId] : term4_with_start_id[$startId] (and_operator^ term4)* ;
-term4_with_start_id[Token startId] : term3_with_start_id[$startId] (compare_operator^ term3)* ;
-term3_with_start_id[Token startId] : term2_with_start_id[$startId] (add_operator^ term2)* ;
-term2_with_start_id[Token startId]
-    : term1_with_start_id[$startId] (mult_operator^ term1)* ;
+expr_with_start_id[Token startId]       returns [String val]
+    : tws4 = term4_with_start_id[$startId]
+    (and_operator^ t4 = term4
+     {Temp r = new Temp(Type.Char);
+         r.s = "t" + r.number;
+         val = r.s;
+         
+         switch (op){
+             case    & :    r.emit("and, " + $tws4.val + ", " + $t4.val + ", " + r.s);
+             case    | :    r.emit( "or, " + $tws4.val + ", " + $t4.val + ", " + r.s);
+         }})*
+    ;
+    
+    
+//need to implemented : branch op
+term4_with_start_id[Token startId]
+    : tws3 = term3_with_start_id[$startId] (compare_operator^ term3)* ;
+
+term3_with_start_id[Token startId]     returns [String val]
+    : tws2 = term2_with_start_id[$startId]      {val = $tws2.val;}
+    (add_operator^ t2 = term2
+     {Temp r = new Temp(Type.Char);
+         r.s = "t" + r.number;;
+         val = r.s;
+         
+         switch (op){
+             case    + :    r.emit("add, " + $tws2.val + ", " + $t2.val + ", " + r.s);
+             case    - :    r.emit("sub, " + $tws2.val + ", " + $t2.val + ", " + r.s);
+         }})*
+    ;
+    
+term2_with_start_id[Token startId]     returns [String val]
+    : tws1 = term1_with_start_id[$startId]      {val = $tws1.val;}
+    (mult_operator^ t1 = term1
+     {Temp r = new Temp(Type.Char);    //type doesnt mean anything.
+         r.s = "t" + r.number;         //create temp label
+         val = r.s;                    //put t1 into val
+         
+         switch (op){
+             case    * :    r.emit("mult, " + $tws1.val + ", " + $t1.val + ", " + r.s);
+             case    / :    r.emit( "div, " + $tws1.val + ", " + $t1.val + ", " + r.s);
+         }})*
+    ;
  
     
+//need to implemented : offset calculation
 term1_with_start_id[Token startId]  returns [String val]
-    : t = value_tail -> ^({new CommonTree($startId)} value_tail?)
-    
-    {}
-    ;
+    : t = value_tail -> ^({new CommonTree($startId)} value_tail?){
+        if(t.r == null){
+            val = $startId.text;
+        }
+        else if(t.c == ""){
+            Temp r = new Temp(Type.Char);
+            r.s = "t" + r.number;
+            val = r.s;
+            r.emit("array_store, " + r.s + ", " + $startId.text + ", " + t.r);
+        }
+        else{
+            //offset calculation with r and c -> instead of t.c, i need calculated value
+            Temp r = new Temp(Type.Char);
+            r.s = "t" + r.number;
+            val = r.s;
+            r.emit("array_store, " + r.s + ", " + $startId.text + ", " + t.c);
+        }
+        
+            };
     
 expr_list
     : expr ( ',' expr )* -> ^(EXPRLIST expr+)
@@ -400,20 +454,20 @@ compare_operator : '=' | '<>' | '<' | '>' | '<=' | '>=' ;
     
 and_operator : '&' | '|' ;
     
-value : ID value_tail -> ^(ID value_tail?);
+value : ID value_tail -> ^(ID value_tail?);             //where value called?
     
 literal
     : INTLIT
     | FIXEDPTLIT
     ;
     
-value_tail   returns [String id, String r, String c]            //value tail returns : whether it is string or not, row number, colum number for index
-    
-    : '[' t = index_expr ']'    {r = t.val;}
+value_tail   returns [String r, String c]            //value tail returns : whether it is string or not, row number, colum number for index
+        
+    : {r = ""; c = "";} '[' t = index_expr ']'    {r = t.val;}
     ('[' t2 = index_expr ']')?  {c = t2.val;}
     
     -> index_expr+  /* antlr will auto-group two index_expr's */
-    |                           {id = "id";} //placeholder to know that this is not an array
+    |
     ;
     
 index_expr  returns [String val]
