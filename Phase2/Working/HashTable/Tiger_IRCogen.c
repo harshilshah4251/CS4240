@@ -220,6 +220,7 @@ stat_seq
 
 stat
 : function_call_or_assignment
+    
 | IF expr THEN seq1=stat_seq
 ( ELSE seq2=stat_seq ENDIF
  -> ^(IF expr ^(THEN_STATS $seq1) ^(ELSE_STATS $seq2))
@@ -237,30 +238,51 @@ stat
 ;
 
 
+//need to be implemented
 function_args
 : '(' expr_list ')'
 -> expr_list?
 ;
 
-
-function_call_or_assignment
+//need to be implemented : offset calculation, function_arg, part java doc
+function_call_or_assignment     returns [String val]
     : ID
-        (function_args -> ^(FUNCTION_CALL ID function_args?) | value_tail ':=' expr_or_function_call -> ^(':=' ^(ID value_tail?) expr_or_function_call)) ';'
-;
+        (function_args -> ^(FUNCTION_CALL ID function_args?)
+        | t = value_tail ':=' t1 = expr_or_function_call -> ^(':=' ^(ID value_tail?) expr_or_function_call))';'
+    
+    /*{
+        if(t.r == "")    // {val = $ID.text;}
+        else if(t.c == ""){
+            Temp r = new Temp(Type.Char);
+            r.s = "t" + r.number;
+            val = r.s;
+            r.emit("array_store, " + r.s + ", " + $startId.text + ", " + t.r);
+        }
+        else{
+            //offset calculation with r and c -> instead of t.c, i need calculated value
+            Temp r = new Temp(Type.Char);
+            r.s = "t" + r.number;
+            val = r.s;
+            r.emit("array_store, " + r.s + ", " + $startId.text + ", " + t.c);
+        }
+    }*/
+    
+    ;
 
-
-expr_or_function_call
+//need to implemented : function_arg
+expr_or_function_call    returns [String val]
     : ID
-    (expr_with_start_id[$ID] -> ^(EXPR_WITH_START_ID expr_with_start_id?) | function_args
-     -> ^(FUNCTION_CALL ID function_args?))
-    | expr_no_start_id
-;
+        (t1 = expr_with_start_id[$ID] -> ^(EXPR_WITH_START_ID expr_with_start_id?)
+         //how to handle function_args and pass as val?
+         | function_args-> ^(FUNCTION_CALL ID function_args?))
+    | t1 = expr_no_start_id
+    
+    {val = t1.val;}
+    ;
 
 
 
 /* notation: termN corresponds to precedence level N */
-expr : term4 (and_operator^ term4)* ;
-    
 expr    returns [String val]
     :   expr4 = term4        {val = $expr4.val;}
     (and_operator^ t4 = term4
@@ -274,7 +296,7 @@ expr    returns [String val]
          }})*
     ;
     
-//need to implemented : branch op
+//need to be implemented : branch op
 term4 : term3 (compare_operator^ term3)* ;
 
 term3   returns [String val]
@@ -327,7 +349,7 @@ expr_no_start_id   returns [String val]
          }})*
     ;
                                    
-//need to implemented : branch op
+//need to be implemented : branch op
 term4_no_start_id   returns [String val]
     : term3_no_start_id
     (compare_operator^ term3)*
@@ -382,7 +404,7 @@ expr_with_start_id[Token startId]       returns [String val]
     ;
     
     
-//need to implemented : branch op
+//need to be implemented : branch op
 term4_with_start_id[Token startId]
     : tws3 = term3_with_start_id[$startId] (compare_operator^ term3)* ;
 
@@ -413,10 +435,10 @@ term2_with_start_id[Token startId]     returns [String val]
     ;
  
     
-//need to implemented : offset calculation
+//need to be implemented : offset calculation
 term1_with_start_id[Token startId]  returns [String val]
     : t = value_tail -> ^({new CommonTree($startId)} value_tail?){
-        if(t.r == null){
+        if(t.r == ""){
             val = $startId.text;
         }
         else if(t.c == ""){
