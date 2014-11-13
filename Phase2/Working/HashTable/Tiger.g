@@ -86,6 +86,9 @@ tokens {
 
 
 @members {
+    public static int count = 0;
+
+    public Expr tempIR = new Expr("t", new Type("temp"));
 
     public String errorPrefix = "";
 
@@ -514,6 +517,10 @@ var_declaration
 		{
 			for(int i = 0; i < $id_list.list.size(); i++) {
 				getTopTable().put($id_list.list.get(i), new Id($id_list.list.get(i), $type_id.e, $optional_init.b));
+                if ($optional_init.e != null) {
+//                    System.out.println("assign for optioanl init");
+                    System.out.println("assign, " + $id_list.list.get(i) + ", " + $optional_init.e);
+                }
 //System.out.println("DECLARE Var " + $id_list.list.get(i));
 			}
 		}
@@ -529,10 +536,10 @@ id_list returns[ArrayList<String> list]
 		-> ^(IDLIST ID+)
     ;
 
-optional_init returns[boolean b]
+optional_init returns[boolean b, Expr e]
 // literal is initialize value
 
-    : {$b = true;}':=' literal 
+    : {$b = true;}':=' literal {$e = $literal.e;}
     | {$b = false;}
     ;
 
@@ -549,6 +556,10 @@ stat
             System.out.println("ERROR in \"" + currFunc.funcName + "\" " + " expr after IF statement has to be boolean!!!");}
 	} THEN seq1=stat_seq 
         ( ELSE seq2=stat_seq ENDIF
+/*TODO*/ {
+
+}
+
             -> ^(IF expr ^(THEN_STATS $seq1) ^(ELSE_STATS $seq2))
         | ENDIF
             -> ^(IF expr ^(THEN_STATS $seq1))
@@ -616,6 +627,8 @@ function_call_or_assignment
 			} else {
 				((Id)v).initId();
 			}
+//            System.out.println($expr_or_function_call.e);
+            System.out.println("assign, " + $ID.text + ", " + $expr_or_function_call.e.s);
 		}
 		// compare type of ID and expr_or_function_call
 		// check if the ID is array
@@ -626,7 +639,7 @@ function_call_or_assignment
 
 // Check if the return has to be Type or Expr
 // Input should be Expr
-expr_or_function_call returns[Type t]
+expr_or_function_call returns[Type t, Expr e]
     : ID // ID : function name or variable name
         (expr_with_start_id[$ID, $ID.text] 
             {
@@ -634,6 +647,7 @@ expr_or_function_call returns[Type t]
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " Has wrong type!");
 		} else { 
 			$t = new Type($expr_with_start_id.e.type.name);
+            $e = $expr_with_start_id.e;
 		}
             }
 
@@ -662,6 +676,13 @@ expr_or_function_call returns[Type t]
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " + " an Expression has wrong type!");
 		} else { 
 			$t = new Type($expr_no_start_id.e.type.name);
+            if ($expr_no_start_id.temp == null) {
+                $e = $expr_no_start_id.e;
+System.out.println("temp is null");
+            }
+            else { 
+                $e = $expr_no_start_id.temp;
+            }
 		}
 
 //    System.out.println("Type returned in expr_or_function_call is: " + $t);
@@ -736,11 +757,21 @@ term1 returns[Expr e]
         -> expr
     ;
 
-expr_no_start_id returns[Expr e]
+expr_no_start_id returns[Expr e, Expr temp]
     : {int i = 0;}t1=term4_no_start_id (and_operator^ t2=term4
             {
                 if (Logical.typeCheckPassed($t1.e, $t2.e)) {
                     $e = new Expr("bool", Type.Bool);
+            tempIR.makeNewTempIR(count);
+            if ($and_operator.e.s.equals("and")) {
+                System.out.println("and, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            else {
+                System.out.println("or, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            $temp = tempIR;
                 }
                 i++;
             })*
@@ -748,45 +779,77 @@ expr_no_start_id returns[Expr e]
           if (i == 0) {
               $e = $t1.e; // if there is no second operand, term1's type should be returned
 //              System.out.println("Type returned is: " + $e.type);
+              $temp = $t1.temp;
       }
     };
 
 
-term4_no_start_id returns[Expr e]
+term4_no_start_id returns[Expr e, Expr temp]
     : {int i = 0;}t1=term3_no_start_id (compare_operator^ t2=term3
             {
                 if (Arith.typeCheckPassed($t1.e, $t2.e)) {
                      $e = new Expr("bool", Type.Bool);   
 	// if both terms' types are correct, a boolean value should be returned 
+/*
+            tempIR.makeNewTempIR(count);
+            if ($compare_operator.e.s.equals("eq")) {
+                System.out.println("add, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            else {
+                System.out.println("sub, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            $temp = tempIR;
+*/
                     }
                     i++;
             })* 
     	{
 		if(i == 0) {
 			$e = $t1.e; // if there is no second operand, term1's type should be returned
+            $temp = $t1.temp;
 		}
 	};
-
-
-term3_no_start_id returns[Expr e]
+term3_no_start_id returns[Expr e, Expr temp]
     : {int i = 0;}t1=term2_no_start_id (add_operator^ t2=term2
 	{
 		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
 			$e = Arith.getFinalType($t1.e, $t2.e);
+            tempIR.makeNewTempIR(count);
+            if ($add_operator.e.s.equals("add")) {
+                System.out.println("add, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            else {
+                System.out.println("sub, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            $temp = tempIR;
 		}
 		i++;
 	})* 
 	{
 		if(i==0) {
 			$e = $t1.e;
+            $temp = $t1.temp;
 		}
 	};
-
-term2_no_start_id returns[Expr e]
+term2_no_start_id returns[Expr e, Expr temp]
     : {int i = 0;}t1=term1_no_start_id (mult_operator^ t2=term1
 	{
 		if(Arith.typeCheckPassed($t1.e, $t2.e)) {
 			$e = Arith.getFinalType($t1.e, $t2.e);
+            tempIR.makeNewTempIR(count);
+            if ($mult_operator.e.s.equals("mult")) {
+                System.out.println("mult, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            else {
+                System.out.println("div, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            $temp = tempIR;
 		}
             	i++;
 
@@ -796,8 +859,6 @@ term2_no_start_id returns[Expr e]
                 $e = $t1.e;
             }
         };
-
-
 term1_no_start_id returns[Expr e]
     : literal {$e = $literal.e;}
     | '(' expr ')' {$e = $expr.e;}
@@ -836,22 +897,28 @@ term4_with_start_id[Token startId, String s] returns [Expr e]
 	};
 
 
-term3_with_start_id[Token startId, String s] returns [Expr e]
+term3_with_start_id[Token startId, String s] returns [Expr e, Expr temp]
     : {int i = 0;} t1=term2_with_start_id[$startId, $s] (add_operator^ t2=term2
-	{ System.out.println("Entered term3_with_start_id!!");
-      if ($t1.e.type != null)
-          System.out.println("first term type is: " + $t1.e.type);
-      if ($t2.e.type != null)
-          System.out.println("second term type is: " + $t2.e.type);
+	{
       if (Arith.typeCheckPassed($t1.e, $t2.e)) {
-            System.out.println("type check passed!!");
 			$e = Arith.getFinalType($t1.e, $t2.e);
+            tempIR.makeNewTempIR(count);
+            if ($add_operator.e.s.equals("add")) {
+                System.out.println("add, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            else {
+                System.out.println("sub, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            $temp = tempIR;
 		}
 		i++;
 	})* 
 	{
 		if(i==0) {
 			$e = $t1.e;
+            $temp = $t1.e;
 		}
 	};
 
@@ -870,8 +937,6 @@ term2_with_start_id[Token startId, String s] returns [Expr e]
                 $e = $t1.e;
             }
         };
-
-
 
 term1_with_start_id[Token startId, String s] returns[Expr e]
     : value_tail {
@@ -895,17 +960,29 @@ expr_list returns[ArrayList<Expr> list]
     |
     ;
 
-mult_operator 
-    : '*' | '/' ;
+mult_operator returns[Expr e]
+    : '*' {$e = new Expr("mult", new Type("mult"));}
+    | '/' {$e = new Expr("div", new Type("div"));}
+    ;
 
-add_operator 
-    : '+' | '-' ;
+add_operator returns[Expr e]
+    : '+' {$e = new Expr("add", new Type("add"));}
+    | '-' {$e = new Expr("sub", new Type("sub"));}
+    ;
 
-compare_operator 
-    : '=' | '<>' | '<' | '>' | '<=' | '>=' ;
+compare_operator returns [Expr e]
+    : '=' {$e = new Expr("eq", new Type("eq"));}
+    | '<>' 
+    | '<' 
+    | '>' 
+    | '<=' 
+    | '>=' 
+    ;
 
-and_operator 
-    : '&' | '|' ;
+and_operator returns [Expr e]
+    : '&' {$e = new Expr("and", new Type("and"));} 
+    | '|' {$e = new Expr("or", new Type("or"));}
+    ;
 
 value returns[Expr e]
     : ID value_tail 

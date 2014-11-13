@@ -14,6 +14,11 @@ public class Expr extends Var {
 		s = tok; type = p; 
 		}
 	
+    public void makeNewTempIR(int count) {
+	this.s = "t" + count;
+    }
+       
+
 	public Expr gen() { 
 		return this; 
 		}
