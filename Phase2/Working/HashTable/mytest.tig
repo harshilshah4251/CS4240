@@ -1,0 +1,27 @@
+type myownint = int;
+type myownarr = array[2] of int;
+
+int function myownfunc()
+begin
+    begin
+	var x: int := 3;
+	x := 2 + 2;
+    end;
+    begin
+	var a: myownarr := 2;
+	return a[0];
+    end;
+end;
+
+void main()
+begin
+    begin
+	var b: int;
+	var c: fixedpt;
+	var d: fixedpt;
+
+	b := 2;
+	c := 3.5;
+	d := b + c;
+    end;
+end;

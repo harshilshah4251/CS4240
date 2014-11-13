@@ -195,7 +195,7 @@ tokens {
 		}
 
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"In Function " + currFunc.funcName + " " + name + ": Symbol not found in SymbolTable!\n");
-		return null;
+		return new Var();
 	}
 
 	public void addSTL() {
@@ -482,6 +482,7 @@ var_declaration
 		{
 			for(int i = 0; i < $id_list.list.size(); i++) {
 				getTopTable().put($id_list.list.get(i), new Id($id_list.list.get(i), $type_id.e, $optional_init.b));
+System.out.println("DECLARE Var " + $id_list.list.get(i));
 			}
 		}
 
@@ -559,6 +560,7 @@ function_call_or_assignment
 
         | value_tail ':=' expr_or_function_call
 		{
+System.out.println("CHECKING  : " + $ID.text);
 			Var v = getValue($ID.text);
 			Type t = $expr_or_function_call.t;
 			if(v == null || t == null) {
@@ -774,7 +776,7 @@ expr_with_start_id[Token startId, String s]  returns [Expr e]
       {
           if (i == 0) {
               $e = $t1.e; // if there is no second operand, term1's type should be returned
-//              System.out.println("Type returned from term4_with_start_id is: " + $e);
+              System.out.println("Type returned from term4_with_start_id is: " + $e);
       }
     };
 
@@ -798,10 +800,13 @@ term4_with_start_id[Token startId, String s] returns [Expr e]
 
 term3_with_start_id[Token startId, String s] returns [Expr e]
     : {int i = 0;} t1=term2_with_start_id[$startId, $s] (add_operator^ t2=term2
-	{
+	{System.out.println("Entered term3_with_start_id!!");
+      System.out.println("first term type is: " + $t1.e);
+      System.out.println("second term type is: " + $t2.e);
 		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
+            System.out.println("type check passed!!");
 			$e = Arith.getFinalType($t1.e, $t2.e);
-//            System.out.println("Type returned from term3_with_start_id is: " + $e);
+            System.out.println("Type returned from term3_with_start_id is: " + $e);
 		}
 		i++;
 	})* 
@@ -824,7 +829,9 @@ term2_with_start_id[Token startId, String s] returns [Expr e]
 	{
             if(i == 0) {
                 $e = $t1.e;
+System.out.println("oh " + $e);
             }
+System.out.println("ohoh " + $e);
         };
 
 
@@ -835,11 +842,12 @@ term1_with_start_id[Token startId, String s] returns[Expr e]
 		if(v == null) {
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +s + " Symbol not found! / term1_with_start_id");
 		} else if(!(v instanceof Id)) {
+System.out.println("sseee : " + $s);
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +s + " is not Id! / term1_with_start_id");
 		} else {
 			$e = ((Expr)v);
 		}
-//        System.out.println("Type returned from term1_with_start_id is : " + $e);
+        System.out.println("Type returned from term1_with_start_id is : " + $e);
 	}
 
 	-> ^({new CommonTree($startId)} value_tail?)
@@ -926,14 +934,17 @@ index_factor returns[Expr e]
     | ID { 
 		Var e = getValue($ID.text);
           // ID's type has to be int
+if(currFunc==null) {} else {
 		if(e == null) {
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " Not found in SymbolTable! Wrong index Type");
 		$e = new Expr("Index Error!", Type.Int);
-            } else if (e instanceof Id) {
+		// Return trash Expr object
+            } else if (!(e instanceof Id)) {
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " Wrong index Type! Should be Int type");
-		}else if (!$e.type.name.equals("int")) {
+		}else if (((Id)e).type == null || !("int").equals(((Id)e).type.name)) {
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " Wrong index Type! Should be Int type");
 		$e = (Id)e;
             }
+}
         }
     ;
