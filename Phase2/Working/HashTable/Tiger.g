@@ -252,7 +252,7 @@ tokens {
 	// parameters should be initialized previously
 	public void checkFuncParam(String funcName, ArrayList<Expr> pList) {
 
-System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"looking for : " + funcName);
+//System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"looking for : " + funcName);
 		Var func = getValue(funcName);
 		if (func == null) {
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " function not found!");
@@ -261,8 +261,8 @@ System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"looking for : " +
 		} else {
 
 			ArrayList<Id> fpList = ((Function)func).getParamList();
-System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + "/The parameters from symbol table are : " + fpList);
-System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + "/The used parameters are : " + pList);
+//System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + "/The parameters from symbol table are : " + fpList);
+//System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + "/The used parameters are : " + pList);
 			// checking if the function doesn't have paramter
 			// it's wrong even when either one is null
 			if(fpList != null && pList != null) {
@@ -279,6 +279,8 @@ System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + "/The u
 					}
 				}
 			}
+			} else if (pList == null && fpList.size() != 0) {
+				System.out.println("ERROR in \"" + currFunc.funcName + "\" " + funcName + " Wrong numbers of parameger!\n");
 			}
 		}
 	}
@@ -470,7 +472,9 @@ type_id returns [Type e]
 	// This is for user defined type
 	// Haven't checked if $id.text is working, but should ID's String
 
-    | id=ID {$e = new Type($id.text);}
+    | id=ID //{$e = new Type($id.text);}
+	{$e = ((UserType)getValue($ID.text));
+System.out.println($ID.text + " "+ $e);}
     ;
 
 //@returns initialized Type object
@@ -487,7 +491,7 @@ var_declaration
 		{
 			for(int i = 0; i < $id_list.list.size(); i++) {
 				getTopTable().put($id_list.list.get(i), new Id($id_list.list.get(i), $type_id.e, $optional_init.b));
-System.out.println("DECLARE Var " + $id_list.list.get(i));
+//System.out.println("DECLARE Var " + $id_list.list.get(i));
 			}
 		}
 
@@ -539,6 +543,17 @@ stat
         -> ^(FOR ID index_expr index_expr stat_seq)
     | BREAK ';'!
     | RETURN expr ';'
+	/*{
+	if(currFunc == null || $expr.e == null) {
+		System.out.println("ERROR in \"" + currFunc.funcName + "\" " + "The function's return type doesn't match!");
+	} else if(Arith.isUserType(currFunc.funcReturn()) && 
+
+
+	}else if(!currFunc.funcReturn().name.equals($expr.e.type.name)) {
+		System.out.println("ERROR in \"" + currFunc.funcName + "\" " + "The function's return type doesn't match!" + currFunc.funcReturn() + "/" + $expr.e.type.name);
+	}
+		
+	}*/
         -> ^(RETURN expr)
     | block
     ;
@@ -565,7 +580,7 @@ function_call_or_assignment
 
         | value_tail ':=' expr_or_function_call
 		{
-System.out.println("CHECKING  : " + $ID.text);
+//System.out.println("CHECKING  : " + $ID.text);
 			Var v = getValue($ID.text);
 			Type t = $expr_or_function_call.t;
 			if(v == null || t == null) {
@@ -737,7 +752,6 @@ term3_no_start_id returns[Expr e]
 	{
 		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
 			$e = Arith.getFinalType($t1.e, $t2.e);
-//            System.out.println("Type returned is: " + $e.type);
 		}
 		i++;
 	})* 
@@ -765,7 +779,6 @@ term2_no_start_id returns[Expr e]
 
 term1_no_start_id returns[Expr e]
     : literal {$e = $literal.e;}
-//        {System.out.println("Type returned is: " + $e.type);}
     | '(' expr ')' {$e = $expr.e;}
         -> expr
     ;
@@ -781,7 +794,6 @@ expr_with_start_id[Token startId, String s]  returns [Expr e]
       {
           if (i == 0) {
               $e = $t1.e; // if there is no second operand, term1's type should be returned
-              System.out.println("Type returned from term4_with_start_id is: " + $e);
       }
     };
 
@@ -805,13 +817,9 @@ term4_with_start_id[Token startId, String s] returns [Expr e]
 
 term3_with_start_id[Token startId, String s] returns [Expr e]
     : {int i = 0;} t1=term2_with_start_id[$startId, $s] (add_operator^ t2=term2
-	{System.out.println("Entered term3_with_start_id!!");
-      System.out.println("first term type is: " + $t1.e);
-      System.out.println("second term type is: " + $t2.e);
+	{
 		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
-            System.out.println("type check passed!!");
 			$e = Arith.getFinalType($t1.e, $t2.e);
-            System.out.println("Type returned from term3_with_start_id is: " + $e);
 		}
 		i++;
 	})* 
@@ -834,9 +842,7 @@ term2_with_start_id[Token startId, String s] returns [Expr e]
 	{
             if(i == 0) {
                 $e = $t1.e;
-System.out.println("oh " + $e);
             }
-System.out.println("ohoh " + $e);
         };
 
 
@@ -847,12 +853,10 @@ term1_with_start_id[Token startId, String s] returns[Expr e]
 		if(v == null) {
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +s + " Symbol not found! / term1_with_start_id");
 		} else if(!(v instanceof Id)) {
-System.out.println("sseee : " + $s);
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +s + " is not Id! / term1_with_start_id");
 		} else {
 			$e = ((Expr)v);
 		}
-        System.out.println("Type returned from term1_with_start_id is : " + $e);
 	}
 
 	-> ^({new CommonTree($startId)} value_tail?)
@@ -880,15 +884,37 @@ and_operator
 value returns[Expr e]
     : ID value_tail 
 	{
+		int a = $value_tail.a;
 		Var v = getValue($ID.text);
+//System.out.println(((Id)v));
 		if (!(v instanceof Id)) {
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " is not Id value Type!");
 		} else if(!((Id)v).init) {
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " is not initialized before use!");
+		} else if(((Id)v).type instanceof UserType){//(Arith.isUserType(((Id)v).type)) {
+System.out.println("a : " + $value_tail.a);
+
+			Type tempType = ((UserType)((Id)v).type).of;
+
+			//if($value_tail.a == 0 && !(((UserType)((Id)v).type).of instanceof Array)) {
+			if($value_tail.a == 0 && !(tempType instanceof Array)) {
+				System.out.println("ERROR");
+				// This case should be error
+			}else if($value_tail.a == 1 && (tempType instanceof Array)){ 
+				System.out.println("TYPE1: " + ((UserType)((Id)v).type));
+				$e = new Expr("UserTypeExpr", ((Array)tempType).of);
+			}else if($value_tail.a ==2 && (tempType instanceof TwoDArray)) {
+				System.out.println("TYPE2: " + ((UserType)((Id)v).type));
+				$e = new Expr("UserTypeExpr", ((TwoDArray)tempType).of);
+			} else {
+				System.out.println("ERROR");
+			}
+
 		} else {
 			$e = ((Id)v);
 		}
 	}
+
 
 -> ^(ID value_tail?);
 
@@ -897,10 +923,10 @@ literal returns[Expr e]
     | FIXEDPTLIT {$e = new Constant($FIXEDPTLIT.text, Type.Float);}
     ;
 
-value_tail 
-    : '[' index_expr ']' ('[' index_expr ']')?
+value_tail returns[int a]
+    :{$a = 0;} '[' index_expr ']'{$a++;} ('[' index_expr ']'{$a++;})?
             -> index_expr+  /* antlr will auto-group two index_expr's */
-    | /* null */
+    | {$a = 0;}/* null */
     ;
 
 // Below this line are for array index

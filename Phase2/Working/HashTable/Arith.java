@@ -40,15 +40,14 @@ public class Arith extends Op {
 	}
     
     public static boolean typeCheckPassed(Expr e1, Expr e2) {
-	System.out.println("entered typeCheckPassed");
 	boolean isLegal = false;
 	if(e1 == null || e2 == null) {
-		System.out.println("null input in typeCheckPassed!");
+		System.out.println("null input in Arith.typeCheckPassed!");
 	} else {
-	    System.out.println("Else?");
+	    //System.out.println("Else?");
 	if (Type.numeric(e1.type) && Type.numeric(e2.type)) {
 	    isLegal = true;
-	    System.out.println("both are numeric");
+	    //System.out.println("both are numeric");
 	}
 	/*
 	else if ((e1.type instanceof UserType) || (e2.type instanceof UserType)) {
@@ -59,7 +58,7 @@ public class Arith extends Op {
 	}
 	*/
 	else if (isUserType(e1.type) && isUserType(e2.type)) {
-	    System.out.println("both types are user types");
+	    //System.out.println("both types are user types");
 	    if(e1.type.name.equals(e2.type.name)) {
 		isLegal = true;
 	    }
@@ -72,7 +71,7 @@ public class Arith extends Op {
 
     public static boolean isUserType(Type t) {
 	boolean isUserType = false;
-	if (!t.name.equals("int") && !t.name.equals("fixedpt")) {
+	if (!t.name.equals("int") && !t.name.equals("float")) {
 	    isUserType = true;
 	}
 	return isUserType;

@@ -32,7 +32,7 @@ public class Id extends Expr {
 		
 
 	public String toString() {
-		return (" ID/"+  type + ", init: " + init+ ", size: " + type.size +"\n");
+		return (" ID/"+s + ", Type: "+  type + ", init: " + init+ ", size: " + type.size +"\n");
 	}
 
 }

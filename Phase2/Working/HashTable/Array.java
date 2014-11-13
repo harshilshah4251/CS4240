@@ -8,7 +8,7 @@
 
 public class Array extends Type {
 
-    private Type of;
+    public Type of;
     private  int arraySize = 0; 
 
     public Array(String s, int w, Type p) {    //s is name, w is size and p is type 
