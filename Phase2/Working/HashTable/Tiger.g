@@ -199,7 +199,7 @@ out.close();
 //		if (currFunc == null) {
 //			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"In Global level, " + name + ": Symbol not found in SymbolTable!\n");
 //		} else {
-			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"In Function " + currFunc.funcName + " " + name + ": Symbol not found in SymbolTable!\n");
+			System.out.println("[ERROR] In function \"" + currFunc.funcName + "\": " +"In Function " + currFunc.funcName + " " + name + ": Symbol not found in SymbolTable!\n");
 //		}
 		//return new Var();
 		return null;
@@ -258,31 +258,29 @@ out.close();
 	// Properly means (same parameter number, parameter types and order)
 	// parameters should be initialized previously
 	public void checkFuncParam(String funcName, ArrayList<Expr> pList) {
-
-System.out.println("ERROR in \"" + currFunc.funcName + "\" " +"looking for : " + funcName);
+        System.out.println("[Note] In function \"" + currFunc.funcName + "\": " +"looking into function: \"" + funcName + "\"...");
 		Var func = getValue(funcName);
 		if (func == null) {
-			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " function not found!");
+			System.out.println("ERROR in \"" + currFunc.funcName + "\": function symbol \"" +funcName + "\" not found!");
 		} else if(!(func instanceof Function)) {
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " is supposed to be Function type!\n");
 		} else {
-
 			ArrayList<Id> fpList = ((Function)func).getParamList();
-System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + "/The parameters from symbol table are : " + fpList);
-System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + "/The used parameters are : " + pList);
+            System.out.println("[Note] In function \"" + funcName + "\": the parameters from symbol table are : " + fpList);
+            System.out.println("[Note] In function \"" + funcName + "\": the used parameters are : " + pList);
 			// checking if the function doesn't have paramter
 			// it's wrong even when either one is null
 			if(fpList != null && pList != null) {
-			if(pList.size() != fpList.size()) { 
-				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " has wrong number of parameters!\n");
-			} else {
+			    if(pList.size() != fpList.size()) { 
+				    System.out.println("[ERROR] In \"" + currFunc.funcName + "\" " +funcName + " has wrong number of parameters!\n");
+			    } else {
 				for(int i = 0; i < pList.size(); i++) {
 					if(pList.get(i) == null) {
-						System.out.println("ERROR in \"" + currFunc.funcName + "\" " + funcName + "Wrong kind of parameter is given!\n");
-					} else if(!fpList.get(i).type.equals(pList.get(i).type.name)) {
-						System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " function has wrong parameter type!\n");
+						System.out.println("[ERROR] In function \"" + currFunc.funcName + "\": function \"" + funcName + "\" Wrong kind of parameter is given!\n");
+					} else if(!fpList.get(i).type.name.equals(pList.get(i).type.name)) {
+						System.out.println("[ERROR] In function \"" + currFunc.funcName + "\": function \"" + funcName + "\" has wrong parameter type!\n");
 					} else if((pList.get(i) instanceof Id) && ((Id)pList.get(i)).init) {
-						System.out.println("ERROR in \"" + currFunc.funcName + "\" " +funcName + " a parameter is not initialized before use!\n");
+						System.out.println("[ERROR] In function \"" + currFunc.funcName + "\": function \"" + funcName + "\" a parameter is not initialized before use!\n");
 					}
 				}
 			}
@@ -334,10 +332,6 @@ fragment UPPER: 'A'..'Z';
 fragment DIGIT: '0'..'9';
 
 
-
-
-
-
 /* PARSER RULES */
 
 tiger_program 
@@ -366,13 +360,13 @@ funct_declaration_list_then_main
 funct_declaration_tail[Token retType, String returnType]
     : {Type type = new Type($returnType);}
         FUNCTION ID '(' param_list ')' 
-	{
+        {
 		Function newFunc = new Function($ID.text, type, $param_list.paramList);
 		getTopTable().put($ID.text, newFunc);
 
 //new Function($ID.text, type, $param_list.paramList));
 		currFunc = newFunc;
-
+        System.out.println("[Note] Entering function: \"" + currFunc.funcName + "\"...");
 		enterNewScope(new SymbolTable(level));
 
 		for(int i = 0; i < $param_list.paramList.size(); i++) {
@@ -386,6 +380,7 @@ funct_declaration_tail[Token retType, String returnType]
 	BEGIN block_list END ';' 
 	{
 		exitScope();
+        System.out.println("[Note] Leaving function: \"" + currFunc.funcName + "\"...");
 		currFunc = new Function("Global level", Type.Int, new ArrayList());
 	}
 
@@ -395,9 +390,11 @@ funct_declaration_tail[Token retType, String returnType]
 main_function_tail 
     : MAIN '(' ')' {
 	currFunc = new Function("Main Function", Type.Void, new ArrayList());
+    System.out.println("[Note] Entering Main...");
 	}
 	BEGIN block_list END ';' 
-	{currFunc = new Function("Global level", Type.Int, new ArrayList());
+	{System.out.println("[Note] Leaving Main...");
+    currFunc = new Function("Global level", Type.Int, new ArrayList());
 	}
 	-> ^(MAINSCOPE block_list);
 
@@ -595,9 +592,8 @@ expr_or_function_call returns[Type t]
     : ID // ID : function name or variable name
         (expr_with_start_id[$ID, $ID.text] 
             {    
-$t = new Type($expr_with_start_id.e.type.name);
-System.out.println("Type returned in expr_or_function_call is: " + $t);
-
+                $t = new Type($expr_with_start_id.e.type.name);
+                System.out.println("Type returned in expr_or_function_call is: " + $t);
             }
 
 		-> ^(EXPR_WITH_START_ID expr_with_start_id?)
@@ -797,9 +793,11 @@ term4_with_start_id[Token startId, String s] returns [Expr e]
 term3_with_start_id[Token startId, String s] returns [Expr e]
     : {int i = 0;} t1=term2_with_start_id[$startId, $s] (add_operator^ t2=term2
 	{ System.out.println("Entered term3_with_start_id!!");
-      System.out.println("first term type is: " + $t1.e.type);
-      System.out.println("second term type is: " + $t2.e.type);
-		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
+      if ($t1.e.type != null)
+          System.out.println("first term type is: " + $t1.e.type);
+      if ($t2.e.type != null)
+          System.out.println("second term type is: " + $t2.e.type);
+      if (Arith.typeCheckPassed($t1.e, $t2.e)) {
             System.out.println("type check passed!!");
 			$e = Arith.getFinalType($t1.e, $t2.e);
             System.out.println("Type returned from term3_with_start_id is: " + $e);
