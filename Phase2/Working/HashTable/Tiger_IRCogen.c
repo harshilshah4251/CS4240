@@ -86,7 +86,7 @@ tokens {
     VARDECLLIST;
     PROGRAM;
     EXPR_WITH_START_ID;
-}
+
 
 
 @members {
@@ -244,212 +244,200 @@ function_args
 
 
 function_call_or_assignment
-: ID
-(function_args
- -> ^(FUNCTION_CALL ID function_args?)
- | value_tail ':=' expr_or_function_call
- -> ^(':=' ^(ID value_tail?) expr_or_function_call)
- ) ';'
+    : ID
+        (function_args -> ^(FUNCTION_CALL ID function_args?) | value_tail ':=' expr_or_function_call -> ^(':=' ^(ID value_tail?) expr_or_function_call)) ';'
 ;
 
 
-expr_or_function_call   returns [String val]
-: ID
-(expr_with_start_id[$ID] -> ^(EXPR_WITH_START_ID expr_with_start_id?)
- | function_args
- -> ^(FUNCTION_CALL ID function_args?)
- )
-| expr_no_start_id
+expr_or_function_call
+    : ID
+    (expr_with_start_id[$ID] -> ^(EXPR_WITH_START_ID expr_with_start_id?) | function_args
+     -> ^(FUNCTION_CALL ID function_args?))
+    | expr_no_start_id
 ;
 
 
 
 /* notation: termN corresponds to precedence level N */
-expr returns [String val, Type t]
-: t4 = term4
-(and_operator^ t4 = term4 {$val = t4.val + ', ' + $and_operator + ', ' + $t4.val};
- Temp r = new Temp(term4.t);
- $r.s = $r.emitlabel($r.newlabel());
+expr : term4 (and_operator^ term4)* ;
+    
+expr    returns [String val]
+    :   expr4 = term4        {val = $expr4.val;}
+    (and_operator^ t4 = term4
+    {Temp r = new Temp(Type.Char);    //Type.Int does not mean anything. this is just placeholder
+         r.s = "t" + r.number;;
+         val = r.s;
+         
+         switch (op){
+             case    & :    r.emit("and, " + $expr4.val + ", " + $t4.val + ", " + r.s);
+             case    | :    r.emit( "or, " + $expr4.val + ", " + $t4.val + ", " + r.s);
+         }})*
+    ;
+    
+//branch operation ; need to be implemented later
+term4 : term3 (compare_operator^ term3)* ;
+
+term3   returns [String val]
+    :   expr2 = term2        {val = $expr2.val;}
+    (add_operator^ t2 = term2
+    {Temp r = new Temp(Type.Char);
+         r.s = "t" + r.number;;
+         val = r.s;
+         
+         switch (op){
+             case    + :    r.emit("add, " + $expr2.val + ", " + $t2.val + ", " + r.s);
+             case    - :    r.emit("sub, " + $expr2.val + ", " + $t2.val + ", " + r.s);
+         }})*
+    ;
+    
+
+term2   returns [String val]
+    :   expr1 = term1       {val = $tns1.val;}
+    (mult_operator^ t1 = term1
+    {Temp r = new Temp(Type.Char);    //type doesnt mean anything.
+         r.s = "t" + r.number;         //create temp label
+         val = r.s;                   //put t1 into val
+         
+         switch (op){
+             case    * :    r.emit("mult, " + $expr1.text + ", " + $t1.val + ", " + r.s);
+             case    / :    r.emit( "div, " + $expr1.text + ", " + $t1.val + ", " + r.s);
+         }})*
+    ;
+    
+term1   [String val]
+    : literal   {val = $literal.text;}
+    | value     {val = $value.text;}
+    | '(' expr ')'
+    -> expr
+    ;
+    
+    
+    
+//for example : 3 / 2 + 2
+expr_no_start_id   returns [String val]
+    :   tns4 = term4_no_start_id        {val = $tns4.val;}
+    (and_operator^ t4 = term4
+    {Temp r = new Temp(Type.Char);
+         r.s = "t" + r.number;
+         val = r.s;
+         
+         switch (op){
+             case    & :    r.emit("and, " + $tns4.val + ", " + $t4.val + ", " + r.s);
+             case    | :    r.emit( "or, " + $tns4.val + ", " + $t4.val + ", " + r.s);
+         }})*
+    ;
+                                   
+// Branch: (op, y, z, label)
+term4_no_start_id   returns [String val]
+    : term3_no_start_id
+    (compare_operator^ term3)*
+    ;
+    
+term3_no_start_id   returns [String val]
+    :   tns2 = term2_no_start_id        {val = $tns2.val;}
+    (add_operator^ t2 = term2
+    {Temp r = new Temp(Type.Char);
+         r.s = "t" + r.number;;
+         val = r.s;
+         
+         switch (op){
+             case    + :    r.emit("add, " + $tns2.val + ", " + $t2.val + ", " + r.s);
+             case    - :    r.emit("sub, " + $tns2.val + ", " + $t2.val + ", " + r.s);
+         }})*
+    ;
+    
+term2_no_start_id   returns [String val]
+    :   tns1 = term1_no_start_id        {val = $tns1.val;}
+    (mult_operator^ t1 = term1
+     {Temp r = new Temp(Type.Char);    //type doesnt mean anything.
+         r.s = "t" + r.number;         //create temp label
+         val = r.s;                   //put t1 into val
+         
+         switch (op){
+             case    * :    r.emit("mult, " + $tns1.val + ", " + $t1.val + ", " + r.s);
+             case    / :    r.emit( "div, " + $tns1.val + ", " + $t1.val + ", " + r.s);
+         }})*
+    ;
+    
+term1_no_start_id   returns [String val]
+    : literal       {val = $literal.text;}
+    | '(' expr ')'
+        -> expr
+    ;
+    
+    
+
+//a[1][2]
+expr_with_start_id[Token startId] : term4_with_start_id[$startId] (and_operator^ term4)* ;
+term4_with_start_id[Token startId] : term3_with_start_id[$startId] (compare_operator^ term3)* ;
+term3_with_start_id[Token startId] : term2_with_start_id[$startId] (add_operator^ term2)* ;
+term2_with_start_id[Token startId]
+    : term1_with_start_id[$startId] (mult_operator^ term1)* ;
  
- Temp op = $mult_operator.text;
- switch (op){
-     case    & :    r.emit("and, " + $t1.val + ", " + $t2.val + ", " + r.s);
-     case    | :    r.emit( "or, " + "$t1.val +", " + $t2.val + ", " + r.s);
-                           } )*
-         
-     {$val = $term4.val;  $t = $term4.type;}
-         ;
-         
-         
-         /////need to be modified
-         term4 returns [String val, Type t]
-         : t3 = term3
-         (compare_operator^ t3 = term3 {$val = t3.val + ', ' + $compare_operator + ', ' + $t3.val};
-          Temp r = new Temp(term3.t);
-          $r.s = $r.emitlabel($r.newlabel());
-          
-          Temp op = $mult_operator.text;
-          switch (op){
-              case    + :    r.emit("add, " + $t1.val + ", " + $t2.val + ", " + r.s);
-              case    - :    r.emit( "sub, " + "$t1.val +", " + $t2.val + ", " + r.s);
-                                    } )*
-                  
-              {$val = $term3.val;  $t = $term3.type;}
-                  ;
-                  
-                  
-                  term3   returns [String val, Type t]
-                  : t2 = term2
-                  (add_operator^ t2 = term2 {$val = t2.val + ', ' + $add_operator.text + ', ' + $t2.val};
-                   Temp r = new Temp(term2.t);
-                   $r.s = $r.emitlabel($r.newlabel());
-                   
-                   Temp op = $mult_operator.text;
-                   switch (op){
-                       case    + :    r.emit("add, " + $t1.val + ", " + $t2.val + ", " + r.s);
-                       case    - :    r.emit( "sub, " + "$t1.val +", " + $t2.val + ", " + r.s);
-                                             } )*
-                           
-                       {$val = $term2.val;  $t = $term2.type;}
-                           ;
-                           
-                           
-                           
-                           term2   returns [String val, Type t]
-                           : t1 = term1
-                           (mult_operator^ t2 = term1 {$val = $t1.val +', ' + $mult_operator.text +', ' + $t2.val};
-                            Temp r = new Temp($term1.t);
-                            $t = $term1.t;
-                            r.s = r.emitlabel(r.newlabel());    //t.newlabel will be same number as t.count
-                            
-                            Temp op = $mult_operator.text;
-                            switch (op){
-                                case    * :    r.emit("mult, " + $t1.val + ", " + $t2.val + ", " + r.s);
-                                case    / :    r.emit( "div, " + "$t1.val +", " + $t2.val + ", " + r.s);
-                                                      } )*
-                                {$val = $term1.val;  $t = $term1.type;}
-                                    ;
-                                    
-                                    term1   returns [String val, Type t]
-                                    : literal   {$val = $literal.text;    $t = Type.Int);}     //when number 일때넣어주기
-                                    | value     {$val = $value.text;    $t = Type.Int;}        //when ID 일때넣어주기....i need to know whats in ID!!!!!!!!
-                                    | '(' expr ')'  -> expr
-                                    ;
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    expr_no_start_id   returns [String val]
-                                    :   tns4 = term4_no_start_id
-                                    (and_operator^ t4 = term4
-                                     {Temp r = new Temp(Type.Int);    //Type.Int does not mean anything.
-                                         r.s = r.emitlabel(r.newlabel());
-                                         $val = r.s;
-                                         
-                                         switch (op){
-                                             case    & :    r.emit("and, " + "$tns2.val + ", " + $t2.val + ", " + r.s);
-                                                                   case    | :    r.emit( "or, " + "$tns2.val + ", " + $t2.val + ", " + r.s);
-                                                                                         }})*
-                                                                   {$val = $tns4.val;}
-                                                                   ;
-                                                                   
-                                                                   
-                                                                   term4_no_start_id   returns [String val]
-                                                                   :   tns3 = term3_no_start_id
-                                                                   (compare_operator^ t3 = term3
-                                                                    {$val = $tns3.val +", " + $compare_operator +", " + $t3.val + "after_if_part";
-                                                                        
-                                                                        switch (op){
-                                                                            case    <> :    r.emit("breq, " + "$tns3.val + ", " + $t3.val + ", " + "after_if_part");
-                                                                                                   case    = :    r.emit("brneq, " + "$tns3.val + ", " + $t3.val + ", " + "after_if_part");
-                                                                                                                         case    >= :    r.emit("brlt, " + "$tns3.val + ", " + $t3.val + ", " + "after_if_part");
-                                                                                                                                                case    <= :    r.emit("brgt, " + "$tns3.val + ", " + $t3.val + ", " + "after_if_part");
-                                                                                                                                                                       case    < :    r.emit("brgeq, " + "$tns3.val + ", " + $t3.val + ", " + "after_if_part");
-                                                                                                                                                                                             case    > :    r.emit("brleq, " + "$tns3.val + ", " + $t3.val + ", " + "after_if_part");
-                                                                                                                                                                                                                   }})*
-                                                                                                                                                                                             {$val = $tns3.val;}
-                                                                                                                                                                                             ;
-                                                                                                                                                                                             
-                                                                                                                                                                                             term3_no_start_id   returns [String val]
-                                                                                                                                                                                             :   tns2 = term2_no_start_id        {$val = $tns2.val;}
-                                                                                                                                                                                             (add_operator^ t2 = term2
-                                                                                                                                                                                              {Temp r = new Temp(Type.Int);    //Type.Int does not mean anything. this is just placeholder
-                                                                                                                                                                                                  r.s = r.emitlabel(r.newlabel());
-                                                                                                                                                                                                  $val = r.s;
-                                                                                                                                                                                                  
-                                                                                                                                                                                                  switch (op){
-                                                                                                                                                                                                      case    + :    r.emit("add, " + "$tns2.val + ", " + $t2.val + ", " + r.s);
-                                                                                                                                                                                                                            case    - :    r.emit("sub, " + "$tns2.val + ", " + $t2.val + ", " + r.s);
-                                                                                                                                                                                                                                                  }})*
-                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            term2_no_start_id   returns [String val]
-                                                                                                                                                                                                                            :   tns1 = term1_no_start_id        {$val = $tns1.val;}
-                                                                                                                                                                                                                            (mult_operator^ t1 = term1
-                                                                                                                                                                                                                             {Temp r = new Temp(Type.Int);    //Type.Int does not mean anything.
-                                                                                                                                                                                                                                 r.s = r.emitlabel(r.newlabel());
-                                                                                                                                                                                                                                 $val = r.s;
-                                                                                                                                                                                                                                 
-                                                                                                                                                                                                                                 switch (op){
-                                                                                                                                                                                                                                     case    * :    r.emit("mult, " + $tns1.val + ", " + $t1.val + ", " + r.s);
-                                                                                                                                                                                                                                     case    / :    r.emit( "div, " + $tns1.val + ", " + $t1.val + ", " + r.s);
-                                                                                                                                                                                                                                 }})*
-                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            term1_no_start_id   [String val]
-                                                                                                                                                                                                                            : literal   {$val = $literal.text;}
-                                                                                                                                                                                                                            | '(' expr ')'
-                                                                                                                                                                                                                            -> expr
-                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            expr_with_start_id[Token startId] : term4_with_start_id[$startId] (and_operator^ term4)* ;
-                                                                                                                                                                                                                            term4_with_start_id[Token startId] : term3_with_start_id[$startId] (compare_operator^ term3)* ;
-                                                                                                                                                                                                                            term3_with_start_id[Token startId] : term2_with_start_id[$startId] (add_operator^ term2)* ;
-                                                                                                                                                                                                                            term2_with_start_id[Token startId] : term1_with_start_id[$startId] (mult_operator^ term1)* ;
-                                                                                                                                                                                                                            term1_with_start_id[Token startId]
-                                                                                                                                                                                                                            : value_tail -> ^({new CommonTree($startId)} value_tail?)
-                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            expr_list
-                                                                                                                                                                                                                            : expr ( ',' expr )* -> ^(EXPRLIST expr+)
-                                                                                                                                                                                                                            |
-                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                          /*expr_list_tail
-                                                                                                                                                                                                           : ',' expr expr_list_tail
-                                                                                                                                                                                                           -> expr expr_list_tail?
-                                                                                                                                                                                                           |
-                                                                                                                                                                                                           ;*/
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            mult_operator : '*' | '/' ;
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            add_operator : '+' | '-' ;
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            compare_operator : '=' | '<>' | '<' | '>' | '<=' | '>=' ;
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            and_operator : '&' | '|' ;
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            value : ID value_tail -> ^(ID value_tail?);
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            literal
-                                                                                                                                                                                                                            : INTLIT
-                                                                                                                                                                                                                            | FIXEDPTLIT
-                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            value_tail 
-                                                                                                                                                                                                                            : '[' index_expr ']' ('[' index_expr ']')?
-                                                                                                                                                                                                                            -> index_expr+  /* antlr will auto-group two index_expr's */
-                                                                                                                                                                                                                            |
-                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            index_expr : index_term (add_operator^ index_term)* ;
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            index_term : index_factor ('*'^ index_factor)* ;  /* no division allowed in index */
-                                                                                                                                                                                                                            
-                                                                                                                                                                                                                            index_factor : INTLIT | ID ;
+    
+term1_with_start_id[Token startId]  returns [String val]
+    : t = value_tail -> ^({new CommonTree($startId)} value_tail?)
+    
+    {}
+    ;
+    
+expr_list
+    : expr ( ',' expr )* -> ^(EXPRLIST expr+)
+    |
+    ;
+    
+    /*expr_list_tail
+     : ',' expr expr_list_tail
+     -> expr expr_list_tail?
+     |
+     ;*/
+    
+mult_operator : '*' | '/' ;
+    
+add_operator : '+' | '-' ;
+    
+compare_operator : '=' | '<>' | '<' | '>' | '<=' | '>=' ;
+    
+and_operator : '&' | '|' ;
+    
+value : ID value_tail -> ^(ID value_tail?);
+    
+literal
+    : INTLIT
+    | FIXEDPTLIT
+    ;
+    
+value_tail   returns [String id, String r, String c]            //value tail returns : whether it is string or not, row number, colum number for index
+    
+    : '[' t = index_expr ']'    {r = t.val;}
+    ('[' t2 = index_expr ']')?  {c = t2.val;}
+    
+    -> index_expr+  /* antlr will auto-group two index_expr's */
+    |                           {id = "id";} //placeholder to know that this is not an array
+    ;
+    
+index_expr  returns [String val]
+    :   i = index_term    {val = index_factor;}
+    (add_operator^ i1 = index_term
+    {Temp r = new Temp(Type.Int);
+    r.s = "t" + r.number;
+    val = r.s;
+    r.emit("add," + $i.val + ", " + $i1.val + ", " + r.s);
+    })*
+    ;
+    
+index_term  returns [String val]
+    :   i = index_factor    {val = $i.val;}
+    ('*'^ i1 = index_factor
+    {Temp r = new Temp(Type.Int);
+    r.s = "t" + r.number;
+    val = r.s;
+    r.emit("mult, " + $i.val + ", " + $i1.val + ", " + r.s);
+    })*
+    ;  /* no division allowed in index */
+    
+index_factor    returns [String val]
+    :INTLIT     {val = INTLIT.text;}
+    | ID        {val = ID.text;}
+    ;
+
