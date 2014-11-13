@@ -287,6 +287,27 @@ tokens {
 			}
 		}
 	}
+
+
+	Expr checkArrayType(Var v, int a) {
+		Type tempType = ((UserType)((Id)v).type).of;
+		Expr e = new Expr("temp", Type.Int);
+			//Constructor without parameters shouldn't be used
+		if(a == 0 && !(tempType instanceof Array)) {
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " + ((Id)v).s + " Whole Array cannot be used like this!\n");
+		}else if(a == 1 && (tempType instanceof Array)){ 
+			System.out.println("TYPE1: " + ((UserType)((Id)v).type));
+			e = new Expr("UserTypeExpr", ((Array)tempType).of);
+		}else if(a ==2 && (tempType instanceof TwoDArray)) {
+			System.out.println("TYPE2: " + ((UserType)((Id)v).type));
+			e = new Expr("UserTypeExpr", ((TwoDArray)tempType).of);
+		} else {
+			System.out.println("ERROR in \"" + currFunc.funcName + "\" " + ((Id)v).s + " Wrong way to use Array!\n");
+		}
+		return e;
+	}
+
+
 }
 
 
@@ -588,7 +609,7 @@ function_call_or_assignment
 			if(v == null || t == null) {
 				System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " function_call_or_assignment NULL!"  + v + " " + t);
 			} else if(((Id)v).type instanceof UserType) {
-				if(!((UserType)v).userTypeName.equals(t.name)) {
+				if(!((UserType)(((Id)v).type)).userTypeName.equals(t.name)) {
 					System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + "=> Assignment Type doesn't match!" + " " + ((UserType)v).userTypeName + "/ "+ t.name);
 				}
 			} else if(!((Id)v).type.name.equals(t.name)) {
@@ -900,22 +921,8 @@ value returns[Expr e]
 		} else if(((Id)v).type instanceof UserType){//(Arith.isUserType(((Id)v).type)) {
 System.out.println("a : " + $value_tail.a);
 
-			Type tempType = ((UserType)((Id)v).type).of;
-
-			//if($value_tail.a == 0 && !(((UserType)((Id)v).type).of instanceof Array)) {
-			if($value_tail.a == 0 && !(tempType instanceof Array)) {
-				System.out.println("ERROR");
-				// This case should be error
-			}else if($value_tail.a == 1 && (tempType instanceof Array)){ 
-				System.out.println("TYPE1: " + ((UserType)((Id)v).type));
-				$e = new Expr("UserTypeExpr", ((Array)tempType).of);
-			}else if($value_tail.a ==2 && (tempType instanceof TwoDArray)) {
-				System.out.println("TYPE2: " + ((UserType)((Id)v).type));
-				$e = new Expr("UserTypeExpr", ((TwoDArray)tempType).of);
-			} else {
-				System.out.println("ERROR");
-			}
-
+			$e = checkArrayType(v, $value_tail.a);
+			
 		} else {
 			$e = ((Id)v);
 		}
