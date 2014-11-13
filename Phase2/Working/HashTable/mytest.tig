@@ -4,8 +4,9 @@ type myownarr = array[2] of int;
 int function myownfunc()
 begin
     begin
-	var x: int := 3;
-	x := 2 + 2;
+	var x: myownint := 3;
+	var y: myownint := 2;
+	x := x + y;
     end;
     begin
 	var a: myownarr := 2;
