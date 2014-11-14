@@ -647,7 +647,13 @@ expr_or_function_call returns[Type t, Expr e]
 			System.out.println("ERROR in \"" + currFunc.funcName + "\" " +$ID.text + " Has wrong type!");
 		} else { 
 			$t = new Type($expr_with_start_id.e.type.name);
-            $e = $expr_with_start_id.e;
+            if ($expr_with_start_id.temp == null) {
+                $e = $expr_with_start_id.e;
+                System.out.println("temp is null");
+            }
+            else {
+                $e = $expr_with_start_id.temp;
+            }
 		}
             }
 
@@ -691,7 +697,7 @@ System.out.println("temp is null");
     ;
 
 /* notation: termN corresponds to precedence level N */
-expr returns[Expr e]
+expr returns[Expr e, Expr temp]
     : {int i = 0;}t1=term4 (and_operator^ t2=term4
             {
                 if (Logical.typeCheckPassed($t1.e, $t2.e)) {
@@ -706,7 +712,7 @@ expr returns[Expr e]
     };
 
 
-term4 returns[Expr e]
+term4 returns[Expr e, Expr temp]
     : {int i = 0;}t1=term3 (compare_operator^ t2=term3
             {
                 if (Arith.typeCheckPassed($t1.e, $t2.e)) {
@@ -721,25 +727,47 @@ term4 returns[Expr e]
 		}
 	}
     ;
-term3 returns[Expr e]
-    : {int i = 0;}t1=term2 (add_operator^ t2=term2
+term3 returns[Expr e, Expr temp]
+    : {int i = 0; System.out.println("am i here?");}t1=term2 (add_operator^ t2=term2
 	{
 		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
 			$e = Arith.getFinalType($t1.e, $t2.e);
+            tempIR.makeNewTempIR(count);
+            if ($add_operator.e.s.equals("add")) {
+                System.out.println("add, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            else {
+                System.out.println("sub, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            $temp = tempIR;
 		}
 		i++;
 	})* 
 	{
 		if(i==0) {
 			$e = $t1.e;
+            $temp = $t1.temp;
 		}
 	};
 
-term2 returns[Expr e] 
-    : {int i = 0;}t1=term1 (mult_operator^ t2=term1
+term2 returns[Expr e, Expr temp] 
+    : {int i = 0;        System.out.println("Entering term2!");}t1=term1 (mult_operator^ t2=term1
 	{
-		if(Arith.typeCheckPassed($t1.e, $t2.e)) {
+
+	if(Arith.typeCheckPassed($t1.e, $t2.e)) {
 			$e = Arith.getFinalType($t1.e, $t2.e);
+            tempIR.makeNewTempIR(count);
+            if ($mult_operator.e.s.equals("mult")) {
+                System.out.println("mult, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            else {
+                System.out.println("div, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            $temp = tempIR;
 		}
             	i++;
 
@@ -748,6 +776,7 @@ term2 returns[Expr e]
             if(i == 0) {
                 $e = $t1.e;
             }
+            System.out.println("Nothing to do here, moving up!");
         };
 
 term1 returns[Expr e]
@@ -813,7 +842,7 @@ term4_no_start_id returns[Expr e, Expr temp]
 	};
 term3_no_start_id returns[Expr e, Expr temp]
     : {int i = 0;}t1=term2_no_start_id (add_operator^ t2=term2
-	{
+	{ System.out.println($t1.e);
 		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
 			$e = Arith.getFinalType($t1.e, $t2.e);
             tempIR.makeNewTempIR(count);
@@ -865,7 +894,7 @@ term1_no_start_id returns[Expr e]
         -> expr
     ;
 
-expr_with_start_id[Token startId, String s]  returns [Expr e]
+expr_with_start_id[Token startId, String s]  returns [Expr e, Expr temp]
     : {int i = 0;} t1=term4_with_start_id[$startId, $s] (and_operator^ t2=term4
 	{
                 if (Logical.typeCheckPassed($t1.e, $t2.e)) {
@@ -876,11 +905,11 @@ expr_with_start_id[Token startId, String s]  returns [Expr e]
       {
           if (i == 0) {
               $e = $t1.e; // if there is no second operand, term1's type should be returned
+              $temp = $t1.temp;
       }
     };
 
-
-term4_with_start_id[Token startId, String s] returns [Expr e]
+term4_with_start_id[Token startId, String s] returns [Expr e, Expr temp]
     : {int i = 0;} t1=term3_with_start_id[$startId, $s] (compare_operator^ t2=term3
             {
                 if (Arith.typeCheckPassed($t1.e, $t2.e)) {
@@ -893,9 +922,9 @@ term4_with_start_id[Token startId, String s] returns [Expr e]
 		if(i == 0) {
 			$e = $t1.e; // if there is no second operand, term1's type should be returned
 //            System.out.println("Type returned from term4_with_start_id is: " + $e);
+            $temp = $t1.temp;
 		}
 	};
-
 
 term3_with_start_id[Token startId, String s] returns [Expr e, Expr temp]
     : {int i = 0;} t1=term2_with_start_id[$startId, $s] (add_operator^ t2=term2
@@ -918,19 +947,27 @@ term3_with_start_id[Token startId, String s] returns [Expr e, Expr temp]
 	{
 		if(i==0) {
 			$e = $t1.e;
-            $temp = $t1.e;
+            $temp = $t1.temp;
 		}
 	};
 
-
-term2_with_start_id[Token startId, String s] returns [Expr e]
+term2_with_start_id[Token startId, String s] returns [Expr e, Expr temp]
     : {int i = 0;} t1=term1_with_start_id[$startId, $s] (mult_operator^ t2=term1
 	{
 		if(Arith.typeCheckPassed($t1.e, $t2.e)) {
 			$e = Arith.getFinalType($t1.e, $t2.e);
+            tempIR.makeNewTempIR(count);
+            if ($mult_operator.e.s.equals("mult")) {
+                System.out.println("mult, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            else {
+                System.out.println("div, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
+                count++;
+            }
+            $temp = tempIR;
 		}
             	i++;
-
 	})*
 	{
             if(i == 0) {
