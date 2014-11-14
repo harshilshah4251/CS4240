@@ -1,0 +1,73 @@
+type myownint = int; 
+type myownarr = array[2] of int;
+type twoDArray = array[2][2] of int;
+
+int function func1(a: int, b: int) 
+begin
+	begin 
+		var c : myownint := 4;
+		var d : myownint := 3;
+		a := a + b;
+		c := c + d;
+
+		return 5; 
+	end; 
+end;
+
+myownint function func2()
+begin
+	begin
+		var a : myownint := 2;
+
+		return a;
+	end;
+end;
+
+fixedpt function func3()
+begin
+	begin
+		var a : fixedpt := 3;
+		return a;
+	end;
+end;
+
+/* int function testing() begin begin var a: int; a := addTwoNumbers(2, 3); return a; end; end; */
+
+void main() 
+begin
+	begin 
+		var b: int := 0; 
+		var c: fixedpt; 
+		var d: fixedpt := 2; 
+		var e: myownarr := 3;
+		var arr : twoDArray;
+		var i, j: int;
+
+		/*b := 4+e[1]; */
+		c := b + d;
+
+		if (b = 0) then
+			c := 4;
+		else
+			begin
+				var c : fixedpt;
+				for i:= 1 to 2 do
+					for j := 1 to 2 do
+						arr[i][j] := 3;
+					enddo;
+				enddo;
+			end;
+		endif;
+
+		while (b < 3.4) do
+			c :=3;
+		enddo;
+
+		if (b <> 3) then
+			c := 4;
+		endif;
+					 
+		/*c := 3.5; 
+		d := b + c; */
+	end; 
+end;
