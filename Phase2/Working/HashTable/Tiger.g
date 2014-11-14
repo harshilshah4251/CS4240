@@ -688,6 +688,7 @@ System.out.println("temp is null");
             }
             else { 
                 $e = $expr_no_start_id.temp;
+//System.out.println("I'm here!");
             }
 		}
 
@@ -728,7 +729,7 @@ term4 returns[Expr e, Expr temp]
 	}
     ;
 term3 returns[Expr e, Expr temp]
-    : {int i = 0; System.out.println("am i here?");}t1=term2 (add_operator^ t2=term2
+    : {int i = 0;}t1=term2 (add_operator^ t2=term2
 	{
 		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
 			$e = Arith.getFinalType($t1.e, $t2.e);
@@ -753,7 +754,7 @@ term3 returns[Expr e, Expr temp]
 	};
 
 term2 returns[Expr e, Expr temp] 
-    : {int i = 0;        System.out.println("Entering term2!");}t1=term1 (mult_operator^ t2=term1
+    : {int i = 0;}t1=term1 (mult_operator^ t2=term1
 	{
 
 	if(Arith.typeCheckPassed($t1.e, $t2.e)) {
@@ -776,7 +777,7 @@ term2 returns[Expr e, Expr temp]
             if(i == 0) {
                 $e = $t1.e;
             }
-            System.out.println("Nothing to do here, moving up!");
+//            System.out.println("Nothing to do here, moving up!");
         };
 
 term1 returns[Expr e]
@@ -841,14 +842,26 @@ term4_no_start_id returns[Expr e, Expr temp]
 		}
 	};
 term3_no_start_id returns[Expr e, Expr temp]
-    : {int i = 0;}t1=term2_no_start_id (add_operator^ t2=term2
-	{ System.out.println($t1.e);
+    : {int i = 0; int varcount = 0;}t1=term2_no_start_id (add_operator^ t2=term2
+	{ varcount++; 
+//System.out.println("varcount is: " + varcount);
 		if (Arith.typeCheckPassed($t1.e, $t2.e)) {
 			$e = Arith.getFinalType($t1.e, $t2.e);
             tempIR.makeNewTempIR(count);
+//System.out.println("count is: " + count);
             if ($add_operator.e.s.equals("add")) {
+                if (varcount > 1) {
+count--;
+tempIR.makeNewTempIR(count);
+                    System.out.print("add, " + tempIR.s + ", " + $t2.e.s + ", ");
+                    count++;
+tempIR.makeNewTempIR(count);
+                    System.out.println(tempIR.s);
+count++;
+                } else {
                 System.out.println("add, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
                 count++;
+                }
             }
             else {
                 System.out.println("sub, " + $t1.e.s + ", " + $t2.e.s + ", " + tempIR.s);
