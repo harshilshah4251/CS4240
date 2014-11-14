@@ -1,0 +1,78 @@
+Symbol table 0: 
+level : 0
+{print=Function/ return: void, size: 0, parameter list:[ ID/s, Type: string, size: 0, init: false, size: 0
+], number of parameters: 1
+, printi=Function/ return: void, size: 0, parameter list:[ ID/i, Type: int, size: 4, init: false, size: 4
+], number of parameters: 1
+, ord=Function/ return: int, size: 4, parameter list:[ ID/s, Type: string, size: 0, init: false, size: 0
+], number of parameters: 1
+, twoDArray=UserType/ Name: twoDArray TotalSize : 16 BaseType : [2] [2]int, size: 4
+, exit=Function/ return: void, size: 0, parameter list:[ ID/i, Type: int, size: 4, init: false, size: 4
+], number of parameters: 1
+, not=Function/ return: int, size: 4, parameter list:[ ID/i, Type: int, size: 4, init: false, size: 4
+], number of parameters: 1
+, chr=Function/ return: string, size: 0, parameter list:[ ID/i, Type: int, size: 4, init: false, size: 4
+], number of parameters: 1
+, myownarr=UserType/ Name: myownarr TotalSize : 8 BaseType : [8] int, size: 4
+, myownint=UserType/ Name: myownint TotalSize : 4 BaseType : int, size: 4
+, substring=Function/ return: string, size: 0, parameter list:[ ID/s, Type: string, size: 0, init: false, size: 0
+,  ID/f, Type: int, size: 4, init: false, size: 4
+,  ID/n, Type: int, size: 4, init: false, size: 4
+], number of parameters: 3
+, getchar=Function/ return: string, size: 0, parameter list:[], number of parameters: 0
+, concat=Function/ return: string, size: 0, parameter list:[ ID/s1, Type: string, size: 0, init: false, size: 0
+,  ID/s2, Type: string, size: 0, init: false, size: 0
+], number of parameters: 2
+, func3=Function/ return: float, size: 8, parameter list:[], number of parameters: 0
+, flush=Function/ return: void, size: 0, parameter list:[], number of parameters: 0
+, func2=Function/ return: myownint, size: 0, parameter list:[], number of parameters: 0
+, func1=Function/ return: int, size: 4, parameter list:[ ID/a, Type: int, size: 4, init: false, size: 4
+,  ID/b, Type: int, size: 4, init: false, size: 4
+], number of parameters: 2
+, size=Function/ return: int, size: 4, parameter list:[ ID/s, Type: string, size: 0, init: false, size: 0
+], number of parameters: 1
+}
+
+Symbol table 1: 
+level : 1
+{b= ID/b, Type: int, size: 4, init: true, size: 4
+, a= ID/a, Type: int, size: 4, init: true, size: 4
+}
+
+Symbol table 2: 
+level : 2
+{d= ID/d, Type: UserType/ Name: myownint TotalSize : 4 BaseType : int, size: 4
+, init: true, size: 4
+, c= ID/c, Type: UserType/ Name: myownint TotalSize : 4 BaseType : int, size: 4
+, init: true, size: 4
+}
+
+Symbol table 4: 
+level : 2
+{a= ID/a, Type: UserType/ Name: myownint TotalSize : 4 BaseType : int, size: 4
+, init: true, size: 4
+}
+
+Symbol table 6: 
+level : 2
+{a= ID/a, Type: float, size: 8, init: true, size: 8
+}
+
+Symbol table 7: 
+level : 1
+{arr= ID/arr, Type: UserType/ Name: twoDArray TotalSize : 16 BaseType : [2] [2]int, size: 4
+, init: true, size: 16
+, b= ID/b, Type: int, size: 4, init: true, size: 4
+, j= ID/j, Type: int, size: 4, init: false, size: 4
+, i= ID/i, Type: int, size: 4, init: false, size: 4
+, e= ID/e, Type: UserType/ Name: myownarr TotalSize : 8 BaseType : [8] int, size: 4
+, init: true, size: 8
+, d= ID/d, Type: float, size: 8, init: true, size: 8
+, c= ID/c, Type: float, size: 8, init: true, size: 8
+}
+
+Symbol table 8: 
+level : 2
+{c= ID/c, Type: float, size: 8, init: false, size: 8
+}
+

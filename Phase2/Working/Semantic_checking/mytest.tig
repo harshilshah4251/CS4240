@@ -1,0 +1,21 @@
+type myownint = int;
+type myownarr = array[2] of int;
+
+
+
+
+void main()
+begin
+	begin
+	var b: int;
+	var c: fixedpt;
+	var d: fixedpt;
+	var e: myownarr := 3;
+
+	b := 4+e[1];
+	c := 3.5;
+	d := b + c;
+
+
+    end;
+end;
