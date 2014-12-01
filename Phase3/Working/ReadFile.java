@@ -20,9 +20,13 @@ public class ReadFile{
 			}
 		
 		} while(!sCurrentLine.contains("END IR CODE"));
+        System.out.println("===========END===========");
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+        
+
 	}
 }
 
