@@ -11,12 +11,13 @@ public class ReadFile{
 		String sCurrentLine = "";
 		while(i < 8)  {
 			br.readLine();
-			//System.out.println(i);
 			i++;
 		}
 		do{
 			sCurrentLine = br.readLine();
-			System.out.println(sCurrentLine);
+			if (!sCurrentLine.contains("END IR CODE")) {
+				System.out.println(sCurrentLine);
+			}
 		
 		} while(!sCurrentLine.contains("END IR CODE"));
 		} catch (IOException e) {
