@@ -1,0 +1,60 @@
+/*
+ * Tests rules related to type and function declarations (before main function)
+ *
+ *
+ * Rules tested:
+ *
+ *  <type_declaration_list> -> <type_declaration> <type_declaration_list>
+ *  <type_declaration> -> type id = <type>;
+ *  <type> -> <base-type>
+ *  <type> -> array [INTLIT] of <base-type>
+ *  <type> -> array [INTLIT] [INTLIT] of <base-type>
+ *  <base-type> -> INTLIT | FIXEDPTLIT
+ *
+ *  <funct-declaration-list> -> <funct-declaration> <funct-declaration-list>
+ *  <funct-declaration> -> ...
+ *  
+ *  <ret-type> -> VOID | <type-id>
+ *
+ *  <param-list> -> NULL | <param> <param-list-tail>
+ *  <param> -> id : <type-id>
+ *
+ *  <type-id> -> <base-type> | ID
+ */
+
+/* type_declaration_list and type-related rules */
+type Integer = int;
+type Float = fixedpt;
+type IntArray = array[20] of int;
+type IntArray2D = array[20][20] of int;
+
+/* funct_declaration_list and funct-declaration-related rules */
+void function no_arg_func() begin
+  begin
+    printi(0);
+  end;
+end;
+
+Integer function one_arg_func(arg0: int) begin
+  begin
+    return 1;
+  end;
+end;
+
+fixedpt function two_arg_func(arg0: IntArray2d, arg1: FloatArray2D) begin
+  begin
+    return 1.234;
+  end;
+end;
+
+int function type_id_can_be_int() begin
+  begin
+    return 1;
+  end;
+end;
+
+void main() begin
+  begin
+    printi(0);
+  end;
+end;

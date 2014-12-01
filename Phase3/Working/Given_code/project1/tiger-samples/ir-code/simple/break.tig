@@ -1,0 +1,54 @@
+/* Tests break for both loops, including nested loops and breaking to end of program */
+
+void main() begin
+	begin
+		var i: int := 0;
+		var BEGIN_LOOP: int;
+
+		/* test break in non-nested block */
+		BEGIN_LOOP := 1000000000000000000000000000000;
+		while 0 = 1 do
+			break;
+			i := 0;
+		enddo;
+
+		BEGIN_LOOP := 1111111111111111111111111111111;
+		for i := 2 to 3 do
+			break;
+			i := 4;
+		enddo;
+
+		/* test break in nested block */
+		BEGIN_LOOP := 2222222222222222222222222222222;
+		while 5 = 6 do
+			if 7 = 8 then
+				break;
+			endif;
+		enddo;
+
+		BEGIN_LOOP := 3333333333333333333333333333333;
+		for i := 9 to 10 do
+			if 11 = 12 then
+				break;
+			endif;
+		enddo;
+
+		/* test break in nested loops */
+		BEGIN_LOOP := 4444444444444444444444444444444;
+		while 13 = 14 do
+			for i := 15 to 16 do
+				if 17 = 18 then
+					break;
+				endif;
+			enddo;
+		enddo;
+
+		BEGIN_LOOP := 5555555555555555555555555555555;
+		/* test break to end of program */
+		while 19 = 20 do
+			break;
+		enddo;
+		
+		/* XXX no code after here, otherwise it breaks the above test */
+	end;
+end;

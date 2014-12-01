@@ -1,0 +1,105 @@
+/*
+ * This contains semantic checks for boolean types.
+ *
+ * Overview of checks...
+ *
+ *  1. Check that short circuit ops only take boolean values
+ *  2. Check that bools cannot be assigned to vars
+ *  3. Check that bools cannot be used in arithmetic/comparisons
+ */
+
+type Integer = int;
+type Decimal = fixedpt;
+
+/* short_circuit operators require both args to be booleans */
+void function valid_short_circuit_ops() begin
+	begin
+		/* simultaneously checks that < <= = | all return bools */
+		if ((1 < 2) | (3 <= 4)) & 5 = 6 then
+			flush();
+		endif;
+
+		/* simultaneously checks that <> > >= & all return bools */
+		if (1 <> 2 & 3 > 4) | 5 >= 6 then
+			flush();
+		endif;
+	end;
+end;
+
+
+void function invalid_short_circuit_ops() begin
+	begin
+		var int_var: int := 1;
+		var fp_var: fixedpt := 1.0;
+		var Integer_var: Integer := 1;
+		var Decimal_var: Decimal := 1.0;
+
+		if 1 = 1 & 1 then  /* ERROR literal int arg */
+			flush();
+		endif;
+
+		if 1.0 | 1 = 1 then  /* ERROR literal fixedpt */
+			flush();
+		endif;
+
+		if int_var & 1 = 1 then  /* ERROR int var */
+			flush();
+		endif;
+
+		if Integer_var & 1 = 1 then  /* ERROR int alias */
+			flush();
+		endif;
+
+		if fp_var & 1 = 1 then  /* ERROR fixedpt alias */
+			flush();
+		endif;
+
+		if Decimal_var & 1 = 1 then  /* ERROR fixedpt alias */
+			flush();
+		endif;
+	end;
+end;
+
+void function bools_in_arithmetic_and_assign() begin
+	begin
+		type IArray = array[10] of fixedpt;
+		type IArray2D = array[10][10] of fixedpt;
+		type Array = array[10] of int;
+		type Array2D = array[10][10] of int;
+
+		var fixedpt_var: fixedpt;
+		var int_var: int;
+		var Int_var: Integer;
+		var Dec_var: Decimal;
+		var arr: Array := 0.0;
+		var arr2: IArray := 0;
+		var arr2D: Array2D := 0;
+		var arr2_2D: IArray2D := 0;
+
+		/* assigns */
+		int_var := (1 < 1);  /* ERROR */
+		Int_var := (1 <= 1);  /* ERROR */
+		arr := (1 = 1);  /* ERROR */
+		arr[0] := (1 = 1);  /* ERROR */
+		arr2D := (1 <> 1);  /* ERROR */
+		arr2D[0][0] := (1 <> 1);  /* ERROR */
+		arr2 := (1 > 1);  /* ERROR */
+		arr2[0] := (1 > 1);  /* ERROR */
+		arr2_2D := (1 >= 1);  /* ERROR */
+		arr2_2D[0][0] := (1 = 1);  /* ERROR */
+		fixedpt_var := (1 <= 1);  /* ERROR */
+		Dec_var := (1 < 1);  /* ERROR */
+
+		/* expr */
+		fixedpt_var := (1 <= 1) + 1.0;  /* ERROR */
+		fixedpt_var := 1.0 / (1 >= 1);  /* ERROR */
+		fixedpt_var := (1 > 1) * arr[0];  /* ERROR */
+		fixedpt_var := 1.0 - (1 = 1);  /* ERROR */
+	end;
+end;
+
+void main() begin
+	begin
+		flush();
+	end;
+end;

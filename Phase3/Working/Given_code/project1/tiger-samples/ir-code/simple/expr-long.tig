@@ -1,0 +1,19 @@
+/* expressions that use temps */
+
+void main() begin
+	begin
+		var a, b, c, d : int;
+
+		/* literals only */
+		a := 1 + 2 - 3*4/5;
+
+		/* mixed */
+		b := a + 2 - 3*a/5;
+
+		/* vars only */
+		c := a + b * c- a / b;
+
+		/* with parens */
+		d := (a + b) / (c - d);
+	end;
+end;

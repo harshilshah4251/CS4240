@@ -1,0 +1,97 @@
+/* test valid/invalid locations for break */
+
+void main() begin
+	begin
+		var i: int;
+
+		break;  /* ERROR */
+
+		begin
+			break;  /* ERROR */
+		end;
+
+		if 1 = 1 then
+			break;  /* ERROR */
+		endif;
+
+		if 2 = 2 then
+			break;  /* ERROR */
+		else
+			break;  /* ERROR */
+		endif;
+
+		/* valid - first level of loop */
+		while 1 = 1 do
+			break;
+		enddo;
+
+		for i := 1 to 10 do
+			break;
+		enddo;
+
+		/* valid - nested in other statements */
+		while 1 = 1 do
+			begin
+				break;
+			end;
+		enddo;
+
+		for i := 1 to 20 do
+			begin
+				break;
+			end;
+		enddo;
+
+		while 1 = 1 do
+			if 2 = 2 then
+				break;
+			endif;
+		enddo;
+
+		for i := 1 to 20 do
+			if 2 = 2 then
+				break;
+			endif;
+		enddo;
+
+		while 1 = 1 do
+			if 2 = 2 then
+				break;
+			else
+				break;
+			endif;
+		enddo;
+
+		for i := 1 to 30 do
+			if 3 = 3 then
+				break;
+			else
+				break;
+			endif;
+		enddo;
+
+		while 1 = 1 do
+			while 2 = 2 do
+				break;
+			enddo;
+		enddo;
+
+		for i := 1 to 30 do
+			while 2 = 2 do
+				break;
+			enddo;
+		enddo;
+
+		while 1 = 1 do
+			for i := 1 to 3 do
+				break;
+			enddo;
+		enddo;
+
+		for i := 1 to 3 do
+			for i := 1 to 3 do
+				break;
+			enddo;
+		enddo;
+	end;
+end;

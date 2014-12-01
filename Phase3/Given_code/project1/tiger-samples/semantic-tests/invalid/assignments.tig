@@ -1,0 +1,340 @@
+/*
+ * This contains all possible assignment and initialization checks.
+ */
+type Integer = int;
+type Integer_Other = int;
+type Decimal = fixedpt;
+type Decimal_Other = fixedpt;
+
+type Int_Array = array[5] of int;
+type Int_Array_Other = array[5] of int;
+type Int_Array_2D = array[10][10] of int;
+
+type Fixedpt_Array = array[5] of fixedpt;
+type Fixedpt_Array_Other = array[5] of fixedpt;
+type Fixedpt_Array_2D = array[10][10] of fixedpt;
+
+void function void_func() begin
+  begin
+	flush();
+  end;
+end;
+
+int function int_func() begin
+  begin
+	return 0;
+  end;
+end;
+
+Integer function Integer_func() begin
+  begin
+	var result: Integer := 0;
+	return result;
+  end;
+end;
+
+Int_Array function Int_Array_func() begin
+  begin
+	var result: Int_Array := 0;
+	return result;
+  end;
+end;
+
+fixedpt function fixedpt_func() begin
+  begin
+	return 0.0;
+  end;
+end;
+
+Decimal function Decimal_func() begin
+  begin
+	var result: Decimal := 0.0;
+	return result;
+  end;
+end;
+
+Fixedpt_Array function Fixedpt_Array_func() begin
+  begin
+    var result: Fixedpt_Array := 0.0;
+    return result;
+  end;
+end;
+
+void function initialization() begin
+  begin
+	/* valid initializations */
+
+	/* int family */
+	var int_var: int := 0;
+	var Int_arr: Int_Array := 0;
+	var Int_arr2D: Int_Array := 0;
+
+	var Integer_var: Integer := 0;
+
+	/* fixed pt family */
+	var fp_var: fixedpt := 0;
+	var fp_var2: fixedpt := 0.0;
+	var fp_arr: Fixedpt_Array := 0;
+	var fp_arr2: Fixedpt_Array := 0.0;
+	var fp_arr_2D: Fixedpt_Array_2D := 0;
+	var fp_arr2_2D: Fixedpt_Array_2D := 0.0;
+
+	var Decimal_var: Decimal := 0.0;
+
+
+	/* invalid initializations */
+	var int_var3: int := 0.0;  /* ERROR fixedpt to int */
+	var Int_arr2: Int_Array := 0.0;  /* ERROR */
+	var Int_arr2D_2: Int_Array := 0.0;  /* ERROR */
+	var Integer_var2: Integer := 0.0;  /* ERROR */
+
+	var Decimal_var2: Decimal := 0;  /* ERROR using non-derived literal type */
+
+	flush();
+  end;
+end;
+
+void function assign() begin
+  begin
+	var int_var: int := 0;
+	var fp_var: fixedpt := 0.0;
+	var Integer_var: Integer := 0;
+	var Decimal_var: Decimal := 0.0;
+	var Int_arr: Int_Array := 0;
+	var Fixedpt_arr: Fixedpt_Array := 0.0;
+	var Int_arr2D: Int_Array_2D := 0;
+	var Fixedpt_arr2D: Fixedpt_Array_2D := 0.0;
+
+	/* valid assignments to int */
+	int_var := 0;
+	int_var := int_var;
+	int_var := Int_arr[0];
+	int_var := int_func();
+
+	/* invalid assignments to int */
+	int_var := 1.0;  /* ERROR fixedpts */
+	int_var := fp_var;
+	int_var := Fixedpt_arr[0];
+	int_var := Integer_var;  /* ERROR aliases */
+	int_var := Decimal_var;
+	int_var := Int_arr;  /* ERROR arrays */
+	int_var := Fixedpt_arr;
+	int_var := 0 = 0;  /* ERROR booleans */
+	int_var := (0 = 1) | (2 < 3);
+	int_var := void_func();  /* ERROR void */
+	int_var := Integer_func();  /* ERROR func calls */
+	int_var := Int_Array_func();
+	int_var := fixedpt_func();
+	int_var := Decimal_func();
+	int_var := Fixedpt_Array_func();
+
+
+	/* valid assignments to int alias */
+	Integer_var := Integer_var;
+	Integer_var := Integer_func();
+
+	/* invalid assignments to int alias */
+	Integer_var := 0;  /* ERROR base ints */
+	Integer_var := int_var;
+	Integer_var := Int_arr[0];
+	Integer_var := 1.0;  /* ERROR fixedpts */
+	Integer_var := fp_var;
+	Integer_var := Fixedpt_arr[0];
+	Integer_var := Decimal_var;  /* ERROR aliases */
+	Integer_var := Int_arr;  /* ERROR arrays */
+	Integer_var := Fixedpt_arr;
+	Integer_var := 0 = 0;  /* ERROR booleans */
+	Integer_var := (0 = 1) | (2 < 3);
+	Integer_var := void_func();  /* ERROR void */
+	Integer_var := int_func();  /* ERROR funcs */
+	Integer_var := Int_Array_func();
+	Integer_var := fixedpt_func();
+	Integer_var := Decimal_func();
+	Integer_var := Fixedpt_Array_func();
+
+	/* valid assignments to int array */
+	Int_arr := Int_arr;
+	Int_arr := Int_Array_func();
+
+	/* invalid assignments to int array */
+	Int_arr := 0;  /* ERROR base ints */
+	Int_arr := int_var;
+	Int_arr := Int_arr[0];
+	Int_arr := 1.0;  /* ERROR fixedpts */
+	Int_arr := fp_var;
+	Int_arr := Fixedpt_arr[0];
+	Int_arr := Decimal_var;  /* ERROR aliases */
+	Int_arr := Integer_var;
+	Int_arr := Fixedpt_arr;  /* ERROR other array */
+	Int_arr := 0 = 0;  /* ERROR booleans */
+	Int_arr := (0 = 1) | (2 < 3);
+	Int_arr := void_func();  /* ERROR void */
+	Int_arr := int_func();  /* ERROR funcs */
+	Int_arr := Integer_func();
+	Int_arr := fixedpt_func();
+	Int_arr := Decimal_func();
+	Int_arr := Fixedpt_Array_func();
+
+	/* valid assignments to int 2D array */
+	Int_arr2D := Int_arr2D;
+
+	/* inva2Dlid assignments to int array */
+	Int_arr2D := 0;  /* ERROR base ints */
+	Int_arr2D := int_var;
+	Int_arr2D := Int_arr[0];
+	Int_arr2D := 1.0;  /* ERROR fixedpts */
+	Int_arr2D := fp_var;
+	Int_arr2D := Fixedpt_arr[0];
+	Int_arr2D := Decimal_var;  /* ERROR aliases */
+	Int_arr2D := Integer_var;
+	Int_arr2D := Fixedpt_arr;  /* ERROR other array */
+	Int_arr2D := Int_Array_func();
+	Int_arr2D := Int_arr;
+	Int_arr2D := 0 = 0;  /* ERROR booleans */
+	Int_arr2D := (0 = 1) | (2 < 3);
+	Int_arr2D := void_func();  /* ERROR void */
+	Int_arr2D := int_func();  /* ERROR funcs */
+	Int_arr2D := Integer_func();
+	Int_arr2D := fixedpt_func();
+	Int_arr2D := Decimal_func();
+	Int_arr2D := Fixedpt_Array_func();
+	
+	/* valid assignments to fixedpt */
+	fp_var := 0;
+	fp_var := int_var;
+	fp_var := Int_arr[0];
+	fp_var := 1.0;
+	fp_var := fp_var;
+	fp_var := Fixedpt_arr[0];
+	fp_var := int_func();
+	fp_var := fixedpt_func();
+
+	/* invalid assignments to fixedpt */
+	fp_var := Integer_var;  /* ERROR aliases */
+	fp_var := Decimal_var;
+	fp_var := Int_arr;  /* ERROR arrays */
+	fp_var := Fixedpt_arr;
+	fp_var := 0 = 0;  /* ERROR booleans */
+	fp_var := (0 = 1) | (2 < 3);
+	fp_var := void_func();  /* ERROR void */
+	fp_var := Integer_func();  /* ERROR funcs */
+	fp_var := Int_Array_func();
+	fp_var := Decimal_func();
+	fp_var := Fixedpt_Array_func();
+
+
+	/* valid assignments to fixedpt alias */
+	Decimal_var := Decimal_var;
+	Decimal_var := Decimal_func();
+
+	/* invalid assignments to fixedpt alias */
+	Decimal_var := 0;  /* ERROR base ints */
+	Decimal_var := int_var;
+	Decimal_var := Int_arr[0];
+	Decimal_var := 1.0;  /* ERROR fixedpts */
+	Decimal_var := fp_var;
+	Decimal_var := Fixedpt_arr[0];
+	Decimal_var := Integer_var;  /* ERROR aliases*/
+	Decimal_var := Int_arr;  /* ERROR arrays */
+	Decimal_var := Fixedpt_arr;
+	Decimal_var := 0 = 0;  /* ERROR booleans */
+	Decimal_var := (0 = 1) | (2 < 3);
+	Decimal_var := void_func();  /* ERROR void */
+	Decimal_var := int_func();
+	Decimal_var := Integer_func();
+	Decimal_var := Int_Array_func();
+	Decimal_var := fixedpt_func();
+	Decimal_var := Fixedpt_Array_func();
+
+	/* valid assignments to int array */
+	Fixedpt_arr := Fixedpt_arr;
+	Fixedpt_arr := Fixedpt_Array_func();
+
+	/* invalid assignments to int array */
+	Fixedpt_arr := 0;  /* ERROR base ints */
+	Fixedpt_arr := int_var;
+	Fixedpt_arr := Int_arr[0];
+	Fixedpt_arr := 1.0;  /* ERROR fixedpts */
+	Fixedpt_arr := fp_var;
+	Fixedpt_arr := Fixedpt_arr[0];
+	Fixedpt_arr := Decimal_var;  /* ERROR aliases */
+	Fixedpt_arr := Integer_var;
+	Fixedpt_arr := Int_arr;  /* ERROR other array */
+	Fixedpt_arr := 0 = 0;  /* ERROR booleans */
+	Fixedpt_arr := (0 = 1) | (2 < 3);
+	Fixedpt_arr := void_func();  /* ERROR void */
+	Fixedpt_arr := int_func();  /* ERROR void */
+	Fixedpt_arr := Integer_func();
+	Fixedpt_arr := Int_Array_func();
+	Fixedpt_arr := fixedpt_func();
+	Fixedpt_arr := Decimal_func();
+	
+	/* valid assignments to fp2D array */
+	Fixedpt_arr2D := Fixedpt_arr2D;
+
+	/* invalid assignments to fp2D array */
+	Fixedpt_arr2D := 0;  /* ERROR base ints */
+	Fixedpt_arr2D := int_var;
+	Fixedpt_arr2D := Int_arr[0];
+	Fixedpt_arr2D := 1.0;  /* ERROR fixedpts */
+	Fixedpt_arr2D := fp_var;
+	Fixedpt_arr2D := Fixedpt_arr[0];
+	Fixedpt_arr2D := Decimal_var;  /* ERROR aliases */
+	Fixedpt_arr2D := Integer_var;
+	Fixedpt_arr2D := Int_arr;  /* ERROR other array */
+	Fixedpt_arr2D := Fixedpt_arr;
+	Fixedpt_arr2D := Fixedpt_Array_func();
+	Fixedpt_arr2D := 0 = 0;  /* ERROR booleans */
+	Fixedpt_arr2D := (0 = 1) | (2 < 3);
+	Fixedpt_arr2D := void_func();  /* ERROR void */
+	Fixedpt_arr2D := int_func();  /* ERROR void */
+	Fixedpt_arr2D := Integer_func();
+	Fixedpt_arr2D := Int_Array_func();
+	Fixedpt_arr2D := fixedpt_func();
+	Fixedpt_arr2D := Decimal_func();
+
+	/* assigning from 2D int array */
+
+	/* valid */
+	int_var := Int_arr2D[0][0];
+	Int_arr[0] := Int_arr2D[0][0];
+	Int_arr2D[0][0] := Int_arr2D[0][0];
+	fp_var := Int_arr2D[0][0];
+	Fixedpt_arr[0] := Int_arr2D[0][0];
+	Fixedpt_arr2D[0][0] := Int_arr2D[0][0];
+
+	/* invalid */
+	Integer_var := Int_arr2D[0][0];  /* ERROR */
+	Int_arr := Int_arr2D[0][0];  /* ERROR */
+	Int_arr2D := Int_arr2D[0][0];  /* ERROR */
+	Decimal_var := Int_arr2D[0][0];  /* ERROR */
+	Fixedpt_arr := Int_arr2D[0][0];  /* ERROR */
+	Fixedpt_arr2D := Int_arr2D[0][0];  /* ERROR */
+	
+	/* assigning from 2D fixedpt array */
+
+	/* valid */
+	fp_var := Fixedpt_arr2D[0][0];
+	Fixedpt_arr[0] := Fixedpt_arr2D[0][0];
+	Fixedpt_arr2D[0][0] := Fixedpt_arr2D[0][0];
+
+	/* invalid */
+	int_var := Fixedpt_arr2D[0][0];  /* ERROR */
+	Integer_var := Fixedpt_arr2D[0][0];  /* ERROR */
+	Int_arr[0] := Fixedpt_arr2D[0][0];  /* ERROR */
+	Int_arr := Fixedpt_arr2D[0][0];  /* ERROR */
+	Int_arr2D := Fixedpt_arr2D[0][0];  /* ERROR */
+	Int_arr2D[0][0] := Fixedpt_arr2D[0][0];  /* ERROR */
+	Decimal_var := Fixedpt_arr2D[0][0];  /* ERROR */
+	Fixedpt_arr := Fixedpt_arr2D[0][0];  /* ERROR */
+	Fixedpt_arr2D := Fixedpt_arr2D[0][0];  /* ERROR */
+
+  end;
+end;
+
+
+void main() begin
+	begin
+		flush();
+	end;
+end;

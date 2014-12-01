@@ -1,0 +1,59 @@
+/*  if-then-else  (no short-circuiting) */
+
+void main() begin
+	begin
+		var x, BEGIN_IF_ELSE: int;  /* for reading IR code more easily */
+		var true_result, false_result: int;
+		true_result := 1;
+		false_result := 1;
+		
+		if (3>2)|((6=2)&(2=2)) then
+			x := 10;
+		else
+			x := 11;
+		endif;
+		
+		BEGIN_IF_ELSE := 1000000000000000000000000000000;
+		if 1 = 2 then
+			x := true_result;
+		else
+			x := false_result;
+		endif;
+
+		BEGIN_IF_ELSE := 1111111111111111111111111111111;
+		if 1 <> 2 then
+			x := true_result;
+		else
+			x := false_result;
+		endif;
+
+		BEGIN_IF_ELSE := 2222222222222222222222222222222;
+		if 1 > 2 then
+			x := true_result;
+		else
+			x := false_result;
+		endif;
+
+		BEGIN_IF_ELSE := 3333333333333333333333333333333;
+		if 1 >= 2 then
+			x := true_result;
+		else
+			x := false_result;
+		endif;
+
+		BEGIN_IF_ELSE := 4444444444444444444444444444444;
+		if 1 < 2 then
+			x := true_result;
+		else
+			x := false_result;
+		endif;
+
+		BEGIN_IF_ELSE := 5555555555555555555555555555555;
+		if 1 <= 2 then
+			x := true_result;
+		else
+			x := false_result;
+		endif;
+
+	end;
+end;

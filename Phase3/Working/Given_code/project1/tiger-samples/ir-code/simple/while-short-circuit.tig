@@ -1,0 +1,53 @@
+/* Tests short-circuting */
+
+void main() begin
+	begin
+		var result, true, false: int := 0;
+		var START_GROUP: int;
+
+		START_GROUP := 1111111111111111111111111111111;
+		while 0 <> 1 & 2 = 3 do
+			result := true;
+		enddo;
+
+		START_GROUP := 2222222222222222222222222222222;
+		while 4 > 5 | 6 < 7 do
+			result := true;
+		enddo;
+
+		START_GROUP := 3333333333333333333333333333333;
+		while 8 >= 9 | 10 <= 11 & 12 <= 13 do
+			result := true;
+		enddo;
+
+		START_GROUP := 4444444444444444444444444444444;
+		while 14 >= 15 & 16 > 17 | 18 = 19 do
+			result := true;
+		enddo;
+
+		START_GROUP := 5555555555555555555555555555555;
+		while 8 >= 9 | (10 <= 11 & 12 <= 13) do
+			result := true;
+		enddo;
+
+		START_GROUP := 6666666666666666666666666666666;
+		while 14 >= 15 & (16 > 17 | 18 = 19) do
+			result := true;
+		enddo;
+
+		START_GROUP := 7777777777777777777777777777777;
+		while 20 >= 21 & 22 <> 23 & 24 <= 25 do
+			result := true;
+		enddo;
+
+		START_GROUP := 8888888888888888888888888888888;
+		while 26 <= 27 | 28 = 29 | 30 > 31 do
+			result := true;
+		enddo;
+
+		START_GROUP := 9999999999999999999999999999999;
+		while (1 + 2) < (3 + 4) | ((5 * 6) < (7 - 8 + 9) & (10 / 11) = 12) do
+			result := true;
+		enddo;
+	end;
+end;

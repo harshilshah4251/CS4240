@@ -1,0 +1,26 @@
+/* Tests that code for function bodies gets generated */
+
+
+/* TEST this should have a label 'void_func' */
+void function void_func() begin
+	begin
+		var x, y, z: int := 0;
+		flush();
+	end;
+end;
+
+/* TEST this should have a label 'int_func' */
+int function int_func(a: int, b: int) begin
+	begin
+		var c: int := 5;
+		return a + b + c;
+	end;
+end;
+
+/* TEST this should have a label 'main' */
+void main() begin
+	begin
+		void_func();
+		int_func(0, 1);
+	end;
+end;

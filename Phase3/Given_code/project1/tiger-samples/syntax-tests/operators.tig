@@ -1,0 +1,64 @@
+/*
+ * Goal:  test operator rules, operator precedence & associativity
+ */
+
+void function same_precedence() begin
+  begin
+    val := 1 / 2 * 3;
+    val := 1 - 2 + 3;
+    val := 1 >= 2 <= 3 > 4 < 5 <> 6 = 7;  /* doesn't exactly make sense, but syntactically legal I guess... */
+    val := 1 | 2 & 3;
+  end;
+end;
+
+void function higher_precedence_first() begin
+  begin
+    /* "middle" should be grouped together */
+
+    /* literals */
+    val := 1 * (2 + 3) / 4;
+    val := 1 + 2*3 - 4;
+    val := 1 >= 2+3;
+    val := 1 & 2>=3 | 4;
+
+    /* ids */
+    val := a * (b + c) / d;
+    val := a + b*c - d;
+    val := a >= b+c;
+    val := a & b>=c | d;
+
+    /* start with id */
+    val := a * (2 + 3) / 4;
+    val := a + 2*3 - 4;
+    val := a >= 2+3;
+    val := a & 2>=3 | 4;
+
+    /* start with literal */
+    val := 1 * (b + c) / d;
+    val := 1 + b*c - d;
+    val := 1 >= b+c;
+    val := 1 & b>=c | d;
+  end;
+end;
+
+
+/* operator tests for index_expr */
+
+void function index_same_precedence() begin
+  begin
+    arr[1*2] := 0;
+    arr[1 - 2 + 3] := 0;
+  end;
+end;
+
+void function index_higher_precedence_first() begin
+  begin
+    arr[1 + 2*3 + 4] := 0;
+  end;
+end;
+
+void main() begin
+  begin
+    printi(0);
+  end;
+end;

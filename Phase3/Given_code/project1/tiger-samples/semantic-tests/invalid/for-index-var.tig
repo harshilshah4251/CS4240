@@ -1,0 +1,44 @@
+/* tests that int is used as for loop index */
+
+type Integer = int;
+type Decimal = fixedpt;
+type Array = array[10] of int;
+type Array2D = array[10][5] of fixedpt;
+
+void main() begin
+	begin
+		var Integer_var: Integer;
+		var Decimal_var: Decimal;
+		var Array_var: Array := 0;
+		var Array2D_var: Array2D := 0.0;
+		var int_var: int;
+		var fixedpt_var: fixedpt;
+
+		/* valid - only ints are allowed */
+		for int_var := 1 to 5 do
+			flush();
+		enddo;
+
+		/* invalid */
+		for fixedpt_var := 1 to 5 do  /* ERROR */
+			flush();
+		enddo;
+
+		for Array2D_var := 1 to 5 do  /* ERROR */
+			flush();
+		enddo;
+
+		for Array_var := 1 to 5 do  /* ERROR */
+			flush();
+		enddo;
+
+		for Decimal_var := 1 to 5 do  /* ERROR */
+			flush();
+		enddo;
+
+		for Integer_var := 1 to 5 do  /* ERROR */
+			flush();
+		enddo;
+
+	end;
+end;

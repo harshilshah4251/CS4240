@@ -1,0 +1,40 @@
+/* if-then (no else)  --  no short circuits */
+
+void main() begin
+	begin
+		var BEGIN_IF_THEN: int;
+		var x, true_result: int;
+
+		BEGIN_IF_THEN := 1000000000000000000000000000000;
+		if 1 = 0 then
+			x := true_result;
+		endif;
+
+		BEGIN_IF_THEN := 1111111111111111111111111111111;
+		if 1 <> 1 then
+			x := true_result;
+		endif;
+
+		BEGIN_IF_THEN := 2222222222222222222222222222222;
+		if 1 > 0 then
+			x := true_result;
+		endif;
+
+		BEGIN_IF_THEN := 3333333333333333333333333333333;
+		if 1 >= 0 then
+			x := true_result;
+		endif;
+
+		BEGIN_IF_THEN := 4444444444444444444444444444444;
+		if 1 < 0 then
+			x := true_result;
+		endif;
+
+		BEGIN_IF_THEN := 5555555555555555555555555555555;
+		if 1 <= 0 then
+			x := true_result;
+		endif;
+
+	end;
+end;
+

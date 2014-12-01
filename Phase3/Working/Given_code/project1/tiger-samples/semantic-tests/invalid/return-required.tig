@@ -1,0 +1,98 @@
+/*
+ * Tests for non-void functions to make sure they have a return statement guaranteed to execute
+ *
+ * Two valid cases:
+ *   1. Return occurs as a statement outside of a loop/condition body
+ *   2. Return occurs as a statement in both if-then and if-else bodies.
+ */
+
+/* ERROR */
+int function while_loop() begin
+	begin
+		while 1 = 0 do
+			return 1;  /* ERROR - not guaranteed to execute */
+		enddo;
+	end;
+end;
+
+/* ERROR */
+int function if_then_only() begin
+	begin
+		if 1 = 0 then
+			return 1;
+		endif;
+	end;
+end;
+
+/* ERROR */
+int function if_else_only() begin
+	begin
+		if 1 = 1 then
+			flush();
+		else
+			return 0;
+		endif;
+	end;
+end;
+
+/* ERROR */
+int function for_loop() begin
+	begin
+		var x: int;
+		for x := 1 to 0 do
+			return 1;
+		enddo;
+	end;
+end;
+
+/* ERROR */
+int function no_returns() begin
+	begin
+		flush();
+	end;
+end;
+
+
+
+/* Valid test cases */
+
+int function return_outer_scope() begin
+	begin
+		flush();
+		return 0;
+	end;
+end;
+
+int function return_inner_scope() begin
+	begin
+		flush();
+		begin
+			return 0;
+		end;
+	end;
+end;
+
+int function return_adjacent_scope() begin
+	begin
+		return 1;
+	end;
+	begin
+		return 2;
+	end;
+end;
+
+int function return_if_then_else() begin
+	begin
+		if 1 = 0 then
+			return 0;
+		else
+			return 1;
+		endif;
+	end;
+end;
+
+void main() begin
+	begin
+		flush();
+	end;
+end;

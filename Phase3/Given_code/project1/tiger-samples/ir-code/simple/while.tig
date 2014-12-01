@@ -1,0 +1,40 @@
+/* Tests while loops without short circuiting */
+
+
+void main() begin
+	begin
+		var x, result_inside_loop: int;
+		var BEGIN_WHILE: int;  /* for reading IR more easily */
+
+		BEGIN_WHILE := 1000000000000000000000000000000;
+		while 1 = 0 do
+			x := result_inside_loop;
+		enddo;
+
+		BEGIN_WHILE := 1111111111111111111111111111111;
+		while 1 <> 1 do
+			x := result_inside_loop;
+		enddo;
+
+		BEGIN_WHILE := 2222222222222222222222222222222;
+		while 1 > 0 do
+			x := result_inside_loop;
+		enddo;
+
+		BEGIN_WHILE := 3333333333333333333333333333333;
+		while 1 >= 0 do
+			x := result_inside_loop;
+		enddo;
+
+		BEGIN_WHILE := 4444444444444444444444444444444;
+		while 1 < 0 do
+			x := result_inside_loop;
+		enddo;
+
+		BEGIN_WHILE := 5555555555555555555555555555555;
+		while 1 <= 0 do
+			x := result_inside_loop;
+		enddo;
+
+	end;
+end;

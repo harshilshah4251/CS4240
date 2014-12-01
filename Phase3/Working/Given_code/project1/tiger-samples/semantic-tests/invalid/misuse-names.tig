@@ -1,0 +1,41 @@
+/* Tests misuse of names (not for declarations)...
+ *
+ *    Using types as variables
+ *    Using types as functions
+ *     --and string
+ *
+ *    Using variables as functions
+ *
+ *    Using functions as variables
+ *     --for stdlib and invalid stdlib
+ *
+ * Note: types only used in declarations, so this is handled in decls files.
+ */
+
+
+type Integer = int;
+
+void function decl_function() begin
+	begin
+		flush();
+	end;
+end;
+
+
+void main() begin
+	begin
+		var decl_var: int;
+
+		begin
+			decl_var();  /* variable as function */
+			decl_var := decl_function; /* ERROR function as var */
+			Integer();  /* type as function */
+			Integer := decl_var;  /* ERROR type as var */
+
+			print := decl_var;  /* ERROR invalid stdlib as var */
+			printi := decl_var;  /* ERROR valid stdlib as var */
+			string := decl_var;  /* ERROR reserved string as var */
+			string();		/* ERROR reserved string as func */
+		end;
+	end;
+end;

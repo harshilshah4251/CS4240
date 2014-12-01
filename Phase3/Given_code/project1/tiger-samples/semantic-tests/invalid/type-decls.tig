@@ -1,0 +1,69 @@
+/*
+ * This contains all semantic errors to target regarding type declarations.
+ *
+ * Overview of checks...
+ *     1. Type ID is taken (by type/func/var)
+ *     2. Invalid array declaration (either index is 0)
+ */
+
+/* valid declaration */
+type DeclaredType = int;
+
+
+type DeclaredType = int;  /* ERROR: cannot re-use type name in same scope (same base type) */
+type DeclaredType = fixedpt;  /* ERROR: cannot re-use type name in same scope (diff base type) */
+
+/* this is a valid function declaration */
+void function declared_func() begin
+	begin
+		flush();
+	end;
+end;	
+
+void function redeclare_type_one_level() begin
+	begin
+		type DeclaredType = int;   /* ERROR: cannot re-use type name in nested scope */
+		
+		flush();
+	end;
+end;
+
+/* cannot re-use function names */
+void function using_function_names() begin
+	begin
+		type declared_func = int;  /* ERROR: previous function name */
+		type using_function_names = int;  /* ERROR: current function's name */
+
+		flush();
+	end;
+end;
+
+void function using_var_names() begin
+	begin
+		var declared_var: int;
+
+		begin
+			type declared_var = int;  /* ERROR: re-using var name */
+			flush();
+		end;
+	end;
+end;
+
+void function invalid_array_types() begin
+	begin
+		type Array_1 = array[0] of int;      /* ERROR: size 0 index */
+		type Array_2 = array[1][0] of int;   /* ERROR: size 0 index */
+		type Array_3 = array[0][1] of int;   /* ERROR: size 0 index */
+		type Array_4 = array[0][0] of int;   /* ERROR: size 0 index */
+		
+		flush();
+	end;
+end;
+
+
+/* to make syntactically valid */
+void main() begin
+	begin
+		flush();
+	end;
+end;

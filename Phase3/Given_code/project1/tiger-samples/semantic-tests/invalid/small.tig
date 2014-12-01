@@ -1,0 +1,13 @@
+void main() begin
+	begin
+		type Integer = int;
+		type Decimal = fixedpt;
+
+		var integer_var: Integer := 0;
+		var decimal_var: Decimal := 0.0;
+		var int_var: int := 0;
+		var fp_var: fixedpt := 0.0;
+
+		int_var := integer_var + 1;
+	end;
+end;

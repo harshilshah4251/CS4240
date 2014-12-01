@@ -1,0 +1,7 @@
+void main() begin
+  begin
+    type FloatArray = array[20][20] of Float;
+    var x := 5;
+    IntArray[1*2] := 0
+  end;
+end

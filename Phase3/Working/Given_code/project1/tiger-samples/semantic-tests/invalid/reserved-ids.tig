@@ -1,0 +1,87 @@
+/*
+ * This contains all semantic errors involving reserved IDs.
+ *
+ * Note that reserved IDs are NOT keywords, so they are not picked up
+ * during parsing phase.
+ *
+ * They include two categories...
+ *    1.  ALL standard library function names
+ *    2.  "string"  (the unimplemented string type)
+ *
+ * For reference:
+ *
+ *    public static String[] stdLibraryFunctions = new String[]{
+ *      "print", "printi", "flush", "getchar", "ord",
+ *      "chr", "size", "substring", "concat", "not", "exit"
+ *    };
+ *
+ *
+ * Overview of checks...
+ *    1. Cannot use reserved IDs anywhere in function declarations
+ *    2. Cannot use reserved IDs in type declarations
+ *    3. Cannot use reserved IDs in variable declarations
+ */
+
+type print = int;  /* ERROR stdLibrary */
+type string = fixedpt;  /* ERROR reserved string */
+
+void function printi() begin  /* ERROR function declaration name */
+	begin
+		flush();
+	end;
+end;
+
+flush function ret_type() begin  /* ERROR return type id */
+	begin
+		flush();
+	end;
+end;
+
+string function ret_type_str() begin  /* ERROR return type id (string) */
+	begin
+		flush();
+	end;
+end;
+
+void function param_type(x: getchar) begin  /* ERROR param type id */
+	begin
+		flush();
+	end;
+end;
+
+void function param_type_str(x: string) begin  /* ERROR param type id (string) */
+	begin
+		flush();
+	end;
+end;
+
+void function param_name(ord: int) begin  /* ERROR param var id */
+	begin
+		flush();
+	end;
+end;
+
+void function param_name_str(string: int) begin  /* ERROR param var id (string) */
+	begin
+		flush();
+	end;
+end;
+
+void function var_name_and_type() begin
+	begin
+		var chr: int;  /* ERROR var id */
+		var x: size;	/* ERROR var type id */
+
+		var string: int;  /* ERROR var id (string) */
+		var y: string;  /* ERROR var type id (string) */
+		flush();
+	end;
+end;
+
+
+/* for syntactically valid */
+void main() begin
+	begin
+		flush();
+	end;
+end;

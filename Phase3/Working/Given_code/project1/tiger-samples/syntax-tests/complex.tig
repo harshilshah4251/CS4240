@@ -1,0 +1,26 @@
+/*
+ * Tiger program to include with project turn-in.
+ * Should make use of all rules in grammar.
+ */
+
+
+/* RULES: type_declaration_list, type_declaration, type  */
+type Scalar = int;
+type IntArray = array[20] of int;
+type Matrix = array[20][20] of fixedpt;
+
+/* RULES: funct_declaration_list, funct_declaration, ret_type, param_list */
+void function print_array(arr: IntArray) begin
+  begin
+    /* TODO decl segment */
+    /* TODO stat-seq */
+    printi(0);
+  end;
+end;
+
+/* main_function */
+void main() begin
+  begin
+    printi(0);
+  end;
+end;

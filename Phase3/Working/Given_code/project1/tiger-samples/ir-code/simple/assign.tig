@@ -1,0 +1,25 @@
+/* The "assign" op-code */
+
+void main() begin
+	begin
+		type Array = array[10] of int;
+		type Array2D = array[10][10] of int;
+
+		var a, b, c: fixedpt := 0.0;
+		var x: int := 0;
+
+		var d: fixedpt;
+		var y, z: int;
+
+		/* array initialization */
+		var arr, arr_other: Array := 1;
+		var arr_2d, arr_2d_other: Array2D := 2;
+
+		d := a;
+        y := x;
+		z := y;
+
+		arr := arr_other;
+		arr_2d_other := arr_2d;
+	end;
+end;

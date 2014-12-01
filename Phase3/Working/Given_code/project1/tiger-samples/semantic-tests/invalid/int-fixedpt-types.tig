@@ -1,0 +1,174 @@
+/*
+ * This contains semantic checks for non-array types (base types and their aliases).
+ *
+ * Focuses only on expressions, not assignments
+ */
+type Integer = int;
+type Integer_Other = int;
+type Decimal = fixedpt;
+type Decimal_Other = fixedpt;
+
+/* literals are compatible with each other */
+void function test_two_literals_expr() begin
+	begin
+		var return_var: fixedpt;
+
+		return_var := 1 + 1;
+		return_var := 1 * 1.0;
+		return_var := 1.0 / 1;
+		return_var := 1.0 - 1.0;
+		
+		if 1 > 1 then
+			flush();
+		endif;
+
+		if 1 >= 1.0 then
+			flush();
+		endif;
+
+		if 1.0 = 1 then
+			flush();
+		endif;
+
+		if 1.0 <> 1.0 then
+			flush();
+		endif;
+
+	end;
+end;
+
+/* base types are valid with base types and literals */
+void function test_base_types() begin
+	begin
+		var int_var: int := 1;
+		var fp_var: fixedpt := 1.0;
+
+		var return_var: fixedpt;
+
+		return_var := int_var + int_var;
+		return_var := int_var * fp_var;
+		return_var := fp_var / int_var;
+		return_var := fp_var - fp_var;
+		
+		if int_var < 1 then
+			flush();
+		endif;
+
+		if 0.0 <= fp_var then
+			flush();
+		endif;
+
+		while fp_var = 1 do
+			flush();
+		enddo;
+
+		while int_var <> 1.0 do
+			flush();
+		enddo;
+
+	end;
+end;
+
+/*
+ * Derived types can only mix with their same type.  No exceptions -- not even literals.
+ */
+void function test_derived_types() begin
+	begin
+		var Integer_var: Integer := 1;
+		var Integer_Other_var: Integer_Other := 1;
+
+		var Decimal_var: Decimal := 1.0;
+		var Decimal_Other_var: Decimal_Other := 1.0;
+
+		var int_var: int := 1;
+		var fp_var: fixedpt := 1.0;
+
+		/* Test int derived type */
+		begin
+			/* valid mixing */
+			Integer_var := Integer_var + Integer_var;
+			if Integer_var = Integer_var then
+				flush();
+			endif;
+
+			/* invalid mixing */
+			Integer_var := Integer_var + 1;  /* ERROR mix with int literal */
+			if Integer_var < 1 then  /* ERROR */
+				flush();
+			endif;
+
+			Integer_var := int_var * Integer_var;  /* ERROR mix with int base */
+			if Integer_var <= int_var then  /* ERROR */
+				flush();
+			endif;
+
+			Integer_var := Integer_var - Integer_Other_var;  /* ERROR mix with other derived int */
+			if Integer_var = Integer_Other_var then  /* ERROR */
+				flush();
+			endif;
+
+			Integer_var := 1.0 / Integer_var;  /* ERROR mix with fixedpt literal */
+			if Integer_var <> 1.0 then  /* ERROR */
+				flush();
+			endif;
+
+			Integer_var := Integer_var + fp_var;  /* ERROR mix with fixedpt var */
+			if Integer_var > fp_var then  /* ERROR */
+				flush();
+			endif;
+
+			Integer_var := Integer_var + Decimal_var;  /* ERROR mix with fixedpt alias */
+			if Integer_var >= Decimal_var then  /* ERROR */
+				flush();
+			endif;
+		end;
+
+		/* Test fixedpt derived type */
+		begin
+			/* valid mixing */
+			Decimal_var := Decimal_var + Decimal_var;
+			if Decimal_var < Decimal_var then
+				flush();
+			endif;
+
+			/* invalid mixing */
+			Decimal_var := Decimal_var + 1;  /* ERROR mix with int literal */
+			if Decimal_var < 1 then  /* ERROR */
+				flush();
+			endif;
+
+			Decimal_var := int_var + Decimal_var;  /* ERROR mix with int var */
+			if Decimal_var < int_var then  /* ERROR */
+				flush();
+			endif;
+
+			Decimal_var := Decimal_var + Integer_var;  /* ERROR mix with int alias */
+			if Decimal_var < Integer_var then  /* ERROR */
+				flush();
+			endif;
+
+			Decimal_var := Decimal_var + 1.0;  /* ERROR mix with fixedpt literal */
+			if Decimal_var < 1.0 then  /* ERROR */
+				flush();
+			endif;
+
+			Decimal_var := fp_var + Decimal_var;  /* ERROR mix with base fixedpt */
+			if Decimal_var < fp_var then  /* ERROR */
+				flush();
+			endif;
+
+			Decimal_var := Decimal_var + Decimal_Other_var;  /* ERROR mix with other fixed pt alias */
+			while Decimal_var = Decimal_Other_var do  /* ERROR mix with other fixedpt alias */
+				flush();
+			enddo;
+		end;
+			
+	end;
+end;
+
+
+void main() begin
+	begin
+		flush();
+	end;
+end;

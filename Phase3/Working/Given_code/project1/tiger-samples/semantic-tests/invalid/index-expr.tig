@@ -1,0 +1,92 @@
+/*
+ * This tests the index-expr rule.
+ */
+
+type Integer = int;
+type Decimal = fixedpt;
+
+type Int_Array = array[10] of int;
+type Fixedpt_Array = array[10] of fixedpt;
+
+void function for_loop_counter() begin
+  begin
+	var int_var: int := 0;
+	var fp_var: fixedpt := 0.0;
+	var Integer_var: Integer := 0;
+	var Decimal_var: Decimal := 0.0;
+	var Int_arr: Int_Array := 0;
+	var Fixedpt_arr: Fixedpt_Array := 0.0;
+		
+	/* valid -- only can be int */
+	for int_var := 0 to 1 do
+		flush();
+	enddo;
+
+	/* ERROR */
+	for fp_var := 0 to 1 do
+		flush();
+	enddo;
+
+	/* ERROR */
+	for Integer_var := 0 to 1 do
+		flush();
+	enddo;
+
+	/* ERROR */
+	for Decimal_var := 0 to 1 do
+		flush();
+	enddo;
+
+	/* ERROR */
+	for Int_arr := 0 to 1 do
+		flush();
+	enddo;
+
+	/* ERROR */
+	for Fixedpt_arr := 0 to 1 do
+		flush();
+	enddo;
+  end;
+end;
+void main() begin
+  begin
+
+	var int_var: int := 0;
+	var fp_var: fixedpt := 0.0;
+	var Integer_var: Integer := 0;
+	var Decimal_var: Decimal := 0.0;
+	var Int_arr: Int_Array := 0;
+	var Fixedpt_arr: Fixedpt_Array := 0.0;
+
+	/* valid */
+	Int_arr[0] := 0;
+	Int_arr[int_var] := 0;
+
+	/* NOTE:  recall that FIXEDPTLIT is a syntax error in index-expr, so no tests for those */
+
+	/* invalid ERROR */
+	Int_arr[fp_var] := 0;
+	Int_arr[Integer_var] := 0;
+	Int_arr[Decimal_var] := 0;
+	Int_arr[Int_arr] := 0;
+	Int_arr[Fixedpt_arr] := 0;
+
+	/* some int promotion invalid tests ERROR */
+	Int_arr[fp_var + 0] := 0;
+	Int_arr[Integer_var + 0] := 0;
+	Int_arr[0 + Decimal_var] := 0;
+	Int_arr[0 + Int_arr] := 0;
+	Int_arr[0 + Fixedpt_arr] := 0;
+
+	Int_arr[fp_var + int_var] := 0;
+	Int_arr[Integer_var + int_var] := 0;
+	Int_arr[int_var + Decimal_var] := 0;
+	Int_arr[int_var + Int_arr] := 0;
+	Int_arr[int_var + Fixedpt_arr] := 0;
+
+
+	/* test multiple errors at once ERROR */
+	Int_arr[Integer_var + fp_var + Decimal_var] := 0;
+
+  end;
+end;

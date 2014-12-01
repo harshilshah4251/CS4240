@@ -1,0 +1,45 @@
+/* Rules tested:
+ *
+ *  <block-list>
+ *  <block>
+ *
+ *  <declaration_segment>
+ *  <type_declaration_list>
+ *  <var_declaration_list>
+ *
+ *  <stat_seq>
+ *
+ */
+void main() begin
+  /* block-list */
+
+  /* block with declaration_segment, min-length stat_seq (type-declaration-list only) */
+  begin
+    /* type-declaration-list */
+    type Scalar = int;
+    type Vector = array [20] of int;
+
+    printi(0);
+  end;
+
+  /* block with declaration_segment, min-length stat_seq (var-declaration-list only) */
+  begin
+    /* var-declaration-list */
+    var x : int ; /* id-list of length 1 */
+    var y, z : int ;  /* id-list of length 2 */
+
+    var xx : int := 5;  /* optional init */
+
+    printi(0);
+  end;
+
+  /* block with only stat_seq (only tests stat_seq rules) */
+  begin
+    printi(0);  /* stat_seq of min length */
+  end;
+
+  begin
+    printi(1);  /* stat_seq with non-null tail (length 2) */
+    printi(2);
+  end;
+end;

@@ -1,0 +1,141 @@
+/* All functions are declared (except for invalid std lib functions)
+ *
+ * For using un:tdeclared functions, see the 'using-undeclared-names' file
+ */
+type Integer = int;
+type Decimal = fixedpt;
+type Int_Array = array[10] of int;
+type Int_Array_2D = array[10][5] of int;
+type Fixedpt_Array = array[10] of fixedpt;
+type Fixedpt_Array_2D = array[10][5] of fixedpt;
+
+void function no_params() begin
+	begin
+		flush();
+	end;
+end;
+
+void function one_param(x: int) begin
+	begin
+		flush();
+	end;
+end;
+
+void function two_param(x: int, y: int) begin
+	begin
+		flush();
+	end;
+end;
+
+void function int_func(x: int) begin
+	begin
+		flush();
+	end;
+end;
+
+void function Integer_func(x: Integer) begin
+	begin
+		flush();
+	end;
+end;
+
+
+void function Int_Array_func(x: Int_Array) begin
+	begin
+		flush();
+	end;
+end;
+
+void function Int_Array_2D_func(x: Int_Array_2D) begin
+	begin
+		flush();
+	end;
+end;
+
+void function fixedpt_func(x: fixedpt) begin
+	begin
+		flush();
+	end;
+end;
+
+void function Decimal_func(x: Decimal) begin
+	begin
+		flush();
+	end;
+end;
+
+void function Fixedpt_Array_func(x: Fixedpt_Array) begin
+	begin
+		flush();
+	end;
+end;
+
+void function Fixedpt_Array_2D_func(x: Fixedpt_Array_2D) begin
+	begin
+		flush();
+	end;
+end;
+
+void main() begin
+	begin
+		var int_var: int;
+		var Integer_var: Integer;
+		var Int_Array_var: Int_Array := 0;
+		var Int_Array_2D_var: Int_Array_2D := 0;
+
+		var fixedpt_var: fixedpt;
+		var Decimal_var: Decimal;
+		var Fixedpt_Array_var: Fixedpt_Array := 0.0;
+		var Fixedpt_Array_2D_var: Fixedpt_Array_2D := 0.0;
+
+		/* too many params */
+		no_params(0);  /* ERROR */
+		one_param(0, 1);  /* ERROR */
+		two_param(0, 1, 2);  /* ERROR */
+
+		/* too few params */
+		one_param();  /* ERROR */
+		two_param(0);  /* ERROR */
+
+		/* uncallable std library funcs */
+		print();  /* ERROR */
+		getchar();  /* ERROR */
+		ord();  /* ERROR */
+		chr();  /* ERROR */
+		size();  /* ERROR */
+		substring();  /* ERROR */
+		concat();  /* ERROR */
+
+		/*
+		 * correct number, wrong type
+		 */
+		one_param(0.0);  /* ERROR */
+		two_param(0, 1.0);  /* ERROR */
+		int_func(0.0);  /* ERROR */
+		Integer_func(int_var);  /* ERROR */
+		Int_Array_func(Fixedpt_Array_var);  /* ERROR */
+		Int_Array_2D_func(Fixedpt_Array_2D_var);  /* ERROR */
+		fixedpt_func(Decimal_var);  /* ERROR */
+		Decimal_func(fixedpt_var);  /* ERROR */
+		Fixedpt_Array_func(Int_Array_var);  /* ERROR */
+		Fixedpt_Array_2D_func(Int_Array_2D_var);  /* ERROR */
+		
+		/*
+		 * These are all valid calls -- no errors should be reported!!
+		 */
+		no_params();
+		one_param(0);
+		two_param(0, 0);
+
+		int_func(int_var);
+		Integer_func(Integer_var);
+		Int_Array_func(Int_Array_var);
+		Int_Array_2D_func(Int_Array_2D_var);
+		fixedpt_func(0.0);
+		Decimal_func(Decimal_var);
+		Fixedpt_Array_func(Fixedpt_Array_var);
+		Fixedpt_Array_2D_func(Fixedpt_Array_2D_var);
+		
+	end;
+end;
+

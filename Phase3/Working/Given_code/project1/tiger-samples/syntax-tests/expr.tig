@@ -1,0 +1,46 @@
+/* Rules tested:
+ *
+ *  <expr>, <expr-list>, <expr-list-tail>, <const>
+ *  <index_expr>
+ *  <value>, <value-tail>
+ *
+ */
+
+void function expr_const_value_rules() begin
+  begin
+    type ArrayInt = array[100] of int;
+    type ArrayInt2D = array[100][100] of int;
+    var int_value: int;
+    var flt_value: fixedpt;
+    var arr: ArrayInt;
+    var arr2D: ArrayInt2D;
+
+    /* const rules - also tests  <expr> -> <const> */
+    int_value := 1;
+    flt_value := 1.0;
+
+    /* value, value_tail, and index_expr rules - also tests  <expr> -> <value> */
+    int_value := arr[0];
+    arr[int_value] := arr2D[0][0];
+    arr2D[0][1 + int_value] := int_value;  /* see operators.tig for more detailed tests */
+
+    /* remaining expr rules */
+    int_value := 1 + 1;  /* see operators.tig for more detailed tests */
+    arr[0] := (int_value);  /* also tests  <value_tail> -> [ index_expr ] */
+  end;
+end;
+
+void function expr_list_rules() begin
+  begin
+    /* expr_list and expr_list_tail rules */
+    no_arg_func();
+    one_arg_func(1);
+    two_arg_func(2, 3);
+  end;
+end;
+
+void main() begin
+  begin
+    printi(0);
+  end;
+end;

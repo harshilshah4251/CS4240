@@ -1,0 +1,102 @@
+/*
+ * This contains all semantic errors to target regarding function declarations.
+ *
+ * Overview of checks...
+ *	   1) Func ID is taken  (by type/func)
+ *	   2) Invalid return type  (undeclared or non-type name)  <-- note: non-type name can only be a func name
+ *     3) Invalid param type (undeclared or non-type name)    <-- note: non-type name can only be a func name
+ *     4) Param ID is taken
+ */
+
+type DeclaredType = int; 
+
+void function declared_func() begin
+	begin
+		flush();
+	end;
+end;	
+
+/* ERROR return type undeclared */
+undeclared_type function undecl_return_type_func() begin
+	begin
+		flush();
+	end;
+end;
+
+/* ERROR return type declared, but not a type */
+declared_func function non_type_return_type_id() begin
+	begin
+		flush();
+	end;
+end;
+
+/* ERROR param type undeclared */
+void function undecl_param_type_func(foo: undeclared_type) begin
+	begin
+		flush();
+	end;
+end;
+
+/* ERROR param type is declared, but not a type */
+void function non_type_param_typeid(foo: declared_func) begin
+	begin
+		flush();
+	end;
+end;
+
+/* ERROR ERROR multiple param types undeclared (should get 2 messages for this) */
+void function two_bad_param_type_func(x: undeclared_type, y: declared_func) begin
+	begin
+		flush();
+	end;
+end;
+
+/* ERROR param type undeclared with other valid params */
+void function bad_param_type_with_valid_params(x: int, y: undeclared_type, z: fixedpt) begin
+	begin
+		flush();
+	end;
+end;
+
+/* ERROR param id has been declared as type */
+void function bad_param_id(DeclaredType: int) begin
+	begin
+		flush();
+	end;
+end;
+
+/* ERROR param id has been declared as function */
+void function bad_param_id_func(declared_func: int) begin
+	begin
+		flush();
+	end;
+end;
+
+/* ERROR cannot declare a function that has already been declared (same signature) */
+void function declared_func() begin
+	begin
+		flush();
+	end;
+end;
+
+/* ERROR cannot declare a function that has already been declared (different signature) */
+int function declared_func(x: fixedpt) begin
+	begin
+		flush();
+	end;
+end;
+
+/* ERROR cannot declare a function with name used by a [global] type */
+void function DeclaredType() begin
+	begin
+		flush();
+	end;
+end;
+
+
+/* to make syntactically valid */
+void main() begin
+	begin
+		flush();
+	end;
+end;
