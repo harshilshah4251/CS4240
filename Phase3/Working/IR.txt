@@ -1,11 +1,7 @@
-check_size:
 brneq, Awidth#0, Bwidth#1, _label0
 return, 1, ,
 goto, _label1, ,
-_label0:
 return, 0, ,
-_label1:
-consecutive_blocks_function_returns_id_type:
 call, flush
 assign, x#2, 123,
 assign, y#3, 123,
@@ -23,7 +19,6 @@ mult, 4, _t7, _t8
 add, y#3, _t8, _t9
 assign, y#3, _t9,
 return, 0.000, ,
-array_expressions:
 assign, arr_1D#5, 10, 0
 mult, 10, 10, _t11
 assign, arr_2D__#6, _t11, 1
@@ -55,40 +50,30 @@ array_load, _t32, arr_2D__#6, _t31
 mult, 0, _t32, _t33
 array_store, arr_1D#5, 1, _t33
 return, , ,
-consecutive_void_functions:
 call, printi, 0
 return, , ,
-m_pow:
 brneq, power#9, 0, _label2
 return, num#8, ,
 goto, _label3, ,
-_label2:
 assign, out#10, num#8,
 sub, power#9, 1, _t36
 assign, _t37, _t36,
 assign, _t35, 1,
-_label4:
 brgt, _t35, _t37, _label5
 assign, i#11, _t35,
 add, _t35, 1, _t35
 mult, out#10, num#8, _t38
 assign, out#10, _t38,
 goto, _label4, ,
-_label5:
 return, out#10, ,
-_label3:
-num_length:
 assign, out#13, 0,
-_label6:
 brlt, num#12, 1, _label7
 add, out#13, 1, _t39
 assign, out#13, _t39,
 div, num#12, 10, _t40
 assign, num#12, _t40,
 goto, _label6, ,
-_label7:
 return, out#13, ,
-generate_sqrt_guess:
 assign, out#19, 0,
 callr, _t41, num_length, num#14
 assign, nlength#16, _t41,
@@ -105,21 +90,15 @@ assign, pow_result#20, _t46,
 mult, 2, pow_result#20, _t47
 return, _t47, ,
 goto, _label9, ,
-_label8:
 callr, _t48, m_pow, 10, n#17
 assign, pow_result#21, _t48,
 mult, 6, pow_result#21, _t49
 return, _t49, ,
-_label9:
-m_abs:
 brgeq, num#22, 0, _label10
 sub, 0, num#22, _t50
 return, _t50, ,
 goto, _label11, ,
-_label10:
 return, num#22, ,
-_label11:
-m_sqrt:
 assign, counter#29, 0,
 callr, _t51, generate_sqrt_guess, num#23
 assign, guess#24, _t51,
@@ -132,11 +111,9 @@ div, _t53, _t54, _t55
 assign, e#26, _t55,
 callr, _t56, m_abs, e#26
 assign, abs_result#28, _t56,
-_label12:
 div, abs_result#28, x#25, _t57
 brleq, _t57, 0.01, _label13
 brgeq, counter#29, 100, _label13
-_label14:
 add, x#25, e#26, _t58
 assign, x#25, _t58,
 callr, _t59, m_pow, x#25, 2
@@ -150,13 +127,10 @@ assign, counter#29, _t63,
 callr, _t64, m_abs, e#26
 assign, abs_result#28, _t64,
 goto, _label12, ,
-_label13:
 return, x#25, ,
-random_function:
 assign, a#31, 12,
 assign, b#32, 2.2,
 return, 2.2, ,
-main:
 mult, 3, 3, _t65
 assign, C#34, _t65, 0
 mult, 3, 3, _t66
@@ -228,18 +202,15 @@ callr, _t104, check_size, Awidth#40, Bheight#41
 assign, check_size_result#43, _t104,
 brneq, check_size_result#43, 0, _label15
 call, exit, 0
-_label15:
 sub, Bwidth#42, 1, _t107
 assign, _t108, _t107,
 assign, _t106, 0,
-_label16:
 brgt, _t106, _t108, _label17
 assign, j#45, _t106,
 add, _t106, 1, _t106
 sub, Aheight#39, 1, _t110
 assign, _t111, _t110,
 assign, _t109, 0,
-_label18:
 brgt, _t109, _t111, _label19
 assign, i#44, _t109,
 add, _t109, 1, _t109
@@ -249,7 +220,6 @@ array_store, C#34, _t113, 0
 sub, Aheight#39, 1, _t115
 assign, _t116, _t115,
 assign, _t114, 0,
-_label20:
 brgt, _t114, _t116, _label21
 assign, dindex#46, _t114,
 add, _t114, 1, _t114
@@ -268,24 +238,19 @@ mult, _t124, _t127, _t128
 add, _t121, _t128, _t129
 array_store, C#34, _t118, _t129
 goto, _label20, ,
-_label21:
 goto, _label18, ,
-_label19:
 goto, _label16, ,
-_label17:
 assign, Cheight#35, Aheight#39,
 assign, Cwidth#36, Bwidth#42,
 sub, Cheight#35, 1, _t131
 assign, _t132, _t131,
 assign, _t130, 0,
-_label22:
 brgt, _t130, _t132, _label23
 assign, i#44, _t130,
 add, _t130, 1, _t130
 sub, Cwidth#36, 1, _t134
 assign, _t135, _t134,
 assign, _t133, 0,
-_label24:
 brgt, _t133, _t135, _label25
 assign, j#45, _t133,
 add, _t133, 1, _t133
@@ -297,27 +262,21 @@ array_load, _t140, C#34, _t139
 callr, _t141, m_sqrt, _t140
 array_store, C#34, _t137, _t141
 goto, _label24, ,
-_label25:
 goto, _label22, ,
-_label23:
 sub, Cheight#35, 1, _t143
 assign, _t144, _t143,
 assign, _t142, 0,
-_label26:
 brgt, _t142, _t144, _label27
 assign, i#44, _t142,
 add, _t142, 1, _t142
 sub, Cwidth#36, 1, _t146
 assign, _t147, _t146,
 assign, _t145, 0,
-_label28:
 brgt, _t145, _t147, _label29
 assign, j#45, _t145,
 add, _t145, 1, _t145
 call, flush
 goto, _label28, ,
-_label29:
 goto, _label26, ,
-_label27:
 return, , ,
 ===========END===========
