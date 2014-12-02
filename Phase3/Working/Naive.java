@@ -2,8 +2,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import project1.src.main.java.cs4240_team1.SymbolTable;
-import project1.src.main.antlr3.cs4240_team1.SymTableWalker;
+import cs4240_team1.SymbolTable;
+import cs4240_team1.SymTableWalker;
 
 public class Naive{
     
