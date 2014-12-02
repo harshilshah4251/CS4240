@@ -108,7 +108,7 @@ public class Naive{
                 i++;
             }
             
-            //dont i need to know the size of array? int.. 4 fixed point 8..
+            //dont i need to know the size of array? int.. 4 fixed point 4..
             System.out.println("Load " + one +"[" + two + "]" + ", " + "temp#" + i);
             System.out.println("Store " + "temp#" + i + ", " +  zero);
             
@@ -144,7 +144,6 @@ public class Naive{
                         String op = sCurrentLine.substring(0, (sCurrentLine.indexOf(",")));
                         sCurrentLine =  sCurrentLine.substring((sCurrentLine.indexOf(",")));
 
-                        //System.out.println("op:" + op);
                         String[] argArr = new String[3];
                         if( (!(op.equals("call"))) && (!(op.equals("callr"))) && (!(op.equals("return"))) && (!(op.equals("goto")))){
                             for(int i = 0; i < 3; i++){
@@ -156,17 +155,13 @@ public class Naive{
                                 if(sCurrentLine.contains(",")){
                                     argArr[i] = sCurrentLine.substring(0, (sCurrentLine.indexOf(",")));
                                     sCurrentLine =  sCurrentLine.substring((sCurrentLine.indexOf(",")));
-                                    //System.out.println(i + ":" + argArr[i]);
                                 }
                                 
                                 else{
                                     argArr[i] = sCurrentLine.trim();
-                                    //System.out.println(i + ":" + argArr[i]);
-
                                 }
                             }
                             
-                            //System.out.println(op);
 
                             if(op.equals("assign"))assign (op, argArr[0], argArr[1], argArr[2]);
                             
@@ -188,8 +183,7 @@ public class Naive{
                         }
                         
                         else{
-                            //Goto, function call, return -> print as it is?
-                            System.out.println(op+ ", " + sCurrentLine);
+                            System.out.println(op + sCurrentLine);
                         }
                     }
                 }
