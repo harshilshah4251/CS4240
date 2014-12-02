@@ -1,0 +1,106 @@
+/* Tests that we get errors when we try to use
+ *
+ *    vars and functions
+ *
+ * that have not been declared yet.
+ *
+ * NOTE:  types can only be referenced in var declarations and params.
+ *        so, see 'var-decls.tig' and 'func-decls.tig' for those cases.
+ *
+ * NOTE:  see 'reserved-ids.tig' for declarations using reserved names
+ *        (string and stdlib functions)
+ */
+
+type Array = array[10] of int;
+type Array2D = array[10][10] of int;
+
+void main() begin
+	begin
+		var arr: Array := 0;
+		var arr2D: Array2D := 0;
+		var x: int;
+
+		/*
+         * test cases with just one error per line (one invalid)
+         */
+		undeclared_func();  /* ERROR */
+
+		/* in lvalue */
+		undeclared_var := 0;  /* ERROR */
+		undeclared_arr[0] := 1;  /* ERROR */
+		undeclared_2Darr[0][1] := 2;  /* ERROR */
+		arr[index] := 3;  /* ERROR */
+		arr2D[0][index] := 4;  /* ERROR */
+		
+		/* in rvalue */
+		x := undeclared_func_2(1);  /* ERROR */
+		x := undeclared_var;  /* ERROR */
+		x := arr[index];  /* ERROR */
+		x := arr2D[0][index];  /* ERROR */
+		x := 0 + undeclared_var;  /* ERROR */
+		x := 1 * arr[index];  /* ERROR */
+		x := 2 / arr2D[0][index];  /* ERROR */
+		x := 3 - arr2D[index][0];  /* ERROR */
+		
+		for index := 2 to 3 do  /* ERROR undeclared ID in for statement */
+			flush();
+		enddo;
+
+
+		/* test cases making calls to standard libraries using strings */
+		print();  /* ERROR */
+		getchar();  /* ERROR */
+		ord();  /* ERROR */
+		chr();  /* ERROR */
+		size();  /* ERROR */
+		substring();  /* ERROR */
+		concat();  /* ERROR */
+		print := 4;  /* ERROR */
+		getchar := 5;  /* ERROR */
+		ord := 6;  /* ERROR */
+		chr := 7;  /* ERROR */
+		size := 8;  /* ERROR */
+		substring := 9;  /* ERROR */
+		concat := 10;  /* ERROR */
+		
+		/*
+		 * Multiple errors in a statement
+		 */
+
+		/* lvalue only */
+		undeclared_arr[index] := 0;  /* ERROR ERROR */
+		undeclared_arr[index + index2] := 1;  /* ERROR ERROR */
+		undeclared_2D[index][index2] := 2;  /* ERROR ERROR */
+
+		/* lvalue and rvalue */
+		undeclared_var := undeclared_func(3);  /* ERROR ERROR */
+		undeclared_var := undeclared_func_2(1);  /* ERROR ERROR */
+		undeclared_var := undeclared_var;  /* ERROR ERROR */
+		undeclared_var := arr[index];  /* ERROR ERROR */
+		undeclared_var := arr2D[0][index];  /* ERROR ERROR */
+		undeclared_var := 0 + undeclared_var;  /* ERROR ERROR */
+		undeclared_var := 1 * arr[index];  /* ERROR ERROR */
+		undeclared_var := 2 / arr2D[0][index];  /* ERROR ERROR */
+		undeclared_var := 3 - arr2D[index][0];  /* ERROR ERROR */
+
+		undeclared_arr[index] := undeclared_func(3);  /* ERROR ERROR ERROR */
+		undeclared_arr[index] := undeclared_func_2(1);  /* ERROR ERROR ERROR */
+		undeclared_arr[index] := undeclared_var;  /* ERROR ERROR ERROR */
+		undeclared_arr[index] := arr[index];  /* ERROR ERROR ERROR */
+		undeclared_arr[index] := arr2D[0][index];  /* ERROR ERROR ERROR */
+		undeclared_arr[index] := 0 + undeclared_var;  /* ERROR ERROR ERROR */
+		undeclared_arr[index] := 1 * arr[index];  /* ERROR ERROR ERROR */
+		undeclared_arr[index] := 2 / arr2D[0][index];  /* ERROR ERROR ERROR */
+		undeclared_arr[index] := 3 - arr2D[index][0];  /* ERROR ERROR ERROR */
+		undeclared_arr[index] := 0;  /* ERROR ERROR */
+
+		undeclared_arr[index][index2] := undeclared_var2 + undeclared_var;  /* ERROR ERROR ERROR ERROR ERROR */
+		undeclared_arr[index][index2] := undeclared_var2 * arr[index];  /* ERROR ERROR ERROR ERROR ERROR ERROR */
+		undeclared_arr[index][index2] := undeclared_var2 / arr2D[0][index];  /* ERROR ERROR ERROR ERROR ERROR ERROR */
+
+		/* in bool exprs */
+		if undeclared_var = 0 then
+			flush();
+		endif;
+	end;
+end;

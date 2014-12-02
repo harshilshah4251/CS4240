@@ -1,0 +1,127 @@
+/*
+ * This contains all semantic errors to target regarding variable declarations.
+ *
+ * Overview of checks...
+ *	   1) Variable ID is taken (by type/func/var -- var case only applies in same scope)
+ *	   2) Invalid variable type (undeclared, or typeid is not a type)
+ *     3) Arrays are not initialized (init is required in this case!)
+ *
+ * XXX
+ * Note:  this does NOT contain cases with bad [optional] assignments at declaration.
+ */
+
+type DeclaredType = int;
+
+void function declared_func() begin
+	begin
+		flush();
+	end;
+end;
+
+
+/*
+ * Invalid Var ID:  Nested scope cases.
+ *
+ *   note: variables can "hide" variable names in scope above, but not types/functions
+ */
+void function invalid_var_name_nested_scope_cases() begin
+	begin
+		var DeclaredType: int;  /* ERROR re-use type name */
+		flush();
+	end;
+
+	begin
+		var declared_func: int; /* ERROR re-use a function name */
+		flush();
+	end;
+
+	begin
+		var invalid_var_name_nested_scope_cases: int;  /* ERROR re-use THIS function's name */
+		flush();
+	end;
+end;
+
+/*
+ * Invalid Var ID:  Same-level scope cases.
+ */
+void function invalid_var_name_same_scope_cases() begin
+	begin
+		/* this is a valid declaration */
+		var declared_var: int;
+		
+		var declared_var: fixedpt;  /* ERROR same var name (diff type) */
+		var declared_var: int;		/* ERROR same var name (same type) */
+
+		flush();
+	end;
+
+	begin
+		type DeclaredType2 = int;
+
+		var DeclaredType2: int;  /* ERROR re-use type name */
+
+		flush();
+	end;
+end;
+
+/*
+ * Invalid var type.
+ */
+void function invalid_var_type() begin
+	begin
+		/* this is a valid declaration */
+		var declared_var: int;
+
+		begin
+			/* this is a valid declaration */
+			var declared_var2: int;
+
+			/* invalid var types -- nested scope case */
+			var a: undeclared_id;  /* ERROR type id is undeclared */
+			var b: declared_func;  /* ERROR type id is a function */
+			var c: declared_var;   /* ERROR type id is a variable */
+			var e: string;         /* ERROR type id is unused reserve string */
+
+			/* invalid var types -- same scope case */
+			var d: declared_var2;  /* ERROR type id is a variable */
+
+			flush();
+		end;
+	end;
+end;
+
+/*
+ * Allow hiding of outer-scoped vars with same name.
+ */
+void function hide_outer_var() begin
+	begin
+		var declared_var: int;
+	
+		begin
+			var declared_var: fixedpt;  /* VALID */
+			flush();
+		end;
+	end;
+end;
+
+/*
+ * Arrays must be initialized at declarationn
+ */
+void function array_missing_init() begin
+	begin
+		type Array = array[10] of int;
+		type Array2D = array[10][10] of int;
+
+		var arr: Array;  /* ERROR missing init */
+		var arr2, arr3: Array2D;  /* ERROR ERROR missing init */
+
+		flush();
+	end;
+end;
+
+/* to make syntactically valid */
+void main() begin
+	begin
+		flush();
+	end;
+end;

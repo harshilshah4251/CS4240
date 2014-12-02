@@ -1,0 +1,17 @@
+/* Tests that two user-defined variables show up with different
+ * id numbers in printed IR code
+ *
+ * Also makes sure that temp no. 0 is represented as _t0
+ * to not conflict with user's "t0"
+ */
+
+void main() begin
+	begin
+		var t0: int := 0;
+		begin
+			var t0: fixedpt := 1.0;
+			t0 := t0 - 2.0;
+		end;
+		t0 := 2 * t0;
+	end;
+end;
