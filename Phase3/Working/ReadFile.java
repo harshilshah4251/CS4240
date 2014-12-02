@@ -13,20 +13,24 @@ public class ReadFile{
 			br.readLine();
 			i++;
 		}
-		i = 0;
-		do{
-			sCurrentLine = br.readLine();
-			if (!sCurrentLine.contains("END IR CODE")) {
-				if(sCurrentLine.contains(":")) 
-					System.out.println(sCurrentLine);
-				else 
-					System.out.println(++i + ") "+sCurrentLine);
-			}
-		
-		} while(!sCurrentLine.contains("END IR CODE"));
+        while(!sCurrentLine.contains("END IR CODE")){
+            sCurrentLine = br.readLine();
+                
+            if((!sCurrentLine.contains(":"))&&(!sCurrentLine.contains("END IR CODE"))){
+            System.out.println(sCurrentLine);
+            }
+        }
+	
+            
+            
+            
+        System.out.println("===========END===========");
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+        
+
 	}
 }
 
