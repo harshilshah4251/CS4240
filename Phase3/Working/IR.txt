@@ -1,6 +1,7 @@
 brneq, Awidth#0, Bwidth#1, _label0
 return, 1, ,
 goto, _label1, ,
+END
 return, 0, ,
 call, flush
 assign, x#2, 123,
