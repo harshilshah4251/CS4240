@@ -2,14 +2,26 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import cs4240_team1.SymbolTable;
+import cs4240_team1.SymTableWalker;
 
 public class Naive{
+    
+    public static SymbolTable symbolTable = SymTableWalker.globalSymbolTable;
+    
     public static void assign (String op, String zero, String one, String two){
         int i = 0;
         if(two.equals("")){
             if(!(one.matches("\\d+"))){
-                System.out.println("Load " + one + ", " + "temp#" + i);
-                one = "temp#" + i;
+		TypeEntry operandType = symbolTable.lookupType(zero);
+		if (operandType.typeId.equals("int")) {
+		    System.out.println("Load " + one + ", " + "t" + i);
+		    one = "temp#" + i;
+		}
+		else if (operandType.typeId.equals("fixedpt")) {
+		    System.out.println("Load " + one + ", " + "f" + i);
+		    one = "temp#" + i;
+		}
                 i++;
             }
             System.out.println("Store " + one + ", " + zero);
