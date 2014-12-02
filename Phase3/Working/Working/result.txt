@@ -10,7 +10,11 @@ check_size:
 brneq, Awidth#0, Bwidth#1, _label0
 return, 1, ,
 goto, _label1, ,
+<<<<<<< HEAD:Phase3/Working/Working/result.txt
 _label0:
+=======
+END
+>>>>>>> 3bc38cf5218b26aa2b0b8db9b427eeecd48bdccb:Phase3/Working/IR.txt
 return, 0, ,
 _label1:
 consecutive_blocks_function_returns_id_type:

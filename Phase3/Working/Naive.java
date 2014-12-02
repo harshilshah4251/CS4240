@@ -7,7 +7,7 @@ public class Naive{
     public static void assign (String op, String zero, String one, String two){
         int i = 0;
         if(two.equals("")){
-            if(!(one.matches("\\d"))){
+            if(!(one.matches("\\d+"))){
                 System.out.println("Load " + one + ", " + "temp#" + i);
                 one = "temp#" + i;
                 i++;
@@ -18,12 +18,12 @@ public class Naive{
         //need to be implemented : assign, arr_2D__#6, _t11, 1
         //is it possible to have temp value for last argument?
         else{
-            if(!(one.matches("\\d"))){
+            if(!(one.matches("\\d+"))){
                 System.out.println("Load " + one + ", " + "temp#" + i);
                 one = "temp#" + i;
                 i++;
             }
-            if(!(two.matches("\\d"))){
+            if(!(two.matches("\\d+"))){
                 System.out.println("Load " + two + ", " + "temp#" + i);
                 two = "temp#" + i;
                 i++;
@@ -33,12 +33,12 @@ public class Naive{
     
     public static void binaryOp (String op, String zero, String one, String two){
         int i = 0;
-        if(!(zero.matches("\\d"))){
+        if(!(zero.matches("\\d+"))){
             System.out.println("Load " + zero + ", " + "temp#" + i);
             zero = "temp#" + i;
             i++;
         }
-        if(!(one.matches("\\d"))){
+        if(!(one.matches("\\d+"))){
             System.out.println("Load " + one + ", " + "temp#" + i);
             one = "temp#" + i;
             i++;
@@ -68,13 +68,13 @@ public class Naive{
     public static void branch (String op, String zero, String one, String two){
         int i = 0;
         
-        if(!(zero.matches("\\d"))){
+        if(!(zero.matches("\\d+"))){
             System.out.println("Load " + zero + ", " + "temp#" + i);
             zero = "temp#" + i;
             i++;
         }
         
-        if(!(one.matches("\\d"))){
+        if(!(one.matches("\\d+"))){
             System.out.println("Load " + one + ", " + "temp#" + i);
             one = "temp#" + i;
             i++;
@@ -102,7 +102,7 @@ public class Naive{
     public static void arrayCall(String op, String zero, String one, String two){
         int i = 0;
         if(op.equals("array_load")){
-            if(!(two.matches("\\d"))){
+            if(!(two.matches("\\d+"))){
                 System.out.println("Load " + two + ", " + "temp#" + i);
                 two = "temp#" + i;
                 i++;
@@ -114,13 +114,13 @@ public class Naive{
             
         }
         else{
-            if(!(one.matches("\\d"))){
+            if(!(one.matches("\\d+"))){
                 System.out.println("Load " + one + ", " + "temp#" + i);
                 one = "temp#" + i;
                 i++;
             }
             
-            if(!(two.matches("\\d"))){
+            if(!(two.matches("\\d+"))){
                 System.out.println("Load " + two + ", " + "temp#" + i);
                 two = "temp#" + i;
                 i++;
@@ -143,11 +143,10 @@ public class Naive{
                     if(!(sCurrentLine.contains("END"))){
                         String op = sCurrentLine.substring(0, (sCurrentLine.indexOf(",")));
                         sCurrentLine =  sCurrentLine.substring((sCurrentLine.indexOf(",")));
-                        
+
                         //System.out.println("op:" + op);
                         String[] argArr = new String[3];
-                        if((!(op == "call")) && (!(op == "callr"))){
-                            
+                        if( (!(op.equals("call"))) && (!(op.equals("callr"))) && (!(op.equals("return"))) && (!(op.equals("goto")))){
                             for(int i = 0; i < 3; i++){
                                 if(sCurrentLine.startsWith(",")){
                                     sCurrentLine = sCurrentLine.substring(1);
@@ -182,10 +181,15 @@ public class Naive{
                             else if((op.equals("array_store")) || (op.equals("array_load")))
                                 arrayCall (op, argArr[0], argArr[1], argArr[2]);
                             
-                        
                             else{
-                            //Goto, function call, return -> print as it is?
+                                System.out.println("unknown op");
                             }
+                            
+                        }
+                        
+                        else{
+                            //Goto, function call, return -> print as it is?
+                            System.out.println(op+ ", " + sCurrentLine);
                         }
                     }
                 }
