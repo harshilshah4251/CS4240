@@ -16,7 +16,7 @@ public class ReadFile{
         while(!sCurrentLine.contains("END IR CODE")){
             sCurrentLine = br.readLine();
                 
-            if((!sCurrentLine.contains(":"))&&(!sCurrentLine.contains("END IR CODE"))){
+            if((!sCurrentLine.contains("main:"))&&(!sCurrentLine.contains("END IR CODE"))){
             System.out.println(sCurrentLine);
             }
         }

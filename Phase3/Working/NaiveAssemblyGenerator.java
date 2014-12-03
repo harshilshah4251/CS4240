@@ -76,14 +76,14 @@ public class NaiveAssemblyGenerator{
         boolean flag = false;
         if(!(two.matches("\\d+"))){
             if(!(dataSegmentContains(two))){
-                dataSegment += he + two + ":" + empty + w + "   0" + newLine;   //    dataSegment += zero + ":" + empty + f + "   0" + newLine;
+                dataSegment += he + two + ":" + empty + w + "   0" + newLine;   //    or dataSegment += zero + ":" + empty + f + "   0" + newLine;
             }
         }
         
         
         if(!(zero.matches("\\d+"))){
             if(!(dataSegmentContains(zero))){
-                dataSegment += he + zero + ":" + empty + w + "   0" + newLine;   //    dataSegment += zero + ":" + empty + f + "   0" + newLine;
+                dataSegment += he + zero + ":" + empty + w + "   0" + newLine;   //    or dataSegment += zero + ":" + empty + f + "   0" + newLine;
             }
             textSegment += "lw, " + temp + i + ", " + zero + newLine;
             zero = temp + i;
@@ -93,7 +93,7 @@ public class NaiveAssemblyGenerator{
         
         if(!(one.matches("\\d+"))){
             if(!(dataSegmentContains(one))){
-                dataSegment += he + one + ":" + empty + w + "   0" + newLine;   //    dataSegment += zero + ":" + empty + f + "   0" + newLine;
+                dataSegment += he + one + ":" + empty + w + "   0" + newLine;   //    or dataSegment += zero + ":" + empty + f + "   0" + newLine;
             }
             textSegment += "lw, " + temp + i + ", " + one + newLine;
             one = temp + i;
@@ -111,7 +111,7 @@ public class NaiveAssemblyGenerator{
             case "sub"   :  textSegment += "sub, " + temp + i + ", " + zero + ", " + one + newLine;
                 break;
                 
-            case "mult"  :  textSegment += "mult, " + temp + i + ", " + zero + ", " + one + newLine;
+            case "mult"  :  textSegment += "mul, " + temp + i + ", " + zero + ", " + one + newLine;
                 break;
                 
             case "div"   :  textSegment += "div, " + temp + i + ", " + zero + ", " + one + newLine;
@@ -120,7 +120,7 @@ public class NaiveAssemblyGenerator{
             case "and"   :  textSegment += "and, " + temp + i + ", " + zero + ", " + one + newLine;
                 break;
                 
-            case "or"  : textSegment += "and, " + temp + i + ", " + zero + ", " + one + newLine;
+            case "or"  : textSegment += "or, " + temp + i + ", " + zero + ", " + one + newLine;
                 break;
                 
             default    : System.out.println("Wrong command");
@@ -128,9 +128,53 @@ public class NaiveAssemblyGenerator{
         }
         
         textSegment += "sw, " + temp + i + ", " + two + newLine;
-        System.out.println(dataSegment + textSegment);
-
         //System.out.println("Store, " + "temp#" + i + ", " + two);
+        
+    }
+    public static void branch (String op, String zero, String one, String two){
+        int i = 0;
+        
+        if(!(zero.matches("\\d+"))){
+            if(!(dataSegmentContains(zero))){
+                dataSegment += he + zero + ":" + empty + w + "   0" + newLine;   //    or dataSegment += zero + ":" + empty + f + "   0" + newLine;
+            }
+            textSegment += "lw, " + temp + i + ", " + zero + newLine;
+            zero = temp + i;
+            i++;
+        }
+        
+        if(!(one.matches("\\d+"))){
+            if(!(dataSegmentContains(one))){
+                dataSegment += he + one + ":" + empty + w + "   0" + newLine;   //    or dataSegment += zero + ":" + empty + f + "   0" + newLine;
+            }
+            textSegment += "lw, " + temp + i + ", " + one + newLine;
+            one = temp + i;
+            i++;
+        }
+        
+        switch (op) {
+                
+            case "breq"   :
+                textSegment += "beq, " + zero + ", " + one + ", " + two + newLine;
+                break;
+            case "brneq"   :
+                textSegment += "bne, " + zero + ", " + one + ", " + two + newLine;
+                break;
+            case "brlt"  :
+                textSegment += "bge, " + zero + ", " + one + ", " + two + newLine;
+                break;
+            case "brgt"   :
+                textSegment += "ble, " + zero + ", " + one + ", " + two + newLine;
+                break;
+            case "brgeq"   :
+                textSegment += "blt, " + zero + ", " + one + ", " + two + newLine;
+                break;
+            case "brleq"  :
+                textSegment += "bgt, " + zero + ", " + one + ", " + two + newLine;
+                break;
+            default    : System.out.println("Wrong command");
+                break;
+        }
         
     }
 
@@ -143,7 +187,7 @@ public class NaiveAssemblyGenerator{
             while(!sCurrentLine.contains("END")){
                 sCurrentLine = br.readLine();
                 
-                if(!(sCurrentLine.contains("END"))){
+                if((!sCurrentLine.contains(":")) && !(sCurrentLine.contains("END"))){
                     String op = sCurrentLine.substring(0, (sCurrentLine.indexOf(",")));
                     sCurrentLine =  sCurrentLine.substring((sCurrentLine.indexOf(",")));
                     
@@ -171,23 +215,27 @@ public class NaiveAssemblyGenerator{
                         else if((op.equals("add")) || (op.equals("sub")) || (op.equals("mult")) || (op.equals("div")) || (op.equals("and")) || (op.equals("or")))
                             binaryOp (op, argArr[0], argArr[1], argArr[2]);
                         
-                        else if((op.equals("breq")) || (op.equals("brneq")) || (op.equals("brlt")) || (op.equals("brgt")) || (op.equals("brgeq")) || (op.equals("brleq"))){}
-                        //    branch(op, argArr[0], argArr[1], argArr[2]);
+                        else if((op.equals("breq")) || (op.equals("brneq")) || (op.equals("brlt")) || (op.equals("brgt")) || (op.equals("brgeq")) || (op.equals("brleq")))
+                            branch(op, argArr[0], argArr[1], argArr[2]);
                         
                         else if((op.equals("array_store")) || (op.equals("array_load"))){}
                         //    arrayCall (op, argArr[0], argArr[1], argArr[2]);
                         
-                        else{
-                            System.out.println("unknown op");
-                        }
                         
                     }
-                    
                     else{
-                        System.out.println(op + sCurrentLine);
+                        textSegment += op + sCurrentLine + newLine;
                     }
+                    
                 }
+                
+                else if (sCurrentLine.contains(":")){
+                    textSegment += sCurrentLine + newLine;
+                }
+                
             }
+            System.out.println(dataSegment + textSegment);
+
             System.out.println("===========END===========");
             
         }catch (IOException e) {
