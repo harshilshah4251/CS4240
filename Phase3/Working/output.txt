@@ -1,0 +1,1015 @@
+Reading input from file or stdin
+Running in debug mode (tokens will be printed as parser consumes them)...
+Parsing input...
+
+Tokens consumed by parser:
+TYPE ID EQ ARRAY LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK OF FIXEDPT SEMI TYPE ID EQ FIXEDPT SEMI VOID MAIN LPAREN RPAREN BEGIN BEGIN VAR ID COLON ID ASSIGN INTLIT SEMI VAR ID COMMA ID COLON INT SEMI VAR ID COMMA ID COLON ID ASSIGN INTLIT SEMI VAR ID COLON INT ASSIGN INTLIT SEMI VAR ID COLON INT ASSIGN INTLIT SEMI VAR ID COLON INT ASSIGN INTLIT SEMI VAR ID COLON INT ASSIGN INTLIT SEMI VAR ID COLON INT SEMI VAR ID COMMA ID COMMA ID COLON INT ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI IF LPAREN ID EQ INTLIT RPAREN THEN ID ASSIGN INTLIT SEMI ENDIF SEMI FOR ID ASSIGN INTLIT TO ID MINUS INTLIT DO FOR ID ASSIGN INTLIT TO ID MINUS INTLIT DO ID LBRACK ID RBRACK LBRACK ID RBRACK ASSIGN INTLIT SEMI FOR ID ASSIGN INTLIT TO ID MINUS INTLIT DO ID LBRACK ID RBRACK LBRACK ID RBRACK ASSIGN ID LBRACK ID RBRACK LBRACK ID RBRACK PLUS ID LBRACK ID RBRACK LBRACK ID RBRACK MULT ID LBRACK ID RBRACK LBRACK ID RBRACK SEMI ENDDO SEMI ENDDO SEMI ENDDO SEMI ID ASSIGN ID SEMI ID ASSIGN ID SEMI FOR ID ASSIGN INTLIT TO ID MINUS INTLIT DO FOR ID ASSIGN INTLIT TO ID MINUS INTLIT DO ID ASSIGN INTLIT SEMI ENDDO SEMI ENDDO SEMI END SEMI END SEMI <EOF> 
+
+Successful parse!
+Building symbol table and performing semantic checks...
+=============== table START ==============
+
+============== FUNCTIONS (4) =============
+< printi | ret: void | params: (int) >
+< flush | ret: void >
+< not | ret: int | params: (int) >
+< exit | ret: void | params: (int) >
+
+================ TYPES (2) ===============
+< Mat33 | fixedpt[3][3] >
+< decimal | fixedpt >
+
+============== VARIABLES (0) =============
+============== END OF TABLE ==============
+	============== table#0 START =============
+
+	================ TYPES (0) ===============
+
+	============== VARIABLES (0) =============
+	============== END OF TABLE ==============
+		============= table#0#0 START ============
+
+		================ TYPES (0) ===============
+
+		============= VARIABLES (13) =============
+		< Aheight | int >
+		< Cwidth | int >
+		< dindex | int >
+		< Cheight | int >
+		< Awidth | int >
+		< A | Mat33 (int[3][3]) >
+		< B | Mat33 (int[3][3]) >
+		< C | Mat33 (int[3][3]) >
+		< j | int >
+		< check_size_result | int >
+		< Bwidth | int >
+		< Bheight | int >
+		< i | int >
+		============== END OF TABLE ==============
+
+Successfully finished semantic checks
+============ TEMP SYMBOL TABLE ===========
+=============== table START ==============
+
+================ TYPES (0) ===============
+
+============= VARIABLES (69) =============
+< _t3 | int >
+< _t4 | int >
+< _t1 | int >
+< _t2 | int >
+< _t0 | int >
+< _t43 | int >
+< _t44 | int >
+< _t45 | int >
+< _t46 | int >
+< _t40 | int >
+< _t41 | int >
+< _t42 | int >
+< _t47 | int >
+< _t48 | int >
+< _t49 | int >
+< _t34 | int >
+< _t35 | int >
+< _t32 | int >
+< _t33 | int >
+< _t30 | int >
+< _t31 | int >
+< _t9 | int >
+< _t6 | int >
+< _t38 | int >
+< _t5 | int >
+< _t39 | int >
+< _t8 | int >
+< _t36 | int >
+< _t7 | int >
+< _t37 | int >
+< _t28 | int >
+< _t27 | int >
+< _t26 | int >
+< _t25 | int >
+< _t29 | int >
+< _t20 | int >
+< _t24 | int >
+< _t23 | int >
+< _t60 | int >
+< _t22 | int >
+< _t21 | int >
+< _t61 | int >
+< _t62 | int >
+< _t63 | int >
+< _t64 | int >
+< _t65 | int >
+< _t66 | int >
+< _t67 | int >
+< _t68 | int >
+< _t15 | int >
+< _t14 | int >
+< _t17 | int >
+< _t16 | int >
+< _t19 | int >
+< _t18 | int >
+< _t11 | int >
+< _t10 | int >
+< _t13 | int >
+< _t12 | int >
+< _t52 | int >
+< _t53 | int >
+< _t50 | int >
+< _t51 | int >
+< _t56 | int >
+< _t57 | int >
+< _t54 | int >
+< _t55 | int >
+< _t58 | int >
+< _t59 | int >
+============== END OF TABLE ==============
+
+================= IR CODE ================
+main:
+mult, 3, 3, _t0
+assign, C#0, _t0, 0
+mult, 3, 3, _t1
+assign, A#3, _t1, 0
+mult, 3, 3, _t2
+assign, B#4, _t2, 0
+assign, Aheight#5, 3,
+assign, Awidth#6, 3,
+assign, Bheight#7, 3,
+assign, Bwidth#8, 3,
+assign, i#10, 0,
+assign, j#11, 0,
+assign, dindex#12, 0,
+mult, 0, 3, _t3
+add, _t3, 0, _t4
+array_store, A#3, _t4, 1
+mult, 0, 3, _t5
+add, _t5, 1, _t6
+array_store, A#3, _t6, 2.022
+mult, 0, 3, _t7
+add, _t7, 2, _t8
+array_store, A#3, _t8, 3.1
+mult, 1, 3, _t9
+add, _t9, 0, _t10
+array_store, A#3, _t10, 4.4
+mult, 1, 3, _t11
+add, _t11, 1, _t12
+array_store, A#3, _t12, 5
+mult, 1, 3, _t13
+add, _t13, 2, _t14
+array_store, A#3, _t14, 6
+mult, 2, 3, _t15
+add, _t15, 0, _t16
+array_store, A#3, _t16, 7.10
+mult, 2, 3, _t17
+add, _t17, 1, _t18
+array_store, A#3, _t18, 8
+mult, 2, 3, _t19
+add, _t19, 2, _t20
+array_store, A#3, _t20, 9
+mult, 0, 3, _t21
+add, _t21, 0, _t22
+array_store, B#4, _t22, 4.1
+mult, 0, 3, _t23
+add, _t23, 1, _t24
+array_store, B#4, _t24, 5
+mult, 0, 3, _t25
+add, _t25, 2, _t26
+array_store, B#4, _t26, 2
+mult, 1, 3, _t27
+add, _t27, 0, _t28
+array_store, B#4, _t28, 1.9
+mult, 1, 3, _t29
+add, _t29, 1, _t30
+array_store, B#4, _t30, 0.123
+mult, 1, 3, _t31
+add, _t31, 2, _t32
+array_store, B#4, _t32, 1.22
+mult, 2, 3, _t33
+add, _t33, 0, _t34
+array_store, B#4, _t34, 2.232
+mult, 2, 3, _t35
+add, _t35, 1, _t36
+array_store, B#4, _t36, 0
+mult, 2, 3, _t37
+add, _t37, 2, _t38
+array_store, B#4, _t38, 0.0
+brneq, check_size_result#9, 0, _label0
+assign, i#10, 3,
+_label0:
+sub, Bwidth#8, 1, _t40
+assign, _t41, _t40,
+assign, _t39, 0,
+_label1:
+brgt, _t39, _t41, _label2
+assign, j#11, _t39,
+add, _t39, 1, _t39
+sub, Aheight#5, 1, _t43
+assign, _t44, _t43,
+assign, _t42, 0,
+_label3:
+brgt, _t42, _t44, _label4
+assign, i#10, _t42,
+add, _t42, 1, _t42
+mult, i#10, 3, _t45
+add, _t45, j#11, _t46
+array_store, C#0, _t46, 0
+sub, Aheight#5, 1, _t48
+assign, _t49, _t48,
+assign, _t47, 0,
+_label5:
+brgt, _t47, _t49, _label6
+assign, dindex#12, _t47,
+add, _t47, 1, _t47
+mult, i#10, 3, _t50
+add, _t50, j#11, _t51
+mult, i#10, 3, _t52
+add, _t52, j#11, _t53
+array_load, _t54, C#0, _t53
+mult, i#10, 3, _t55
+add, _t55, dindex#12, _t56
+array_load, _t57, A#3, _t56
+mult, dindex#12, 3, _t58
+add, _t58, j#11, _t59
+array_load, _t60, B#4, _t59
+mult, _t57, _t60, _t61
+add, _t54, _t61, _t62
+array_store, C#0, _t51, _t62
+goto, _label5, ,
+_label6:
+goto, _label3, ,
+_label4:
+goto, _label1, ,
+_label2:
+assign, Cheight#1, Aheight#5,
+assign, Cwidth#2, Bwidth#8,
+sub, Cheight#1, 1, _t64
+assign, _t65, _t64,
+assign, _t63, 0,
+_label7:
+brgt, _t63, _t65, _label8
+assign, i#10, _t63,
+add, _t63, 1, _t63
+sub, Cwidth#2, 1, _t67
+assign, _t68, _t67,
+assign, _t66, 0,
+_label9:
+brgt, _t66, _t68, _label10
+assign, j#11, _t66,
+add, _t66, 1, _t66
+assign, i#10, 3,
+goto, _label9, ,
+_label10:
+goto, _label7, ,
+_label8:
+return, , ,
+=============== END IR CODE ==============
+=== ASSEMBLY CODE WITH NAIVE REG ALLOC ===
+[DEBUG] root symbolTable is: cs4240_team1.SymbolTable@55aef45
+[DEBUG] children are: cs4240_team1.SymbolTable@15129dc2
+[DEBUG] 
+Load Awidth#0, temp#0
+Load Bwidth#1, temp#1
+brneq temp#0, temp#1, _label0
+return, 1, ,
+goto, _label1, ,
+return, 0, ,
+call, flush
+Store 123, x#2
+Store 123, y#3
+Store 123, z#4
+callr, _t1, check_size, x#2, y#3
+[DEBUG] operand being assigned is: _t1
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t1 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t1, t0
+Store t0, z#4
+MUL z#4, y#3, temp#0
+Store temp#0, _t2
+Load _t2, t0
+ADD y#3, t0, temp#1
+Store temp#1, _t3
+Load _t3, t0
+MUL z#4, t0, temp#1
+Store temp#1, _t4
+Load _t4, t0
+ADD y#3, t0, temp#1
+Store temp#1, _t5
+[DEBUG] operand being assigned is: _t5
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t5 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t5, t0
+Store t0, x#2
+DIV 2, 1, temp#0
+Store temp#0, _t6
+Load _t6, t0
+ADD 3, t0, temp#1
+Store temp#1, _t7
+Load _t7, t0
+MUL 4, t0, temp#1
+Store temp#1, _t8
+Load _t8, t0
+ADD y#3, t0, temp#1
+Store temp#1, _t9
+[DEBUG] operand being assigned is: _t9
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t9 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t9, t0
+Store t0, y#3
+return, 0.000, ,
+MUL 10, 10, temp#0
+Store temp#0, _t11
+Load _t11, temp#0
+Store 2, index#7
+MUL 0, 10, temp#0
+Store temp#0, _t12
+Load _t12, t0
+ADD t0, 0, temp#1
+Store temp#1, _t13
+Load arr_1D#5[0], temp#0
+Store temp#0, _t14
+MUL 5, 2, temp#0
+Store temp#0, _t15
+Load _t14, t0
+Load _t15, t1
+ADD t0, t1, temp#2
+Store temp#2, _t16
+Load _t13, temp#0
+Load _t16, temp#1
+Store arr_2D__#6[temp#0], temp#1
+MUL 1, 10, temp#0
+Store temp#0, _t17
+Load _t17, t0
+ADD t0, 1, temp#1
+Store temp#1, _t18
+MUL 1, index#7, temp#0
+Store temp#0, _t19
+Load _t19, t0
+ADD 3, t0, temp#1
+Store temp#1, _t20
+Load _t20, t0
+MUL t0, 10, temp#1
+Store temp#1, _t21
+Load _t21, t0
+ADD t0, 0, temp#1
+Store temp#1, _t22
+Load _t22, temp#0
+Load arr_2D__#6[temp#0], temp#1
+Store temp#1, _t23
+Load arr_1D#5[0], temp#0
+Store temp#0, _t24
+Load _t24, t0
+MUL 5, t0, temp#1
+Store temp#1, _t25
+Load _t23, t0
+Load _t25, t1
+ADD t0, t1, temp#2
+Store temp#2, _t26
+Load _t18, temp#0
+Load _t26, temp#1
+Store arr_2D__#6[temp#0], temp#1
+MUL 5, 2, temp#0
+Store temp#0, _t27
+Load arr_1D#5[5], temp#0
+Store temp#0, _t28
+Load _t27, t0
+Load _t28, t1
+ADD t0, t1, temp#2
+Store temp#2, _t29
+Load index#7, temp#0
+Load _t29, temp#1
+Store arr_1D#5[temp#0], temp#1
+MUL 1, 10, temp#0
+Store temp#0, _t30
+Load _t30, t0
+ADD t0, 1, temp#1
+Store temp#1, _t31
+Load _t31, temp#0
+Load arr_2D__#6[temp#0], temp#1
+Store temp#1, _t32
+Load _t32, t0
+MUL 0, t0, temp#1
+Store temp#1, _t33
+Load _t33, temp#0
+Store arr_1D#5[1], temp#0
+return, , ,
+call, printi, 0
+return, , ,
+Load power#9, temp#0
+brneq temp#0, 0, _label2
+return, num#8, ,
+goto, _label3, ,
+[DEBUG] operand being assigned is: num#8
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store num#8, out#10
+SUB power#9, 1, temp#0
+Store temp#0, _t36
+[DEBUG] operand being assigned is: _t36
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t36 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t36, t0
+Store t0, _t37
+Store 1, _t35
+Load _t35, temp#0
+Load _t37, temp#1
+brgt temp#0, temp#1, _label5
+[DEBUG] operand being assigned is: _t35
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t35 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t35, t0
+Store t0, i#11
+Load _t35, t0
+ADD t0, 1, temp#1
+Store temp#1, _t35
+MUL out#10, num#8, temp#0
+Store temp#0, _t38
+[DEBUG] operand being assigned is: _t38
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t38 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t38, t0
+Store t0, out#10
+goto, _label4, ,
+return, out#10, ,
+Store 0, out#13
+Load num#12, temp#0
+brlt temp#0, 1, _label7
+ADD out#13, 1, temp#0
+Store temp#0, _t39
+[DEBUG] operand being assigned is: _t39
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t39 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t39, t0
+Store t0, out#13
+DIV num#12, 10, temp#0
+Store temp#0, _t40
+[DEBUG] operand being assigned is: _t40
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t40 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t40, t0
+Store t0, num#12
+goto, _label6, ,
+return, out#13, ,
+Store 0, out#19
+callr, _t41, num_length, num#14
+[DEBUG] operand being assigned is: _t41
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t41 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t41, t0
+Store t0, nlength#16
+DIV nlength#16, 2, temp#0
+Store temp#0, _t42
+[DEBUG] operand being assigned is: _t42
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t42 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t42, t0
+Store t0, n#17
+MUL 2, n#17, temp#0
+Store temp#0, _t43
+callr, _t44, m_pow, 10, _t43
+[DEBUG] operand being assigned is: _t44
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t44 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t44, t0
+Store t0, tenfactor#15
+DIV num#14, tenfactor#15, temp#0
+Store temp#0, _t45
+[DEBUG] operand being assigned is: _t45
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t45 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t45, t0
+Store t0, a#18
+Load a#18, temp#0
+brleq temp#0, 10, _label8
+callr, _t46, m_pow, 10, n#17
+[DEBUG] operand being assigned is: _t46
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t46 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t46, t0
+Store t0, pow_result#20
+MUL 2, pow_result#20, temp#0
+Store temp#0, _t47
+return, _t47, ,
+goto, _label9, ,
+callr, _t48, m_pow, 10, n#17
+[DEBUG] operand being assigned is: _t48
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t48 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t48, t0
+Store t0, pow_result#21
+MUL 6, pow_result#21, temp#0
+Store temp#0, _t49
+return, _t49, ,
+Load num#22, temp#0
+brleq temp#0, 0, _label10
+SUB 0, num#22, temp#0
+Store temp#0, _t50
+return, _t50, ,
+goto, _label11, ,
+return, num#22, ,
+Store 0, counter#29
+callr, _t51, generate_sqrt_guess, num#23
+[DEBUG] operand being assigned is: _t51
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t51 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t51, t0
+Store t0, guess#24
+[DEBUG] operand being assigned is: guess#24
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store guess#24, x#25
+callr, _t52, m_pow, x#25, 2
+[DEBUG] operand being assigned is: _t52
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t52 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t52, t0
+Store t0, pow_result#27
+SUB num#23, pow_result#27, temp#0
+Store temp#0, _t53
+MUL 2, x#25, temp#0
+Store temp#0, _t54
+Load _t53, t0
+Load _t54, t1
+DIV t0, t1, temp#2
+Store temp#2, _t55
+[DEBUG] operand being assigned is: _t55
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t55 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t55, t0
+Store t0, e#26
+callr, _t56, m_abs, e#26
+[DEBUG] operand being assigned is: _t56
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t56 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t56, t0
+Store t0, abs_result#28
+DIV abs_result#28, x#25, temp#0
+Store temp#0, _t57
+Load _t57, temp#0
+Load 0.01, temp#1
+Wrong command
+Load counter#29, temp#0
+brleq temp#0, 100, _label13
+ADD x#25, e#26, temp#0
+Store temp#0, _t58
+[DEBUG] operand being assigned is: _t58
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t58 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t58, t0
+Store t0, x#25
+callr, _t59, m_pow, x#25, 2
+[DEBUG] operand being assigned is: _t59
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t59 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t59, t0
+Store t0, pow_result#27
+SUB num#23, pow_result#27, temp#0
+Store temp#0, _t60
+MUL 2, x#25, temp#0
+Store temp#0, _t61
+Load _t60, t0
+Load _t61, t1
+DIV t0, t1, temp#2
+Store temp#2, _t62
+[DEBUG] operand being assigned is: _t62
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t62 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t62, t0
+Store t0, e#26
+ADD counter#29, 1, temp#0
+Store temp#0, _t63
+[DEBUG] operand being assigned is: _t63
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t63 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t63, t0
+Store t0, counter#29
+callr, _t64, m_abs, e#26
+[DEBUG] operand being assigned is: _t64
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: < _t64 | int >
+[DEBUG] operandType is an instance of VarEntry!
+[DEBUG] operandType's typeId is: int
+Load _t64, t0
+Store t0, abs_result#28
+goto, _label12, ,
+return, x#25, ,
+Store 12, a#31
+[DEBUG] operand being assigned is: 2.2
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store 2.2, b#32
+return, 2.2, ,
+MUL 3, 3, temp#0
+Store temp#0, _t65
+Load _t65, temp#0
+MUL 3, 3, temp#0
+Store temp#0, _t66
+Load _t66, temp#0
+MUL 3, 3, temp#0
+Store temp#0, _t67
+Load _t67, temp#0
+Store 3, Aheight#39
+Store 3, Awidth#40
+Store 3, Bheight#41
+Store 3, Bwidth#42
+Store 0, i#44
+Store 0, j#45
+Store 0, dindex#46
+MUL 0, 3, temp#0
+Store temp#0, _t68
+Load _t68, t0
+ADD t0, 0, temp#1
+Store temp#1, _t69
+Load _t69, temp#0
+Store A#37[temp#0], 1
+MUL 0, 3, temp#0
+Store temp#0, _t70
+ADD _t70, 1, temp#0
+Store temp#0, _t71
+Load _t71, temp#0
+Load 2.022, temp#1
+Store A#37[temp#0], temp#1
+MUL 0, 3, temp#0
+Store temp#0, _t72
+ADD _t72, 2, temp#0
+Store temp#0, _t73
+Load _t73, temp#0
+Load 3.1, temp#1
+Store A#37[temp#0], temp#1
+MUL 1, 3, temp#0
+Store temp#0, _t74
+ADD _t74, 0, temp#0
+Store temp#0, _t75
+Load _t75, temp#0
+Load 4.4, temp#1
+Store A#37[temp#0], temp#1
+MUL 1, 3, temp#0
+Store temp#0, _t76
+ADD _t76, 1, temp#0
+Store temp#0, _t77
+Load _t77, temp#0
+Store A#37[temp#0], 5
+MUL 1, 3, temp#0
+Store temp#0, _t78
+ADD _t78, 2, temp#0
+Store temp#0, _t79
+Load _t79, temp#0
+Store A#37[temp#0], 6
+MUL 2, 3, temp#0
+Store temp#0, _t80
+ADD _t80, 0, temp#0
+Store temp#0, _t81
+Load _t81, temp#0
+Load 7.10, temp#1
+Store A#37[temp#0], temp#1
+MUL 2, 3, temp#0
+Store temp#0, _t82
+ADD _t82, 1, temp#0
+Store temp#0, _t83
+Load _t83, temp#0
+Store A#37[temp#0], 8
+MUL 2, 3, temp#0
+Store temp#0, _t84
+ADD _t84, 2, temp#0
+Store temp#0, _t85
+Load _t85, temp#0
+Store A#37[temp#0], 9
+MUL 0, 3, temp#0
+Store temp#0, _t86
+ADD _t86, 0, temp#0
+Store temp#0, _t87
+Load _t87, temp#0
+Load 4.1, temp#1
+Store B#38[temp#0], temp#1
+MUL 0, 3, temp#0
+Store temp#0, _t88
+ADD _t88, 1, temp#0
+Store temp#0, _t89
+Load _t89, temp#0
+Store B#38[temp#0], 5
+MUL 0, 3, temp#0
+Store temp#0, _t90
+ADD _t90, 2, temp#0
+Store temp#0, _t91
+Load _t91, temp#0
+Store B#38[temp#0], 2
+MUL 1, 3, temp#0
+Store temp#0, _t92
+ADD _t92, 0, temp#0
+Store temp#0, _t93
+Load _t93, temp#0
+Load 1.9, temp#1
+Store B#38[temp#0], temp#1
+MUL 1, 3, temp#0
+Store temp#0, _t94
+ADD _t94, 1, temp#0
+Store temp#0, _t95
+Load _t95, temp#0
+Load 0.123, temp#1
+Store B#38[temp#0], temp#1
+MUL 1, 3, temp#0
+Store temp#0, _t96
+ADD _t96, 2, temp#0
+Store temp#0, _t97
+Load _t97, temp#0
+Load 1.22, temp#1
+Store B#38[temp#0], temp#1
+MUL 2, 3, temp#0
+Store temp#0, _t98
+ADD _t98, 0, temp#0
+Store temp#0, _t99
+Load _t99, temp#0
+Load 2.232, temp#1
+Store B#38[temp#0], temp#1
+MUL 2, 3, temp#0
+Store temp#0, _t100
+ADD _t100, 1, temp#0
+Store temp#0, _t101
+Load _t101, temp#0
+Store B#38[temp#0], 0
+MUL 2, 3, temp#0
+Store temp#0, _t102
+ADD _t102, 2, temp#0
+Store temp#0, _t103
+Load _t103, temp#0
+Load 0.0, temp#1
+Store B#38[temp#0], temp#1
+callr, _t104, check_size, Awidth#40, Bheight#41
+[DEBUG] operand being assigned is: _t104
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t104, check_size_result#43
+Load check_size_result#43, temp#0
+brneq temp#0, 0, _label15
+call, exit, 0
+SUB Bwidth#42, 1, temp#0
+Store temp#0, _t107
+[DEBUG] operand being assigned is: _t107
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t107, _t108
+Store 0, _t106
+Load _t106, temp#0
+Load _t108, temp#1
+brgt temp#0, temp#1, _label17
+[DEBUG] operand being assigned is: _t106
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t106, j#45
+ADD _t106, 1, temp#0
+Store temp#0, _t106
+SUB Aheight#39, 1, temp#0
+Store temp#0, _t110
+[DEBUG] operand being assigned is: _t110
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t110, _t111
+Store 0, _t109
+Load _t109, temp#0
+Load _t111, temp#1
+brgt temp#0, temp#1, _label19
+[DEBUG] operand being assigned is: _t109
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t109, i#44
+ADD _t109, 1, temp#0
+Store temp#0, _t109
+MUL i#44, 3, temp#0
+Store temp#0, _t112
+ADD _t112, j#45, temp#0
+Store temp#0, _t113
+Load _t113, temp#0
+Store C#34[temp#0], 0
+SUB Aheight#39, 1, temp#0
+Store temp#0, _t115
+[DEBUG] operand being assigned is: _t115
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t115, _t116
+Store 0, _t114
+Load _t114, temp#0
+Load _t116, temp#1
+brgt temp#0, temp#1, _label21
+[DEBUG] operand being assigned is: _t114
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t114, dindex#46
+ADD _t114, 1, temp#0
+Store temp#0, _t114
+MUL i#44, 3, temp#0
+Store temp#0, _t117
+ADD _t117, j#45, temp#0
+Store temp#0, _t118
+MUL i#44, 3, temp#0
+Store temp#0, _t119
+ADD _t119, j#45, temp#0
+Store temp#0, _t120
+Load _t120, temp#0
+Load C#34[temp#0], temp#1
+Store temp#1, _t121
+MUL i#44, 3, temp#0
+Store temp#0, _t122
+ADD _t122, dindex#46, temp#0
+Store temp#0, _t123
+Load _t123, temp#0
+Load A#37[temp#0], temp#1
+Store temp#1, _t124
+MUL dindex#46, 3, temp#0
+Store temp#0, _t125
+ADD _t125, j#45, temp#0
+Store temp#0, _t126
+Load _t126, temp#0
+Load B#38[temp#0], temp#1
+Store temp#1, _t127
+MUL _t124, _t127, temp#0
+Store temp#0, _t128
+ADD _t121, _t128, temp#0
+Store temp#0, _t129
+Load _t118, temp#0
+Load _t129, temp#1
+Store C#34[temp#0], temp#1
+goto, _label20, ,
+goto, _label18, ,
+goto, _label16, ,
+[DEBUG] operand being assigned is: Aheight#39
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store Aheight#39, Cheight#35
+[DEBUG] operand being assigned is: Bwidth#42
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store Bwidth#42, Cwidth#36
+SUB Cheight#35, 1, temp#0
+Store temp#0, _t131
+[DEBUG] operand being assigned is: _t131
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t131, _t132
+Store 0, _t130
+Load _t130, temp#0
+Load _t132, temp#1
+brgt temp#0, temp#1, _label23
+[DEBUG] operand being assigned is: _t130
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t130, i#44
+ADD _t130, 1, temp#0
+Store temp#0, _t130
+SUB Cwidth#36, 1, temp#0
+Store temp#0, _t134
+[DEBUG] operand being assigned is: _t134
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t134, _t135
+Store 0, _t133
+Load _t133, temp#0
+Load _t135, temp#1
+brgt temp#0, temp#1, _label25
+[DEBUG] operand being assigned is: _t133
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t133, j#45
+ADD _t133, 1, temp#0
+Store temp#0, _t133
+MUL i#44, 3, temp#0
+Store temp#0, _t136
+ADD _t136, j#45, temp#0
+Store temp#0, _t137
+MUL i#44, 3, temp#0
+Store temp#0, _t138
+ADD _t138, j#45, temp#0
+Store temp#0, _t139
+Load _t139, temp#0
+Load C#34[temp#0], temp#1
+Store temp#1, _t140
+callr, _t141, m_sqrt, _t140
+Load _t137, temp#0
+Load _t141, temp#1
+Store C#34[temp#0], temp#1
+goto, _label24, ,
+goto, _label22, ,
+SUB Cheight#35, 1, temp#0
+Store temp#0, _t143
+[DEBUG] operand being assigned is: _t143
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t143, _t144
+Store 0, _t142
+Load _t142, temp#0
+Load _t144, temp#1
+brgt temp#0, temp#1, _label27
+[DEBUG] operand being assigned is: _t142
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t142, i#44
+ADD _t142, 1, temp#0
+Store temp#0, _t142
+SUB Cwidth#36, 1, temp#0
+Store temp#0, _t146
+[DEBUG] operand being assigned is: _t146
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t146, _t147
+Store 0, _t145
+Load _t145, temp#0
+Load _t147, temp#1
+brgt temp#0, temp#1, _label29
+[DEBUG] operand being assigned is: _t145
+[DEBUG] first looking up the global symbol table's children tables...
+[DEBUG] operand not found in chidlren tables...now looking up tempSymbolTable
+[DEBUG] operandType is: null
+Store _t145, j#45
+ADD _t145, 1, temp#0
+Store temp#0, _t145
+call, flush
+goto, _label28, ,
+goto, _label26, ,
+return, , ,
+= END ASSEMBLY CODE WITH NAIVE REG ALLOC =
+==========================================
