@@ -1,282 +1,137 @@
-brneq, Awidth#0, Bwidth#1, _label0
-return, 1, ,
-goto, _label1, ,
-return, 0, ,
-call, flush
-assign, x#2, 123,
-assign, y#3, 123,
-assign, z#4, 123,
-callr, _t1, check_size, x#2, y#3
-assign, z#4, _t1,
-mult, z#4, y#3, _t2
-add, y#3, _t2, _t3
-mult, z#4, _t3, _t4
-add, y#3, _t4, _t5
-assign, x#2, _t5,
-div, 2, 1, _t6
-add, 3, _t6, _t7
-mult, 4, _t7, _t8
-add, y#3, _t8, _t9
-assign, y#3, _t9,
-return, 0.000, ,
-assign, arr_1D#5, 10, 0
-mult, 10, 10, _t11
-assign, arr_2D__#6, _t11, 1
-assign, index#7, 2,
-mult, 0, 10, _t12
-add, _t12, 0, _t13
-array_load, _t14, arr_1D#5, 0
-mult, 5, 2, _t15
-add, _t14, _t15, _t16
-array_store, arr_2D__#6, _t13, _t16
-mult, 1, 10, _t17
+mult, 3, 3, _t0
+assign, C#0, _t0, 0
+mult, 3, 3, _t1
+assign, A#3, _t1, 0
+mult, 3, 3, _t2
+assign, B#4, _t2, 0
+assign, Aheight#5, 3,
+assign, Awidth#6, 3,
+assign, Bheight#7, 3,
+assign, Bwidth#8, 3,
+assign, i#10, 0,
+assign, j#11, 0,
+assign, dindex#12, 0,
+mult, 0, 3, _t3
+add, _t3, 0, _t4
+array_store, A#3, _t4, 1
+mult, 0, 3, _t5
+add, _t5, 1, _t6
+array_store, A#3, _t6, 2.022
+mult, 0, 3, _t7
+add, _t7, 2, _t8
+array_store, A#3, _t8, 3.1
+mult, 1, 3, _t9
+add, _t9, 0, _t10
+array_store, A#3, _t10, 4.4
+mult, 1, 3, _t11
+add, _t11, 1, _t12
+array_store, A#3, _t12, 5
+mult, 1, 3, _t13
+add, _t13, 2, _t14
+array_store, A#3, _t14, 6
+mult, 2, 3, _t15
+add, _t15, 0, _t16
+array_store, A#3, _t16, 7.10
+mult, 2, 3, _t17
 add, _t17, 1, _t18
-mult, 1, index#7, _t19
-add, 3, _t19, _t20
-mult, _t20, 10, _t21
+array_store, A#3, _t18, 8
+mult, 2, 3, _t19
+add, _t19, 2, _t20
+array_store, A#3, _t20, 9
+mult, 0, 3, _t21
 add, _t21, 0, _t22
-array_load, _t23, arr_2D__#6, _t22
-array_load, _t24, arr_1D#5, 0
-mult, 5, _t24, _t25
-add, _t23, _t25, _t26
-array_store, arr_2D__#6, _t18, _t26
-mult, 5, 2, _t27
-array_load, _t28, arr_1D#5, 5
-add, _t27, _t28, _t29
-array_store, arr_1D#5, index#7, _t29
-mult, 1, 10, _t30
-add, _t30, 1, _t31
-array_load, _t32, arr_2D__#6, _t31
-mult, 0, _t32, _t33
-array_store, arr_1D#5, 1, _t33
-return, , ,
-call, printi, 0
-return, , ,
-brneq, power#9, 0, _label2
-return, num#8, ,
+array_store, B#4, _t22, 4.1
+mult, 0, 3, _t23
+add, _t23, 1, _t24
+array_store, B#4, _t24, 5
+mult, 0, 3, _t25
+add, _t25, 2, _t26
+array_store, B#4, _t26, 2
+mult, 1, 3, _t27
+add, _t27, 0, _t28
+array_store, B#4, _t28, 1.9
+mult, 1, 3, _t29
+add, _t29, 1, _t30
+array_store, B#4, _t30, 0.123
+mult, 1, 3, _t31
+add, _t31, 2, _t32
+array_store, B#4, _t32, 1.22
+mult, 2, 3, _t33
+add, _t33, 0, _t34
+array_store, B#4, _t34, 2.232
+mult, 2, 3, _t35
+add, _t35, 1, _t36
+array_store, B#4, _t36, 0
+mult, 2, 3, _t37
+add, _t37, 2, _t38
+array_store, B#4, _t38, 0.0
+brneq, check_size_result#9, 0, _label0
+assign, i#10, 3,
+_label0:
+sub, Bwidth#8, 1, _t40
+assign, _t41, _t40,
+assign, _t39, 0,
+_label1:
+brgt, _t39, _t41, _label2
+assign, j#11, _t39,
+add, _t39, 1, _t39
+sub, Aheight#5, 1, _t43
+assign, _t44, _t43,
+assign, _t42, 0,
+_label3:
+brgt, _t42, _t44, _label4
+assign, i#10, _t42,
+add, _t42, 1, _t42
+mult, i#10, 3, _t45
+add, _t45, j#11, _t46
+array_store, C#0, _t46, 0
+sub, Aheight#5, 1, _t48
+assign, _t49, _t48,
+assign, _t47, 0,
+_label5:
+brgt, _t47, _t49, _label6
+assign, dindex#12, _t47,
+add, _t47, 1, _t47
+mult, i#10, 3, _t50
+add, _t50, j#11, _t51
+mult, i#10, 3, _t52
+add, _t52, j#11, _t53
+array_load, _t54, C#0, _t53
+mult, i#10, 3, _t55
+add, _t55, dindex#12, _t56
+array_load, _t57, A#3, _t56
+mult, dindex#12, 3, _t58
+add, _t58, j#11, _t59
+array_load, _t60, B#4, _t59
+mult, _t57, _t60, _t61
+add, _t54, _t61, _t62
+array_store, C#0, _t51, _t62
+goto, _label5, ,
+_label6:
 goto, _label3, ,
-assign, out#10, num#8,
-sub, power#9, 1, _t36
-assign, _t37, _t36,
-assign, _t35, 1,
-brgt, _t35, _t37, _label5
-assign, i#11, _t35,
-add, _t35, 1, _t35
-mult, out#10, num#8, _t38
-assign, out#10, _t38,
-goto, _label4, ,
-return, out#10, ,
-assign, out#13, 0,
-brlt, num#12, 1, _label7
-add, out#13, 1, _t39
-assign, out#13, _t39,
-div, num#12, 10, _t40
-assign, num#12, _t40,
-goto, _label6, ,
-return, out#13, ,
-assign, out#19, 0,
-callr, _t41, num_length, num#14
-assign, nlength#16, _t41,
-div, nlength#16, 2, _t42
-assign, n#17, _t42,
-mult, 2, n#17, _t43
-callr, _t44, m_pow, 10, _t43
-assign, tenfactor#15, _t44,
-div, num#14, tenfactor#15, _t45
-assign, a#18, _t45,
-brgeq, a#18, 10, _label8
-callr, _t46, m_pow, 10, n#17
-assign, pow_result#20, _t46,
-mult, 2, pow_result#20, _t47
-return, _t47, ,
+_label4:
+goto, _label1, ,
+_label2:
+assign, Cheight#1, Aheight#5,
+assign, Cwidth#2, Bwidth#8,
+sub, Cheight#1, 1, _t64
+assign, _t65, _t64,
+assign, _t63, 0,
+_label7:
+brgt, _t63, _t65, _label8
+assign, i#10, _t63,
+add, _t63, 1, _t63
+sub, Cwidth#2, 1, _t67
+assign, _t68, _t67,
+assign, _t66, 0,
+_label9:
+brgt, _t66, _t68, _label10
+assign, j#11, _t66,
+add, _t66, 1, _t66
+assign, i#10, 3,
 goto, _label9, ,
-callr, _t48, m_pow, 10, n#17
-assign, pow_result#21, _t48,
-mult, 6, pow_result#21, _t49
-return, _t49, ,
-brgeq, num#22, 0, _label10
-sub, 0, num#22, _t50
-return, _t50, ,
-goto, _label11, ,
-return, num#22, ,
-assign, counter#29, 0,
-callr, _t51, generate_sqrt_guess, num#23
-assign, guess#24, _t51,
-assign, x#25, guess#24,
-callr, _t52, m_pow, x#25, 2
-assign, pow_result#27, _t52,
-sub, num#23, pow_result#27, _t53
-mult, 2, x#25, _t54
-div, _t53, _t54, _t55
-assign, e#26, _t55,
-callr, _t56, m_abs, e#26
-assign, abs_result#28, _t56,
-div, abs_result#28, x#25, _t57
-brleq, _t57, 0.01, _label13
-brgeq, counter#29, 100, _label13
-add, x#25, e#26, _t58
-assign, x#25, _t58,
-callr, _t59, m_pow, x#25, 2
-assign, pow_result#27, _t59,
-sub, num#23, pow_result#27, _t60
-mult, 2, x#25, _t61
-div, _t60, _t61, _t62
-assign, e#26, _t62,
-add, counter#29, 1, _t63
-assign, counter#29, _t63,
-callr, _t64, m_abs, e#26
-assign, abs_result#28, _t64,
-goto, _label12, ,
-return, x#25, ,
-assign, a#31, 12,
-assign, b#32, 2.2,
-return, 2.2, ,
-mult, 3, 3, _t65
-assign, C#34, _t65, 0
-mult, 3, 3, _t66
-assign, A#37, _t66, 0
-mult, 3, 3, _t67
-assign, B#38, _t67, 0
-assign, Aheight#39, 3,
-assign, Awidth#40, 3,
-assign, Bheight#41, 3,
-assign, Bwidth#42, 3,
-assign, i#44, 0,
-assign, j#45, 0,
-assign, dindex#46, 0,
-mult, 0, 3, _t68
-add, _t68, 0, _t69
-array_store, A#37, _t69, 1
-mult, 0, 3, _t70
-add, _t70, 1, _t71
-array_store, A#37, _t71, 2.022
-mult, 0, 3, _t72
-add, _t72, 2, _t73
-array_store, A#37, _t73, 3.1
-mult, 1, 3, _t74
-add, _t74, 0, _t75
-array_store, A#37, _t75, 4.4
-mult, 1, 3, _t76
-add, _t76, 1, _t77
-array_store, A#37, _t77, 5
-mult, 1, 3, _t78
-add, _t78, 2, _t79
-array_store, A#37, _t79, 6
-mult, 2, 3, _t80
-add, _t80, 0, _t81
-array_store, A#37, _t81, 7.10
-mult, 2, 3, _t82
-add, _t82, 1, _t83
-array_store, A#37, _t83, 8
-mult, 2, 3, _t84
-add, _t84, 2, _t85
-array_store, A#37, _t85, 9
-mult, 0, 3, _t86
-add, _t86, 0, _t87
-array_store, B#38, _t87, 4.1
-mult, 0, 3, _t88
-add, _t88, 1, _t89
-array_store, B#38, _t89, 5
-mult, 0, 3, _t90
-add, _t90, 2, _t91
-array_store, B#38, _t91, 2
-mult, 1, 3, _t92
-add, _t92, 0, _t93
-array_store, B#38, _t93, 1.9
-mult, 1, 3, _t94
-add, _t94, 1, _t95
-array_store, B#38, _t95, 0.123
-mult, 1, 3, _t96
-add, _t96, 2, _t97
-array_store, B#38, _t97, 1.22
-mult, 2, 3, _t98
-add, _t98, 0, _t99
-array_store, B#38, _t99, 2.232
-mult, 2, 3, _t100
-add, _t100, 1, _t101
-array_store, B#38, _t101, 0
-mult, 2, 3, _t102
-add, _t102, 2, _t103
-array_store, B#38, _t103, 0.0
-callr, _t104, check_size, Awidth#40, Bheight#41
-assign, check_size_result#43, _t104,
-brneq, check_size_result#43, 0, _label15
-call, exit, 0
-sub, Bwidth#42, 1, _t107
-assign, _t108, _t107,
-assign, _t106, 0,
-brgt, _t106, _t108, _label17
-assign, j#45, _t106,
-add, _t106, 1, _t106
-sub, Aheight#39, 1, _t110
-assign, _t111, _t110,
-assign, _t109, 0,
-brgt, _t109, _t111, _label19
-assign, i#44, _t109,
-add, _t109, 1, _t109
-mult, i#44, 3, _t112
-add, _t112, j#45, _t113
-array_store, C#34, _t113, 0
-sub, Aheight#39, 1, _t115
-assign, _t116, _t115,
-assign, _t114, 0,
-brgt, _t114, _t116, _label21
-assign, dindex#46, _t114,
-add, _t114, 1, _t114
-mult, i#44, 3, _t117
-add, _t117, j#45, _t118
-mult, i#44, 3, _t119
-add, _t119, j#45, _t120
-array_load, _t121, C#34, _t120
-mult, i#44, 3, _t122
-add, _t122, dindex#46, _t123
-array_load, _t124, A#37, _t123
-mult, dindex#46, 3, _t125
-add, _t125, j#45, _t126
-array_load, _t127, B#38, _t126
-mult, _t124, _t127, _t128
-add, _t121, _t128, _t129
-array_store, C#34, _t118, _t129
-goto, _label20, ,
-goto, _label18, ,
-goto, _label16, ,
-assign, Cheight#35, Aheight#39,
-assign, Cwidth#36, Bwidth#42,
-sub, Cheight#35, 1, _t131
-assign, _t132, _t131,
-assign, _t130, 0,
-brgt, _t130, _t132, _label23
-assign, i#44, _t130,
-add, _t130, 1, _t130
-sub, Cwidth#36, 1, _t134
-assign, _t135, _t134,
-assign, _t133, 0,
-brgt, _t133, _t135, _label25
-assign, j#45, _t133,
-add, _t133, 1, _t133
-mult, i#44, 3, _t136
-add, _t136, j#45, _t137
-mult, i#44, 3, _t138
-add, _t138, j#45, _t139
-array_load, _t140, C#34, _t139
-callr, _t141, m_sqrt, _t140
-array_store, C#34, _t137, _t141
-goto, _label24, ,
-goto, _label22, ,
-sub, Cheight#35, 1, _t143
-assign, _t144, _t143,
-assign, _t142, 0,
-brgt, _t142, _t144, _label27
-assign, i#44, _t142,
-add, _t142, 1, _t142
-sub, Cwidth#36, 1, _t146
-assign, _t147, _t146,
-assign, _t145, 0,
-brgt, _t145, _t147, _label29
-assign, j#45, _t145,
-add, _t145, 1, _t145
-call, flush
-goto, _label28, ,
-goto, _label26, ,
+_label10:
+goto, _label7, ,
+_label8:
 return, , ,
 ===========END===========
