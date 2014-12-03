@@ -2,41 +2,29 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import cs4240_team1.SymbolTable;
-import cs4240_team1.SymTableWalker;
 
 public class Naive{
-    
-    public static SymbolTable symbolTable = SymTableWalker.globalSymbolTable;
     
     public static void assign (String op, String zero, String one, String two){
         int i = 0;
         if(two.equals("")){
             if(!(one.matches("\\d+"))){
-		TypeEntry operandType = symbolTable.lookupType(zero);
-		if (operandType.typeId.equals("int")) {
-		    System.out.println("Load " + one + ", " + "t" + i);
-		    one = "temp#" + i;
-		}
-		else if (operandType.typeId.equals("fixedpt")) {
-		    System.out.println("Load " + one + ", " + "f" + i);
-		    one = "temp#" + i;
-		}
+                System.out.println("Load, " + one + ", " + "temp#" + i);
                 i++;
             }
-            System.out.println("Store " + one + ", " + zero);
+            System.out.println("Store, " + one + ", " + zero);
         }
         
         //need to be implemented : assign, arr_2D__#6, _t11, 1
         //is it possible to have temp value for last argument?
         else{
             if(!(one.matches("\\d+"))){
-                System.out.println("Load " + one + ", " + "temp#" + i);
+                System.out.println("Load, " + one + ", " + "temp#" + i);
                 one = "temp#" + i;
                 i++;
             }
             if(!(two.matches("\\d+"))){
-                System.out.println("Load " + two + ", " + "temp#" + i);
+                System.out.println("Load, " + two + ", " + "temp#" + i);
                 two = "temp#" + i;
                 i++;
             }
@@ -46,33 +34,34 @@ public class Naive{
     public static void binaryOp (String op, String zero, String one, String two){
         int i = 0;
         if(!(zero.matches("\\d+"))){
-            System.out.println("Load " + zero + ", " + "temp#" + i);
+            System.out.println("Load, " + zero + ", " + "temp#" + i);
             zero = "temp#" + i;
             i++;
         }
         if(!(one.matches("\\d+"))){
-            System.out.println("Load " + one + ", " + "temp#" + i);
+            System.out.println("Load, " + one + ", " + "temp#" + i);
             one = "temp#" + i;
             i++;
         }
         switch (op) {
-            case "add"   : System.out.println("ADD " + zero + ", " + one + ", " + "temp#" + i);
+            case "add"   : System.out.println("ADD, " + zero + ", " + one + ", " + "temp#" + i);
                 break;
-            case "sub"   : System.out.println("SUB " + zero + ", " + one + ", " + "temp#" + i);
+            case "sub"   : System.out.println("SUB, " + zero + ", " + one + ", " + "temp#" + i);
                 break;
-            case "mult"  : System.out.println("MUL " + zero + ", " + one + ", " + "temp#" + i);
+            case "mult"  : System.out.println("MUL, " + zero + ", " + one + ", " + "temp#" + i);
+                
                 break;
-            case "div"   : System.out.println("DIV " + zero + ", " + one + ", " + "temp#" + i);
+            case "div"   : System.out.println("DIV, " + zero + ", " + one + ", " + "temp#" + i);
                 break;
-            case "and"   : System.out.println("AND " + zero + ", " + one + ", " + "temp#" + i);
+            case "and"   : System.out.println("AND, " + zero + ", " + one + ", " + "temp#" + i);
                 break;
-            case "or"  : System.out.println("OR " + zero + ", " + one + ", " + "temp#" + i);
+            case "or"  : System.out.println("OR, " + zero + ", " + one + ", " + "temp#" + i);
                 break;
             default    : System.out.println("Wrong command");
                 break;
         }
         
-        System.out.println("Store " + "temp#" + i + ", " + two);
+        System.out.println("Store, " + "temp#" + i + ", " + two);
         
     }
     
@@ -81,29 +70,29 @@ public class Naive{
         int i = 0;
         
         if(!(zero.matches("\\d+"))){
-            System.out.println("Load " + zero + ", " + "temp#" + i);
+            System.out.println("Load, " + zero + ", " + "temp#" + i);
             zero = "temp#" + i;
             i++;
         }
         
         if(!(one.matches("\\d+"))){
-            System.out.println("Load " + one + ", " + "temp#" + i);
+            System.out.println("Load, " + one + ", " + "temp#" + i);
             one = "temp#" + i;
             i++;
         }
         
         switch (op) {
-            case "breq"   : System.out.println("breq " + zero + ", " + one + ", " + two);
+            case "breq"   : System.out.println("breq, " + zero + ", " + one + ", " + two);
                 break;
-            case "brneq"   : System.out.println("brneq " + zero + ", " + one + ", " + two);
+            case "brneq"   : System.out.println("brneq, " + zero + ", " + one + ", " + two);
                 break;
-            case "brlt"  : System.out.println("brlt " + zero + ", " + one + ", " + two);
+            case "brlt"  : System.out.println("brlt, " + zero + ", " + one + ", " + two);
                 break;
-            case "brgt"   : System.out.println("brgt " + zero + ", " + one + ", " + two);
+            case "brgt"   : System.out.println("brgt, " + zero + ", " + one + ", " + two);
                 break;
-            case "and"   : System.out.println("brgeq " + zero + ", " + one + ", " + two);
+            case "and"   : System.out.println("brgeq, " + zero + ", " + one + ", " + two);
                 break;
-            case "brgeq"  : System.out.println("brleq " + zero + ", " + one + ", " + two);
+            case "brgeq"  : System.out.println("brleq, " + zero + ", " + one + ", " + two);
                 break;
             default    : System.out.println("Wrong command");
                 break;
@@ -115,31 +104,31 @@ public class Naive{
         int i = 0;
         if(op.equals("array_load")){
             if(!(two.matches("\\d+"))){
-                System.out.println("Load " + two + ", " + "temp#" + i);
+                System.out.println("Load, " + two + ", " + "temp#" + i);
                 two = "temp#" + i;
                 i++;
             }
             
             //dont i need to know the size of array? int.. 4 fixed point 4..
-            System.out.println("Load " + one +"[" + two + "]" + ", " + "temp#" + i);
-            System.out.println("Store " + "temp#" + i + ", " +  zero);
+            System.out.println("Load, " + one +"[" + two + "]" + ", " + "temp#" + i);
+            System.out.println("Store, " + "temp#" + i + ", " +  zero);
             
         }
         else{
             if(!(one.matches("\\d+"))){
-                System.out.println("Load " + one + ", " + "temp#" + i);
+                System.out.println("Load, " + one + ", " + "temp#" + i);
                 one = "temp#" + i;
                 i++;
             }
             
             if(!(two.matches("\\d+"))){
-                System.out.println("Load " + two + ", " + "temp#" + i);
+                System.out.println("Load, " + two + ", " + "temp#" + i);
                 two = "temp#" + i;
                 i++;
             }
             
             //dont i need to know the size of array? int.. 4 fixed point 8..
-            System.out.println("Store " + zero +"[" + one + "]" + ", " + two);
+            System.out.println("Store, " + zero +"[" + one + "]" + ", " + two);
 
         }
     }
@@ -199,6 +188,8 @@ public class Naive{
                         }
                     }
                 }
+            System.out.println("===========END===========");
+
             }catch (IOException e) {
             e.printStackTrace();
             }

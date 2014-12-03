@@ -1,5 +1,12 @@
-assign, A#3, _t1, 
-END
+Reading input from file or stdin
+Parsing input...
+
+
+Successful parse!
+Building symbol table and performing semantic checks...
+Successfully finished semantic checks
+================= IR CODE ================
+main:
 mult, 3, 3, _t0
 assign, C#0, _t0, 0
 mult, 3, 3, _t1
@@ -69,15 +76,18 @@ add, _t37, 2, _t38
 array_store, B#4, _t38, 0.0
 brneq, check_size_result#9, 0, _label0
 assign, i#10, 3,
+_label0:
 sub, Bwidth#8, 1, _t40
 assign, _t41, _t40,
 assign, _t39, 0,
+_label1:
 brgt, _t39, _t41, _label2
 assign, j#11, _t39,
 add, _t39, 1, _t39
 sub, Aheight#5, 1, _t43
 assign, _t44, _t43,
 assign, _t42, 0,
+_label3:
 brgt, _t42, _t44, _label4
 assign, i#10, _t42,
 add, _t42, 1, _t42
@@ -87,6 +97,7 @@ array_store, C#0, _t46, 0
 sub, Aheight#5, 1, _t48
 assign, _t49, _t48,
 assign, _t47, 0,
+_label5:
 brgt, _t47, _t49, _label6
 assign, dindex#12, _t47,
 add, _t47, 1, _t47
@@ -105,24 +116,32 @@ mult, _t57, _t60, _t61
 add, _t54, _t61, _t62
 array_store, C#0, _t51, _t62
 goto, _label5, ,
+_label6:
 goto, _label3, ,
+_label4:
 goto, _label1, ,
+_label2:
 assign, Cheight#1, Aheight#5,
 assign, Cwidth#2, Bwidth#8,
 sub, Cheight#1, 1, _t64
 assign, _t65, _t64,
 assign, _t63, 0,
+_label7:
 brgt, _t63, _t65, _label8
 assign, i#10, _t63,
 add, _t63, 1, _t63
 sub, Cwidth#2, 1, _t67
 assign, _t68, _t67,
 assign, _t66, 0,
+_label9:
 brgt, _t66, _t68, _label10
 assign, j#11, _t66,
 add, _t66, 1, _t66
 assign, i#10, 3,
 goto, _label9, ,
+_label10:
 goto, _label7, ,
+_label8:
 return, , ,
-===========END===========
+=============== END IR CODE ==============
+==========================================

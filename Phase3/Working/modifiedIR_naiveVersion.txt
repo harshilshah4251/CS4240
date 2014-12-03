@@ -1,0 +1,294 @@
+MUL, 3, 3, temp#0
+Store, temp#0, _t0
+Load, _t0, temp#0
+MUL, 3, 3, temp#0
+Store, temp#0, _t1
+Load, _t1, temp#0
+MUL, 3, 3, temp#0
+Store, temp#0, _t2
+Load, _t2, temp#0
+Store, 3, Aheight#5
+Store, 3, Awidth#6
+Store, 3, Bheight#7
+Store, 3, Bwidth#8
+Store, 0, i#10
+Store, 0, j#11
+Store, 0, dindex#12
+MUL, 0, 3, temp#0
+Store, temp#0, _t3
+Load, _t3, temp#0
+ADD, temp#0, 0, temp#1
+Store, temp#1, _t4
+Load, _t4, temp#0
+Store, A#3[temp#0], 1
+MUL, 0, 3, temp#0
+Store, temp#0, _t5
+Load, _t5, temp#0
+ADD, temp#0, 1, temp#1
+Store, temp#1, _t6
+Load, _t6, temp#0
+Load, 2.022, temp#1
+Store, A#3[temp#0], temp#1
+MUL, 0, 3, temp#0
+Store, temp#0, _t7
+Load, _t7, temp#0
+ADD, temp#0, 2, temp#1
+Store, temp#1, _t8
+Load, _t8, temp#0
+Load, 3.1, temp#1
+Store, A#3[temp#0], temp#1
+MUL, 1, 3, temp#0
+Store, temp#0, _t9
+Load, _t9, temp#0
+ADD, temp#0, 0, temp#1
+Store, temp#1, _t10
+Load, _t10, temp#0
+Load, 4.4, temp#1
+Store, A#3[temp#0], temp#1
+MUL, 1, 3, temp#0
+Store, temp#0, _t11
+Load, _t11, temp#0
+ADD, temp#0, 1, temp#1
+Store, temp#1, _t12
+Load, _t12, temp#0
+Store, A#3[temp#0], 5
+MUL, 1, 3, temp#0
+Store, temp#0, _t13
+Load, _t13, temp#0
+ADD, temp#0, 2, temp#1
+Store, temp#1, _t14
+Load, _t14, temp#0
+Store, A#3[temp#0], 6
+MUL, 2, 3, temp#0
+Store, temp#0, _t15
+Load, _t15, temp#0
+ADD, temp#0, 0, temp#1
+Store, temp#1, _t16
+Load, _t16, temp#0
+Load, 7.10, temp#1
+Store, A#3[temp#0], temp#1
+MUL, 2, 3, temp#0
+Store, temp#0, _t17
+Load, _t17, temp#0
+ADD, temp#0, 1, temp#1
+Store, temp#1, _t18
+Load, _t18, temp#0
+Store, A#3[temp#0], 8
+MUL, 2, 3, temp#0
+Store, temp#0, _t19
+Load, _t19, temp#0
+ADD, temp#0, 2, temp#1
+Store, temp#1, _t20
+Load, _t20, temp#0
+Store, A#3[temp#0], 9
+MUL, 0, 3, temp#0
+Store, temp#0, _t21
+Load, _t21, temp#0
+ADD, temp#0, 0, temp#1
+Store, temp#1, _t22
+Load, _t22, temp#0
+Load, 4.1, temp#1
+Store, B#4[temp#0], temp#1
+MUL, 0, 3, temp#0
+Store, temp#0, _t23
+Load, _t23, temp#0
+ADD, temp#0, 1, temp#1
+Store, temp#1, _t24
+Load, _t24, temp#0
+Store, B#4[temp#0], 5
+MUL, 0, 3, temp#0
+Store, temp#0, _t25
+Load, _t25, temp#0
+ADD, temp#0, 2, temp#1
+Store, temp#1, _t26
+Load, _t26, temp#0
+Store, B#4[temp#0], 2
+MUL, 1, 3, temp#0
+Store, temp#0, _t27
+Load, _t27, temp#0
+ADD, temp#0, 0, temp#1
+Store, temp#1, _t28
+Load, _t28, temp#0
+Load, 1.9, temp#1
+Store, B#4[temp#0], temp#1
+MUL, 1, 3, temp#0
+Store, temp#0, _t29
+Load, _t29, temp#0
+ADD, temp#0, 1, temp#1
+Store, temp#1, _t30
+Load, _t30, temp#0
+Load, 0.123, temp#1
+Store, B#4[temp#0], temp#1
+MUL, 1, 3, temp#0
+Store, temp#0, _t31
+Load, _t31, temp#0
+ADD, temp#0, 2, temp#1
+Store, temp#1, _t32
+Load, _t32, temp#0
+Load, 1.22, temp#1
+Store, B#4[temp#0], temp#1
+MUL, 2, 3, temp#0
+Store, temp#0, _t33
+Load, _t33, temp#0
+ADD, temp#0, 0, temp#1
+Store, temp#1, _t34
+Load, _t34, temp#0
+Load, 2.232, temp#1
+Store, B#4[temp#0], temp#1
+MUL, 2, 3, temp#0
+Store, temp#0, _t35
+Load, _t35, temp#0
+ADD, temp#0, 1, temp#1
+Store, temp#1, _t36
+Load, _t36, temp#0
+Store, B#4[temp#0], 0
+MUL, 2, 3, temp#0
+Store, temp#0, _t37
+Load, _t37, temp#0
+ADD, temp#0, 2, temp#1
+Store, temp#1, _t38
+Load, _t38, temp#0
+Load, 0.0, temp#1
+Store, B#4[temp#0], temp#1
+Load, check_size_result#9, temp#0
+brneq, temp#0, 0, _label0
+Store, 3, i#10
+Load, Bwidth#8, temp#0
+SUB, temp#0, 1, temp#1
+Store, temp#1, _t40
+Load, _t40, temp#0
+Store, _t40, _t41
+Store, 0, _t39
+Load, _t39, temp#0
+Load, _t41, temp#1
+brgt, temp#0, temp#1, _label2
+Load, _t39, temp#0
+Store, _t39, j#11
+Load, _t39, temp#0
+ADD, temp#0, 1, temp#1
+Store, temp#1, _t39
+Load, Aheight#5, temp#0
+SUB, temp#0, 1, temp#1
+Store, temp#1, _t43
+Load, _t43, temp#0
+Store, _t43, _t44
+Store, 0, _t42
+Load, _t42, temp#0
+Load, _t44, temp#1
+brgt, temp#0, temp#1, _label4
+Load, _t42, temp#0
+Store, _t42, i#10
+Load, _t42, temp#0
+ADD, temp#0, 1, temp#1
+Store, temp#1, _t42
+Load, i#10, temp#0
+MUL, temp#0, 3, temp#1
+Store, temp#1, _t45
+Load, _t45, temp#0
+Load, j#11, temp#1
+ADD, temp#0, temp#1, temp#2
+Store, temp#2, _t46
+Load, _t46, temp#0
+Store, C#0[temp#0], 0
+Load, Aheight#5, temp#0
+SUB, temp#0, 1, temp#1
+Store, temp#1, _t48
+Load, _t48, temp#0
+Store, _t48, _t49
+Store, 0, _t47
+Load, _t47, temp#0
+Load, _t49, temp#1
+brgt, temp#0, temp#1, _label6
+Load, _t47, temp#0
+Store, _t47, dindex#12
+Load, _t47, temp#0
+ADD, temp#0, 1, temp#1
+Store, temp#1, _t47
+Load, i#10, temp#0
+MUL, temp#0, 3, temp#1
+Store, temp#1, _t50
+Load, _t50, temp#0
+Load, j#11, temp#1
+ADD, temp#0, temp#1, temp#2
+Store, temp#2, _t51
+Load, i#10, temp#0
+MUL, temp#0, 3, temp#1
+Store, temp#1, _t52
+Load, _t52, temp#0
+Load, j#11, temp#1
+ADD, temp#0, temp#1, temp#2
+Store, temp#2, _t53
+Load, _t53, temp#0
+Load, C#0[temp#0], temp#1
+Store, temp#1, _t54
+Load, i#10, temp#0
+MUL, temp#0, 3, temp#1
+Store, temp#1, _t55
+Load, _t55, temp#0
+Load, dindex#12, temp#1
+ADD, temp#0, temp#1, temp#2
+Store, temp#2, _t56
+Load, _t56, temp#0
+Load, A#3[temp#0], temp#1
+Store, temp#1, _t57
+Load, dindex#12, temp#0
+MUL, temp#0, 3, temp#1
+Store, temp#1, _t58
+Load, _t58, temp#0
+Load, j#11, temp#1
+ADD, temp#0, temp#1, temp#2
+Store, temp#2, _t59
+Load, _t59, temp#0
+Load, B#4[temp#0], temp#1
+Store, temp#1, _t60
+Load, _t57, temp#0
+Load, _t60, temp#1
+MUL, temp#0, temp#1, temp#2
+Store, temp#2, _t61
+Load, _t54, temp#0
+Load, _t61, temp#1
+ADD, temp#0, temp#1, temp#2
+Store, temp#2, _t62
+Load, _t51, temp#0
+Load, _t62, temp#1
+Store, C#0[temp#0], temp#1
+goto, _label5, ,
+goto, _label3, ,
+goto, _label1, ,
+Load, Aheight#5, temp#0
+Store, Aheight#5, Cheight#1
+Load, Bwidth#8, temp#0
+Store, Bwidth#8, Cwidth#2
+Load, Cheight#1, temp#0
+SUB, temp#0, 1, temp#1
+Store, temp#1, _t64
+Load, _t64, temp#0
+Store, _t64, _t65
+Store, 0, _t63
+Load, _t63, temp#0
+Load, _t65, temp#1
+brgt, temp#0, temp#1, _label8
+Load, _t63, temp#0
+Store, _t63, i#10
+Load, _t63, temp#0
+ADD, temp#0, 1, temp#1
+Store, temp#1, _t63
+Load, Cwidth#2, temp#0
+SUB, temp#0, 1, temp#1
+Store, temp#1, _t67
+Load, _t67, temp#0
+Store, _t67, _t68
+Store, 0, _t66
+Load, _t66, temp#0
+Load, _t68, temp#1
+brgt, temp#0, temp#1, _label10
+Load, _t66, temp#0
+Store, _t66, j#11
+Load, _t66, temp#0
+ADD, temp#0, 1, temp#1
+Store, temp#1, _t66
+Store, 3, i#10
+goto, _label9, ,
+goto, _label7, ,
+return, , ,
+===========END===========
