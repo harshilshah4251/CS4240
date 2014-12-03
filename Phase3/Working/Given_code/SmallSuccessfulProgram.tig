@@ -1,0 +1,7 @@
+void main() begin
+  begin
+    type IntArray = array[20] of int;
+    var x : int := 5;
+    IntArray[1*2] := 0;
+  end;
+end;
