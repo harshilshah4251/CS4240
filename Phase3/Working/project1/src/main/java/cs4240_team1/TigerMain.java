@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.List;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -210,11 +211,34 @@ public class TigerMain {
 				irCodeGenerator.g.printString();
 				System.out.println(Utility.formatHeaderForOutput("END IR CODE"));
 
+				/**
+				 * TODO Implement the Naitve allocation scheme here.
+				 * Should add if statements to decide whether using naive or other allocation analyses
+				 */
+				System.out.println(Utility.formatHeaderForOutput("ASSEMBLY CODE WITH NAIVE REG ALLOC"));
+
+				System.out.println("[DEBUG] root symbolTable is: " + walker.globalSymbolTable);
+				System.out.print("[DEBUG] children are: ");
+				List<SymbolTable> children = walker.globalSymbolTable.getChildren();
+				    for (SymbolTable child : children) {
+					System.out.print(child + "\n[DEBUG] ");
+				    }
+				System.out.print("\n");
+				Naive naiveAllocation = new Naive(walker.globalSymbolTable, irCodeGenerator.g.getTempSymbolTable());
+				naiveAllocation.generateAssembly();
+				System.out.println(Utility.formatHeaderForOutput("END ASSEMBLY CODE WITH NAIVE REG ALLOC"));
+				
 			}
 
 		} catch (RecognitionException e) {
 			System.err
 					.println("error: tree walker threw RecognitionException while walking tree");
+			e.printStackTrace();
+			System.err.println("\nterminating...");
+			System.exit(0);
+		} catch (IOException e) {  // workaround for naiveAllocation.generateAssembly()
+		    System.err
+					.println("error: naiveAllocation threw IOException.");
 			e.printStackTrace();
 			System.err.println("\nterminating...");
 			System.exit(0);
