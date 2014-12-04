@@ -38,6 +38,7 @@ public class IRInstruction {
                 build.append(op.toString());
                 for (IRCodeArgument codeArg : args) {
                     build.append(", " + codeArg.getTextForIR());
+            
                 }
 				break;
 
@@ -47,6 +48,7 @@ public class IRInstruction {
                 build.append(op.toString());
                 for (IRCodeArgument codeArg : args) {
                     build.append(", " + codeArg.getTextForIR());
+                    //System.out.println(codeArg.getTigerType());
 					commasLeft--;
                 }
 				while (commasLeft > 0) {

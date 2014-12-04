@@ -1,7 +1,7 @@
-mult, 3, 3, _t0
-assign, C#0, _t0, 0
-mult, 3, 3, _t1
+mult, 3, 0, _t0
+assign, C#0, _t0, 
 END
+mult, 3, 3, _t1
 assign, A#3, _t1, 0
 mult, 3, 3, _t2
 assign, B#4, _t2, 0

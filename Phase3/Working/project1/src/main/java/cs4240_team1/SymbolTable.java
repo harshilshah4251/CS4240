@@ -170,7 +170,7 @@ public class SymbolTable {
 		newEntry.setType(varType);
 
 		/* Now, assign a uniqueId to the var */
-		newEntry.uniqueVarId = newEntry.varId + "#" + varCounter;
+		newEntry.uniqueVarId = "__"+ newEntry.varId + "" + varCounter;
 		varCounter++;
 
 		insert(newEntry);

@@ -4,3 +4,4 @@ public interface IRCodeArgument {
     public String getTextForIR();
     public TigerType getTigerType();
 }
+

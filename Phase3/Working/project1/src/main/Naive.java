@@ -5,10 +5,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import cs4240_team1.SymbolTable;
-import cs4240_team1.SymTableWalker;
+//import cs4240_team1.SymbolTable;
+//import cs4240_team1.SymTableWalker;
 
 public class Naive{
+    /*
     private SymbolTable globalSymbolTable, tempSymbolTable;
     private List<SymbolTable> childrenSymbolTables;
     
@@ -17,6 +18,15 @@ public class Naive{
         this.childrenSymbolTables = globalSymbolTable.getChildren();
         this.tempSymbolTable = tempSymbolTable;
     }
+    */
+    private List<IRInstruction> codeList;
+    
+    
+    public Naive(List<IRInstruction> codeList) {
+        this.codeList = codeList;
+    }
+    
+    
     
     public static String newLine = "\n";
     public static String he = " ";
@@ -36,11 +46,20 @@ public class Naive{
     }
     
     
+    public static VarChecker checker = new VarChecker();
     public void assign (String op, String zero, String one, String two){
         int i = 0;
-
+        
         if(two.equals("")){
             if(!(dataSegmentContains(zero))){
+                
+               // checker.getTypeForVar(one, globalSymbolTable,  )
+                
+                
+                
+                
+                /*
+                
                 SymbolTableEntry operandType = null;
                 for (SymbolTable child : childrenSymbolTables) {
                     operandType = child.lookup(one);
@@ -50,6 +69,7 @@ public class Naive{
                 if (operandType == null) {
                     operandType = tempSymbolTable.lookup(one);
                 }
+                
                 System.out.println("operand : " + operandType);
                 
                 
@@ -61,6 +81,8 @@ public class Naive{
                         dataSegment += he + zero + ":" + empty + f + "   0" + newLine;
                     }
                 }
+                
+                */
             }
             
             
@@ -76,11 +98,11 @@ public class Naive{
                 one = temp + i;
             }
             textSegment += "sw, " + one + ", " + zero + newLine;
-            System.out.println(dataSegment + textSegment);
         }
         
         //need to be implemented
         else{
+           /*
             if(!(one.matches("\\d+"))){
                 System.out.println("Load, " + one + ", " + "temp#" + i);
                 one = "temp#" + i;
@@ -91,6 +113,7 @@ public class Naive{
                 two = "temp#" + i;
                 i++;
             }
+            */
         }
     }
     
@@ -152,7 +175,7 @@ public class Naive{
         }
         
         textSegment += "sw, " + temp + i + ", " + two + newLine;
-        System.out.println(dataSegment + textSegment);
+        //System.out.println(dataSegment + textSegment);
         
         //System.out.println("Store, " + "temp#" + i + ", " + two);
         
@@ -161,13 +184,14 @@ public class Naive{
     
     public void generateAssembly() throws IOException{
         
-        
-        try(BufferedReader br = new BufferedReader(new FileReader("IR.txt"))) {
+       // System.out.println("hi");
+        try(BufferedReader br = new BufferedReader(new FileReader("IR00.txt"))) {
+            
             String sCurrentLine = "";
             while(!sCurrentLine.contains("END")){
                 sCurrentLine = br.readLine();
                 
-                if(!(sCurrentLine.contains("END"))){
+                if(!(sCurrentLine.contains("END"))&& !(sCurrentLine.contains(":"))){
                     String op = sCurrentLine.substring(0, (sCurrentLine.indexOf(",")));
                     sCurrentLine =  sCurrentLine.substring((sCurrentLine.indexOf(",")));
                     
@@ -208,10 +232,15 @@ public class Naive{
                     }
                     
                     else{
-                        System.out.println(op + sCurrentLine);
+                        textSegment += op + sCurrentLine + newLine;
                     }
                 }
+                else if (sCurrentLine.contains(":")){
+                    textSegment += sCurrentLine + newLine;
+                }
             }
+            System.out.println(dataSegment + textSegment);
+
             System.out.println("===========END===========");
             
         }catch (IOException e) {

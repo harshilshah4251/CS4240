@@ -209,6 +209,8 @@ public class TigerMain {
 
 				System.out.println(Utility.formatHeaderForOutput("IR CODE"));
 				irCodeGenerator.g.printString();
+                
+
 				System.out.println(Utility.formatHeaderForOutput("END IR CODE"));
 
 				/**
@@ -217,14 +219,14 @@ public class TigerMain {
 				 */
 				System.out.println(Utility.formatHeaderForOutput("ASSEMBLY CODE WITH NAIVE REG ALLOC"));
 
-				System.out.println("[DEBUG] root symbolTable is: " + walker.globalSymbolTable);
-				System.out.print("[DEBUG] children are: ");
-				List<SymbolTable> children = walker.globalSymbolTable.getChildren();
-				    for (SymbolTable child : children) {
-					System.out.print(child + "\n[DEBUG] ");
-				    }
-				System.out.print("\n");
-				Naive naiveAllocation = new Naive(walker.globalSymbolTable, irCodeGenerator.g.getTempSymbolTable());
+				//System.out.println("[DEBUG] root symbolTable is: " + walker.globalSymbolTable);
+				//System.out.print("[DEBUG] children are: ");
+				//List<SymbolTable> children = walker.globalSymbolTable.getChildren();
+				    //for (SymbolTable child : children) {
+					//System.out.print(child + "\n[DEBUG] ");
+				    //}
+				//System.out.print("\n");
+				Naive naiveAllocation = new Naive(irCodeGenerator.g.getCodeList());
 				naiveAllocation.generateAssembly();
 				System.out.println(Utility.formatHeaderForOutput("END ASSEMBLY CODE WITH NAIVE REG ALLOC"));
 				
@@ -236,12 +238,6 @@ public class TigerMain {
 			e.printStackTrace();
 			System.err.println("\nterminating...");
 			System.exit(0);
-		} catch (IOException e) {  // workaround for naiveAllocation.generateAssembly()
-		    System.err
-					.println("error: naiveAllocation threw IOException.");
-			e.printStackTrace();
-			System.err.println("\nterminating...");
-			System.exit(0);
 		}
-	}
+    }
 }
