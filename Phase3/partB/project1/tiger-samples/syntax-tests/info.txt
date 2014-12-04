@@ -1,0 +1,83 @@
+This file lists the rules that teach sample program is intended to test.
+
+Notation
+    <rule-name>:                    file tests all alternatives for rule-name
+    <rule-name>  -->  NULL:         file tests NULL alternative for rule-name
+    <rule-name>  -->  non-NULL:     file tests all alternatives for rule-name,
+                                    except when it goes to NULL
+
+
+
+
+===== simple.tig =====
+<tiger-program>
+<type-declaration-list>  -->  NULL
+<funct-declaration-list>  -->  NULL
+<main-function>
+
+
+
+===== type-func-decls.tig =====
+<type-declaration-list>  -->  non-NULL
+<type-declaration>
+<type>
+<base-type>
+
+<funct-declaration-list>  -->  non-NULL
+<funct-declaration>
+<ret-type> 
+<type-id>
+<param-list>
+<param>
+<param-list-tail>
+
+
+
+===== block.tig =====
+<block-list>
+<block>
+<block-tail>
+
+<declaration_segment>
+
+<type-declaration-list>
+
+<var-declaration-list>
+<var-declaration>
+<id-list>
+<type-id>
+<optional-init>
+
+<stat_seq>
+
+
+
+===== stat.tig =====
+<stat>
+<opt-prefix>
+<expr-list>  -->  NULL
+
+
+
+===== expr.tig =====
+<expr>            NOTE - operators.tig does detailed tests for expressions with operators
+<index_expr>      NOTE - operators.tig does detailed tests for expressions with operators
+<const>
+<value>
+<value-tail>
+<expr-list>
+<expr-list-tail>
+
+
+
+===== operators.tig =====
+<expr>
+<binary_operator>
+<index_expr>
+<index_oper>
+
+
+
+===== non-null.tig =====
+TODO:  this file will have semantic errors where list-like rules go to NULL when
+they are not allowed to be null  (Example:  <id-list> can never be NULL)

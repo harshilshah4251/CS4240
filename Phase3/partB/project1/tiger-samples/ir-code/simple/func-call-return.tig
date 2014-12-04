@@ -1,0 +1,81 @@
+/* tests ops  'call', 'callr', and return' */
+
+int function func_return_arity_0() begin
+  begin
+	return 0;
+  end;
+end;
+
+int function func_return_arity_1(a: int) begin
+  begin
+	return 1;
+  end;
+end;
+
+int function func_return_arity_2(a: int, b: int) begin
+  begin
+	return 2;
+  end;
+end;
+
+int function func_return_arity_4(a: int, b: int, c: int, d: int) begin
+  begin
+	return 4;
+  end;
+end;
+
+void function func_void_arity_0() begin
+  begin
+	var x: int; x := 0;
+  end;
+end;
+
+void function func_void_arity_1(a: int) begin
+  begin
+	var x: int; x := 0;
+  end;
+end;
+
+void function func_void_arity_2(a: int, b: int) begin
+  begin
+	var x: int; x := 0;
+  end;
+end;
+
+void function func_void_arity_4(a: int, b: int, c: int, d: int) begin
+  begin
+	var x: int; x := 0;
+  end;
+end;
+
+void main() begin
+  begin
+	type Array = array[10] of int;
+
+	var CALLR_INSTRUCTIONS_BEGIN: int;
+	var CALL_INSTRUCTIONS_BEGIN: int;
+	var result: int;
+	var result_arr: Array := 0;
+
+	CALLR_INSTRUCTIONS_BEGIN := 0;
+
+	result := func_return_arity_0();
+	result := func_return_arity_1(1);
+	result := func_return_arity_2(1, 2);
+	result := func_return_arity_4(1, 2, 3, 4);
+	result_arr[0] := func_return_arity_0();
+
+	/* these should all use CALL, not CALLR, even though func is not void */
+	CALL_INSTRUCTIONS_BEGIN := 0;
+
+	func_return_arity_0();
+	func_return_arity_1(1);
+	func_return_arity_2(1, 2);
+	func_return_arity_4(1, 2, 3, 4);
+
+	func_void_arity_0();
+	func_void_arity_1(1);
+	func_void_arity_2(1, 2);
+	func_void_arity_4(1, 2, 3, 4);
+  end;
+end;

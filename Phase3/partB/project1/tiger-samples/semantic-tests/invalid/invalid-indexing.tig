@@ -1,0 +1,31 @@
+/* Tests the following...
+ *   indexing non-arrays
+ *   partial indexing 2D arrays
+ *   two levels of indexing on 1D array
+ *   indexing undeclared var
+ */
+
+void main() begin
+	begin
+		type Array = array[5] of int;
+		type Array2D = array[5][4] of int;
+
+		var non_arr: int;
+		var arr: Array := 0;
+		var arr2D: Array2D := 0;
+
+		/* undeclared */
+		undecl_arr[0] := 0;  /* ERROR */
+		undecl_arr2D[0][0] := 0;  /* ERROR */
+
+		/* non-array indexing */
+		non_arr[0] := 0;  /* ERROR */
+		non_arr[0][0] := 0;  /* ERROR */
+		
+		/* too many for 1D */
+		arr[0][0] := 0;  /* ERROR */
+
+		/* partial indexing */
+		arr2D[0] := 0;  /* ERROR */
+	end;
+end;

@@ -1,0 +1,265 @@
+/*
+ * Tests return type compatibility.
+ */
+
+type Integer = int;
+type Decimal = fixedpt;
+type Array_Int = array[10] of int;
+type Array_Fixedpt = array[10] of fixedpt;
+type Array_Int_2D = array[10][10] of int;
+type Array_Fixedpt_2D = array[10][10] of fixedpt;
+
+type Integer_Other = int;
+type Decimal_Other = fixedpt;
+
+void function void_test() begin
+  begin
+	var int_var: int := 0;
+	var fp_var: fixedpt := 0.0;
+	var Integer_var: Integer := 0;
+	var Decimal_var: Decimal := 0.0;
+	var Int_arr: Array_Int := 0;
+	var Fixedpt_arr: Array_Fixedpt := 0.0;
+	var Int_arr2D: Array_Int_2D := 0;
+	var Fixedpt_arr2D: Array_Fixedpt_2D := 0.0;
+
+	/* ERROR all invalid */
+	return 0;
+	return 0.0;
+	return int_var;
+	return fp_var;
+	return Integer_var;
+	return Decimal_var;
+	return Int_arr;
+	return Fixedpt_arr;
+	return Int_arr2D;
+	return Fixedpt_arr2D;
+  end;
+end;
+
+int function int_test() begin
+  begin
+	var int_var: int := 0;
+	var fp_var: fixedpt := 0.0;
+	var Integer_var: Integer := 0;
+	var Decimal_var: Decimal := 0.0;
+	var Int_arr: Array_Int := 0;
+	var Fixedpt_arr: Array_Fixedpt := 0.0;
+	var Int_arr2D: Array_Int_2D := 0;
+	var Fixedpt_arr2D: Array_Fixedpt_2D := 0.0;
+
+	/* valid */
+	return 0;
+	return int_var;
+
+	/* ERROR invalid */
+	return 0.0;
+	return fp_var;
+	return Integer_var;
+	return Decimal_var;
+	return Int_arr;
+	return Fixedpt_arr;
+	return Int_arr2D;
+	return Fixedpt_arr2D;
+  end;
+end;
+
+Integer function derived_int_test() begin
+  begin
+	var int_var: int := 0;
+	var fp_var: fixedpt := 0.0;
+	var Integer_var: Integer := 0;
+	var Decimal_var: Decimal := 0.0;
+	var Int_arr: Array_Int := 0;
+	var Fixedpt_arr: Array_Fixedpt := 0.0;
+	var Int_arr2D: Array_Int_2D := 0;
+	var Fixedpt_arr2D: Array_Fixedpt_2D := 0.0;
+
+	var Integer_Other_var: Integer_Other := 0;
+
+	/* valid */
+	return Integer_var;
+
+	/* ERROR all invalid */
+	return 0;
+	return 0.0;
+	return int_var;
+	return fp_var;
+	return Decimal_var;
+	return Int_arr;
+	return Fixedpt_arr;
+	return Int_arr2D;
+	return Fixedpt_arr2D;
+	return Integer_Other_var;
+  end;
+end;
+
+Array_Int function int_array_1D_test() begin
+  begin
+	var int_var: int := 0;
+	var fp_var: fixedpt := 0.0;
+	var Integer_var: Integer := 0;
+	var Decimal_var: Decimal := 0.0;
+	var Int_arr: Array_Int := 0;
+	var Fixedpt_arr: Array_Fixedpt := 0.0;
+	var Int_arr2D: Array_Int_2D := 0;
+	var Fixedpt_arr2D: Array_Fixedpt_2D := 0.0;
+
+	/* valid */
+	return Int_arr;
+
+	/* ERROR all invalid */
+	return 0;
+	return 0.0;
+	return int_var;
+	return fp_var;
+	return Integer_var;
+	return Decimal_var;
+	return Fixedpt_arr;
+	return Int_arr2D;
+	return Fixedpt_arr2D;
+  end;
+end;
+
+Array_Int_2D function int_array_2D() begin
+  begin
+	var int_var: int := 0;
+	var fp_var: fixedpt := 0.0;
+	var Integer_var: Integer := 0;
+	var Decimal_var: Decimal := 0.0;
+	var Int_arr: Array_Int := 0;
+	var Fixedpt_arr: Array_Fixedpt := 0.0;
+	var Int_arr2D: Array_Int_2D := 0;
+	var Fixedpt_arr2D: Array_Fixedpt_2D := 0.0;
+
+	/* valid */
+	return Int_arr2D;
+
+	/* ERROR all invalid */
+	return 0;
+	return 0.0;
+	return int_var;
+	return fp_var;
+	return Integer_var;
+	return Decimal_var;
+	return Int_arr;
+	return Fixedpt_arr;
+	return Fixedpt_arr2D;
+  end;
+end;
+
+fixedpt function fixedpt_var() begin
+  begin
+	var int_var: int := 0;
+	var fp_var: fixedpt := 0.0;
+	var Integer_var: Integer := 0;
+	var Decimal_var: Decimal := 0.0;
+	var Int_arr: Array_Int := 0;
+	var Fixedpt_arr: Array_Fixedpt := 0.0;
+	var Int_arr2D: Array_Int_2D := 0;
+	var Fixedpt_arr2D: Array_Fixedpt_2D := 0.0;
+
+	/* valid */
+	return 0;
+	return 0.0;
+	return int_var;
+	return fp_var;
+
+	/* ERROR all invalid */
+	return Integer_var;
+	return Decimal_var;
+	return Int_arr;
+	return Fixedpt_arr;
+	return Int_arr2D;
+	return Fixedpt_arr2D;
+  end;
+end;
+
+Decimal function fixedpt_derived() begin
+  begin
+	var int_var: int := 0;
+	var fp_var: fixedpt := 0.0;
+	var Integer_var: Integer := 0;
+	var Decimal_var: Decimal := 0.0;
+	var Int_arr: Array_Int := 0;
+	var Fixedpt_arr: Array_Fixedpt := 0.0;
+	var Int_arr2D: Array_Int_2D := 0;
+	var Fixedpt_arr2D: Array_Fixedpt_2D := 0.0;
+
+	var Decimal_Other_var: Decimal_Other := 0.0;
+
+	/* valid */
+	return Decimal_var;
+
+	/* ERROR all invalid */
+	return 0;
+	return 0.0;
+	return int_var;
+	return fp_var;
+	return Integer_var;
+	return Int_arr;
+	return Fixedpt_arr;
+	return Int_arr2D;
+	return Fixedpt_arr2D;
+  end;
+end;
+
+Array_Fixedpt function array_fixedpt_1D() begin
+  begin
+	var int_var: int := 0;
+	var fp_var: fixedpt := 0.0;
+	var Integer_var: Integer := 0;
+	var Decimal_var: Decimal := 0.0;
+	var Int_arr: Array_Int := 0;
+	var Fixedpt_arr: Array_Fixedpt := 0.0;
+	var Int_arr2D: Array_Int_2D := 0;
+	var Fixedpt_arr2D: Array_Fixedpt_2D := 0.0;
+
+	/* valid */
+	return Fixedpt_arr;
+
+	/* ERROR all invalid */
+	return 0;
+	return 0.0;
+	return int_var;
+	return fp_var;
+	return Integer_var;
+	return Decimal_var;
+	return Int_arr;
+	return Int_arr2D;
+	return Fixedpt_arr2D;
+  end;
+end;
+
+Array_Fixedpt_2D function fixedpt_arr_2D() begin
+  begin
+	var int_var: int := 0;
+	var fp_var: fixedpt := 0.0;
+	var Integer_var: Integer := 0;
+	var Decimal_var: Decimal := 0.0;
+	var Int_arr: Array_Int := 0;
+	var Fixedpt_arr: Array_Fixedpt := 0.0;
+	var Int_arr2D: Array_Int_2D := 0;
+	var Fixedpt_arr2D: Array_Fixedpt_2D := 0.0;
+
+	/* valid */
+	return Fixedpt_arr2D;
+
+	/* ERROR all invalid */
+	return 0;
+	return 0.0;
+	return int_var;
+	return fp_var;
+	return Integer_var;
+	return Decimal_var;
+	return Int_arr;
+	return Fixedpt_arr;
+	return Int_arr2D;
+  end;
+end;
+
+void main() begin
+  begin
+	flush();
+  end;
+end;

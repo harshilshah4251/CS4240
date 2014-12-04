@@ -1,0 +1,15 @@
+/* Tests that std lib calls work */
+
+void main() begin
+	begin
+		var not_result: int;
+		/* these are the only usable library functions (others use string) */
+		printi(0);
+		not(1);
+		flush();
+		exit(2);
+
+		/* CALLR */
+		not_result := not(3);
+	end;
+end;

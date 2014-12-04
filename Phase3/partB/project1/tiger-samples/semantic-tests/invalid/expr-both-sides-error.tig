@@ -1,0 +1,53 @@
+/* This tests that if both operands for an expression are invalid, errors get reported for both */
+
+type Integer = int;
+type Decimal = fixedpt;
+type Array = array[5] of int;
+type Array2D = array[5][4] of int;
+
+void main() begin
+	begin
+		var int_var: int;
+		var fixedpt_var: fixedpt;
+		var Integer_var: Integer;
+		var Decimal_var: Decimal;
+		var Array_var: Array := 0;
+		var Array2D_var: Array2D := 0;
+
+		/* arithmetic operands - invalid operand types are _boolean, array... */
+		int_var := (1 < 2) + (3 < 4);  /* ERROR */
+		int_var := ((5 = 6) & (7 = 9)) + ((10 = 11) | (12 = 13));  /* ERROR */
+		int_var := Array_var + Array2D_var;
+		
+		/* compare operands - invalid operand types are _boolean, array */
+		if (1 < 2) < (3 < 4) then  /* ERROR */
+			flush();
+		endif;
+
+		if ((5 = 6) & (7 = 9)) < ((10 = 11) | (12 = 13)) then  /* ERROR */
+			flush();
+		endif;
+
+		if Array_var < Array2D_var then  /* ERROR */
+			flush();
+		endif;
+
+		/* logical operands - invalid operand types are non _boolean */
+		if 1 & 2.0 then  /* ERROR literals */
+			flush();
+		endif;
+
+		if int_var | fixedpt_var then  /* ERROR base type vars */
+			flush();
+		endif;
+
+		if Integer_var & Decimal_var then  /* ERROR derived type vars */
+			flush();
+		endif;
+
+		if Array_var | Array2D_var then  /* ERROR array type vars */
+			flush();
+		endif;
+		
+	end;
+end;

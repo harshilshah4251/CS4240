@@ -1,0 +1,23 @@
+/* Tests for loops */
+
+void main() begin
+	begin
+		var i, j, k: int := 0;
+		var x, result_inside_loop, BEGIN_LOOP: int;
+
+		BEGIN_LOOP := 1000000000000000000000000000000;
+		for i := 0 to 1 do
+			x := result_inside_loop;
+		enddo;
+
+		BEGIN_LOOP := 1111111111111111111111111111111;
+		for i := j to k do
+			x := result_inside_loop;
+		enddo;
+
+		BEGIN_LOOP := 2222222222222222222222222222222;
+		for i := j*j to k*k do
+			x := result_inside_loop;
+		enddo;
+	end;
+end;

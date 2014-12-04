@@ -1,0 +1,46 @@
+/* Rules tested:
+ *
+ * <stat>, <opt-prefix>
+ */
+
+int function some_func() begin
+  begin
+    return 3;  /* stat -> return expr ;  is here */
+  end;
+end;
+
+void main() begin
+  begin
+
+    val := 5;
+    
+    if 1 then
+      printi(0);
+    endif;
+
+    if 1 then
+      printi(0);
+    else
+      printi(1);
+    endif;
+
+    while val do
+      val := val - 1;
+      break;  /* stat -> break; is here */
+    enddo;
+
+    for val := 1 to 5 do
+      printi(val);
+    enddo;
+
+    val := some_func();  /* opt_prefix -> value := */
+    
+    some_func();  /* opt_prefix -> null */
+
+    /* stat -> block */
+    begin
+      printi(val);
+    end;
+
+  end;
+end;

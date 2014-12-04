@@ -1,0 +1,34 @@
+/* Tests index-expr with array indexing */
+
+type Array = array[10] of int;
+type Array2D = array[10][5] of int;
+
+void main() begin
+	begin
+		var arr: Array := 0;
+		var arr2D: Array2D := 0;
+
+		var result: int;
+		var i, j, k: int := 1;
+
+		/* just using literals */
+		arr[0] := 1;
+		arr2D[0][1] := 2;
+		
+		arr[0 + 1] := 1;
+		arr2D[0 + 1][2 * 3] := 4;
+
+		/* using literal in index, but both sides of := are arrays */
+		arr[0] := arr2D[1][2];
+		arr2D[0][1] := arr[2];
+
+		arr[0 + 1] := arr2D[2 + 3][4 * 5];
+		arr2D[0 + 1][2 * 3] := arr[4 + 5];
+
+		/* using temps in index expr */
+		arr2D[i + 0 * j][k * 2 + 3] := 4;
+		arr[i + 0 * j] := 1;
+
+		arr[i + j + k] := arr2D[i * j * k][i - j - k];
+	end;
+end;

@@ -1,0 +1,322 @@
+check_size:
+1) brneq, Awidth#0, Bwidth#1, _label0
+2) return, 1, ,
+3) goto, _label1, ,
+_label0:
+4) return, 0, ,
+_label1:
+consecutive_blocks_function_returns_id_type:
+5) call, flush
+6) assign, x#2, 123,
+7) assign, y#3, 123,
+8) assign, z#4, 123,
+9) callr, _t1, check_size, x#2, y#3
+10) assign, z#4, _t1,
+11) mult, z#4, y#3, _t2
+12) add, y#3, _t2, _t3
+13) mult, z#4, _t3, _t4
+14) add, y#3, _t4, _t5
+15) assign, x#2, _t5,
+16) div, 2, 1, _t6
+17) add, 3, _t6, _t7
+18) mult, 4, _t7, _t8
+19) add, y#3, _t8, _t9
+20) assign, y#3, _t9,
+21) return, 0.000, ,
+array_expressions:
+22) assign, arr_1D#5, 10, 0
+23) mult, 10, 10, _t11
+24) assign, arr_2D__#6, _t11, 1
+25) assign, index#7, 2,
+26) mult, 0, 10, _t12
+27) add, _t12, 0, _t13
+28) array_load, _t14, arr_1D#5, 0
+29) mult, 5, 2, _t15
+30) add, _t14, _t15, _t16
+31) array_store, arr_2D__#6, _t13, _t16
+32) mult, 1, 10, _t17
+33) add, _t17, 1, _t18
+34) mult, 1, index#7, _t19
+35) add, 3, _t19, _t20
+36) mult, _t20, 10, _t21
+37) add, _t21, 0, _t22
+38) array_load, _t23, arr_2D__#6, _t22
+39) array_load, _t24, arr_1D#5, 0
+40) mult, 5, _t24, _t25
+41) add, _t23, _t25, _t26
+42) array_store, arr_2D__#6, _t18, _t26
+43) mult, 5, 2, _t27
+44) array_load, _t28, arr_1D#5, 5
+45) add, _t27, _t28, _t29
+46) array_store, arr_1D#5, index#7, _t29
+47) mult, 1, 10, _t30
+48) add, _t30, 1, _t31
+49) array_load, _t32, arr_2D__#6, _t31
+50) mult, 0, _t32, _t33
+51) array_store, arr_1D#5, 1, _t33
+52) return, , ,
+consecutive_void_functions:
+53) call, printi, 0
+54) return, , ,
+m_pow:
+55) brneq, power#9, 0, _label2
+56) return, num#8, ,
+57) goto, _label3, ,
+_label2:
+58) assign, out#10, num#8,
+59) sub, power#9, 1, _t36
+60) assign, _t37, _t36,
+61) assign, _t35, 1,
+_label4:
+62) brgt, _t35, _t37, _label5
+63) assign, i#11, _t35,
+64) add, _t35, 1, _t35
+65) mult, out#10, num#8, _t38
+66) assign, out#10, _t38,
+67) goto, _label4, ,
+_label5:
+68) return, out#10, ,
+_label3:
+num_length:
+69) assign, out#13, 0,
+_label6:
+70) brlt, num#12, 1, _label7
+71) add, out#13, 1, _t39
+72) assign, out#13, _t39,
+73) div, num#12, 10, _t40
+74) assign, num#12, _t40,
+75) goto, _label6, ,
+_label7:
+76) return, out#13, ,
+generate_sqrt_guess:
+77) assign, out#19, 0,
+78) callr, _t41, num_length, num#14
+79) assign, nlength#16, _t41,
+80) div, nlength#16, 2, _t42
+81) assign, n#17, _t42,
+82) mult, 2, n#17, _t43
+83) callr, _t44, m_pow, 10, _t43
+84) assign, tenfactor#15, _t44,
+85) div, num#14, tenfactor#15, _t45
+86) assign, a#18, _t45,
+87) brgeq, a#18, 10, _label8
+88) callr, _t46, m_pow, 10, n#17
+89) assign, pow_result#20, _t46,
+90) mult, 2, pow_result#20, _t47
+91) return, _t47, ,
+92) goto, _label9, ,
+_label8:
+93) callr, _t48, m_pow, 10, n#17
+94) assign, pow_result#21, _t48,
+95) mult, 6, pow_result#21, _t49
+96) return, _t49, ,
+_label9:
+m_abs:
+97) brgeq, num#22, 0, _label10
+98) sub, 0, num#22, _t50
+99) return, _t50, ,
+100) goto, _label11, ,
+_label10:
+101) return, num#22, ,
+_label11:
+m_sqrt:
+102) assign, counter#29, 0,
+103) callr, _t51, generate_sqrt_guess, num#23
+104) assign, guess#24, _t51,
+105) assign, x#25, guess#24,
+106) callr, _t52, m_pow, x#25, 2
+107) assign, pow_result#27, _t52,
+108) sub, num#23, pow_result#27, _t53
+109) mult, 2, x#25, _t54
+110) div, _t53, _t54, _t55
+111) assign, e#26, _t55,
+112) callr, _t56, m_abs, e#26
+113) assign, abs_result#28, _t56,
+_label12:
+114) div, abs_result#28, x#25, _t57
+115) brleq, _t57, 0.01, _label13
+116) brgeq, counter#29, 100, _label13
+_label14:
+117) add, x#25, e#26, _t58
+118) assign, x#25, _t58,
+119) callr, _t59, m_pow, x#25, 2
+120) assign, pow_result#27, _t59,
+121) sub, num#23, pow_result#27, _t60
+122) mult, 2, x#25, _t61
+123) div, _t60, _t61, _t62
+124) assign, e#26, _t62,
+125) add, counter#29, 1, _t63
+126) assign, counter#29, _t63,
+127) callr, _t64, m_abs, e#26
+128) assign, abs_result#28, _t64,
+129) goto, _label12, ,
+_label13:
+130) return, x#25, ,
+random_function:
+131) assign, a#31, 12,
+132) assign, b#32, 2.2,
+133) return, 2.2, ,
+main:
+134) mult, 3, 3, _t65
+135) assign, C#34, _t65, 0
+136) mult, 3, 3, _t66
+137) assign, A#37, _t66, 0
+138) mult, 3, 3, _t67
+139) assign, B#38, _t67, 0
+140) assign, Aheight#39, 3,
+141) assign, Awidth#40, 3,
+142) assign, Bheight#41, 3,
+143) assign, Bwidth#42, 3,
+144) assign, i#44, 0,
+145) assign, j#45, 0,
+146) assign, dindex#46, 0,
+147) mult, 0, 3, _t68
+148) add, _t68, 0, _t69
+149) array_store, A#37, _t69, 1
+150) mult, 0, 3, _t70
+151) add, _t70, 1, _t71
+152) array_store, A#37, _t71, 2.022
+153) mult, 0, 3, _t72
+154) add, _t72, 2, _t73
+155) array_store, A#37, _t73, 3.1
+156) mult, 1, 3, _t74
+157) add, _t74, 0, _t75
+158) array_store, A#37, _t75, 4.4
+159) mult, 1, 3, _t76
+160) add, _t76, 1, _t77
+161) array_store, A#37, _t77, 5
+162) mult, 1, 3, _t78
+163) add, _t78, 2, _t79
+164) array_store, A#37, _t79, 6
+165) mult, 2, 3, _t80
+166) add, _t80, 0, _t81
+167) array_store, A#37, _t81, 7.10
+168) mult, 2, 3, _t82
+169) add, _t82, 1, _t83
+170) array_store, A#37, _t83, 8
+171) mult, 2, 3, _t84
+172) add, _t84, 2, _t85
+173) array_store, A#37, _t85, 9
+174) mult, 0, 3, _t86
+175) add, _t86, 0, _t87
+176) array_store, B#38, _t87, 4.1
+177) mult, 0, 3, _t88
+178) add, _t88, 1, _t89
+179) array_store, B#38, _t89, 5
+180) mult, 0, 3, _t90
+181) add, _t90, 2, _t91
+182) array_store, B#38, _t91, 2
+183) mult, 1, 3, _t92
+184) add, _t92, 0, _t93
+185) array_store, B#38, _t93, 1.9
+186) mult, 1, 3, _t94
+187) add, _t94, 1, _t95
+188) array_store, B#38, _t95, 0.123
+189) mult, 1, 3, _t96
+190) add, _t96, 2, _t97
+191) array_store, B#38, _t97, 1.22
+192) mult, 2, 3, _t98
+193) add, _t98, 0, _t99
+194) array_store, B#38, _t99, 2.232
+195) mult, 2, 3, _t100
+196) add, _t100, 1, _t101
+197) array_store, B#38, _t101, 0
+198) mult, 2, 3, _t102
+199) add, _t102, 2, _t103
+200) array_store, B#38, _t103, 0.0
+201) callr, _t104, check_size, Awidth#40, Bheight#41
+202) assign, check_size_result#43, _t104,
+203) brneq, check_size_result#43, 0, _label15
+204) call, exit, 0
+_label15:
+205) sub, Bwidth#42, 1, _t107
+206) assign, _t108, _t107,
+207) assign, _t106, 0,
+_label16:
+208) brgt, _t106, _t108, _label17
+209) assign, j#45, _t106,
+210) add, _t106, 1, _t106
+211) sub, Aheight#39, 1, _t110
+212) assign, _t111, _t110,
+213) assign, _t109, 0,
+_label18:
+214) brgt, _t109, _t111, _label19
+215) assign, i#44, _t109,
+216) add, _t109, 1, _t109
+217) mult, i#44, 3, _t112
+218) add, _t112, j#45, _t113
+219) array_store, C#34, _t113, 0
+220) sub, Aheight#39, 1, _t115
+221) assign, _t116, _t115,
+222) assign, _t114, 0,
+_label20:
+223) brgt, _t114, _t116, _label21
+224) assign, dindex#46, _t114,
+225) add, _t114, 1, _t114
+226) mult, i#44, 3, _t117
+227) add, _t117, j#45, _t118
+228) mult, i#44, 3, _t119
+229) add, _t119, j#45, _t120
+230) array_load, _t121, C#34, _t120
+231) mult, i#44, 3, _t122
+232) add, _t122, dindex#46, _t123
+233) array_load, _t124, A#37, _t123
+234) mult, dindex#46, 3, _t125
+235) add, _t125, j#45, _t126
+236) array_load, _t127, B#38, _t126
+237) mult, _t124, _t127, _t128
+238) add, _t121, _t128, _t129
+239) array_store, C#34, _t118, _t129
+240) goto, _label20, ,
+_label21:
+241) goto, _label18, ,
+_label19:
+242) goto, _label16, ,
+_label17:
+243) assign, Cheight#35, Aheight#39,
+244) assign, Cwidth#36, Bwidth#42,
+245) sub, Cheight#35, 1, _t131
+246) assign, _t132, _t131,
+247) assign, _t130, 0,
+_label22:
+248) brgt, _t130, _t132, _label23
+249) assign, i#44, _t130,
+250) add, _t130, 1, _t130
+251) sub, Cwidth#36, 1, _t134
+252) assign, _t135, _t134,
+253) assign, _t133, 0,
+_label24:
+254) brgt, _t133, _t135, _label25
+255) assign, j#45, _t133,
+256) add, _t133, 1, _t133
+257) mult, i#44, 3, _t136
+258) add, _t136, j#45, _t137
+259) mult, i#44, 3, _t138
+260) add, _t138, j#45, _t139
+261) array_load, _t140, C#34, _t139
+262) callr, _t141, m_sqrt, _t140
+263) array_store, C#34, _t137, _t141
+264) goto, _label24, ,
+_label25:
+265) goto, _label22, ,
+_label23:
+266) sub, Cheight#35, 1, _t143
+267) assign, _t144, _t143,
+268) assign, _t142, 0,
+_label26:
+269) brgt, _t142, _t144, _label27
+270) assign, i#44, _t142,
+271) add, _t142, 1, _t142
+272) sub, Cwidth#36, 1, _t146
+273) assign, _t147, _t146,
+274) assign, _t145, 0,
+_label28:
+275) brgt, _t145, _t147, _label29
+276) assign, j#45, _t145,
+277) add, _t145, 1, _t145
+278) call, flush
+279) goto, _label28, ,
+_label29:
+280) goto, _label26, ,
+_label27:
+281) return, , ,
