@@ -1,22 +1,9 @@
-package cs4240_team1;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import cs4240_team1.SymbolTable;
-import cs4240_team1.SymTableWalker;
-
-public class Naive{
-    private SymbolTable globalSymbolTable, tempSymbolTable;
-    private List<SymbolTable> childrenSymbolTables;
-    
-    public Naive(SymbolTable globalSymbolTable, SymbolTable tempSymbolTable) {
-        this.globalSymbolTable = globalSymbolTable;
-        this.childrenSymbolTables = globalSymbolTable.getChildren();
-        this.tempSymbolTable = tempSymbolTable;
-    }
+public class NaiveAssemblyGenerator{
     
     public static String newLine = "\n";
     public static String he = " ";
@@ -36,35 +23,16 @@ public class Naive{
     }
     
     
-    public void assign (String op, String zero, String one, String two){
+    public static void assign (String op, String zero, String one, String two){
         int i = 0;
-
         if(two.equals("")){
             if(!(dataSegmentContains(zero))){
-                SymbolTableEntry operandType = null;
-                for (SymbolTable child : childrenSymbolTables) {
-                    operandType = child.lookup(one);
-                }
-                
-                //operandType is null 
-                if (operandType == null) {
-                    operandType = tempSymbolTable.lookup(one);
-                }
-                System.out.println("operand : " + operandType);
-                
-                
-                if (operandType instanceof VarEntry) {
-                    if (((VarEntry)operandType).typeId.equals("int")) {
-                        dataSegment += he + zero + ":" + empty + w + "   0" + newLine;
-                    }
-                    else if (((VarEntry)operandType).typeId.equals("fixedpt")) {
-                        dataSegment += he + zero + ":" + empty + f + "   0" + newLine;
-                    }
-                }
+                //when zero is int
+                dataSegment += he + zero + ":" + empty + w + "   0" + newLine;
+                //when zero is float
+                //    dataSegment += zero + ":" + empty + f + "   0" + newLine;
             }
-            
-            
-            if(!(one.matches("\\d+"))&& (!one.matches("[0-9]*\\.?[0-9]+"))){
+            if(!(one.matches("\\d+"))){
                 
                 if(!(dataSegmentContains(one))){
                     //when zero is int
@@ -95,7 +63,7 @@ public class Naive{
     }
     
     
-    public void binaryOp (String op, String zero, String one, String two){
+    public static void binaryOp (String op, String zero, String one, String two){
         int i = 0;
         boolean flag = false;
         if(!(two.matches("\\d+"))){
@@ -159,7 +127,7 @@ public class Naive{
     }
     
     
-    public void generateAssembly() throws IOException{
+    public static void main(String[] args) throws IOException{
         
         
         try(BufferedReader br = new BufferedReader(new FileReader("IR.txt"))) {

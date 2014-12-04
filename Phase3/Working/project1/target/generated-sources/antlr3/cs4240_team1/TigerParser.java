@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 cs4240_team1/Tiger.g 2014-12-03 09:13:48
+// $ANTLR 3.5.2 cs4240_team1/Tiger.g 2014-12-03 22:02:22
 
     package cs4240_team1;
 
@@ -821,7 +821,7 @@ public class TigerParser extends Parser {
 
 			stream_type_id.add(type_id30.getTree());
 			// AST REWRITE
-			// elements: ID, type_id
+			// elements: type_id, ID
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1389,7 +1389,7 @@ public class TigerParser extends Parser {
 			stream_SEMI.add(char_literal45);
 
 			// AST REWRITE
-			// elements: type, ID
+			// elements: ID, type
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1557,7 +1557,7 @@ public class TigerParser extends Parser {
 
 					stream_base_type.add(base_type55.getTree());
 					// AST REWRITE
-					// elements: INTLIT, base_type, ARRAY
+					// elements: base_type, INTLIT, ARRAY
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1816,7 +1816,7 @@ public class TigerParser extends Parser {
 			stream_SEMI.add(char_literal64);
 
 			// AST REWRITE
-			// elements: optional_init, type_id, id_list, VAR
+			// elements: type_id, id_list, VAR, optional_init
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -2034,7 +2034,7 @@ public class TigerParser extends Parser {
 
 					stream_literal.add(literal69.getTree());
 					// AST REWRITE
-					// elements: ASSIGN, literal
+					// elements: literal, ASSIGN
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2363,7 +2363,7 @@ public class TigerParser extends Parser {
 							stream_ENDIF.add(ENDIF76);
 
 							// AST REWRITE
-							// elements: seq2, IF, expr, seq1
+							// elements: seq1, IF, seq2, expr
 							// token labels: 
 							// rule labels: retval, seq1, seq2
 							// token list labels: 
@@ -2415,7 +2415,7 @@ public class TigerParser extends Parser {
 							stream_ENDIF.add(ENDIF77);
 
 							// AST REWRITE
-							// elements: seq1, IF, expr
+							// elements: seq1, expr, IF
 							// token labels: 
 							// rule labels: retval, seq1
 							// token list labels: 
@@ -2485,7 +2485,7 @@ public class TigerParser extends Parser {
 					stream_SEMI.add(char_literal84);
 
 					// AST REWRITE
-					// elements: stat_seq, WHILE, expr
+					// elements: expr, stat_seq, WHILE
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2553,7 +2553,7 @@ public class TigerParser extends Parser {
 					stream_SEMI.add(char_literal94);
 
 					// AST REWRITE
-					// elements: FOR, ID, stat_seq, index_expr, index_expr
+					// elements: stat_seq, FOR, index_expr, index_expr, ID
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2823,7 +2823,7 @@ public class TigerParser extends Parser {
 
 					stream_function_args.add(function_args105.getTree());
 					// AST REWRITE
-					// elements: ID, function_args
+					// elements: function_args, ID
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2873,7 +2873,7 @@ public class TigerParser extends Parser {
 
 					stream_expr_or_function_call.add(expr_or_function_call108.getTree());
 					// AST REWRITE
-					// elements: ASSIGN, value_tail, ID, expr_or_function_call
+					// elements: ID, ASSIGN, value_tail, expr_or_function_call
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -3044,7 +3044,7 @@ public class TigerParser extends Parser {
 
 							stream_function_args.add(function_args112.getTree());
 							// AST REWRITE
-							// elements: function_args, ID
+							// elements: ID, function_args
 							// token labels: 
 							// rule labels: retval
 							// token list labels: 
