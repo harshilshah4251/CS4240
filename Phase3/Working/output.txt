@@ -268,14 +268,8 @@ return, , ,
 [DEBUG] root symbolTable is: cs4240_team1.SymbolTable@55aef45
 [DEBUG] children are: cs4240_team1.SymbolTable@15129dc2
 [DEBUG] 
-1 : 
-2 : 
-operand : null
-	.data
-	.text
-		.globl main
-main:	sw, 1, _t0
-
-===========END===========
+Store 1, _t0
+MUL 3, 3.3, temp#0
+Store temp#0, _t0
 = END ASSEMBLY CODE WITH NAIVE REG ALLOC =
 ==========================================

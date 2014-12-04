@@ -46,7 +46,7 @@ public class Naive{
                     operandType = child.lookup(one);
                 }
                 
-                //operandType is null 
+                //operandType is null
                 if (operandType == null) {
                     operandType = tempSymbolTable.lookup(one);
                 }
