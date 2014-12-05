@@ -1,3 +1,4 @@
+import java.util.Comparator;
 
 public class Var{
 	public String name;
@@ -41,18 +42,26 @@ public class Var{
 		spill_cost = used + def;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Var && this.name.equals(((Var)obj).name)) {
+		//if(obj instanceof Var && this.name.equals(((Var)obj).name)) {
+		if(obj instanceof String && this.name.equals((String)obj)) {
+			return true;
+		} else if(obj instanceof Var && this.name.equals(((Var)obj).name)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-
+	
+	@Override
 	public String toString() {
 		String s = "Var: " + name + " def: " + def + " used: " + used + "\n";
 		return s;
 	}
+	
+	//@Override
+	//public int compare(
 }
 
 

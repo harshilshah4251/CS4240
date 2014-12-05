@@ -1,0 +1,25 @@
+
+type Array = array[3][3] of fixedpt;
+
+void main()
+begin
+	begin
+	var a,b,c: int := 0;
+	var f : fixedpt := 0;
+
+	a := 3;
+	b := 5;
+	c := 2;
+
+	b := a + b;
+	c := 3 + 2;
+	a := a * b;
+
+	f := a/b;
+	
+	for c := 0 to a do
+		f := 3;
+	enddo;
+
+	end;
+end;

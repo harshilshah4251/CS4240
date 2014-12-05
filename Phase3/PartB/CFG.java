@@ -25,12 +25,31 @@ public class CFG {
 		}
 		return ir;
 	}
+
+	public static ArrayList getRawIr(String fileName) {
+		ArrayList<String> ir = new ArrayList<String>();
+		try(BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+			String curr = "";
+			int i = 0;
+			while((curr = br.readLine()) != null) {
+				ir.add(curr);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ir;
+	}
 					
 	public static int getLine(String s) {
+		int r = 0;
+		if(s.contains(")")) {
 		int i = s.indexOf(")");
 		String result = s.substring(0, i);
-		int r = Integer.parseInt(result);
+		r = Integer.parseInt(result);
 		return r;
+		} else {
+			return 0;
+		}
 	}
 
 	public static BasicBlock getBlockS(LinkedList<BasicBlock> list, int blockStart) {

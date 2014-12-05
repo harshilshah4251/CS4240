@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Stack;
 
 public class Liveness {
 
@@ -140,21 +141,21 @@ System.out.println(inst);
 			Inst curr = irList.get(i);
 			ArrayList<String> used = curr.used;
 			for(int j = 0; j < used.size(); j++) {
-				if(spill.contains(used.get(j))) {
-					int index = spill.indexOf(used.get(j));
+				if(spill.contains(new Var(used.get(j)))) {
+					int index = spill.indexOf(new Var(used.get(j)));
 System.out.println(index + " of " + used.get(j));
 					Var currSpill = spill.get(index);
 					currSpill.increaseUsed();
 				} else { 
-//System.out.println("NOT FOuND : " + used.get(j));
+System.out.println("NOT FOuND : " + used.get(j));
 					Var newVar = new Var(used.get(j));
 					newVar.increaseUsed();
 					spill.add(newVar);
 				}
 			}
 			String def = curr.def;
-			if(spill.contains(def)) {
-				int index = spill.indexOf(def);
+			if(spill.contains(new Var(def))) {
+				int index = spill.indexOf(new Var(def));
 				Var currSpill = spill.get(index);
 				currSpill.increaseDef();
 			} else {
@@ -171,15 +172,91 @@ System.out.println(index + " of " + used.get(j));
 	}
 
 
+	public static void separateIntFloat(ArrayList<Var> intList, ArrayList<Var> floatList, ArrayList<Var> list) {
 
+		// by now we just put all the list in to the intList
+		intList = list;
+
+	}
+
+
+	public static void pushToStack(Stack<Var> stack, ArrayList<Var> list) {
+
+		int listSize = list.size();
+
+		for(int i = 0; i < listSize; i++) {
+			stack.push(findMin(list));
+		}
+	}
+
+	public static Var findMin(ArrayList<Var> list) {
+		Var min = list.get(0);
+		int index = 0;
+
+		for(int i = 0; i < list.size(); i++) {
+			if(min.spill_cost > list.get(i).spill_cost) {
+				min = list.get(i);
+				index = i;
+			}
+		}
+		list.remove(min);
+		return min;
+	}
+
+	public static void replaceIntIr(ArrayList<String> ir, ArrayList<Stack<Var>> stackList, LinkedList<BasicBlock> blocks) {
+
+		int start = 0;
+		int end = 0;
+		int blockInd = 0;
+		for(int i = 0; i < stackList.size(); i++ ) {
+
+			Stack<String> regs = new Stack<String>();
+			String StringT = "$t";
+			String StringS = "$s";
+			for(int j = 0; i < 10; i++ ) {
+				regs.add(StringT + i);
+			}
+			for(int j = 0; i < 8; i++) { 
+				regs.add(StringS + i);
+			}
+			
+			Stack<Var> varStack = stackList.get(blockInd);
+			String nextReg = regs.pop();
+	
+			while(!regs.empty() && !varStack.empty()) {
+
+
+			//start = blocks.get(i).start;
+			//end = blocks.get(i).end;
+
+			//if(curr.contains(")")) {
+				
+
+			//while(CFG.getLine(ir.get(j)) >= start || CFG.getLine(ir.get(
+				
+			}
+		}
+	
+
+
+	}
+
+	public static void replaceFloatIr(ArrayList<String> ir, ArrayList<Stack<Var>> stackList, LinkedList<BasicBlock> blocks) {
+
+	
+
+	}
 
 	
 	public static void main(String[] args) {
 
 		ArrayList<String> irList = CFG.getIRList(args[0]);
+		ArrayList<String> rawIrList = CFG.getRawIr(args[0]);
 		LinkedList<BasicBlock> cfg = CFG.getCFG(args[0]);
+	
 
 System.out.println(cfg);
+//System.out.println(irList);
 		branch = new ArrayList<String>();
 		binary = new ArrayList<>();
 		// Consider Array Assignemnt
@@ -199,6 +276,7 @@ System.out.println(cfg);
 		branch.add("brleq");
 
 
+		// blockList : divide IR code into each Blocks
 		ArrayList<ArrayList<String>> blockList = new ArrayList<ArrayList<String>>();
 		for(int i = 0; i < cfg.size(); i++) {
 			ArrayList<String> subList = new ArrayList<String>();
@@ -210,20 +288,50 @@ System.out.println(cfg);
 			blockList.add(subList);
 		}
 
-		//ArrayList<Inst> instList = parseInst(irList);
 
+		// Inst : tells what's declared or used in the instruction
+		// blockInstList : divide Inst for each Blocks
 		ArrayList<ArrayList<Inst>> blockInstList = new ArrayList<ArrayList<Inst>>();
 		for(int i = 0; i < blockList.size(); i++) {
 			ArrayList<Inst> instList = parseInst(blockList.get(i));
 			blockInstList.add(instList);
 		}
 
+		// Var : has how many it's used or declared
+		// blockVarList : divide each variables into each Blcoks
 		ArrayList<ArrayList<Var>> blockVarList = new ArrayList<ArrayList<Var>>();
 		for(int i = 0; i < blockInstList.size(); i++) {
 			blockVarList.add(getSpillCost(blockInstList.get(i)));
 		}
 
 		//System.out.println(blockVarList);
+
+		// has list of stacks that contains Variables
+		ArrayList<Stack<Var>> blockIntStack = new ArrayList<Stack<Var>>();
+		ArrayList<Stack<Var>> blockFloatStack = new ArrayList<Stack<Var>>();
+
+		// By now I put all the variables into the intStack
+		//pushToStack(intStack, intVarList);
+
+		for(int i = 0; i < blockVarList.size(); i++) {
+
+			ArrayList<Var> intVarList = new ArrayList<Var>();
+			ArrayList<Var> floatVarList = new ArrayList<Var>();
+
+			separateIntFloat(intVarList, floatVarList, blockVarList.get(i));
+
+			Stack<Var> intStack = new Stack<Var>();
+			Stack<Var> floatStack = new Stack<Var>();
+
+			pushToStack(intStack, intVarList);
+			pushToStack(floatStack, floatVarList);
+
+			blockIntStack.add(intStack);
+			blockFloatStack.add(floatStack);
+		}
+
+		replaceIntIr(rawIrList, blockIntStack, cfg);
+		replaceFloatIr(rawIrList, blockFloatStack, cfg);
 
 
 	}
