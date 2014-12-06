@@ -206,7 +206,8 @@ public class TigerMain {
 					System.out.println(irCodeGenerator.g.getTempSymbolTable()
 							.recursivePrettyPrintString());
 				}
-
+                
+                System.out.println(Utility.formatHeaderForOutput("Ended symbol table and giving you IR Code..."));
 				System.out.println(Utility.formatHeaderForOutput("IR CODE"));
 				irCodeGenerator.g.printString();
                 

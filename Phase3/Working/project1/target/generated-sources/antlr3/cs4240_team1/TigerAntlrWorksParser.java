@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 cs4240_team1/TigerAntlrWorks.g 2014-12-04 08:35:47
+// $ANTLR 3.5.2 cs4240_team1/TigerAntlrWorks.g 2014-12-05 17:29:54
 
     package cs4240_team1;
 
@@ -477,7 +477,7 @@ public class TigerAntlrWorksParser extends Parser {
 			stream_SEMI.add(char_literal17);
 
 			// AST REWRITE
-			// elements: param_list, block_list, FUNCTION, ID
+			// elements: block_list, ID, param_list, FUNCTION
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1013,7 +1013,7 @@ public class TigerAntlrWorksParser extends Parser {
 			stream_SEMI.add(char_literal36);
 
 			// AST REWRITE
-			// elements: declaration_segment, stat_seq
+			// elements: stat_seq, declaration_segment
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1374,7 +1374,7 @@ public class TigerAntlrWorksParser extends Parser {
 			stream_SEMI.add(char_literal45);
 
 			// AST REWRITE
-			// elements: type, ID
+			// elements: ID, type
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1542,7 +1542,7 @@ public class TigerAntlrWorksParser extends Parser {
 
 					stream_base_type.add(base_type55.getTree());
 					// AST REWRITE
-					// elements: ARRAY, INTLIT, base_type
+					// elements: base_type, INTLIT, ARRAY
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1801,7 +1801,7 @@ public class TigerAntlrWorksParser extends Parser {
 			stream_SEMI.add(char_literal64);
 
 			// AST REWRITE
-			// elements: optional_init, id_list, type_id, VAR
+			// elements: VAR, id_list, type_id, optional_init
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -2325,7 +2325,7 @@ public class TigerAntlrWorksParser extends Parser {
 							stream_ENDIF.add(ENDIF76);
 
 							// AST REWRITE
-							// elements: expr, seq1, seq2, IF
+							// elements: seq1, expr, IF, seq2
 							// token labels: 
 							// rule labels: retval, seq1, seq2
 							// token list labels: 
@@ -2377,7 +2377,7 @@ public class TigerAntlrWorksParser extends Parser {
 							stream_ENDIF.add(ENDIF77);
 
 							// AST REWRITE
-							// elements: IF, expr, seq1
+							// elements: IF, seq1, expr
 							// token labels: 
 							// rule labels: retval, seq1
 							// token list labels: 
@@ -2447,7 +2447,7 @@ public class TigerAntlrWorksParser extends Parser {
 					stream_SEMI.add(char_literal84);
 
 					// AST REWRITE
-					// elements: stat_seq, expr, WHILE
+					// elements: WHILE, expr, stat_seq
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2515,7 +2515,7 @@ public class TigerAntlrWorksParser extends Parser {
 					stream_SEMI.add(char_literal94);
 
 					// AST REWRITE
-					// elements: index_expr, FOR, ID, stat_seq, index_expr
+					// elements: index_expr, FOR, stat_seq, index_expr, ID
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2573,7 +2573,7 @@ public class TigerAntlrWorksParser extends Parser {
 					stream_SEMI.add(char_literal99);
 
 					// AST REWRITE
-					// elements: expr, RETURN
+					// elements: RETURN, expr
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2785,7 +2785,7 @@ public class TigerAntlrWorksParser extends Parser {
 
 					stream_function_args.add(function_args105.getTree());
 					// AST REWRITE
-					// elements: ID, function_args
+					// elements: function_args, ID
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2835,7 +2835,7 @@ public class TigerAntlrWorksParser extends Parser {
 
 					stream_expr_or_function_call.add(expr_or_function_call108.getTree());
 					// AST REWRITE
-					// elements: value_tail, ASSIGN, expr_or_function_call, ID
+					// elements: expr_or_function_call, ASSIGN, ID, value_tail
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -4847,7 +4847,7 @@ public class TigerAntlrWorksParser extends Parser {
 
 			stream_value_tail.add(value_tail168.getTree());
 			// AST REWRITE
-			// elements: ID, value_tail
+			// elements: value_tail, ID
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 

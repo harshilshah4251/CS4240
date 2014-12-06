@@ -1,0 +1,439 @@
+Reading input from file or stdin
+Running in debug mode (tokens will be printed as parser consumes them)...
+Parsing input...
+
+Tokens consumed by parser:
+TYPE ID EQ ARRAY LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK OF FIXEDPT SEMI TYPE ID EQ FIXEDPT SEMI VOID MAIN LPAREN RPAREN BEGIN BEGIN VAR ID COLON ID ASSIGN INTLIT SEMI VAR ID COMMA ID COLON INT SEMI VAR ID COMMA ID COLON ID ASSIGN INTLIT SEMI VAR ID COLON INT ASSIGN INTLIT SEMI VAR ID COLON INT ASSIGN INTLIT SEMI VAR ID COLON INT ASSIGN INTLIT SEMI VAR ID COLON INT ASSIGN INTLIT SEMI VAR ID COLON INT SEMI VAR ID COMMA ID COMMA ID COLON INT ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN INTLIT SEMI ID LBRACK INTLIT RBRACK LBRACK INTLIT RBRACK ASSIGN FIXEDPTLIT SEMI IF LPAREN ID EQ INTLIT RPAREN THEN ID ASSIGN INTLIT SEMI ENDIF SEMI FOR ID ASSIGN INTLIT TO ID MINUS INTLIT DO FOR ID ASSIGN INTLIT TO ID MINUS INTLIT DO ID LBRACK ID RBRACK LBRACK ID RBRACK ASSIGN INTLIT SEMI FOR ID ASSIGN INTLIT TO ID MINUS INTLIT DO ID LBRACK ID RBRACK LBRACK ID RBRACK ASSIGN ID LBRACK ID RBRACK LBRACK ID RBRACK PLUS ID LBRACK ID RBRACK LBRACK ID RBRACK MULT ID LBRACK ID RBRACK LBRACK ID RBRACK SEMI ENDDO SEMI ENDDO SEMI ENDDO SEMI ID ASSIGN ID SEMI ID ASSIGN ID SEMI FOR ID ASSIGN INTLIT TO ID MINUS INTLIT DO FOR ID ASSIGN INTLIT TO ID MINUS INTLIT DO ID ASSIGN INTLIT SEMI ENDDO SEMI ENDDO SEMI END SEMI END SEMI <EOF> 
+
+Successful parse!
+Building symbol table and performing semantic checks...
+=============== table START ==============
+
+============== FUNCTIONS (4) =============
+< printi | ret: void | params: (int) >
+< flush | ret: void >
+< not | ret: int | params: (int) >
+< exit | ret: void | params: (int) >
+
+================ TYPES (2) ===============
+< Mat33 | fixedpt[3][3] >
+< decimal | fixedpt >
+
+============== VARIABLES (0) =============
+============== END OF TABLE ==============
+	============== table#0 START =============
+
+	================ TYPES (0) ===============
+
+	============== VARIABLES (0) =============
+	============== END OF TABLE ==============
+		============= table#0#0 START ============
+
+		================ TYPES (0) ===============
+
+		============= VARIABLES (13) =============
+		< Aheight | int >
+		< Cwidth | int >
+		< dindex | int >
+		< Cheight | int >
+		< Awidth | int >
+		< A | Mat33 (int[3][3]) >
+		< B | Mat33 (int[3][3]) >
+		< C | Mat33 (int[3][3]) >
+		< j | int >
+		< check_size_result | int >
+		< Bwidth | int >
+		< Bheight | int >
+		< i | int >
+		============== END OF TABLE ==============
+
+Successfully finished semantic checks
+============ TEMP SYMBOL TABLE ===========
+=============== table START ==============
+
+================ TYPES (0) ===============
+
+============= VARIABLES (69) =============
+< _t3 | int >
+< _t4 | int >
+< _t1 | int >
+< _t2 | int >
+< _t0 | int >
+< _t43 | int >
+< _t44 | int >
+< _t45 | int >
+< _t46 | int >
+< _t40 | int >
+< _t41 | int >
+< _t42 | int >
+< _t47 | int >
+< _t48 | int >
+< _t49 | int >
+< _t34 | int >
+< _t35 | int >
+< _t32 | int >
+< _t33 | int >
+< _t30 | int >
+< _t31 | int >
+< _t9 | int >
+< _t6 | int >
+< _t38 | int >
+< _t5 | int >
+< _t39 | int >
+< _t8 | int >
+< _t36 | int >
+< _t7 | int >
+< _t37 | int >
+< _t28 | int >
+< _t27 | int >
+< _t26 | int >
+< _t25 | int >
+< _t29 | int >
+< _t20 | int >
+< _t24 | int >
+< _t23 | int >
+< _t60 | int >
+< _t22 | int >
+< _t21 | int >
+< _t61 | int >
+< _t62 | int >
+< _t63 | int >
+< _t64 | int >
+< _t65 | int >
+< _t66 | int >
+< _t67 | int >
+< _t68 | int >
+< _t15 | int >
+< _t14 | int >
+< _t17 | int >
+< _t16 | int >
+< _t19 | int >
+< _t18 | int >
+< _t11 | int >
+< _t10 | int >
+< _t13 | int >
+< _t12 | int >
+< _t52 | int >
+< _t53 | int >
+< _t50 | int >
+< _t51 | int >
+< _t56 | int >
+< _t57 | int >
+< _t54 | int >
+< _t55 | int >
+< _t58 | int >
+< _t59 | int >
+============== END OF TABLE ==============
+
+ Ended symbol table and giving you IR Code... 
+================= IR CODE ================
+main:
+mult, 3, 3, _t0
+assign, __C0, _t0, 0
+mult, 3, 3, _t1
+assign, __A3, _t1, 0
+mult, 3, 3, _t2
+assign, __B4, _t2, 0
+assign, __Aheight5, 3,
+assign, __Awidth6, 3,
+assign, __Bheight7, 3,
+assign, __Bwidth8, 3,
+assign, __i10, 0,
+assign, __j11, 0,
+assign, __dindex12, 0,
+mult, 0, 3, _t3
+add, _t3, 0, _t4
+array_store, __A3, _t4, 1
+mult, 0, 3, _t5
+add, _t5, 1, _t6
+array_store, __A3, _t6, 2.022
+mult, 0, 3, _t7
+add, _t7, 2, _t8
+array_store, __A3, _t8, 3.1
+mult, 1, 3, _t9
+add, _t9, 0, _t10
+array_store, __A3, _t10, 4.4
+mult, 1, 3, _t11
+add, _t11, 1, _t12
+array_store, __A3, _t12, 5
+mult, 1, 3, _t13
+add, _t13, 2, _t14
+array_store, __A3, _t14, 6
+mult, 2, 3, _t15
+add, _t15, 0, _t16
+array_store, __A3, _t16, 7.10
+mult, 2, 3, _t17
+add, _t17, 1, _t18
+array_store, __A3, _t18, 8
+mult, 2, 3, _t19
+add, _t19, 2, _t20
+array_store, __A3, _t20, 9
+mult, 0, 3, _t21
+add, _t21, 0, _t22
+array_store, __B4, _t22, 4.1
+mult, 0, 3, _t23
+add, _t23, 1, _t24
+array_store, __B4, _t24, 5
+mult, 0, 3, _t25
+add, _t25, 2, _t26
+array_store, __B4, _t26, 2
+mult, 1, 3, _t27
+add, _t27, 0, _t28
+array_store, __B4, _t28, 1.9
+mult, 1, 3, _t29
+add, _t29, 1, _t30
+array_store, __B4, _t30, 0.123
+mult, 1, 3, _t31
+add, _t31, 2, _t32
+array_store, __B4, _t32, 1.22
+mult, 2, 3, _t33
+add, _t33, 0, _t34
+array_store, __B4, _t34, 2.232
+mult, 2, 3, _t35
+add, _t35, 1, _t36
+array_store, __B4, _t36, 0
+mult, 2, 3, _t37
+add, _t37, 2, _t38
+array_store, __B4, _t38, 0.0
+brneq, __check_size_result9, 0, _label0
+assign, __i10, 3,
+_label0:
+sub, __Bwidth8, 1, _t40
+assign, _t41, _t40,
+assign, _t39, 0,
+_label1:
+brgt, _t39, _t41, _label2
+assign, __j11, _t39,
+add, _t39, 1, _t39
+sub, __Aheight5, 1, _t43
+assign, _t44, _t43,
+assign, _t42, 0,
+_label3:
+brgt, _t42, _t44, _label4
+assign, __i10, _t42,
+add, _t42, 1, _t42
+mult, __i10, 3, _t45
+add, _t45, __j11, _t46
+array_store, __C0, _t46, 0
+sub, __Aheight5, 1, _t48
+assign, _t49, _t48,
+assign, _t47, 0,
+_label5:
+brgt, _t47, _t49, _label6
+assign, __dindex12, _t47,
+add, _t47, 1, _t47
+mult, __i10, 3, _t50
+add, _t50, __j11, _t51
+mult, __i10, 3, _t52
+add, _t52, __j11, _t53
+array_load, _t54, __C0, _t53
+mult, __i10, 3, _t55
+add, _t55, __dindex12, _t56
+array_load, _t57, __A3, _t56
+mult, __dindex12, 3, _t58
+add, _t58, __j11, _t59
+array_load, _t60, __B4, _t59
+mult, _t57, _t60, _t61
+add, _t54, _t61, _t62
+array_store, __C0, _t51, _t62
+goto, _label5, ,
+_label6:
+goto, _label3, ,
+_label4:
+goto, _label1, ,
+_label2:
+assign, __Cheight1, __Aheight5,
+assign, __Cwidth2, __Bwidth8,
+sub, __Cheight1, 1, _t64
+assign, _t65, _t64,
+assign, _t63, 0,
+_label7:
+brgt, _t63, _t65, _label8
+assign, __i10, _t63,
+add, _t63, 1, _t63
+sub, __Cwidth2, 1, _t67
+assign, _t68, _t67,
+assign, _t66, 0,
+_label9:
+brgt, _t66, _t68, _label10
+assign, __j11, _t66,
+add, _t66, 1, _t66
+assign, __i10, 3,
+goto, _label9, ,
+_label10:
+goto, _label7, ,
+_label8:
+return, , ,
+=============== END IR CODE ==============
+=== ASSEMBLY CODE WITH NAIVE REG ALLOC ===
+instruction count : 0op : label
+instruction count : 1op : mult
+instruction count : 2op : assign
+assgin arr
+why
+instruction count : 3op : mult
+instruction count : 4op : assign
+assgin arr
+why
+instruction count : 5op : mult
+instruction count : 6op : assign
+assgin arr
+why
+instruction count : 7op : assign
+assgin var
+instruction count : 8op : assign
+assgin var
+instruction count : 9op : assign
+assgin var
+instruction count : 10op : assign
+assgin var
+instruction count : 11op : assign
+assgin var
+instruction count : 12op : assign
+assgin var
+instruction count : 13op : assign
+assgin var
+instruction count : 14op : mult
+instruction count : 15op : add
+instruction count : 16op : array_store
+instruction count : 17op : mult
+instruction count : 18op : add
+instruction count : 19op : array_store
+instruction count : 20op : mult
+instruction count : 21op : add
+instruction count : 22op : array_store
+instruction count : 23op : mult
+instruction count : 24op : add
+instruction count : 25op : array_store
+instruction count : 26op : mult
+instruction count : 27op : add
+instruction count : 28op : array_store
+instruction count : 29op : mult
+instruction count : 30op : add
+instruction count : 31op : array_store
+instruction count : 32op : mult
+instruction count : 33op : add
+instruction count : 34op : array_store
+instruction count : 35op : mult
+instruction count : 36op : add
+instruction count : 37op : array_store
+instruction count : 38op : mult
+instruction count : 39op : add
+instruction count : 40op : array_store
+instruction count : 41op : mult
+instruction count : 42op : add
+instruction count : 43op : array_store
+instruction count : 44op : mult
+instruction count : 45op : add
+instruction count : 46op : array_store
+instruction count : 47op : mult
+instruction count : 48op : add
+instruction count : 49op : array_store
+instruction count : 50op : mult
+instruction count : 51op : add
+instruction count : 52op : array_store
+instruction count : 53op : mult
+instruction count : 54op : add
+instruction count : 55op : array_store
+instruction count : 56op : mult
+instruction count : 57op : add
+instruction count : 58op : array_store
+instruction count : 59op : mult
+instruction count : 60op : add
+instruction count : 61op : array_store
+instruction count : 62op : mult
+instruction count : 63op : add
+instruction count : 64op : array_store
+instruction count : 65op : mult
+instruction count : 66op : add
+instruction count : 67op : array_store
+instruction count : 68op : brneq
+instruction count : 69op : assign
+assgin var
+instruction count : 70op : label
+instruction count : 71op : sub
+instruction count : 72op : assign
+assgin var
+instruction count : 73op : assign
+assgin var
+instruction count : 74op : label
+instruction count : 75op : brgt
+instruction count : 76op : assign
+assgin var
+instruction count : 77op : add
+instruction count : 78op : sub
+instruction count : 79op : assign
+assgin var
+instruction count : 80op : assign
+assgin var
+instruction count : 81op : label
+instruction count : 82op : brgt
+instruction count : 83op : assign
+assgin var
+instruction count : 84op : add
+instruction count : 85op : mult
+instruction count : 86op : add
+instruction count : 87op : array_store
+instruction count : 88op : sub
+instruction count : 89op : assign
+assgin var
+instruction count : 90op : assign
+assgin var
+instruction count : 91op : label
+instruction count : 92op : brgt
+instruction count : 93op : assign
+assgin var
+instruction count : 94op : add
+instruction count : 95op : mult
+instruction count : 96op : add
+instruction count : 97op : mult
+instruction count : 98op : add
+instruction count : 99op : array_load
+instruction count : 100op : mult
+instruction count : 101op : add
+instruction count : 102op : array_load
+instruction count : 103op : mult
+instruction count : 104op : add
+instruction count : 105op : array_load
+instruction count : 106op : mult
+instruction count : 107op : add
+instruction count : 108op : array_store
+instruction count : 109op : goto
+instruction count : 110op : label
+instruction count : 111op : goto
+instruction count : 112op : label
+instruction count : 113op : goto
+instruction count : 114op : label
+instruction count : 115op : assign
+assgin var
+instruction count : 116op : assign
+assgin var
+instruction count : 117op : sub
+instruction count : 118op : assign
+assgin var
+instruction count : 119op : assign
+assgin var
+instruction count : 120op : label
+instruction count : 121op : brgt
+instruction count : 122op : assign
+assgin var
+instruction count : 123op : add
+instruction count : 124op : sub
+instruction count : 125op : assign
+assgin var
+instruction count : 126op : assign
+assgin var
+instruction count : 127op : label
+instruction count : 128op : brgt
+instruction count : 129op : assign
+assgin var
+instruction count : 130op : add
+instruction count : 131op : assign
+assgin var
+instruction count : 132op : goto
+instruction count : 133op : label
+instruction count : 134op : goto
+instruction count : 135op : label
+instruction count : 136op : return
+= END ASSEMBLY CODE WITH NAIVE REG ALLOC =
+==========================================

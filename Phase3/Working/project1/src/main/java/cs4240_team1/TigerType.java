@@ -148,6 +148,19 @@ public class TigerType {
 		return this.typeClass == other.typeClass && this.typeId.equals(other.typeId);
 	}
 
+    public boolean isEquivalentToINT() {
+        return  ((this.isEquivalentTo(new TigerType(TypeClass.BASE_INT, "int")))
+                ||(this.isEquivalentTo(new TigerType(TypeClass.LITERAL_INT, "int")))
+                 ||(this.isEquivalentTo(new TigerType(TypeClass.DERIVED_INT, "int"))));
+    }
+    public boolean isEquivalentToFloat() {
+        return  ((this.isEquivalentTo(new TigerType(TypeClass.BASE_FIXEDPT, "fixedpt")))
+                 ||(this.isEquivalentTo(new TigerType(TypeClass.LITERAL_FIXEDPT, "fixedpt")))
+                 ||(this.isEquivalentTo(new TigerType(TypeClass.DERIVED_FIXEDPT, "fixedpt"))));
+    }
+  
+    
+    
 	public boolean isArray() {
 		return this.typeClass == TypeClass.ARRAY_INT
 			|| this.typeClass == TypeClass.ARRAY_FIXEDPT;
