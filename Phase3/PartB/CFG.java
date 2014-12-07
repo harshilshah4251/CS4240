@@ -256,6 +256,47 @@ public class CFG {
 		updatePost(blockList);
 		return blockList;
 	}
+
+    public static LinkedList getEBB(LinkedList<BasicBlock> cfg) {
+	LinkedList<EBB> ebbList = new LinkedList<EBB>();
+
+	// Add the lead basic blocks first 
+	for (int i = 0; i < cfg.size(); i++) {
+	    BasicBlock block = cfg.get(i);
+	    int numPre = block.getPreList().size();
+	    if (numPre >= 2 || numPre == 0) {
+		EBB ebb = new EBB();
+		ebb.addBlock(block);
+		ebbList.add(ebb);
+	    }
+	}
+
+	for (int i = 0; i < cfg.size(); i++) {
+	    BasicBlock currBlock = cfg.get(i);
+	    // need to figure out which ebb currBlock is in in ebbList
+	    int ebbListInd = 0;
+	    for (int ind = 0; ind < ebbList.size(); ind++) {
+		EBB currEBB = ebbList.get(ind);
+		for (int ind_ebb = 0; ind_ebb < currEBB.getEbb().size(); ind_ebb++) {
+		    BasicBlock b = (BasicBlock)(currEBB.getEbb().get(ind_ebb));
+		    if (b.start == currBlock.start) {
+			ebbListInd = ind;
+		    }
+		}
+	    }
+
+	    LinkedList<Integer> post = currBlock.getPostList();
+	    for (int j = 0; j < post.size(); j++) {
+		int index = (int)post.get(j);
+		for (int k = 0; k < cfg.size(); k++) {
+		    BasicBlock compareBlock = cfg.get(k);
+		    if (compareBlock.start == index && compareBlock.getPreList().size() == 1) {
+			ebbList.get(ebbListInd).addBlock(compareBlock);
+		    }
+		}
+	    }
+	}
+	
+	return ebbList;
+    }
 }
-
-

@@ -253,10 +253,14 @@ System.out.println("NOT FOuND : " + used.get(j));
 		ArrayList<String> irList = CFG.getIRList(args[0]);
 		ArrayList<String> rawIrList = CFG.getRawIr(args[0]);
 		LinkedList<BasicBlock> cfg = CFG.getCFG(args[0]);
-	
 
-System.out.println(cfg);
-//System.out.println(irList);
+		System.out.println(cfg);
+
+		LinkedList<EBB> ebbList = CFG.getEBB(cfg);
+		System.out.println("\n[DEBUG] EBB List");
+		System.out.println(ebbList);
+		
+		//System.out.println(irList);
 		branch = new ArrayList<String>();
 		binary = new ArrayList<>();
 		// Consider Array Assignemnt
